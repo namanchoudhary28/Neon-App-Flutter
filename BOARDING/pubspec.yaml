@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter_onboard: ^0.1.0
   # cupertino_icons: ^0.1.3
+  percent_indicator: "^2.1.1"
 
 
   flutter:

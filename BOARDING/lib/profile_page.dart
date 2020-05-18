@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 // import 'package:BOARDING/login_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -96,21 +97,75 @@ class HomePage extends StatelessWidget {
       ),
     );
 
-  /*  final skills=Container(
-      height: 100,
-        child:TabBarView(
-          children: [
-            Text('TOP SKILLS'),
-            Text('PERSONALITY TRAITS'),
-          ],
-        )
-    );*/
-
-
-
-
-    final body=Container(
+    final skills=Container(
       child:Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text('TOP SKILLS'),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(15,10,0,3),
+            child: new LinearPercentIndicator(
+              width: MediaQuery.of(context).size.width - 90,
+              lineHeight: 5.0,
+              leading: new Image.network('https://img.icons8.com/color/48/000000/python.png'),
+              animation: true,
+              animationDuration: 1000,
+              percent: 0.5,
+              backgroundColor: Colors.grey,
+              progressColor: Colors.blue,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(15,10,0,3),
+            child: new LinearPercentIndicator(
+              width: MediaQuery.of(context).size.width - 90,
+              lineHeight: 5.0,
+              leading: new Image.network('https://img.icons8.com/color/48/000000/python.png'),
+              animation: true,
+              animationDuration: 1000,
+              percent: 0.5,
+              backgroundColor: Colors.grey,
+              progressColor: Colors.blue,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(15,10,0,3),
+            child: new LinearPercentIndicator(
+              width: MediaQuery.of(context).size.width - 90,
+              lineHeight: 5.0,
+              leading: new Image.network('https://img.icons8.com/color/48/000000/python.png'),
+              animation: true,
+              animationDuration: 1000,
+              percent: 0.5,
+              backgroundColor: Colors.grey,
+              progressColor: Colors.blue,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(15,10,0,3),
+            child: new LinearPercentIndicator(
+              width: MediaQuery.of(context).size.width - 90,
+              lineHeight: 5.0,
+              leading: new Image.network('https://img.icons8.com/color/48/000000/python.png'),
+              animation: true,
+              animationDuration: 1000,
+              percent: 0.5,
+              backgroundColor: Colors.grey,
+              progressColor: Colors.blue,
+            ),
+          ),
+
+
+        ],
+
+        ),
+      );
+
+
+
+
+    final body=ListView(
+
         children: <Widget>[
           SizedBox(
             height:40,
@@ -130,10 +185,12 @@ class HomePage extends StatelessWidget {
             height:40,
           ),
             hobby,
-          //skills,
+          SizedBox(
+            height:40,
+          ),
+          skills,
         ],
-      ),
-    );
+      );
 
     return Scaffold(
       body: body,
