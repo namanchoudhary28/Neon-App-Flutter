@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_onboard/flutter_onboard.dart';
 import 'package:provider/provider.dart';
+import 'package:BOARDING/signup.dart';
+import 'package:BOARDING/login_page.dart';
+
+
 
 void main() {
   runApp(App());
@@ -25,11 +29,23 @@ class HomeScreen extends StatelessWidget {
         body: OnBoard(
           pageController: _pageController,
           onSkip: () {
-            print('skipped');
+            // print('skipped');
+            Navigator.push(context,MaterialPageRoute(builder: (context){
+              return new Signup();
+
+
+            }));
           },
-          onDone: () {
-            print('done tapped');
-          },
+          onDone: ()  {
+            // print('skipped');
+            Navigator.push(context,MaterialPageRoute(builder: (context){
+              return new LoginPage();
+
+
+            }));
+          
+              // print('skipped');
+            },
           onBoardData: onBoardData,
           titleStyles: TextStyle(
             color: Colors.black,
@@ -49,8 +65,16 @@ class HomeScreen extends StatelessWidget {
             activeSize: Size(12, 12),
           ),
           skipButton: FlatButton(
-            onPressed: () {
-              print('skipped');
+            onPressed: () 
+              {
+            // print('skipped');
+            Navigator.push(context,MaterialPageRoute(builder: (context){
+              return new LoginPage();
+
+
+            }));
+          
+              // print('skipped');
             },
             child: Text(
               "Skip",
@@ -94,8 +118,11 @@ class HomeScreen extends StatelessWidget {
         duration: Duration(milliseconds: 250),
         curve: Curves.easeInOutSine,
       );
-    } else {
-      print("done");
+    }
+     else {
+       
+      print("gggg");
+      
     }
   }
 }
