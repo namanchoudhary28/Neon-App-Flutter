@@ -123,10 +123,116 @@ class HomePage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          _tabSection(context),
+        DefaultTabController(
+        length: 2,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Container(
+              child: TabBar(
+                  labelStyle: TextStyle(fontSize:14),
+                  labelColor: Colors.blue,
+                  tabs: [
+                    Tab(
+                      text: "TOP SKILLS",
+                    ),
+                    Tab(text: "PERSONALITY TRAITS"),
+                  ]),
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height,
+              child: TabBarView(
+                children: [
+                  Container(
+                    child: Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
+                          child: new LinearPercentIndicator(
+                            width: MediaQuery.of(context).size.width - 120,
+                            lineHeight: 5.0,
+                            leading: new Image.network(
+                                'https://img.icons8.com/color/48/000000/python.png'),
+                            trailing: Text(
+                              '50%',
+                              style: TextStyle(color: Colors.blue),
+                            ),
+                            animation: true,
+                            animationDuration: 1000,
+                            percent: 0.5,
+                            backgroundColor: Colors.grey,
+                            progressColor: Colors.blue,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
+                          child: new LinearPercentIndicator(
+                            width: MediaQuery.of(context).size.width - 120,
+                            lineHeight: 5.0,
+                            leading: new Image.network(
+                                'https://img.icons8.com/color/48/000000/python.png'),
+                            trailing: Text(
+                              '75%',
+                              style: TextStyle(color: Colors.blue),
+                            ),
+                            animation: true,
+                            animationDuration: 1000,
+                            percent: 0.75,
+                            backgroundColor: Colors.grey,
+                            progressColor: Colors.blue,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
+                          child: new LinearPercentIndicator(
+                            width: MediaQuery.of(context).size.width - 120,
+                            lineHeight: 5.0,
+                            leading: new Image.network(
+                                'https://img.icons8.com/color/48/000000/python.png'),
+                            trailing: Text(
+                              '90%',
+                              style: TextStyle(color: Colors.blue),
+                            ),
+                            animation: true,
+                            animationDuration: 1000,
+                            percent: 0.9,
+                            backgroundColor: Colors.grey,
+                            progressColor: Colors.blue,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
+                          child: new LinearPercentIndicator(
+                            width: MediaQuery.of(context).size.width - 120,
+                            lineHeight: 5.0,
+                            leading: new Image.network(
+                                'https://img.icons8.com/color/48/000000/python.png'),
+                            trailing: Text(
+                              '30%',
+                              style: TextStyle(color: Colors.blue),
+                            ),
+                            animation: true,
+                            animationDuration: 1000,
+                            percent: 0.3,
+                            backgroundColor: Colors.grey,
+                            progressColor: Colors.blue,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    child: Text("Articles Body"),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
         ],
       ),
-    );
+      );
 
 
 
@@ -161,115 +267,4 @@ class HomePage extends StatelessWidget {
       body: body,
     );
   }
-}
-
-
-//This section is for tabs of personality traits and top skills.
-Widget _tabSection(BuildContext context) {
-  return DefaultTabController(
-    length: 2,
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Container(
-          child: TabBar(
-              labelStyle: TextStyle(fontSize:14,color: Colors.red),
-              tabs: [
-            Tab(
-              text: "TOP SKILLS",
-            ),
-            Tab(text: "PERSONALITY TRAITS"),
-          ]),
-        ),
-        Container(
-          height: MediaQuery.of(context).size.height,
-          child: TabBarView(
-            children: [
-              Container(
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
-                      child: new LinearPercentIndicator(
-                        width: MediaQuery.of(context).size.width - 120,
-                        lineHeight: 5.0,
-                        leading: new Image.network(
-                            'https://img.icons8.com/color/48/000000/python.png'),
-                        trailing: Text(
-                          '50%',
-                          style: TextStyle(color: Colors.blue),
-                        ),
-                        animation: true,
-                        animationDuration: 1000,
-                        percent: 0.5,
-                        backgroundColor: Colors.grey,
-                        progressColor: Colors.blue,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
-                      child: new LinearPercentIndicator(
-                        width: MediaQuery.of(context).size.width - 120,
-                        lineHeight: 5.0,
-                        leading: new Image.network(
-                            'https://img.icons8.com/color/48/000000/python.png'),
-                        trailing: Text(
-                          '75%',
-                          style: TextStyle(color: Colors.blue),
-                        ),
-                        animation: true,
-                        animationDuration: 1000,
-                        percent: 0.75,
-                        backgroundColor: Colors.grey,
-                        progressColor: Colors.blue,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
-                      child: new LinearPercentIndicator(
-                        width: MediaQuery.of(context).size.width - 120,
-                        lineHeight: 5.0,
-                        leading: new Image.network(
-                            'https://img.icons8.com/color/48/000000/python.png'),
-                        trailing: Text(
-                          '90%',
-                          style: TextStyle(color: Colors.blue),
-                        ),
-                        animation: true,
-                        animationDuration: 1000,
-                        percent: 0.9,
-                        backgroundColor: Colors.grey,
-                        progressColor: Colors.blue,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
-                      child: new LinearPercentIndicator(
-                        width: MediaQuery.of(context).size.width - 120,
-                        lineHeight: 5.0,
-                        leading: new Image.network(
-                            'https://img.icons8.com/color/48/000000/python.png'),
-                        trailing: Text(
-                          '30%',
-                          style: TextStyle(color: Colors.blue),
-                        ),
-                        animation: true,
-                        animationDuration: 1000,
-                        percent: 0.3,
-                        backgroundColor: Colors.grey,
-                        progressColor: Colors.blue,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                child: Text("Articles Body"),
-              )
-            ],
-          ),
-        ),
-      ],
-    ),
-  );
 }
