@@ -5,6 +5,10 @@ import 'package:percent_indicator/percent_indicator.dart';
 
 class HomePage extends StatelessWidget {
   static String tag = 'home-page';
+
+
+
+
   @override
   Widget build(BuildContext context) {
     final profile_picture = Hero(
@@ -119,8 +123,7 @@ class HomePage extends StatelessWidget {
       ),
     );
 
-    final skills = Container(
-      child: Column(
+    final skills =  Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
         DefaultTabController(
@@ -136,11 +139,12 @@ class HomePage extends StatelessWidget {
                     Tab(
                       text: "TOP SKILLS",
                     ),
-                    Tab(text: "PERSONALITY TRAITS"),
+                    Tab(
+                        text: "PERSONALITY TRAITS"),
                   ]),
             ),
             Container(
-              height: MediaQuery.of(context).size.height,
+              height: 300,
               child: TabBarView(
                 children: [
                   Container(
@@ -222,7 +226,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    child: Text("Articles Body"),
+                    child: Text("Personality Traits Here!"),
                   )
                 ],
               ),
@@ -231,12 +235,31 @@ class HomePage extends StatelessWidget {
         ),
       ),
         ],
-      ),
       );
 
-
+    final projects= Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children:<Widget>[
+      Padding(
+        padding: const EdgeInsets.fromLTRB(16.0,0,0,10),
+        child: Text('PROJECTS',style: TextStyle(fontSize: 15),),
+      ),
+      Container(
+      height: 170,
+        padding:EdgeInsets.fromLTRB(16, 5, 16, 0),
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: <Widget>[
+          MyProjects('Booking 1', '20 May 2020'),
+          MyProjects('Booking 2', '1 May 2020'),
+          MyProjects('Booking 3', '1 May 2021'),
+        ],
+      ),
+    ),],)
+    ;   // MyProjects function is defined at the end. Usage Syntax: MyProjects(heading,subheading)
 
     final body = ListView(
+      scrollDirection: Axis.vertical,
       children: <Widget>[
         SizedBox(
           height: 40,
@@ -260,11 +283,36 @@ class HomePage extends StatelessWidget {
           height: 40,
         ),
         skills,
+        projects,
       ],
     );
 
     return Scaffold(
-      body: body,
+      body: SafeArea(
+        child:body,
+    ),
+    );
+    
+    
+    
+  }
+  Container MyProjects(String heading, String subHeading){
+    return Container(
+            width:250,
+            child:Card(
+              shape:RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              color: Colors.blue,
+              child:Wrap(
+                children: <Widget>[
+                  ListTile(
+                    title:Text(heading,style: TextStyle(color: Colors.white)),
+                    subtitle: Text(subHeading,style: TextStyle(color: Colors.lightBlueAccent)),
+                  ),
+                ],
+              ),
+            ),
     );
   }
 }
