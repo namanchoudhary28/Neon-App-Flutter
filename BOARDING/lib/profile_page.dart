@@ -280,7 +280,7 @@ class HomePage extends StatelessWidget {
         child: Row(
     children:<Widget>[
           Text('PROJECTS',style: TextStyle(fontSize: 17,letterSpacing: 1.7),),
-      SizedBox(width:(MediaQuery.of(context).size.width)-150),
+      SizedBox(width:(MediaQuery.of(context).size.width)-175),
       Link(
         child: Image.network('https://img.icons8.com/windows/32/000000/edit.png'),
         url:'Edit URL',
@@ -354,8 +354,8 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(16, 5, 16, 5),
               child:Column(
                 children:<Widget>[
-              _MyAchievemnts('May 10','Testing','Testin text'),
-              _MyAchievemnts('May 11','Testing2','Grammaticality Wise men speak because they have something to say; Fools because they have to say something'),
+              _MyAchievemnts(context,'May 10','Testing','Testin text'),
+              _MyAchievemnts(context,'May 11','Testing2','Grammaticality Wise men speak because they have something to say; Fools because they have to say something'),
 
     ],
     ),),
@@ -392,6 +392,9 @@ class HomePage extends StatelessWidget {
           height: 30,
         ),
         badges,
+        SizedBox(
+          height: 30,
+        ),
         achievemnets,
       ],
     );
@@ -426,7 +429,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Row _MyAchievemnts(String date, String heading,String subHeading){
+  Row _MyAchievemnts(context,String date, String heading,String subHeading){
     return
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -437,7 +440,7 @@ class HomePage extends StatelessWidget {
           ),
      Container(
        height: 100,
-       width:300,
+       width:screenWidth(context) -100,
      child:Card(
         shape:RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
@@ -464,4 +467,12 @@ class HomePage extends StatelessWidget {
       )
     ;
   }
+}
+Size screenSize(BuildContext context) {
+  return MediaQuery.of(context).size;
+}
+double screenHeight(BuildContext context) {
+  return screenSize(context).height;
+}double screenWidth(BuildContext context) {
+  return screenSize(context).width;
 }

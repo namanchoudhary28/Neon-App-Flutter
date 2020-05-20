@@ -1,3 +1,4 @@
+import 'package:BOARDING/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboard/flutter_onboard.dart';
 import 'package:provider/provider.dart';
@@ -252,7 +253,7 @@ class EDITINFO extends StatelessWidget {
                   ),
                   onPressed: (){
                     Navigator.push(context,MaterialPageRoute(builder: (context){
-                      return new EDITINFO();
+                      return new HomePage();
 
 
                     }));
@@ -278,7 +279,7 @@ class EDITINFO extends StatelessWidget {
                   ),
                   onPressed: (){
                     Navigator.push(context,MaterialPageRoute(builder: (context){
-                      return new EDITINFO();
+                      return new HomePage();
 
 
                     }));
