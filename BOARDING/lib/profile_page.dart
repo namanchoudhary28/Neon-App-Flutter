@@ -7,28 +7,21 @@ import 'package:BOARDING/login_page.dart';
 import 'package:BOARDING/edit_info.dart';
 import 'package:BOARDING/date_time_picker_widget2.dart';
 
-
 class HomePage extends StatelessWidget {
   static String tag = 'home-page';
 
   @override
   Widget build(BuildContext context) {
-    final achievementaboutme= TextField(
-
+    final achievementaboutme = TextField(
       decoration: InputDecoration(
-        labelText: "Write your description here",
-
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0)
-
-      ),
-        maxLines: 6,
-
-
+          labelText: "Write your description here",
+          contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0)),
+      maxLines: 6,
     );
-    final achievementname =TextFormField(
-      decoration: InputDecoration(labelText: 'Title',
-                contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0)
-),
+    final achievementname = TextFormField(
+      decoration: InputDecoration(
+          labelText: 'Title',
+          contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0)),
       // maxLength: 10,
       validator: (String value) {
         if (value.isEmpty) {
@@ -68,10 +61,11 @@ class HomePage extends StatelessWidget {
             ),
           ),
           InkWell(
-            child: Image.network('https://img.icons8.com/windows/32/000000/edit.png'),
-            onTap: (){
-              Navigator.push(context,MaterialPageRoute(builder: (context){
-                return new EDITINFO();     //Function from edit_info.dart
+            child: Image.network(
+                'https://img.icons8.com/windows/32/000000/edit.png'),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return new EDITINFO(); //Function from edit_info.dart
               }));
             },
           ),
@@ -173,295 +167,277 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(width:(MediaQuery.of(context).size.width)-325),
+              SizedBox(width: (MediaQuery.of(context).size.width) - 325),
               InkWell(
-                  child: Image.network('https://img.icons8.com/windows/32/000000/edit.png'),
-                onTap: (){showModalBottomSheet(
-                  isScrollControlled: true,
-                  context: context,
-                  builder: (context) => Wrap(children: [
-                    Container(
-                      child: Align(
-                        heightFactor: 2,
-                        alignment: Alignment(-0.9, 0),
-                        child: Text("Add Achievement",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-
+                child: Image.network(
+                    'https://img.icons8.com/windows/32/000000/edit.png'),
+                onTap: () {
+                  showModalBottomSheet(
+                    isScrollControlled: true,
+                    context: context,
+                    builder: (context) => Wrap(children: [
+                      Container(
+                        child: Align(
+                          heightFactor: 2,
+                          alignment: Alignment(-0.9, 0),
+                          child: Text(
+                            "Add Achievement",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
-
+                      ),
+                      achievementname,
+                      Container(height: 20),
+                      Container(
+                        child: Align(
+                          heightFactor: 1,
+                          alignment: Alignment(-0.9, 0),
+                          child: Text(
+                            "Date",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
+                      ),
+                      // DateTimePickerWidget2(),
+                      Container(
+                        child: Align(
+                          heightFactor: 2,
+                          alignment: Alignment(-0.7, 0),
+                          child: DateTimePickerWidget2(),
+                        ),
+                      ),
+                      //  Container(height:20),
+                      Container(
+                        child: Align(
+                          heightFactor: 1,
+                          alignment: Alignment(-0.9, 0),
+                          child: Text(
+                            "Description",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
 
+                      achievementaboutme,
 
-
-
-          ),
-          ),
-          achievementname,
-          Container(height:20),
-          Container(
-                child: Align(
-                  heightFactor: 1,
-                  alignment: Alignment(-0.9, 0),
-                  child: Text("Date",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-
-                  ),
-
-                  ),
-
-
-
-
-    ),
-    ),
-    // DateTimePickerWidget2(),
-      Container(
-          child: Align(
-            heightFactor: 2,
-            alignment: Alignment(-0.7, 0),
-            child: DateTimePickerWidget2(),
-
-          ),
-          ),
-    //  Container(height:20),
-           Container(
-          child: Align(
-            heightFactor: 1,
-            alignment: Alignment(-0.9, 0),
-            child: Text("Description",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-
-            ),
-
-            ),
-
-
-
-
-          ),
-          ),
-
-          achievementaboutme,
-
-
-          Container(
-            height: 70,
-
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-            Padding(
-      padding: EdgeInsets.symmetric(vertical:20.0),
-      child:RaisedButton(
-
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24.0),
-
-
-        ),
-        onPressed: (){
-          Navigator.push(context,MaterialPageRoute(builder: (context){
-              return new EDITINFO();
-
-
-            }));
-          // Navigator.of(context).pushNamed(HomePage.tag);
-        },
-        padding: EdgeInsets.all(20),
-
-        color:Colors.blue,
-        child: Text('      Cancel        ', style:TextStyle(color:Colors.white,fontSize: 20.0)
-      ),
-      ),
-    ),
-    SizedBox(
-      width: 10,
-    ),
-    Padding(
-      padding: EdgeInsets.symmetric(vertical:20.0),
-      child:RaisedButton(
-
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24.0),
-
-        ),
-        onPressed: (){
-          Navigator.push(context,MaterialPageRoute(builder: (context){
-              return new EDITINFO();
-
-
-            }));
-          // Navigator.of(context).pushNamed(HomePage.tag);
-        },
-        padding: EdgeInsets.all(20),
-        color:Colors.blue,
-        child: Text('Save Changes', style:TextStyle(color:Colors.white,fontSize: 20.0)
-      ),
-      ),
-    ),
-
-
-          ],
-          )
-
-
-      ]),
-    );
+                      Container(
+                        height: 70,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 20.0),
+                            child: RaisedButton(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              onPressed: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return new EDITINFO();
+                                }));
+                                // Navigator.of(context).pushNamed(HomePage.tag);
+                              },
+                              padding: EdgeInsets.all(20),
+                              color: Colors.blue,
+                              child: Text('      Cancel        ',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20.0)),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 20.0),
+                            child: RaisedButton(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(24.0),
+                              ),
+                              onPressed: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return new EDITINFO();
+                                }));
+                                // Navigator.of(context).pushNamed(HomePage.tag);
+                              },
+                              padding: EdgeInsets.all(20),
+                              color: Colors.blue,
+                              child: Text('Save Changes',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 20.0)),
+                            ),
+                          ),
+                        ],
+                      )
+                    ]),
+                  );
                 },
-                ),
+              ),
             ],
           ),
         ],
       ),
     );
 
-    final skills =  Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-        DefaultTabController(
-        length: 2,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Container(
-              child: TabBar(
-                  labelStyle: TextStyle(fontSize:14),
-                  labelColor: Colors.blue,
-                  tabs: [
-                    Tab(
-                      text: "TOP SKILLS",
-                    ),
-                    Tab(
-                        text: "PERSONALITY TRAITS"),
-                  ]),
-            ),
-            Container(
-              height: 300,
-              child: TabBarView(
-                children: [
-                  Container(
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
-                          child: new LinearPercentIndicator(
-                            width: MediaQuery.of(context).size.width - 120,
-                            lineHeight: 5.0,
-                            leading: new Image.network(
-                                'https://img.icons8.com/color/48/000000/python.png'),
-                            trailing: Text(
-                              '50%',
-                              style: TextStyle(color: Colors.blue),
-                            ),
-                            animation: true,
-                            animationDuration: 1000,
-                            percent: 0.5,
-                            backgroundColor: Colors.grey,
-                            progressColor: Colors.blue,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
-                          child: new LinearPercentIndicator(
-                            width: MediaQuery.of(context).size.width - 120,
-                            lineHeight: 5.0,
-                            leading: new Image.network(
-                                'https://img.icons8.com/color/48/000000/python.png'),
-                            trailing: Text(
-                              '75%',
-                              style: TextStyle(color: Colors.blue),
-                            ),
-                            animation: true,
-                            animationDuration: 1000,
-                            percent: 0.75,
-                            backgroundColor: Colors.grey,
-                            progressColor: Colors.blue,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
-                          child: new LinearPercentIndicator(
-                            width: MediaQuery.of(context).size.width - 120,
-                            lineHeight: 5.0,
-                            leading: new Image.network(
-                                'https://img.icons8.com/color/48/000000/python.png'),
-                            trailing: Text(
-                              '90%',
-                              style: TextStyle(color: Colors.blue),
-                            ),
-                            animation: true,
-                            animationDuration: 1000,
-                            percent: 0.9,
-                            backgroundColor: Colors.grey,
-                            progressColor: Colors.blue,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
-                          child: new LinearPercentIndicator(
-                            width: MediaQuery.of(context).size.width - 120,
-                            lineHeight: 5.0,
-                            leading: new Image.network(
-                                'https://img.icons8.com/color/48/000000/python.png'),
-                            trailing: Text(
-                              '30%',
-                              style: TextStyle(color: Colors.blue),
-                            ),
-                            animation: true,
-                            animationDuration: 1000,
-                            percent: 0.3,
-                            backgroundColor: Colors.grey,
-                            progressColor: Colors.blue,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    child: Text("Personality Traits Here!"),
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-        ],
-      );
-
-    final projects= Column(
+    final skills = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children:<Widget>[
-      Padding(
-        padding: const EdgeInsets.fromLTRB(16.0,0,0,10),
-        child: Row(
-    children:<Widget>[
-          Text('PROJECTS',style: TextStyle(fontSize: 17,letterSpacing: 1.7),),
-      SizedBox(width:(MediaQuery.of(context).size.width)-175),
-      Link(
-        child: Image.network('https://img.icons8.com/windows/32/000000/edit.png'),
-        url:'Edit URL',
-        onError: _showErrorSnackBar,),
-     ], ),),
-      Container(
-      height: 170,
-        padding:EdgeInsets.fromLTRB(16, 5, 16, 0),
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: <Widget>[
-          MyProjects('Booking 1', '20 May 2020'),
-          MyProjects('Booking 2', '1 May 2020'),
-          MyProjects('Booking 3', '1 May 2021'),
-        ],
-      ),
-    ),],); // MyProjects function is defined at the end. Usage Syntax: MyProjects(heading,subheading)
+      children: <Widget>[
+        DefaultTabController(
+          length: 2,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Container(
+                child: TabBar(
+                    labelStyle: TextStyle(fontSize: 14),
+                    labelColor: Colors.blue,
+                    tabs: [
+                      Tab(
+                        text: "TOP SKILLS",
+                      ),
+                      Tab(text: "PERSONALITY TRAITS"),
+                    ]),
+              ),
+              Container(
+                height: 300,
+                child: TabBarView(
+                  children: [
+                    Container(
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
+                            child: new LinearPercentIndicator(
+                              width: MediaQuery.of(context).size.width - 120,
+                              lineHeight: 5.0,
+                              leading: new Image.network(
+                                  'https://img.icons8.com/color/48/000000/python.png'),
+                              trailing: Text(
+                                '50%',
+                                style: TextStyle(color: Colors.blue),
+                              ),
+                              animation: true,
+                              animationDuration: 1000,
+                              percent: 0.5,
+                              backgroundColor: Colors.grey,
+                              progressColor: Colors.blue,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
+                            child: new LinearPercentIndicator(
+                              width: MediaQuery.of(context).size.width - 120,
+                              lineHeight: 5.0,
+                              leading: new Image.network(
+                                  'https://img.icons8.com/color/48/000000/python.png'),
+                              trailing: Text(
+                                '75%',
+                                style: TextStyle(color: Colors.blue),
+                              ),
+                              animation: true,
+                              animationDuration: 1000,
+                              percent: 0.75,
+                              backgroundColor: Colors.grey,
+                              progressColor: Colors.blue,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
+                            child: new LinearPercentIndicator(
+                              width: MediaQuery.of(context).size.width - 120,
+                              lineHeight: 5.0,
+                              leading: new Image.network(
+                                  'https://img.icons8.com/color/48/000000/python.png'),
+                              trailing: Text(
+                                '90%',
+                                style: TextStyle(color: Colors.blue),
+                              ),
+                              animation: true,
+                              animationDuration: 1000,
+                              percent: 0.9,
+                              backgroundColor: Colors.grey,
+                              progressColor: Colors.blue,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
+                            child: new LinearPercentIndicator(
+                              width: MediaQuery.of(context).size.width - 120,
+                              lineHeight: 5.0,
+                              leading: new Image.network(
+                                  'https://img.icons8.com/color/48/000000/python.png'),
+                              trailing: Text(
+                                '30%',
+                                style: TextStyle(color: Colors.blue),
+                              ),
+                              animation: true,
+                              animationDuration: 1000,
+                              percent: 0.3,
+                              backgroundColor: Colors.grey,
+                              progressColor: Colors.blue,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      child: Text("Personality Traits Here!"),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+
+    final projects = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16.0, 0, 0, 10),
+          child: Row(
+            children: <Widget>[
+              Text(
+                'PROJECTS',
+                style: TextStyle(fontSize: 17, letterSpacing: 1.7),
+              ),
+              SizedBox(width: (MediaQuery.of(context).size.width) - 175),
+              Link(
+                child: Image.network(
+                    'https://img.icons8.com/windows/32/000000/edit.png'),
+                url: 'Edit URL',
+                onError: _showErrorSnackBar,
+              ),
+            ],
+          ),
+        ),
+        Container(
+          height: 170,
+          padding: EdgeInsets.fromLTRB(16, 5, 16, 0),
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: <Widget>[
+              MyProjects('Booking 1', '20 May 2020'),
+              MyProjects('Booking 2', '1 May 2020'),
+              MyProjects('Booking 3', '1 May 2021'),
+            ],
+          ),
+        ),
+      ],
+    ); // MyProjects function is defined at the end. Usage Syntax: MyProjects(heading,subheading)
 
     final badges = Container(
       height: 170,
@@ -482,48 +458,53 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(width:(MediaQuery.of(context).size.width)-165),
-
+              SizedBox(width: (MediaQuery.of(context).size.width) - 165),
               Link(
-                child: Image.network('https://img.icons8.com/windows/32/000000/edit.png'),
-                url:'Edit URL',
-                onError: _showErrorSnackBar,),
+                child: Image.network(
+                    'https://img.icons8.com/windows/32/000000/edit.png'),
+                url: 'Edit URL',
+                onError: _showErrorSnackBar,
+              ),
             ],
           ),
         ],
       ),
     );
 
-    final achievemnets=Column(
+    final achievemnets = Column(
       children: <Widget>[
         Row(
-        children:<Widget>[
-        Padding(
-          padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-          child: Text(
-            'ACHIEVEMENTS',
-            style: TextStyle(fontSize: 17,letterSpacing: 1.7,),
-          )
+          children: <Widget>[
+            Padding(
+                padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                child: Text(
+                  'ACHIEVEMENTS',
+                  style: TextStyle(
+                    fontSize: 17,
+                    letterSpacing: 1.7,
+                  ),
+                )),
+            SizedBox(width: (MediaQuery.of(context).size.width) - 235),
+            Link(
+              child: Image.network(
+                  'https://img.icons8.com/windows/32/000000/edit.png'),
+              url: 'Edit URL',
+              onError: _showErrorSnackBar,
+            ),
+          ],
         ),
-          SizedBox(width:(MediaQuery.of(context).size.width)-235),
-
-          Link(
-            child: Image.network('https://img.icons8.com/windows/32/000000/edit.png'),
-            url:'Edit URL',
-            onError: _showErrorSnackBar,),
-      ],
-    ),
         Container(
-            width:(MediaQuery.of(context).size.width),
-            padding: EdgeInsets.fromLTRB(16, 5, 16, 5),
-              child:Column(
-                children:<Widget>[
-              _MyAchievemnts(context,'May 10','Testing','Testin text'),
-              _MyAchievemnts(context,'May 11','Testing2','Grammaticality Wise men speak because they have something to say; Fools because they have to say something'),
-
-    ],
-    ),),
-    ],
+          width: (MediaQuery.of(context).size.width),
+          padding: EdgeInsets.fromLTRB(16, 5, 16, 5),
+          child: Column(
+            children: <Widget>[
+              _MyAchievemnts(context, 'May 10', 'Testing', 'Testin text'),
+              _MyAchievemnts(context, 'May 11', 'Testing2',
+                  'Grammaticality Wise men speak because they have something to say; Fools because they have to say something'),
+            ],
+          ),
+        ),
+      ],
     );
 
     final body = ListView(
@@ -565,78 +546,81 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child:body,
-    ),
+        child: body,
+      ),
     );
-
   }
-
 
   //Functions called above
-  Container MyProjects(String heading, String subHeading){
+  Container MyProjects(String heading, String subHeading) {
     return Container(
-            width:250,
-            child:Card(
-              shape:RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              color: Colors.blue,
-              child:Wrap(
-                children: <Widget>[
-                  ListTile(
-                    title:Text(heading,style: TextStyle(color: Colors.white)),
-                    subtitle: Text(subHeading,style: TextStyle(color: Colors.lightBlueAccent)),
-                  ),
-                ],
-              ),
-            ),
-    );
-  }
-
-  Row _MyAchievemnts(context,String date, String heading,String subHeading){
-    return
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Text(
-            date,
-            style: TextStyle(fontSize: 17),
-          ),
-     Container(
-       height: 100,
-       width:screenWidth(context) -100,
-     child:Card(
-        shape:RoundedRectangleBorder(
+      width: 250,
+      child: Card(
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        color: Colors.red[200],
-        child:Wrap(
+        color: Colors.blue,
+        child: Wrap(
           children: <Widget>[
             ListTile(
-              title:Text(heading,style: TextStyle(color: Colors.black)),
-              subtitle: Text(subHeading,style: TextStyle(color: Colors.black)),
+              title: Text(heading, style: TextStyle(color: Colors.white)),
+              subtitle: Text(subHeading,
+                  style: TextStyle(color: Colors.lightBlueAccent)),
             ),
           ],
         ),
-      ),),
-        ],
-      );
+      ),
+    );
   }
-  void _showErrorSnackBar() {
 
-      Scaffold(
-        body: SnackBar(
-          content: Text('Oops... the URL couldn\'t be opened!'),
+  Row _MyAchievemnts(context, String date, String heading, String subHeading) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Text(
+          date,
+          style: TextStyle(fontSize: 17),
         ),
-      )
-    ;
+        Container(
+          height: 100,
+          width: screenWidth(context) - 100,
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            color: Colors.red[200],
+            child: Wrap(
+              children: <Widget>[
+                ListTile(
+                  title: Text(heading, style: TextStyle(color: Colors.black)),
+                  subtitle:
+                      Text(subHeading, style: TextStyle(color: Colors.black)),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  void _showErrorSnackBar() {
+    Scaffold(
+      body: SnackBar(
+        content: Text('Oops... the URL couldn\'t be opened!'),
+      ),
+    );
   }
 }
+
 Size screenSize(BuildContext context) {
   return MediaQuery.of(context).size;
 }
+
 double screenHeight(BuildContext context) {
   return screenSize(context).height;
-}double screenWidth(BuildContext context) {
+}
+
+double screenWidth(BuildContext context) {
   return screenSize(context).width;
 }
