@@ -5,12 +5,43 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:link/link.dart';
 import 'package:BOARDING/login_page.dart';
 import 'package:BOARDING/edit_info.dart';
+import 'package:BOARDING/date_time_picker_widget2.dart';
+
 
 class HomePage extends StatelessWidget {
   static String tag = 'home-page';
+  
 
   @override
   Widget build(BuildContext context) {
+    final achievementaboutme= TextField(
+    
+      decoration: InputDecoration(
+        labelText: "Write your description here",
+        
+        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0)
+
+      ),
+        maxLines: 6,
+      
+
+    );
+    final achievementname =TextFormField(
+      decoration: InputDecoration(labelText: 'Title',
+                contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0)
+),
+      // maxLength: 10,
+      validator: (String value) {
+        if (value.isEmpty) {
+          return 'Name is Required';
+        }
+
+        return null;
+      },
+      // onSaved: (String value) {
+      //   _name = value;
+      // },
+    );
     final profile_picture = Hero(
       tag: 'hero',
       child: Padding(
@@ -37,9 +68,9 @@ class HomePage extends StatelessWidget {
               fontSize: 20,
             ),
           ),
-          InkWell(
+          RaisedButton(
             child: Image.network('https://img.icons8.com/windows/32/000000/edit.png'),
-            onTap: (){
+            onPressed: (){
               Navigator.push(context,MaterialPageRoute(builder: (context){
                 return new EDITINFO();     //Function from edit_info.dart
               }));
@@ -144,12 +175,146 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               SizedBox(width:(MediaQuery.of(context).size.width)-325),
-              InkWell(
+              RaisedButton(
                   child: Image.network('https://img.icons8.com/windows/32/000000/edit.png'),
-                onTap: (){
-                  Navigator.push(context,MaterialPageRoute(builder: (context){
-                    return new EDITINFO();
-                  }));
+                onPressed: (){showModalBottomSheet(
+                  isScrollControlled: true,
+                  context: context,
+                  builder: (context) => Wrap(children: [
+                    Container(
+                      child: Align(
+                        heightFactor: 2,
+                        alignment: Alignment(-0.9, 0),
+                        child: Text("Add Achievement",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          
+                        ),
+                
+                        ),
+
+                        
+            
+          
+          ),
+          ),
+          achievementname,
+          Container(height:20),
+          Container(
+                child: Align(
+                  heightFactor: 1,
+                  alignment: Alignment(-0.9, 0),
+                  child: Text("Date",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    
+                  ),
+          
+                  ),
+
+                  
+      
+    
+    ),
+    ),
+    // DateTimePickerWidget2(),
+      Container(
+          child: Align(
+            heightFactor: 2,
+            alignment: Alignment(-0.7, 0),
+            child: DateTimePickerWidget2(),
+  
+          ),
+          ),
+    //  Container(height:20),
+           Container(
+          child: Align(
+            heightFactor: 1,
+            alignment: Alignment(-0.9, 0),
+            child: Text("Description",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              
+            ),
+    
+            ),
+
+            
+            
+          
+          ),
+          ),
+
+          achievementaboutme,
+         
+      
+          Container(
+            height: 70,
+
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+            Padding(
+      padding: EdgeInsets.symmetric(vertical:20.0),
+      child:RaisedButton(
+
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24.0),
+          
+
+        ),
+        onPressed: (){
+          Navigator.push(context,MaterialPageRoute(builder: (context){
+              return new EDITINFO();
+
+
+            }));
+          // Navigator.of(context).pushNamed(HomePage.tag);
+        },
+        padding: EdgeInsets.all(20),
+        
+        color:Colors.blue,
+        child: Text('      Cancel        ', style:TextStyle(color:Colors.white,fontSize: 20.0)
+      ),
+      ),
+    ),
+    SizedBox(
+      width: 10,
+    ),
+    Padding(
+      padding: EdgeInsets.symmetric(vertical:20.0),
+      child:RaisedButton(
+
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24.0),
+
+        ),
+        onPressed: (){
+          Navigator.push(context,MaterialPageRoute(builder: (context){
+              return new EDITINFO();
+
+
+            }));
+          // Navigator.of(context).pushNamed(HomePage.tag);
+        },
+        padding: EdgeInsets.all(20),
+        color:Colors.blue,
+        child: Text('Save Changes', style:TextStyle(color:Colors.white,fontSize: 20.0)
+      ),
+      ),
+    ),
+
+
+          ],
+          )
+      
+
+      ]),
+    );
                 },
                 ),
             ],
