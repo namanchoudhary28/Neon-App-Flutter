@@ -9,7 +9,6 @@ import 'package:BOARDING/login_page.dart';
 class EDITINFO extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print('yo');
 
     // final name= TextFormField(
     //   // keyboardType: TextInputType.emailAddress,
