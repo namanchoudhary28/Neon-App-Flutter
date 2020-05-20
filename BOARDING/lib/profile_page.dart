@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:link/link.dart';
-// import 'package:BOARDING/login_page.dart';
+import 'package:BOARDING/login_page.dart';
+import 'package:BOARDING/edit_info.dart';
 
 class HomePage extends StatelessWidget {
   static String tag = 'home-page';
@@ -36,10 +37,14 @@ class HomePage extends StatelessWidget {
               fontSize: 20,
             ),
           ),
-          Link(
+          InkWell(
             child: Image.network('https://img.icons8.com/windows/32/000000/edit.png'),
-            url:'Edit URL',
-            onError: _showErrorSnackBar,),
+            onTap: (){
+              Navigator.push(context,MaterialPageRoute(builder: (context){
+                return new EDITINFO();     //Function from edit_info.dart
+              }));
+            },
+          ),
         ],
       ),
     );
@@ -139,12 +144,14 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               SizedBox(width:(MediaQuery.of(context).size.width)-325),
-              Link(
+              InkWell(
                   child: Image.network('https://img.icons8.com/windows/32/000000/edit.png'),
-              url:'Edit URL',
-                onError: _showErrorSnackBar,),
-
-
+                onTap: (){
+                  Navigator.push(context,MaterialPageRoute(builder: (context){
+                    return new EDITINFO();
+                  }));
+                },
+                ),
             ],
           ),
         ],
