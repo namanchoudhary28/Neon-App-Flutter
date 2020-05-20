@@ -14,24 +14,33 @@ class HomePage extends StatelessWidget {
       tag: 'hero',
       child: Padding(
         padding: EdgeInsets.all(10),
-        child: CircleAvatar(
-          radius: 50,
-          backgroundColor: Colors.transparent,
-          backgroundImage: NetworkImage(
-              'https://www.postplanner.com/hs-fs/hub/513577/file-2886416984-png/blog-files/facebook-profile-pic-vs-cover-photo-sq.png?width=250&height=250&name=facebook-profile-pic-vs-cover-photo-sq.png'),
+        child: Center(
+          child: CircleAvatar(
+            radius: 50,
+            backgroundColor: Colors.transparent,
+            backgroundImage: NetworkImage(
+                'https://www.postplanner.com/hs-fs/hub/513577/file-2886416984-png/blog-files/facebook-profile-pic-vs-cover-photo-sq.png?width=250&height=250&name=facebook-profile-pic-vs-cover-photo-sq.png'),
+          ),
         ),
       ),
     );
 
     final name = Padding(
       padding: EdgeInsets.all(8),
-      child: Center(
-        child: Text(
-          'The One',
-          style: TextStyle(
-            fontSize: 20,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            'The One',
+            style: TextStyle(
+              fontSize: 20,
+            ),
           ),
-        ),
+          Link(
+            child: Image.network('https://img.icons8.com/windows/32/000000/edit.png'),
+            url:'Edit URL',
+            onError: _showErrorSnackBar,),
+        ],
       ),
     );
 
@@ -129,7 +138,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-                  //padding: const EdgeInsets.all(8.0),
+              SizedBox(width:(MediaQuery.of(context).size.width)-325),
               Link(
                   child: Image.network('https://img.icons8.com/windows/32/000000/edit.png'),
               url:'Edit URL',
@@ -261,8 +270,15 @@ class HomePage extends StatelessWidget {
       children:<Widget>[
       Padding(
         padding: const EdgeInsets.fromLTRB(16.0,0,0,10),
-        child: Text('PROJECTS',style: TextStyle(fontSize: 15),),
-      ),
+        child: Row(
+    children:<Widget>[
+          Text('PROJECTS',style: TextStyle(fontSize: 17,letterSpacing: 1.7),),
+      SizedBox(width:(MediaQuery.of(context).size.width)-150),
+      Link(
+        child: Image.network('https://img.icons8.com/windows/32/000000/edit.png'),
+        url:'Edit URL',
+        onError: _showErrorSnackBar,),
+     ], ),),
       Container(
       height: 170,
         padding:EdgeInsets.fromLTRB(16, 5, 16, 0),
@@ -283,15 +299,25 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              'BADGES',
-              style: TextStyle(
-                fontSize: 17.0,
-                letterSpacing: 1.7,
+          Row(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  'BADGES',
+                  style: TextStyle(
+                    fontSize: 17.0,
+                    letterSpacing: 1.7,
+                  ),
+                ),
               ),
-            ),
+              SizedBox(width:(MediaQuery.of(context).size.width)-165),
+
+              Link(
+                child: Image.network('https://img.icons8.com/windows/32/000000/edit.png'),
+                url:'Edit URL',
+                onError: _showErrorSnackBar,),
+            ],
           ),
         ],
       ),
@@ -308,6 +334,8 @@ class HomePage extends StatelessWidget {
             style: TextStyle(fontSize: 17,letterSpacing: 1.7,),
           )
         ),
+          SizedBox(width:(MediaQuery.of(context).size.width)-235),
+
           Link(
             child: Image.network('https://img.icons8.com/windows/32/000000/edit.png'),
             url:'Edit URL',
@@ -366,10 +394,11 @@ class HomePage extends StatelessWidget {
         child:body,
     ),
     );
-    
-    
-    
+
   }
+
+
+  //Functions called above
   Container MyProjects(String heading, String subHeading){
     return Container(
             width:250,
@@ -406,7 +435,7 @@ class HomePage extends StatelessWidget {
         shape:RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        color: Colors.redAccent,
+        color: Colors.red[200],
         child:Wrap(
           children: <Widget>[
             ListTile(
