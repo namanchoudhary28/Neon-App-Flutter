@@ -12,7 +12,9 @@ class LoginPage extends StatefulWidget {
 
 
 class _LoginPageState extends State<LoginPage> {
-  String _username,_email,_password= "";
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final logo = Hero(
@@ -26,12 +28,13 @@ class _LoginPageState extends State<LoginPage> {
 
     final email = TextFormField(
       keyboardType: TextInputType.emailAddress,
-      validator: (value) {
+      controller: _usernameController,
+    /*  validator: (value) {
         if (value.isEmpty) {
           return 'Please enter your email address';
         }
         return null;
-      },
+      },*/
       autofocus: false,
       decoration: InputDecoration(
           hintText: 'Email',
@@ -40,13 +43,14 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     final password = TextFormField(
-      keyboardType: TextInputType.emailAddress,
-      validator: (value) {
+      keyboardType: TextInputType.visiblePassword,
+      controller: _passwordController,
+    /*  validator: (value) {
         if (value.isEmpty) {
           return 'Please enter password';
         }
         return null;
-      },
+      },*/
       autofocus: false,
       obscureText: true,
       decoration: InputDecoration(
@@ -64,11 +68,13 @@ class _LoginPageState extends State<LoginPage> {
 
         ),
         onPressed: (){
-          Navigator.push(context,MaterialPageRoute(builder: (context){
-              return new HomePage();
+
+          Navigator.push(context,MaterialPageRoute(builder: (context)
+          {_performLogin;
+            return new HomePage();
+          }));
 
 
-            }));
           // Navigator.of(context).pushNamed(HomePage.tag);
         },
         padding: EdgeInsets.all(12),
@@ -77,6 +83,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
       ),
     );
+
 
     final forgot=Container(
       child:Row(
@@ -118,5 +125,11 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+  void _performLogin() {
+    String username = _usernameController.text;
+    String password = _passwordController.text;
+
+    print(username);
   }
 }

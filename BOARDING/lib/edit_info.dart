@@ -91,10 +91,6 @@ class EDITINFO extends StatelessWidget {
                 ),
 
               ),
-
-
-
-
             ),
           ),
           name,

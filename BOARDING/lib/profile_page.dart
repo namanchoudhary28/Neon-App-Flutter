@@ -1,3 +1,5 @@
+//import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -7,8 +9,49 @@ import 'package:BOARDING/login_page.dart';
 import 'package:BOARDING/edit_info.dart';
 import 'package:BOARDING/date_time_picker_widget2.dart';
 
-class HomePage extends StatelessWidget {
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
+import 'package:http/http.dart' as http;
+
+
+
+class HomePage extends StatefulWidget {
+  static String tag='home-page';
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+
+class _HomePageState extends State<HomePage> {
   static String tag = 'home-page';
+
+  List data;
+  bool got=false;
+
+  Future<String> getData() async{
+    var response=await http.get(
+        'http://10.0.2.2:8000/api/getuserinfo',
+        headers: {
+          'Accept':'application/json',
+          //HttpHeaders.contentTypeHeader: "application/json",
+          //HttpHeaders.authorizationHeader: "Bearer a078fa09e6e934ce22a4e445b56b28a1c62a16b3",
+          'Authorization':'Token a078fa09e6e934ce22a4e445b56b28a1c62a16b3',
+        }
+    );
+    this.setState(() {
+      data=jsonDecode(response.body);
+      got=true;
+    });
+
+    print(data);
+    return 'Success';
+  }
+
+  @override
+  void initState(){
+    this.getData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,33 +92,36 @@ class HomePage extends StatelessWidget {
       ),
     );
 
-    final name = Padding(
-      padding: EdgeInsets.all(8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            'The One',
-            style: TextStyle(
-              fontSize: 20,
+
+    final name=
+      Padding(
+        padding: EdgeInsets.all(8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              data[0]['name'],
+              style: TextStyle(
+                fontSize: 20,
+              ),
             ),
-          ),
-          InkWell(
-            child: Image.network(
-                'https://img.icons8.com/windows/32/000000/edit.png'),
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return new EDITINFO(); //Function from edit_info.dart
-              }));
-            },
-          ),
-        ],
-      ),
-    );
+            InkWell(
+              child: Image.network(
+                  'https://img.icons8.com/windows/32/000000/edit.png'),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return new EDITINFO(); //Function from edit_info.dart
+                }));
+              },
+            ),
+          ],
+        ),
+      );
+
 
     final city = Center(
       child: Text(
-        'Delhi, IN',
+        data[0]['location'],
         style: TextStyle(
           color: Colors.orangeAccent,
           fontWeight: FontWeight.bold,
@@ -171,6 +217,8 @@ class HomePage extends StatelessWidget {
               InkWell(
                 child: Image.network(
                     'https://img.icons8.com/windows/32/000000/edit.png'),
+
+                /// Pop Up form to add hobbies and interests
                 onTap: () {
                   showModalBottomSheet(
                     isScrollControlled: true,
@@ -244,7 +292,7 @@ class HomePage extends StatelessWidget {
                               onPressed: () {
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (context) {
-                                  return new EDITINFO();
+                                  return new HomePage();
                                 }));
                                 // Navigator.of(context).pushNamed(HomePage.tag);
                               },
@@ -267,7 +315,7 @@ class HomePage extends StatelessWidget {
                               onPressed: () {
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (context) {
-                                  return new EDITINFO();
+                                  return new HomePage();
                                 }));
                                 // Navigator.of(context).pushNamed(HomePage.tag);
                               },
@@ -507,42 +555,43 @@ class HomePage extends StatelessWidget {
       ],
     );
 
-    final body = ListView(
-      scrollDirection: Axis.vertical,
-      children: <Widget>[
-        SizedBox(
-          height: 40,
-        ),
-        profile_picture,
-        SizedBox(
-          height: 10,
-        ),
-        name,
-        city,
-        social_icons,
-        SizedBox(
-          height: 10,
-        ),
-        about,
-        SizedBox(
-          height: 40,
-        ),
-        hobby,
-        SizedBox(
-          height: 40,
-        ),
-        skills,
-        projects,
-        SizedBox(
-          height: 30,
-        ),
-        badges,
-        SizedBox(
-          height: 30,
-        ),
-        achievemnets,
-      ],
-    );
+    final body=
+      ListView(
+        scrollDirection: Axis.vertical,
+        children: <Widget>[
+          SizedBox(
+            height: 40,
+          ),
+          profile_picture,
+          SizedBox(
+            height: 10,
+          ),
+          name,
+          city,
+          social_icons,
+          SizedBox(
+            height: 10,
+          ),
+          about,
+          SizedBox(
+            height: 40,
+          ),
+          hobby,
+          SizedBox(
+            height: 40,
+          ),
+          skills,
+          projects,
+          SizedBox(
+            height: 30,
+          ),
+          badges,
+          SizedBox(
+            height: 30,
+          ),
+          achievemnets,
+        ],
+      );
 
     return Scaffold(
       body: SafeArea(
