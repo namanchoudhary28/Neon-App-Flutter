@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:BOARDING/profile_page.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'dart:async';
+import 'package:http/http.dart' as http;
+final storage = FlutterSecureStorage();
+
+
 
 
 
@@ -14,6 +20,17 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  Future<String> attemptLogIn(String username, String password) async {
+    var res = await http.post(
+        "http://10.0.2.2/api/login",
+        body: {
+          "username": username,
+          "password": password
+        }
+    );
+    if(res.statusCode == 200) return res.body;
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,15 +84,26 @@ class _LoginPageState extends State<LoginPage> {
           borderRadius: BorderRadius.circular(24.0),
 
         ),
-        onPressed: (){
+        onPressed: () async{
+          var username = _usernameController.text;
+          var password = _passwordController.text;
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+              builder: (context) {return new HomePage();}));
+         /* var jwt = await attemptLogIn(username, password);
+          if(jwt != null) {
+            storage.write(key: "jwt", value: jwt);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) {return new HomePage();}
+                )
+            );
+          } else {
+            print("An Error Occurred");
+          }*/
 
-          Navigator.push(context,MaterialPageRoute(builder: (context)
-          {_performLogin;
-            return new HomePage();
-          }));
-
-
-          // Navigator.of(context).pushNamed(HomePage.tag);
         },
         padding: EdgeInsets.all(12),
         color:Colors.blue,

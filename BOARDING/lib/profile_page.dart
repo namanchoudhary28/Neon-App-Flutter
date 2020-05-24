@@ -8,6 +8,9 @@ import 'package:link/link.dart';
 import 'package:BOARDING/login_page.dart';
 import 'package:BOARDING/edit_info.dart';
 import 'package:BOARDING/date_time_picker_widget2.dart';
+import 'package:sleek_circular_slider/sleek_circular_slider.dart';
+//import 'package:BOARDING/grid_hobby.dart';
+import 'package:BOARDING/addproject.dart';
 
 import 'dart:async';
 import 'dart:convert';
@@ -26,7 +29,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   static String tag = 'home-page';
 
-  List data;
+  List list_about;
   bool got=false;
 
   Future<String> getData() async{
@@ -40,11 +43,11 @@ class _HomePageState extends State<HomePage> {
         }
     );
     this.setState(() {
-      data=jsonDecode(response.body);
+      list_about=jsonDecode(response.body);
       got=true;
     });
 
-    print(data);
+    print(list_about);
     return 'Success';
   }
 
@@ -100,7 +103,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              data[0]['name'],
+              list_about[0]['name'],
               style: TextStyle(
                 fontSize: 20,
               ),
@@ -121,7 +124,7 @@ class _HomePageState extends State<HomePage> {
 
     final city = Center(
       child: Text(
-        data[0]['location'],
+        list_about[0]['location'],
         style: TextStyle(
           color: Colors.orangeAccent,
           fontWeight: FontWeight.bold,
@@ -183,7 +186,7 @@ class _HomePageState extends State<HomePage> {
       padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: Center(
         child: Text(
-          'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+          list_about[0]['aboutme'],
           textAlign: TextAlign.center,
           style: TextStyle(
             //color: Colors.orangeAccent,,
@@ -463,11 +466,14 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(fontSize: 17, letterSpacing: 1.7),
               ),
               SizedBox(width: (MediaQuery.of(context).size.width) - 175),
-              Link(
+              InkWell(
                 child: Image.network(
                     'https://img.icons8.com/windows/32/000000/edit.png'),
-                url: 'Edit URL',
-                onError: _showErrorSnackBar,
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return new MyApp();
+                  }));
+                },
               ),
             ],
           ),
