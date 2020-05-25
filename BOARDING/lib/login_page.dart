@@ -26,14 +26,21 @@ class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   List list_token;
-  Future<String> attemptLogIn(String username, String password) async {
 
-    final http.Response res = await http.post(
+  Future<String> attemptLogIn(String username, String password) async {
+    /*Map data={
+      'username': username,
+      'password': password,
+    };*/
+    //String body=json.encode(data);
+
+    http.Response res = await http.put(
         'http://10.0.2.2/api/login',
+        headers: {'Accept': 'application/json',},
         body: {
           'username': username,
-          'password': password
-        }
+          'password': password,
+        },
     );
     print('success');
     if (res.statusCode == 200) {
@@ -98,12 +105,13 @@ class _LoginPageState extends State<LoginPage> {
           onPressed: () async {
             var username = _usernameController.text;
             var password = _passwordController.text;
-             Navigator.push(
+             /*Navigator.push(
               context,
               MaterialPageRoute(
-              builder: (context) {return new HomePage();}));
+              builder: (context) {return new HomePage();}));*/
+            print('something1');
             var jwt = await attemptLogIn(username, password);
-            print('something');
+            print('something2');
 
 
             if (jwt != null) {

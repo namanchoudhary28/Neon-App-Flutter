@@ -74,9 +74,6 @@ class _HomePageState extends State<HomePage> {
       );
 
 
-
-
-
       this.setState(() {
       list_about=jsonDecode(response1.body);
       list_hobby=jsonDecode(response2.body);
@@ -600,9 +597,10 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.fromLTRB(16, 5, 16, 5),
           child: Column(
             children: <Widget>[
-              _MyAchievemnts(context, 'May 10', 'Testing', 'Testin text'),
-              _MyAchievemnts(context, 'May 11', 'Testing2',
-                  'Grammaticality Wise men speak because they have something to say; Fools because they have to say something'),
+              for (Map<String,dynamic> item in list_achievements) _MyAchievemnts(context,item['date'], item['title'],'Testing_Text'),
+              //_MyAchievemnts(context, 'May 10', 'Testing', 'Testin text'),
+              //_MyAchievemnts(context, 'May 11', 'Testing2',
+               //   'Grammaticality Wise men speak because they have something to say; Fools because they have to say something'),
             ],
           ),
         ),
@@ -655,6 +653,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   //Functions called above
+
+
+
   Container MyProjects(String heading, String subHeading) {
     return Container(
       width: 250,
@@ -686,7 +687,7 @@ class _HomePageState extends State<HomePage> {
         ),
         Container(
           height: 100,
-          width: screenWidth(context) - 100,
+          width: screenWidth(context) - 150,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
@@ -706,6 +707,7 @@ class _HomePageState extends State<HomePage> {
       ],
     );
   }
+
 
   void _showErrorSnackBar() {
     Scaffold(
