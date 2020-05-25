@@ -29,25 +29,63 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   static String tag = 'home-page';
 
-  List list_about;
+  List list_about,list_hobby,list_achievements,list_projects;
   bool got=false;
 
   Future<String> getData() async{
-    var response=await http.get(
-        'http://10.0.2.2:8000/api/getuserinfo',
-        headers: {
-          'Accept':'application/json',
-          //HttpHeaders.contentTypeHeader: "application/json",
-          //HttpHeaders.authorizationHeader: "Bearer a078fa09e6e934ce22a4e445b56b28a1c62a16b3",
-          'Authorization':'Token a078fa09e6e934ce22a4e445b56b28a1c62a16b3',
-        }
-    );
-    this.setState(() {
-      list_about=jsonDecode(response.body);
+      var response1=await http.get(
+          'http://10.0.2.2:8000/api/getuserinfo',
+          headers: {
+            'Accept':'application/json',
+            //HttpHeaders.contentTypeHeader: "application/json",
+            //HttpHeaders.authorizationHeader: "Bearer a078fa09e6e934ce22a4e445b56b28a1c62a16b3",
+            'Authorization':'Token a078fa09e6e934ce22a4e445b56b28a1c62a16b3',
+          }
+      );
+
+        var response2=await http.get(
+            'http://10.0.2.2:8000/api/gethobby',
+            headers: {
+              'Accept':'application/json',
+              //HttpHeaders.contentTypeHeader: "application/json",
+              //HttpHeaders.authorizationHeader: "Bearer a078fa09e6e934ce22a4e445b56b28a1c62a16b3",
+              'Authorization':'Token a078fa09e6e934ce22a4e445b56b28a1c62a16b3',
+            }
+        );
+
+      var response3=await http.get(
+          'http://10.0.2.2:8000/api/getproject',
+          headers: {
+            'Accept':'application/json',
+            //HttpHeaders.contentTypeHeader: "application/json",
+            //HttpHeaders.authorizationHeader: "Bearer a078fa09e6e934ce22a4e445b56b28a1c62a16b3",
+            'Authorization':'Token a078fa09e6e934ce22a4e445b56b28a1c62a16b3',
+          }
+      );
+
+      var response4=await http.get(
+          'http://10.0.2.2:8000/api/getachievement',
+          headers: {
+            'Accept':'application/json',
+            //HttpHeaders.contentTypeHeader: "application/json",
+            //HttpHeaders.authorizationHeader: "Bearer a078fa09e6e934ce22a4e445b56b28a1c62a16b3",
+            'Authorization':'Token a078fa09e6e934ce22a4e445b56b28a1c62a16b3',
+          }
+      );
+
+
+
+
+
+      this.setState(() {
+      list_about=jsonDecode(response1.body);
+      list_hobby=jsonDecode(response2.body);
+      list_projects=jsonDecode(response3.body);
+      list_achievements=jsonDecode(response4.body);
       got=true;
     });
 
-    print(list_about);
+    //print(list_projects);
     return 'Success';
   }
 
@@ -102,8 +140,11 @@ class _HomePageState extends State<HomePage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              list_about[0]['name'],
+            Text((() {
+              if (got=true){
+                return list_about[0]['name'];}
+              return 'Loading';
+      }()),
               style: TextStyle(
                 fontSize: 20,
               ),
@@ -123,8 +164,11 @@ class _HomePageState extends State<HomePage> {
 
 
     final city = Center(
-      child: Text(
-        list_about[0]['location'],
+      child:Text((() {
+        if (got=true){
+          return list_about[0]['location'];}
+        return 'Loading';
+      }()),
         style: TextStyle(
           color: Colors.orangeAccent,
           fontWeight: FontWeight.bold,
@@ -185,8 +229,11 @@ class _HomePageState extends State<HomePage> {
     final about = Padding(
       padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: Center(
-        child: Text(
-          list_about[0]['aboutme'],
+        child:Text((() {
+          if (got=true){
+            return list_about[0]['aboutme'];}
+          return 'Loading';
+        }()),
           textAlign: TextAlign.center,
           style: TextStyle(
             //color: Colors.orangeAccent,,
@@ -484,9 +531,10 @@ class _HomePageState extends State<HomePage> {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: <Widget>[
-              MyProjects('Booking 1', '20 May 2020'),
-              MyProjects('Booking 2', '1 May 2020'),
-              MyProjects('Booking 3', '1 May 2021'),
+              for (Map<String,dynamic> item in list_projects) MyProjects(item['info'], item['starts']),
+
+              //MyProjects('Booking 2', '1 May 2020'),
+              //MyProjects('Booking 3', '1 May 2021'),
             ],
           ),
         ),
