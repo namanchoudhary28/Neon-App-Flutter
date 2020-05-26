@@ -34,18 +34,19 @@ class _LoginPageState extends State<LoginPage> {
     };*/
     //String body=json.encode(data);
 
-    http.Response res = await http.put(
-        'http://10.0.2.2/api/login',
+    http.Response res = await http.post(
+        'http://10.0.2.2:8000/api/login',
         headers: {'Accept': 'application/json',},
         body: {
           'username': username,
           'password': password,
         },
     );
-    print('success');
+    //print(res.body);
+    //print(res.statusCode);
     if (res.statusCode == 200) {
       list_token = json.decode(res.body);
-      print(list_token);
+      //print(list_token[0]['Key']);
       return list_token[0]['Key'];
     }else return null;
   }
@@ -105,10 +106,10 @@ class _LoginPageState extends State<LoginPage> {
           onPressed: () async {
             var username = _usernameController.text;
             var password = _passwordController.text;
-             Navigator.push(
+            /* Navigator.push(
               context,
               MaterialPageRoute(
-              builder: (context) {return new HomePage();}));
+              builder: (context) {return new HomePage();}));*/
             print('something1');
             var jwt = await attemptLogIn(username, password);
             print('something2');

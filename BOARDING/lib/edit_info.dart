@@ -6,6 +6,8 @@ import 'package:BOARDING/signup.dart';
 import 'package:BOARDING/login_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 
 
 class EDITINFO extends StatefulWidget {
@@ -36,51 +38,23 @@ class _EDITINFOState extends State<EDITINFO> {
   final facebookcon= new TextEditingController();
 
   Future<String> submitNew(String _name, String _location, String _about) async {
-    /*Map data={
-      'username': username,
-      'password': password,
-    };*/
-    //String body=json.encode(data);
 
     List list_info;
-    var jsonMap = {
-      '_name': _name,
-      '_location': _location,
-      '_about':_about,
+    var token=await storage.read(key:'jwt');
 
-    };
-    String jsonStr = jsonEncode(jsonMap);
-    print(jsonMap);
-    http.put(Uri.encodeFull('http://10.0.2.2/api/updateuserinfo'), body: jsonStr , headers: { "Content-Type" : "application/json",'Authorization':'Bearer 951921cc3eb3da8d176f25e2b14fa3668bc0a66f'},).then((result) {
-      print(result.statusCode);
-      print(result.body);
-
-    });
-    print('success');//return result.body;
-   /* http.Response res = await http.put(
-      'http://10.0.2.2/api/updateuserinfo',
-      headers: {
-        'Accept':'application/json',
-        //HttpHeaders.contentTypeHeader: "application/json",
-        //HttpHeaders.authorizationHeader: "Bearer a078fa09e6e934ce22a4e445b56b28a1c62a16b3",
-        'Authorization':'Token 951921cc3eb3da8d176f25e2b14fa3668bc0a66f',
-      },
-      body: {
-        '_name': _name,
-        '_location': _location,
-        '_about':_about,
-      },
+    var response1=await http.put(
+        'http://10.0.2.2:8000/api/updateuserinfo',
+        headers: {
+          'Accept':'application/json',
+          'Authorization':'Token $token',
+        },
+        body:{
+                'name': _name,
+                'location': _location,
+                'aboutme': _about,
+            },
     );
-    print('success');
-    this.setState(() {
-      list_info=jsonDecode(res.body);
-      print('success');*/
-      /* if (res.statusCode == 200) {
-      list_token = json.decode(res.body);
-      print(list_token);
-      return list_token[0]['Key'];
-    }else return null;*/
-    //});
+    print(response1.body);
   }
 
   @override

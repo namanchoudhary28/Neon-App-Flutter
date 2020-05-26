@@ -16,6 +16,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 
 
 
@@ -32,24 +34,24 @@ class _HomePageState extends State<HomePage> {
   List list_about,list_hobby,list_achievements,list_projects,list_skills;
   bool got=false;
 
+
   Future<String> getData() async{
+      var token=await storage.read(key:'jwt');
+      print(token);
       var response1=await http.get(
           'http://10.0.2.2:8000/api/getuserinfo',
           headers: {
             'Accept':'application/json',
-            //HttpHeaders.contentTypeHeader: "application/json",
-            //HttpHeaders.authorizationHeader: "Bearer a078fa09e6e934ce22a4e445b56b28a1c62a16b3",
-            'Authorization':'Token 951921cc3eb3da8d176f25e2b14fa3668bc0a66f',
+            'Authorization':'Token $token',
           }
       );
+
 
         var response2=await http.get(
             'http://10.0.2.2:8000/api/gethobby',
             headers: {
               'Accept':'application/json',
-              //HttpHeaders.contentTypeHeader: "application/json",
-              //HttpHeaders.authorizationHeader: "Bearer a078fa09e6e934ce22a4e445b56b28a1c62a16b3",
-              'Authorization':'Token 951921cc3eb3da8d176f25e2b14fa3668bc0a66f',
+              'Authorization':'Token $token',
             }
         );
 
@@ -57,9 +59,7 @@ class _HomePageState extends State<HomePage> {
           'http://10.0.2.2:8000/api/getproject',
           headers: {
             'Accept':'application/json',
-            //HttpHeaders.contentTypeHeader: "application/json",
-            //HttpHeaders.authorizationHeader: "Bearer a078fa09e6e934ce22a4e445b56b28a1c62a16b3",
-            'Authorization':'Token 951921cc3eb3da8d176f25e2b14fa3668bc0a66f',
+            'Authorization':'Token $token',
           }
       );
 
@@ -67,18 +67,14 @@ class _HomePageState extends State<HomePage> {
           'http://10.0.2.2:8000/api/getachievement',
           headers: {
             'Accept':'application/json',
-            //HttpHeaders.contentTypeHeader: "application/json",
-            //HttpHeaders.authorizationHeader: "Bearer a078fa09e6e934ce22a4e445b56b28a1c62a16b3",
-            'Authorization':'Token 951921cc3eb3da8d176f25e2b14fa3668bc0a66f',
+            'Authorization':'Token $token',
           }
       );
       var response5=await http.get(
       'http://10.0.2.2:8000/api/getskill',
           headers: {
             'Accept':'application/json',
-            //HttpHeaders.contentTypeHeader: "application/json",
-            //HttpHeaders.authorizationHeader: "Bearer a078fa09e6e934ce22a4e445b56b28a1c62a16b3",
-            'Authorization':'Token 951921cc3eb3da8d176f25e2b14fa3668bc0a66f',
+            'Authorization':'Token $token',
           }
       );
 
@@ -597,7 +593,10 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  ///Functions called above
+
+
+
+  ///Functions called above. Sorry for non uniformity in the type returned.
   Padding MySkills(String image,int percentage,){
     return Padding(
       padding: const EdgeInsets.fromLTRB(25, 15, 5, 6),
