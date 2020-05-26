@@ -105,10 +105,10 @@ class _LoginPageState extends State<LoginPage> {
           onPressed: () async {
             var username = _usernameController.text;
             var password = _passwordController.text;
-             /*Navigator.push(
+             Navigator.push(
               context,
               MaterialPageRoute(
-              builder: (context) {return new HomePage();}));*/
+              builder: (context) {return new HomePage();}));
             print('something1');
             var jwt = await attemptLogIn(username, password);
             print('something2');
