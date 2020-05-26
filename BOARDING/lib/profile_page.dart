@@ -29,7 +29,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   static String tag = 'home-page';
 
-  List list_about,list_hobby,list_achievements,list_projects;
+  List list_about,list_hobby,list_achievements,list_projects,list_skills;
   bool got=false;
 
   Future<String> getData() async{
@@ -72,6 +72,15 @@ class _HomePageState extends State<HomePage> {
             'Authorization':'Token 951921cc3eb3da8d176f25e2b14fa3668bc0a66f',
           }
       );
+      var response5=await http.get(
+      'http://10.0.2.2:8000/api/getskill',
+          headers: {
+            'Accept':'application/json',
+            //HttpHeaders.contentTypeHeader: "application/json",
+            //HttpHeaders.authorizationHeader: "Bearer a078fa09e6e934ce22a4e445b56b28a1c62a16b3",
+            'Authorization':'Token 951921cc3eb3da8d176f25e2b14fa3668bc0a66f',
+          }
+      );
 
 
       this.setState(() {
@@ -79,6 +88,7 @@ class _HomePageState extends State<HomePage> {
       list_hobby=jsonDecode(response2.body);
       list_projects=jsonDecode(response3.body);
       list_achievements=jsonDecode(response4.body);
+      list_skills=jsonDecode(response5.body);
       got=true;
     });
 
@@ -411,10 +421,11 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       child: Column(
                         children: <Widget>[
-                          MySkills('https://img.icons8.com/color/48/000000/python.png', 74),
+                          for (Map<String,dynamic> item in list_skills) MySkills('https://img.icons8.com/color/48/000000/python.png', item['proficiency']),
+                          /*MySkills('https://img.icons8.com/color/48/000000/python.png', 74),
                           MySkills('https://img.icons8.com/color/48/000000/python.png', 23),
                           MySkills('https://img.icons8.com/color/48/000000/python.png', 91),
-                          MySkills('https://img.icons8.com/color/48/000000/python.png', 84),
+                          MySkills('https://img.icons8.com/color/48/000000/python.png', 84),*/
 
 
                         ],
