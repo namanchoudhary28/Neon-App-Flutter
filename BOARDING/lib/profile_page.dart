@@ -411,78 +411,12 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       child: Column(
                         children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
-                            child: new LinearPercentIndicator(
-                              width: MediaQuery.of(context).size.width - 120,
-                              lineHeight: 5.0,
-                              leading: new Image.network(
-                                  'https://img.icons8.com/color/48/000000/python.png'),
-                              trailing: Text(
-                                '50%',
-                                style: TextStyle(color: Colors.blue),
-                              ),
-                              animation: true,
-                              animationDuration: 1000,
-                              percent: 0.5,
-                              backgroundColor: Colors.grey,
-                              progressColor: Colors.blue,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
-                            child: new LinearPercentIndicator(
-                              width: MediaQuery.of(context).size.width - 120,
-                              lineHeight: 5.0,
-                              leading: new Image.network(
-                                  'https://img.icons8.com/color/48/000000/python.png'),
-                              trailing: Text(
-                                '75%',
-                                style: TextStyle(color: Colors.blue),
-                              ),
-                              animation: true,
-                              animationDuration: 1000,
-                              percent: 0.75,
-                              backgroundColor: Colors.grey,
-                              progressColor: Colors.blue,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
-                            child: new LinearPercentIndicator(
-                              width: MediaQuery.of(context).size.width - 120,
-                              lineHeight: 5.0,
-                              leading: new Image.network(
-                                  'https://img.icons8.com/color/48/000000/python.png'),
-                              trailing: Text(
-                                '90%',
-                                style: TextStyle(color: Colors.blue),
-                              ),
-                              animation: true,
-                              animationDuration: 1000,
-                              percent: 0.9,
-                              backgroundColor: Colors.grey,
-                              progressColor: Colors.blue,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(15, 10, 0, 3),
-                            child: new LinearPercentIndicator(
-                              width: MediaQuery.of(context).size.width - 120,
-                              lineHeight: 5.0,
-                              leading: new Image.network(
-                                  'https://img.icons8.com/color/48/000000/python.png'),
-                              trailing: Text(
-                                '30%',
-                                style: TextStyle(color: Colors.blue),
-                              ),
-                              animation: true,
-                              animationDuration: 1000,
-                              percent: 0.3,
-                              backgroundColor: Colors.grey,
-                              progressColor: Colors.blue,
-                            ),
-                          ),
+                          MySkills('https://img.icons8.com/color/48/000000/python.png', 74),
+                          MySkills('https://img.icons8.com/color/48/000000/python.png', 23),
+                          MySkills('https://img.icons8.com/color/48/000000/python.png', 91),
+                          MySkills('https://img.icons8.com/color/48/000000/python.png', 84),
+
+
                         ],
                       ),
                     ),
@@ -652,9 +586,27 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  //Functions called above
-
-
+  ///Functions called above
+  Padding MySkills(String image,int percentage,){
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(25, 15, 5, 6),
+      child: new LinearPercentIndicator(
+        width: MediaQuery.of(context).size.width - 120,
+        lineHeight: 3.0,
+        leading: new Image.network(
+            image),
+        trailing: Text(
+          percentage.toString()+'%',
+          style: TextStyle(color: Colors.blue),
+        ),
+        animation: true,
+        animationDuration: 1000,
+        percent: percentage*0.01,
+        backgroundColor: Colors.grey[300],
+        progressColor: Colors.blue,
+      ),
+    );
+  }
 
   Container MyProjects(String heading, String subHeading) {
     return Container(
