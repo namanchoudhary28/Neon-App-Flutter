@@ -7,8 +7,22 @@ import 'package:BOARDING/login_page.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
 // import 'package:dropdown_formfield/dropdown_formfield.dart';
+import 'package:cupertino_date_textbox/cupertino_date_textbox.dart';
+// import 'package:flutter/material.dart';
+
+import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 
 
+////////////////.................COMMENTS FOR ACCESSING INFO.................////////////////////
+///Line 35--projectinfo
+///Line 36--assignedto
+///Line 37--project status
+///Line 38--radio button external internal
+///Line 41--description
+///Line 89--starting date
+///Line 126--ending date
+///..........................END....................................////////////////////
 
 class MyApp extends StatefulWidget {
   @override
@@ -16,6 +30,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  DateTime _selectedDateTime = DateTime.now();
+  DateTime _selectedDateTime1 = DateTime.now();
+
   var _projectinfo;        //accessing projectinfo
   var _assignedto;         //accessing assignedto
   String _myActivityResult;         //accessing dropdown value project status 
@@ -38,6 +55,16 @@ class _MyAppState extends State<MyApp> {
   }
   final formKey = new GlobalKey<FormState>();
   @override
+   void onBirthdayChange(DateTime birthday) {
+    setState(() {
+      _selectedDateTime = birthday;
+    });
+  }
+   void onBirthdayChange1(DateTime birthday1) {
+    setState(() {
+      _selectedDateTime1 = birthday1;
+    });
+  }
   void initState() {
     super.initState();
     _myActivity = '';
@@ -56,6 +83,77 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    //////........................DATE.........................//////////
+    ///
+    ///
+    var _dates;
+    final String formattedDate = DateFormat.yMd().format(_selectedDateTime);        //accesing starting date
+    final selectedText = Text('You selected: $formattedDate');
+
+    final birthdayTile = new Material(
+      color: Colors.transparent,
+      child: new Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const Text('Start Date',
+              style: TextStyle(
+                color: CupertinoColors.systemBlue,
+                fontSize: 15.0,
+              )),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 5.0),
+          ),
+          CupertinoDateTextBox(
+              initialValue: _selectedDateTime,
+              onDateChange: onBirthdayChange,
+              hintText: DateFormat.yMd().format(_selectedDateTime)),
+        ],
+      ),
+    );
+
+    
+
+
+
+
+    ////.............................DATE........................///////
+    
+
+    //////........................DATE222222222222.........................//////////
+    ///
+    ///
+    // var _dates;
+    final String formattedDate1 = DateFormat.yMd().format(_selectedDateTime1);         //accesing ending date
+    final selectedText1 = Text('You selected: $formattedDate1');
+
+    final birthdayTile1 = new Material(
+      color: Colors.transparent,
+      child: new Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const Text('End Date',
+              style: TextStyle(
+                color: CupertinoColors.systemBlue,
+                fontSize: 15.0,
+              )),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 5.0),
+          ),
+          CupertinoDateTextBox(
+              initialValue: _selectedDateTime1,
+              onDateChange: onBirthdayChange1,
+              hintText: DateFormat.yMd().format(_selectedDateTime1)),
+        ],
+      ),
+    );
+
+    
+
+
+
+
+    ////.............................DATE2222222222222222222........................///////
+
         final projectname = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
@@ -87,6 +185,38 @@ class _MyAppState extends State<MyApp> {
         ],
       ),
     );
+final dateheading = Padding(
+      padding: EdgeInsets.all(20),
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.le,
+        children: <Widget>[
+          InkWell(
+            child: Image.network('https://img.icons8.com/metro/26/000000/date-to.png'),
+            onTap: (){
+              //      Navigator.push(context,MaterialPageRoute(builder: (context){
+
+              // return new MyApp();
+
+
+              // }));
+
+
+            },
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            'Date',
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+
+        ],
+      ),
+    );
+
     final projectinfo = Padding(
       padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
       child: TextFormField(
@@ -317,6 +447,30 @@ class _MyAppState extends State<MyApp> {
           projectinfo,
           assignedname,
           assignedinfo,
+          dateheading,
+           Container(
+                child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+          child: Column(children: <Widget>[
+            // selectedText,
+            const SizedBox(height: 15.0),
+            birthdayTile
+          ])),
+              ),
+/////.....................DATE2...............
+          Container(
+                child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+          child: Column(children: <Widget>[
+            // selectedText,
+            const SizedBox(height: 15.0),
+            birthdayTile1
+          ])),
+              ),
+/////........................DATE2
+
+
+
           dropdownname,
           Container(
             child: Form(
@@ -529,7 +683,7 @@ class _MyAppState extends State<MyApp> {
           ),
           // Container(
           //       padding: EdgeInsets.all(16),
-          //       child: Text('$_jkval,   $_myActivity,    $_projectinfo,    $_assignedto,      $_description'),
+          //       child: Text('$_jkval,   $_myActivity, $formattedDate,$formattedDate1,   $_projectinfo,    $_assignedto,      $_description'),
                 
           //     ),
        
