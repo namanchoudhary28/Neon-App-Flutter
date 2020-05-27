@@ -7,6 +7,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:link/link.dart';
 import 'package:BOARDING/login_page.dart';
 import 'package:BOARDING/edit_info.dart';
+import 'package:BOARDING/edit_achievement.dart';
 import 'package:BOARDING/date_time_picker_widget2.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 //import 'package:BOARDING/grid_hobby.dart';
@@ -525,11 +526,18 @@ class _HomePageState extends State<HomePage> {
                   ),
                 )),
             SizedBox(width: (MediaQuery.of(context).size.width) - 235),
-            Link(
+            InkWell(
               child: Image.network(
                   'https://img.icons8.com/windows/32/000000/edit.png'),
-              url: 'Edit URL',
-              onError: _showErrorSnackBar,
+
+              /// Pop Up form to add hobbies and interests
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return new EDIT_ACHIEVEMENT() ;
+            }));
+                },
+
+
             ),
           ],
         ),
