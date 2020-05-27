@@ -18,7 +18,27 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+final viewmorebutton =RaisedButton(
+                         color: Colors.white,
+                         onPressed: (){
 
+                         },
+                        
+                         child : Row(
+                           children: <Widget>[
+                             Text("View more"),
+                             Image(
+                               image: NetworkImage('https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
+                               height: 20.0,
+                               width:20.0,
+                             )
+                           ],
+                         ),
+                        shape: RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(15.0),
+  side: BorderSide(color: Colors.blue)
+),
+                   );
 
 
 
@@ -136,7 +156,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-
+   
 
     final name=
       Padding(
@@ -188,6 +208,7 @@ class _HomePageState extends State<HomePage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
+              
               Link(
                 child: Image.network(
                   'https://img.icons8.com/android/24/000000/phone.png',
@@ -267,10 +288,14 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              SizedBox(width: (MediaQuery.of(context).size.width) - 325),
+              SizedBox(width: (MediaQuery.of(context).size.width) - 350),
               InkWell(
-                child: Image.network(
-                    'https://img.icons8.com/windows/32/000000/edit.png'),
+                child: Image(
+                  image: NetworkImage('https://img.icons8.com/cotton/64/000000/add--v2.png'),
+                  height: 40.0,
+                  width: 40.0,
+
+                ),
 
                 /// Pop Up form to add hobbies and interests
                 onTap: () {
@@ -412,7 +437,7 @@ class _HomePageState extends State<HomePage> {
                     ]),
               ),
               Container(
-                height: 300,
+                height: 200,
                 child: TabBarView(
                   children: [
                     Container(
@@ -429,11 +454,66 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Container(
+                      height:100.0,
                       child: Text("Personality Traits Here!"),
                     )
                   ],
                 ),
               ),
+              Container(
+                  width:150.0,
+                  child:RaisedButton(
+                         padding: EdgeInsets.all(20.0),
+                         color: Colors.blue,
+                         onPressed: (){
+
+                         },
+                        
+                         child : Row(
+                           children: <Widget>[
+                             Text(
+                               "view more",
+                               style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.0,
+                               ),
+                             ),
+                             Image(
+                               image: NetworkImage('https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
+                               height: 20.0,
+                               width:20.0,
+                             )
+                           ],
+                           mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+                         ),
+                        shape: RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(15.0),
+  side: BorderSide(color: Colors.white)
+),
+                   )
+                
+              ),
+              Container(
+                        height: 100.0,
+                        child: Row(
+                          children: <Widget>[
+                            Image(
+                  image: NetworkImage('https://img.icons8.com/cotton/64/000000/add--v2.png'),
+                  height: 40.0,
+                  width: 40.0,
+
+                ),
+                Image(
+                  image: NetworkImage('https://img.icons8.com/windows/32/000000/edit.png'),
+                  height: 40.0,
+                  width: 40.0,
+
+                ),
+                          ],
+                          mainAxisAlignment:MainAxisAlignment.spaceAround,
+                        )
+                   ),
             ],
           ),
         ),
@@ -441,7 +521,7 @@ class _HomePageState extends State<HomePage> {
     );
 
     final projects = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.fromLTRB(16.0, 0, 0, 10),
@@ -453,8 +533,12 @@ class _HomePageState extends State<HomePage> {
               ),
               SizedBox(width: (MediaQuery.of(context).size.width) - 175),
               InkWell(
-                child: Image.network(
-                    'https://img.icons8.com/windows/32/000000/edit.png'),
+                child: Image(
+                  image: NetworkImage('https://img.icons8.com/cotton/64/000000/add--v2.png'),
+                  height: 40.0,
+                  width: 40.0,
+
+                ),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return new MyApp();
@@ -477,7 +561,48 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
+        SizedBox(
+           height: 20.0,
+        ),
+        Container(
+          width: 200.0,
+          child:RaisedButton(
+                         padding: EdgeInsets.all(20.0),
+                         color: Colors.blue,
+                         onPressed: (){
+
+                         },
+                        
+                         child : Row(
+                           children: <Widget>[
+                             Text(
+                               "view more",
+                               style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.0,
+                               ),
+                             ),
+                             Image(
+                               image: NetworkImage('https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
+                               height: 20.0,
+                               width:20.0,
+                             )
+                           ],
+                           mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+                         ),
+                        shape: RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(15.0),
+  side: BorderSide(color: Colors.white)
+),
+                   ),
+        ),
+        Container(
+          width:double.infinity,
+        ),
       ],
+    
+      
     ); // MyProjects function is defined at the end. Usage Syntax: MyProjects(heading,subheading)
 
     final badges = Container(
@@ -501,8 +626,12 @@ class _HomePageState extends State<HomePage> {
               ),
               SizedBox(width: (MediaQuery.of(context).size.width) - 165),
               Link(
-                child: Image.network(
-                    'https://img.icons8.com/windows/32/000000/edit.png'),
+                child: Image(
+                  image: NetworkImage('https://img.icons8.com/cotton/64/000000/add--v2.png'),
+                  height: 40.0,
+                  width: 40.0,
+
+                ),
                 url: 'Edit URL',
                 onError: _showErrorSnackBar,
               ),
@@ -527,8 +656,12 @@ class _HomePageState extends State<HomePage> {
                 )),
             SizedBox(width: (MediaQuery.of(context).size.width) - 235),
             InkWell(
-              child: Image.network(
-                  'https://img.icons8.com/windows/32/000000/edit.png'),
+              child: Image(
+                  image: NetworkImage('https://img.icons8.com/cotton/64/000000/add--v2.png'),
+                  height: 40.0,
+                  width: 40.0,
+
+                ),
 
               /// Pop Up form to add hobbies and interests
               onTap: () {
@@ -552,6 +685,39 @@ class _HomePageState extends State<HomePage> {
                //   'Grammaticality Wise men speak because they have something to say; Fools because they have to say something'),
             ],
           ),
+        ),
+        Container(
+               width: 200.0,
+             child:RaisedButton(
+                         padding: EdgeInsets.all(20.0),
+                         color: Colors.blue,
+                         onPressed: (){
+
+                         },
+                        
+                         child : Row(
+                           children: <Widget>[
+                             Text(
+                               "view more",
+                               style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.0,
+                               ),
+                             ),
+                             Image(
+                               image: NetworkImage('https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
+                               height: 20.0,
+                               width:20.0,
+                             )
+                           ],
+                           mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+                         ),
+                        shape: RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(15.0),
+  side: BorderSide(color: Colors.white)
+),
+                   ),
         ),
       ],
     );
@@ -629,6 +795,23 @@ class _HomePageState extends State<HomePage> {
   Container MyProjects(String heading, String subHeading) {
     return Container(
       width: 250,
+      decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(20),
+        topRight: Radius.circular(20),
+        bottomLeft: Radius.circular(20),
+        bottomRight: Radius.circular(20)
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey.withOpacity(0.5),
+        spreadRadius: 5,
+        blurRadius: 7,
+        offset: Offset(0, 3), // changes position of shadow
+      ),
+    ],
+  ),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
@@ -641,21 +824,72 @@ class _HomePageState extends State<HomePage> {
               subtitle: Text(subHeading,
                   style: TextStyle(color: Colors.lightBlueAccent)),
             ),
+            SizedBox(
+                 height: 100.0,
+            ),
+            Row(
+              children : <Widget>[
+
+                   viewmorebutton,
+                  
+                   Image(
+                  image: NetworkImage('https://img.icons8.com/windows/32/000000/edit.png'),
+                  height: 40.0,
+                  width: 40.0,
+              
+
+                ),
+
+                
+
+                  
+              ],
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+            )
           ],
         ),
       ),
     );
   }
 
-  Row _MyAchievemnts(context, String date, String heading, String subHeading) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  Container _MyAchievemnts(context, String date, String heading, String subHeading) {
+    return Container(
+      padding: EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+         border: Border(
+           bottom: BorderSide(
+             color: Colors.grey,
+             width: 0.8
+           )
+         )
+      ),
+      margin: EdgeInsets.symmetric(horizontal:0.0,vertical:15.0),
+      
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
           date,
           style: TextStyle(fontSize: 17),
         ),
         Container(
+          decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(20),
+        topRight: Radius.circular(20),
+        bottomLeft: Radius.circular(20),
+        bottomRight: Radius.circular(20)
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey.withOpacity(0.5),
+        spreadRadius: 5,
+        blurRadius: 7,
+        offset: Offset(0, 3), // changes position of shadow
+      ),
+    ],
+  ),
           height: 100,
           width: screenWidth(context) - 150,
           child: Card(
@@ -674,7 +908,9 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-      ],
+      ]
+      ),
+      
     );
   }
 
