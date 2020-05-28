@@ -11,12 +11,22 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 
 class EDITINFO extends StatefulWidget {
+  final String name;
+  final String aboutme;
+  final String location;
+  final List communication; 
+  
+  const EDITINFO(this.name,this.aboutme,this.location,this.communication);
+  
+  
+
   @override
   _EDITINFOState createState() => _EDITINFOState();
 
 }
 
 class _EDITINFOState extends State<EDITINFO> {
+  
   var _name;          //accesing name
   var _location;     //accesing location
   var _about;        //acessing about me
@@ -37,9 +47,11 @@ class _EDITINFOState extends State<EDITINFO> {
   final twittercon= new TextEditingController();
   final facebookcon= new TextEditingController();
 
-  Future<String> submitNew(String _name, String _location, String _about) async {
+
+  Future<String> submitNew(String _name, String _location, String _about, List<String>communications) async {
 
     List list_info;
+    List<String>mediums = ['phone','whatsapp','skype','linkedin','twitter','facebook'];
     var token=await storage.read(key:'jwt');
 
     var response1=await http.put(
@@ -54,12 +66,87 @@ class _EDITINFOState extends State<EDITINFO> {
                 'aboutme': _about,
             },
     );
+    var  responsecommu;
+    for(int i=0;i<mediums.length;i++){
+      
+      if(communications[i]!=''){
+        print(communications[i]);
+        responsecommu=await http.post(
+        'http://10.0.2.2:8000/api/addcommunication',
+        headers: {
+          'Accept':'application/json',
+          'Authorization':'Token $token',
+        },
+        body:{
+               'medium' : mediums[i],
+               'medium_url' : communications[i],
+            },
+    );
+    print(responsecommu.body);
+      }
+    }
+
     print(response1.body);
   }
+  @override
+  void initState(){
+    namecon.text = widget.name;
+    aboutcon.text = widget.aboutme;
+    locationcon.text = widget.location;
+    for(int i=0;i<widget.communication.length;i++){
+          String medium=  widget.communication[i]['medium'];
+          if(medium=='phone'){
+            phonecon.text = widget.communication[i]['medium_url'];
+          }
+          if(medium=='whatsapp'){
+            whatsappnocon.text = widget.communication[i]['medium_url'];
+          }
+          if(medium=='skype'){
+            skypenocon.text = widget.communication[i]['medium_url'];
+          }
+          if(medium=='facebook'){
+            facebookcon.text = widget.communication[i]['medium_url'];
+          }
+          if(medium=='twitter'){
+            twittercon.text = widget.communication[i]['medium_url'];
+          }
+          if(medium=='linkedin'){
+            linkedincon.text = widget.communication[i]['medium_url'];
+          }
+          
 
+    }
+  }
   @override
   Widget build(BuildContext context) {
+    /*
+    namecon.text = widget.name;
+    aboutcon.text = widget.aboutme;
+    locationcon.text = widget.location;
+    for(int i=0;i<widget.communication.length;i++){
+          String medium=  widget.communication[i]['medium'];
+          if(medium=='phone'){
+            phonecon.text = widget.communication[i]['medium_url'];
+          }
+          if(medium=='whatsapp'){
+            whatsappnocon.text = widget.communication[i]['medium_url'];
+          }
+          if(medium=='skype'){
+            skypenocon.text = widget.communication[i]['medium_url'];
+          }
+          if(medium=='facebook'){
+            facebookcon.text = widget.communication[i]['medium_url'];
+          }
+          if(medium=='twitter'){
+            twittercon.text = widget.communication[i]['medium_url'];
+          }
+          if(medium=='linkedin'){
+            linkedincon.text = widget.communication[i]['medium_url'];
+          }
+          
 
+    }
+*/
     final basicname = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
@@ -464,7 +551,8 @@ class _EDITINFOState extends State<EDITINFO> {
 
                     });
                     print('something 1');
-                    submitNew(_name, _location,_about);
+                    List<String>commu = [_phoneno,_whatsappno,_skypeno,_linkedin,_twitter,_facebook];
+                    submitNew(_name, _location,_about,commu);
                     print('something2');
                     Navigator.push(context,MaterialPageRoute(builder: (context){
                     return HomePage();

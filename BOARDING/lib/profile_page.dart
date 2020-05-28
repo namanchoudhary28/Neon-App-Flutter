@@ -538,7 +538,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   static String tag = 'home-page';
 
-  List list_about, list_hobby, list_achievements, list_projects, list_skills;
+  List list_about, list_hobby, list_achievements, list_projects, list_skills,list_communications;
   bool got = false;
 
   Future<String> getData() async {
@@ -572,6 +572,12 @@ class _HomePageState extends State<HomePage> {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
     });
+    var response6 =
+        await http.get('http://10.0.2.2:8000/api/getcommunication', headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Token $token',
+    });
+
 
     this.setState(() {
       list_about = jsonDecode(response1.body);
@@ -579,6 +585,7 @@ class _HomePageState extends State<HomePage> {
       list_projects = jsonDecode(response3.body);
       list_achievements = jsonDecode(response4.body);
       list_skills = jsonDecode(response5.body);
+      list_communications = jsonDecode(response6.body);
       got = true;
     });
 
@@ -651,7 +658,7 @@ class _HomePageState extends State<HomePage> {
                 'https://img.icons8.com/windows/32/000000/edit.png'),
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return new EDITINFO(); //Function from edit_info.dart
+                return new EDITINFO(list_about[0]['name'],list_about[0]['aboutme'],list_about[0]['location'],list_communications); //Function from edit_info.dart
               }));
             },
           ),
@@ -682,42 +689,12 @@ class _HomePageState extends State<HomePage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Link(
-                child: Image.network(
-                  'https://img.icons8.com/android/24/000000/phone.png',
-                  scale: 1.1,
-                ),
-                url: 'https://www.google.com',
-                onError: _showErrorSnackBar,
-              ),
-              Link(
-                child: Image.network(
-                  'https://img.icons8.com/color/48/000000/facebook-new.png',
-                  scale: 1.2,
-                ),
-                url: 'https://www.facebook.com',
-                onError: _showErrorSnackBar,
-              ),
-              Image.network(
-                'https://img.icons8.com/color/48/000000/twitter.png',
-                scale: 1.2,
-              ),
-              Image.network(
-                'https://img.icons8.com/color/48/000000/whatsapp.png',
-                scale: 1.2,
-              ),
-              Image.network(
-                'https://img.icons8.com/ultraviolet/40/000000/send-mass-email.png',
-                scale: 1.2,
-              ),
-              Image.network(
-                'https://img.icons8.com/color/48/000000/skype.png',
-                scale: 1.4,
-              ),
-              Image.network(
-                'https://img.icons8.com/color/48/000000/linkedin.png',
-                scale: 1.2,
-              ),
+              for(Map<String,dynamic> item in list_communications)
+               communication(item['medium']),
+
+
+            
+              
             ],
           ),
         ),
@@ -1290,4 +1267,10 @@ double screenHeight(BuildContext context) {
 
 double screenWidth(BuildContext context) {
   return screenSize(context).width;
+}
+Image communication(String medium){
+  return Image(
+    image:AssetImage('assets/images/$medium.png')
+    
+  );
 }
