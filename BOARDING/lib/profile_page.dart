@@ -19,25 +19,619 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+Widget _buildSkillsPopup(BuildContext context){
+  return AlertDialog(
+    title: Text("SKILLS USED",style:TextStyle(fontSize: 15.0)),
+    actions: <Widget>[
+      FlatButton(
+        onPressed: (){
+          Navigator.of(context).pop();
+        },
+        child :Text("close")
 
-final viewmorebutton = RaisedButton(
-  color: Colors.white,
-  onPressed: () {},
-  child: Row(
-    children: <Widget>[
-      Text("View more"),
-      Image(
-        image: NetworkImage(
-            'https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
-        height: 20.0,
-        width: 20.0,
       )
     ],
+    content: Column(
+
+            children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(20),
+        topRight: Radius.circular(20),
+        bottomLeft: Radius.circular(20),
+        bottomRight: Radius.circular(20)
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey.withOpacity(0.5),
+        spreadRadius: 5,
+        blurRadius: 7,
+        offset: Offset(0, 3), // changes position of shadow
+      ),
+    ],
   ),
-  shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(15.0),
-      side: BorderSide(color: Colors.blue)),
-);
+              padding:EdgeInsets.fromLTRB(20.0,10.0,20.0,10.0),
+              margin:EdgeInsets.fromLTRB(0, 0, 0, 10.0),
+              child:Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children:<Widget>[
+                 Image(
+                   image: NetworkImage('https://img.icons8.com/color/48/000000/html-5.png'),
+
+                 ),
+                 Text("HTML")
+                ]
+              )
+
+
+
+            ),
+            Container(
+              decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(20),
+        topRight: Radius.circular(20),
+        bottomLeft: Radius.circular(20),
+        bottomRight: Radius.circular(20)
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey.withOpacity(0.5),
+        spreadRadius: 5,
+        blurRadius: 7,
+        offset: Offset(0, 3), // changes position of shadow
+      ),
+    ],
+  ),
+              padding:EdgeInsets.fromLTRB(20.0,10.0,20.0,10.0),
+              margin:EdgeInsets.fromLTRB(0, 0, 0, 10.0),
+              child:Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children:<Widget>[
+                 Image(
+                   image: NetworkImage('https://img.icons8.com/color/48/000000/html-5.png'),
+
+                 ),
+                 Text("JAVASCRIPT")
+                ]
+              )
+
+
+
+            ),
+            Container(
+              decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(20),
+        topRight: Radius.circular(20),
+        bottomLeft: Radius.circular(20),
+        bottomRight: Radius.circular(20)
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey.withOpacity(0.5),
+        spreadRadius: 5,
+        blurRadius: 7,
+        offset: Offset(0, 3), // changes position of shadow
+      ),
+    ],
+  ),
+              padding:EdgeInsets.fromLTRB(20.0,10.0,20.0,10.0),
+              margin:EdgeInsets.fromLTRB(0, 0, 0, 10.0),
+              child:Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children:<Widget>[
+                 Image(
+                   image: NetworkImage('https://img.icons8.com/color/48/000000/html-5.png'),
+
+                 ),
+                 Text("PYTHON")
+                ]
+              )
+
+
+
+            ),
+            Container(
+              decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(20),
+        topRight: Radius.circular(20),
+        bottomLeft: Radius.circular(20),
+        bottomRight: Radius.circular(20)
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey.withOpacity(0.5),
+        spreadRadius: 5,
+        blurRadius: 7,
+        offset: Offset(0, 3), // changes position of shadow
+      ),
+    ],
+  ),
+              padding:EdgeInsets.fromLTRB(20.0,10.0,20.0,10.0),
+              margin:EdgeInsets.fromLTRB(0, 0, 0, 10.0),
+              child:Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children:<Widget>[
+                 Image(
+                   image: NetworkImage('https://img.icons8.com/color/48/000000/html-5.png'),
+
+                 ),
+                 Text("FLUTTER")
+                ]
+              )
+
+
+
+            ),
+
+            ],
+    ),
+
+
+  );
+}
+Widget _buildCollabPopup(BuildContext context){
+  return AlertDialog(
+    title: Text("Collaborators"),
+    actions: <Widget>[
+      FlatButton(
+        onPressed: (){
+          Navigator.of(context).pop();
+        },
+        child :Text("close")
+
+      )
+      ],
+      content:Column(
+
+            children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(20),
+        topRight: Radius.circular(20),
+        bottomLeft: Radius.circular(20),
+        bottomRight: Radius.circular(20)
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey.withOpacity(0.5),
+        spreadRadius: 5,
+        blurRadius: 7,
+        offset: Offset(0, 3), // changes position of shadow
+      ),
+    ],
+  ),
+              padding:EdgeInsets.fromLTRB(20.0,10.0,20.0,10.0),
+              margin:EdgeInsets.fromLTRB(0, 0, 0, 10.0),
+              child:Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children:<Widget>[
+                 Container(
+      width: 100.0,
+      height: 100.0,
+      decoration:  BoxDecoration(
+          shape: BoxShape.circle,
+          image:  DecorationImage(
+          fit: BoxFit.fill,
+          image:  NetworkImage(
+                 "https://img.freepik.com/free-vector/businessman-profile-cartoon_18591-58479.jpg?size=338&ext=jpg")
+                 ),
+)),
+                 Text("User's name")
+                ]
+              )
+
+
+
+            ),
+            Container(
+              decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(20),
+        topRight: Radius.circular(20),
+        bottomLeft: Radius.circular(20),
+        bottomRight: Radius.circular(20)
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey.withOpacity(0.5),
+        spreadRadius: 5,
+        blurRadius: 7,
+        offset: Offset(0, 3), // changes position of shadow
+      ),
+    ],
+  ),
+              padding:EdgeInsets.fromLTRB(20.0,10.0,20.0,10.0),
+              margin:EdgeInsets.fromLTRB(0, 0, 0, 10.0),
+              child:Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children:<Widget>[
+                 Container(
+      width: 100.0,
+      height: 100.0,
+      decoration:  BoxDecoration(
+          shape: BoxShape.circle,
+          image:  DecorationImage(
+          fit: BoxFit.fill,
+          image:  NetworkImage(
+                 "https://img.freepik.com/free-vector/businessman-profile-cartoon_18591-58479.jpg?size=338&ext=jpg")
+                 ),
+)),
+                 Text("User's name")
+                ]
+              )
+
+
+
+            )
+
+
+            ],
+    )
+
+
+  );
+}
+
+
+Widget _buildAboutDialog(BuildContext context) {
+    return Scaffold(
+
+           appBar : AppBar(
+             title:
+             Text("Project info"),
+
+
+           ),
+           body: ListView(
+             scrollDirection: Axis.vertical,
+
+             children: <Widget>[Column(
+
+             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+             children: <Widget>[
+               Container(
+                width:double.infinity,
+              ),
+              SizedBox(
+                    height:30.0,
+              ),
+
+              Container(
+                padding:EdgeInsets.fromLTRB(30.0, 15.0, 30.0, 15.0),
+                decoration:BoxDecoration(
+                   borderRadius: BorderRadius.only(
+                     topLeft: Radius.circular(20.0),
+                     topRight: Radius.circular(20.0),
+
+                   ),
+                   border: Border.all(
+                     color:Colors.blue,
+                     width:1,
+                   )
+                ),
+                child: Text(
+                 "Neon Application",
+                 style : TextStyle(
+                      fontFamily: "sans-serif",
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                 ),
+              )),
+              SizedBox(
+                    height:30.0,
+              ),              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Container(
+
+
+
+
+                       child: Row(
+                           children: <Widget>[
+                             Image(
+                               image: NetworkImage('https://img.icons8.com/ultraviolet/40/000000/start.png'),
+                               height: 25.0,
+                               width:25.0,
+                             ),
+                             SizedBox(
+                               width: 15.0,
+                             ),
+                             Text("STARTS")
+                           ],
+
+                        ),
+                        decoration: BoxDecoration(
+
+                          border: Border(
+                            bottom: BorderSide(
+                              color:Colors.blue,
+                              width:0.8,
+                            )
+                          )
+                        ),
+                        padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 10.0),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+
+                          border: Border(
+                            bottom: BorderSide(
+                              color:Colors.blue,
+                              width:0.8,
+                            )
+                          )
+                        ),
+                        padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 10.0),
+                          child:Row(
+                           children: <Widget>[
+                             Image(
+                               image: NetworkImage('https://img.icons8.com/flat_round/64/000000/end--v1.png'),
+                                height: 25.0,
+                               width:25.0,
+                             ),
+                             SizedBox(
+                               width: 15.0,
+                             ),
+                             Text("ENDS")
+                           ],
+                        )),
+
+
+
+                ],
+              ),
+              SizedBox(
+                    height:30.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Row(
+                    children : <Widget>[
+                      Container(
+                        height: 35.0,
+                        width:35.0,
+                        child:Text("20"),
+                        padding: EdgeInsets.all(8.0),
+                        decoration:BoxDecoration(
+                           borderRadius: BorderRadius.circular(8.0),
+                           border: Border.all(
+                                 color:Colors.blue,
+                                 width: 0.8,
+                           ),
+
+                        ),
+                      ),
+                      Container(
+                        height: 35.0,
+                        width:35.0,
+                        child:Text("09"),
+                        padding: EdgeInsets.all(8.0),
+                        decoration:BoxDecoration(
+                           borderRadius: BorderRadius.circular(8.0),
+                           border: Border.all(
+                                 color:Colors.blue,
+                                 width: 0.8,
+                           ),
+
+                        ),
+                      ),
+                      Container(
+                        height: 35.0,
+                        width:70.0,
+                        child:Text("2020"),
+                        padding: EdgeInsets.all(8.0),
+                        decoration:BoxDecoration(
+                           borderRadius: BorderRadius.circular(8.0),
+                           border: Border.all(
+                                 color:Colors.blue,
+                                 width: 0.8,
+                           ),
+
+                        ),
+                      )
+
+                    ],
+                  ),
+                  Row(
+                    children : <Widget>[
+                      Container(
+                        height: 35.0,
+                        width:35.0,
+                        child:Text("20"),
+                        padding: EdgeInsets.all(8.0),
+                        decoration:BoxDecoration(
+                           borderRadius: BorderRadius.circular(8.0),
+                           border: Border.all(
+                                 color:Colors.blue,
+                                 width: 0.8,
+                           ),
+
+                        ),
+                      ),
+                      Container(
+                        height: 35.0,
+                        width:35.0,
+                        child:Text("09"),
+                        padding: EdgeInsets.all(8.0),
+                        decoration:BoxDecoration(
+                           borderRadius: BorderRadius.circular(8.0),
+                           border: Border.all(
+                                 color:Colors.blue,
+                                 width: 0.8,
+                           ),
+
+                        ),
+                      ),
+                      Container(
+                        height: 35.0,
+                        width:70.0,
+                        child:Text("2020"),
+                        padding: EdgeInsets.all(8.0),
+                        decoration:BoxDecoration(
+                           borderRadius: BorderRadius.circular(8.0),
+                           border: Border.all(
+                                 color:Colors.blue,
+                                 width: 0.8,
+                           ),
+
+                        ),
+                      )
+
+                    ],
+
+                  ),
+                ],
+              ),
+              SizedBox(
+                    height:30.0,
+              ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                Text("Status :",
+                    style: TextStyle(
+                         fontSize: 20.0,
+                    ),
+                ),
+                Image(
+                    image: NetworkImage(
+                         'https://img.icons8.com/fluent/50/000000/arrow.png'
+                    ),
+                ),
+                Text("FINISHED",
+                    style: TextStyle(
+                         fontSize: 20.0,
+                         fontWeight: FontWeight.w400,
+                    ),),
+              ],),
+              SizedBox(
+                    height:30.0,
+              ),
+              Container(
+                width: 350.0,
+                padding: EdgeInsets.all(20.0),
+                decoration: BoxDecoration(
+    color: Colors.blue,
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(20),
+        topRight: Radius.circular(20),
+        bottomLeft: Radius.circular(20),
+        bottomRight: Radius.circular(20)
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey.withOpacity(0.5),
+        spreadRadius: 5,
+        blurRadius: 7,
+        offset: Offset(0, 3), // changes position of shadow
+      ),
+    ],
+  ),
+         child:Text(
+            "this is the description of the project. it will be 200 words long. here u will know what this project is all about. read on to see technologies used in this project",
+            style: TextStyle(
+              color:Colors.white,
+              fontSize: 15.0,
+
+            ),
+         ),
+
+              ),
+              SizedBox(
+                    height:30.0,
+              ),
+
+              RaisedButton(
+                  onPressed: (){
+                    showDialog(
+                               context: context,
+                               builder : (BuildContext context) =>_buildSkillsPopup(context),
+                           );
+
+
+                  },
+                  child: Text("View Skills",style:TextStyle(color:Colors.white)),
+                  color:Colors.blue,
+                  padding:EdgeInsets.fromLTRB(20.0,10.0, 20.0, 10.0),
+                  shape: RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(10.0),
+
+),
+
+              ),
+              SizedBox(
+                    height:30.0,
+              ),
+
+              RaisedButton(
+                  onPressed: (){
+                    showDialog(
+                               context: context,
+                               builder : (BuildContext context) =>_buildCollabPopup(context),
+                           );
+
+                  },
+                  child: Text("View Collaborators",style:TextStyle(color:Colors.white)),
+                  color:Colors.blue,
+                  padding:EdgeInsets.fromLTRB(20.0,10.0, 20.0, 10.0),
+                  shape: RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(10.0),
+
+),
+
+              )
+
+
+
+
+
+
+           ],)])
+
+
+    );
+
+
+}
+final viewmorebutton =RaisedButton(
+                         color: Colors.white,
+                         onPressed: (){
+
+                         },
+                        
+                         child : Row(
+                           children: <Widget>[
+                             Text("View more"),
+                             Image(
+                               image: NetworkImage('https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
+                               height: 20.0,
+                               width:20.0,
+                             )
+                           ],
+                         ),
+                        shape: RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(15.0),
+  side: BorderSide(color: Colors.blue)
+),
+                   );
+
+
 
 class HomePage extends StatefulWidget {
   static String tag = 'home-page';
@@ -139,6 +733,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+   
 
     final name = Padding(
       padding: EdgeInsets.all(8),
@@ -169,6 +764,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
 
+
     final city = Center(
       child: Text(
         (() {
@@ -192,6 +788,7 @@ class _HomePageState extends State<HomePage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
+              
               Link(
                 child: Image.network(
                   'https://img.icons8.com/android/24/000000/phone.png',
@@ -280,8 +877,10 @@ class _HomePageState extends State<HomePage> {
                       'https://img.icons8.com/cotton/64/000000/add--v2.png'),
                   height: 40.0,
                   width: 40.0,
+
                 ),
 
+                /// Pop Up form to add hobbies and interests
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return new EDIT_HOBBY(); //Function from edit_info.dart
@@ -330,11 +929,13 @@ class _HomePageState extends State<HomePage> {
                           MySkills('https://img.icons8.com/color/48/000000/python.png', 23),
                           MySkills('https://img.icons8.com/color/48/000000/python.png', 91),
                           MySkills('https://img.icons8.com/color/48/000000/python.png', 84),*/
+
+
                         ],
                       ),
                     ),
                     Container(
-                      height: 100.0,
+                      height:100.0,
                       child: Text("Personality Traits Here!"),
                     )
                   ],
@@ -411,6 +1012,7 @@ class _HomePageState extends State<HomePage> {
                       'https://img.icons8.com/cotton/64/000000/add--v2.png'),
                   height: 40.0,
                   width: 40.0,
+
                 ),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -436,7 +1038,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         SizedBox(
-          height: 20.0,
+           height: 20.0,
         ),
         Container(
           width: 200.0,
@@ -499,6 +1101,7 @@ class _HomePageState extends State<HomePage> {
                       'https://img.icons8.com/cotton/64/000000/add--v2.png'),
                   height: 40.0,
                   width: 40.0,
+
                 ),
                 url: 'Edit URL',
                 onError: _showErrorSnackBar,
@@ -550,7 +1153,7 @@ class _HomePageState extends State<HomePage> {
                     context, item['date'], item['title'], 'Testing_Text'),
               //_MyAchievemnts(context, 'May 10', 'Testing', 'Testin text'),
               //_MyAchievemnts(context, 'May 11', 'Testing2',
-              //   'Grammaticality Wise men speak because they have something to say; Fools because they have to say something'),
+               //   'Grammaticality Wise men speak because they have something to say; Fools because they have to say something'),
             ],
           ),
         ),
@@ -686,14 +1289,39 @@ class _HomePageState extends State<HomePage> {
                   style: TextStyle(color: Colors.lightBlueAccent)),
             ),
             SizedBox(
-              height: 100.0,
+                 height: 100.0,
             ),
             Row(
-              children: <Widget>[
-                viewmorebutton,
-                Image(
-                  image: NetworkImage(
-                      'https://img.icons8.com/windows/32/000000/edit.png'),
+              children : <Widget>[
+
+                   RaisedButton(
+                         color: Colors.white,
+                         onPressed: (){
+                           showDialog(
+                               context: context,
+                               builder : (BuildContext context) =>_buildAboutDialog(context),
+                           );
+
+                         },
+
+                         child : Row(
+                           children: <Widget>[
+                             Text("View more"),
+                             Image(
+                               image: NetworkImage('https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
+                               height: 20.0,
+                               width:20.0,
+                             )
+                           ],
+                         ),
+                        shape: RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(15.0),
+  side: BorderSide(color: Colors.blue)
+),
+                   ),
+                  
+                   Image(
+                  image: NetworkImage('https://img.icons8.com/windows/32/000000/edit.png'),
                   height: 40.0,
                   width: 40.0,
                 ),
@@ -711,54 +1339,64 @@ class _HomePageState extends State<HomePage> {
     return Container(
       padding: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: Colors.grey, width: 0.8))),
-      margin: EdgeInsets.symmetric(horizontal: 0.0, vertical: 15.0),
+         border: Border(
+           bottom: BorderSide(
+             color: Colors.grey,
+             width: 0.8
+           )
+         )
+      ),
+      margin: EdgeInsets.symmetric(horizontal:0.0,vertical:15.0),
+
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Text(
-              date,
-              style: TextStyle(fontSize: 17),
+      children: <Widget>[
+        Text(
+          date,
+          style: TextStyle(fontSize: 17),
+        ),
+        Container(
+          decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(20),
+        topRight: Radius.circular(20),
+        bottomLeft: Radius.circular(20),
+        bottomRight: Radius.circular(20)
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey.withOpacity(0.5),
+        spreadRadius: 5,
+        blurRadius: 7,
+        offset: Offset(0, 3), // changes position of shadow
+      ),
+    ],
+  ),
+          height: 100,
+          width: screenWidth(context) - 150,
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
             ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              height: 100,
-              width: screenWidth(context) - 150,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
+            color: Colors.red[200],
+            child: Wrap(
+              children: <Widget>[
+                ListTile(
+                  title: Text(heading, style: TextStyle(color: Colors.black)),
+                  subtitle:
+                      Text(subHeading, style: TextStyle(color: Colors.black)),
                 ),
-                color: Colors.red[200],
-                child: Wrap(
-                  children: <Widget>[
-                    ListTile(
-                      title:
-                          Text(heading, style: TextStyle(color: Colors.black)),
-                      subtitle: Text(subHeading,
-                          style: TextStyle(color: Colors.black)),
-                    ),
-                  ],
-                ),
-              ),
+              ],
             ),
-          ]),
+          ),
+        ),
+      ]
+      ),
+      
     );
   }
+
 
   void _showErrorSnackBar() {
     Scaffold(
