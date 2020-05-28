@@ -772,7 +772,6 @@ class _HomePageState extends State<HomePage> {
                     width: 40.0,
                   ),
 
-                  /// Pop Up form to add hobbies and interests
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
