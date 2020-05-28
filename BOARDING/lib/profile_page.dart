@@ -8,6 +8,7 @@ import 'package:link/link.dart';
 import 'package:BOARDING/login_page.dart';
 import 'package:BOARDING/edit_info.dart';
 import 'package:BOARDING/edit_achievement.dart';
+import 'package:BOARDING/add_hobby.dart';
 import 'package:BOARDING/date_time_picker_widget2.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 //import 'package:BOARDING/grid_hobby.dart';
@@ -18,95 +19,77 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-final viewmorebutton =RaisedButton(
-                         color: Colors.white,
-                         onPressed: (){
 
-                         },
-                        
-                         child : Row(
-                           children: <Widget>[
-                             Text("View more"),
-                             Image(
-                               image: NetworkImage('https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
-                               height: 20.0,
-                               width:20.0,
-                             )
-                           ],
-                         ),
-                        shape: RoundedRectangleBorder(
-  borderRadius: BorderRadius.circular(15.0),
-  side: BorderSide(color: Colors.blue)
-),
-                   );
-
-
+final viewmorebutton = RaisedButton(
+  color: Colors.white,
+  onPressed: () {},
+  child: Row(
+    children: <Widget>[
+      Text("View more"),
+      Image(
+        image: NetworkImage(
+            'https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
+        height: 20.0,
+        width: 20.0,
+      )
+    ],
+  ),
+  shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(15.0),
+      side: BorderSide(color: Colors.blue)),
+);
 
 class HomePage extends StatefulWidget {
-  static String tag='home-page';
+  static String tag = 'home-page';
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-
 class _HomePageState extends State<HomePage> {
   static String tag = 'home-page';
 
-  List list_about,list_hobby,list_achievements,list_projects,list_skills;
-  bool got=false;
+  List list_about, list_hobby, list_achievements, list_projects, list_skills;
+  bool got = false;
 
+  Future<String> getData() async {
+    var token = await storage.read(key: 'jwt');
+    print(token);
+    var response1 =
+        await http.get('http://10.0.2.2:8000/api/getuserinfo', headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Token $token',
+    });
 
-  Future<String> getData() async{
-      var token=await storage.read(key:'jwt');
-      print(token);
-      var response1=await http.get(
-          'http://10.0.2.2:8000/api/getuserinfo',
-          headers: {
-            'Accept':'application/json',
-            'Authorization':'Token $token',
-          }
-      );
+    var response2 =
+        await http.get('http://10.0.2.2:8000/api/gethobby', headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Token $token',
+    });
 
+    var response3 =
+        await http.get('http://10.0.2.2:8000/api/getproject', headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Token $token',
+    });
 
-        var response2=await http.get(
-            'http://10.0.2.2:8000/api/gethobby',
-            headers: {
-              'Accept':'application/json',
-              'Authorization':'Token $token',
-            }
-        );
+    var response4 =
+        await http.get('http://10.0.2.2:8000/api/getachievement', headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Token $token',
+    });
+    var response5 =
+        await http.get('http://10.0.2.2:8000/api/getskill', headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Token $token',
+    });
 
-      var response3=await http.get(
-          'http://10.0.2.2:8000/api/getproject',
-          headers: {
-            'Accept':'application/json',
-            'Authorization':'Token $token',
-          }
-      );
-
-      var response4=await http.get(
-          'http://10.0.2.2:8000/api/getachievement',
-          headers: {
-            'Accept':'application/json',
-            'Authorization':'Token $token',
-          }
-      );
-      var response5=await http.get(
-      'http://10.0.2.2:8000/api/getskill',
-          headers: {
-            'Accept':'application/json',
-            'Authorization':'Token $token',
-          }
-      );
-
-
-      this.setState(() {
-      list_about=jsonDecode(response1.body);
-      list_hobby=jsonDecode(response2.body);
-      list_projects=jsonDecode(response3.body);
-      list_achievements=jsonDecode(response4.body);
-      list_skills=jsonDecode(response5.body);
-      got=true;
+    this.setState(() {
+      list_about = jsonDecode(response1.body);
+      list_hobby = jsonDecode(response2.body);
+      list_projects = jsonDecode(response3.body);
+      list_achievements = jsonDecode(response4.body);
+      list_skills = jsonDecode(response5.body);
+      got = true;
     });
 
     //print(list_projects);
@@ -114,7 +97,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
-  void initState(){
+  void initState() {
     this.getData();
   }
 
@@ -156,43 +139,44 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-   
 
-    final name=
-      Padding(
-        padding: EdgeInsets.all(8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text((() {
-              if (got=true){
-                return list_about[0]['name'];}
+    final name = Padding(
+      padding: EdgeInsets.all(8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            (() {
+              if (got = true) {
+                return list_about[0]['name'];
+              }
               return 'Loading';
-      }()),
-              style: TextStyle(
-                fontSize: 20,
-              ),
+            }()),
+            style: TextStyle(
+              fontSize: 20,
             ),
-            InkWell(
-              child: Image.network(
-                  'https://img.icons8.com/windows/32/000000/edit.png'),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return new EDITINFO(); //Function from edit_info.dart
-                }));
-              },
-            ),
-          ],
-        ),
-      );
-
+          ),
+          InkWell(
+            child: Image.network(
+                'https://img.icons8.com/windows/32/000000/edit.png'),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return new EDITINFO(); //Function from edit_info.dart
+              }));
+            },
+          ),
+        ],
+      ),
+    );
 
     final city = Center(
-      child:Text((() {
-        if (got=true){
-          return list_about[0]['location'];}
-        return 'Loading';
-      }()),
+      child: Text(
+        (() {
+          if (got = true) {
+            return list_about[0]['location'];
+          }
+          return 'Loading';
+        }()),
         style: TextStyle(
           color: Colors.orangeAccent,
           fontWeight: FontWeight.bold,
@@ -208,7 +192,6 @@ class _HomePageState extends State<HomePage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              
               Link(
                 child: Image.network(
                   'https://img.icons8.com/android/24/000000/phone.png',
@@ -254,11 +237,13 @@ class _HomePageState extends State<HomePage> {
     final about = Padding(
       padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: Center(
-        child:Text((() {
-          if (got=true){
-            return list_about[0]['aboutme'];}
-          return 'Loading';
-        }()),
+        child: Text(
+          (() {
+            if (got = true) {
+              return list_about[0]['aboutme'];
+            }
+            return 'Loading';
+          }()),
           textAlign: TextAlign.center,
           style: TextStyle(
             //color: Colors.orangeAccent,,
@@ -291,131 +276,25 @@ class _HomePageState extends State<HomePage> {
               SizedBox(width: (MediaQuery.of(context).size.width) - 350),
               InkWell(
                 child: Image(
-                  image: NetworkImage('https://img.icons8.com/cotton/64/000000/add--v2.png'),
+                  image: NetworkImage(
+                      'https://img.icons8.com/cotton/64/000000/add--v2.png'),
                   height: 40.0,
                   width: 40.0,
-
                 ),
 
-                /// Pop Up form to add hobbies and interests
                 onTap: () {
-                  showModalBottomSheet(
-                    isScrollControlled: true,
-                    context: context,
-                    builder: (context) => Wrap(children: [
-                      Container(
-                        child: Align(
-                          heightFactor: 2,
-                          alignment: Alignment(-0.9, 0),
-                          child: Text(
-                            "Add Achievement",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                      achievementname,
-                      Container(height: 20),
-                      Container(
-                        child: Align(
-                          heightFactor: 1,
-                          alignment: Alignment(-0.9, 0),
-                          child: Text(
-                            "Date",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                      // DateTimePickerWidget2(),
-                      Container(
-                        child: Align(
-                          heightFactor: 2,
-                          alignment: Alignment(-0.7, 0),
-                          child: DateTimePickerWidget2(),
-                        ),
-                      ),
-                      //  Container(height:20),
-                      Container(
-                        child: Align(
-                          heightFactor: 1,
-                          alignment: Alignment(-0.9, 0),
-                          child: Text(
-                            "Description",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return new EDIT_HOBBY(); //Function from edit_info.dart
+                  }));
+                },
+              ),
 
-                      achievementaboutme,
 
-                      Container(
-                        height: 70,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 20.0),
-                            child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(24.0),
-                              ),
-                              onPressed: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return new HomePage();
-                                }));
-                                // Navigator.of(context).pushNamed(HomePage.tag);
-                              },
-                              padding: EdgeInsets.all(20),
-                              color: Colors.blue,
-                              child: Text('      Cancel        ',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20.0)),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 20.0),
-                            child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(24.0),
-                              ),
-                              onPressed: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return new HomePage();
-                                }));
-                                // Navigator.of(context).pushNamed(HomePage.tag);
-                              },
-                              padding: EdgeInsets.all(20),
-                              color: Colors.blue,
-                              child: Text('Save Changes',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20.0)),
-                            ),
-                          ),
                         ],
                       )
                     ]),
                   );
-                },
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+
 
     final skills = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -443,77 +322,71 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       child: Column(
                         children: <Widget>[
-                          for (Map<String,dynamic> item in list_skills) MySkills('https://img.icons8.com/color/48/000000/python.png', item['proficiency']),
+                          for (Map<String, dynamic> item in list_skills)
+                            MySkills(
+                                'https://img.icons8.com/color/48/000000/python.png',
+                                item['proficiency']),
                           /*MySkills('https://img.icons8.com/color/48/000000/python.png', 74),
                           MySkills('https://img.icons8.com/color/48/000000/python.png', 23),
                           MySkills('https://img.icons8.com/color/48/000000/python.png', 91),
                           MySkills('https://img.icons8.com/color/48/000000/python.png', 84),*/
-
-
                         ],
                       ),
                     ),
                     Container(
-                      height:100.0,
+                      height: 100.0,
                       child: Text("Personality Traits Here!"),
                     )
                   ],
                 ),
               ),
               Container(
-                  width:150.0,
-                  child:RaisedButton(
-                         padding: EdgeInsets.all(20.0),
-                         color: Colors.blue,
-                         onPressed: (){
-
-                         },
-                        
-                         child : Row(
-                           children: <Widget>[
-                             Text(
-                               "view more",
-                               style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18.0,
-                               ),
-                             ),
-                             Image(
-                               image: NetworkImage('https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
-                               height: 20.0,
-                               width:20.0,
-                             )
-                           ],
-                           mainAxisAlignment: MainAxisAlignment.spaceAround,
-
-                         ),
-                        shape: RoundedRectangleBorder(
-  borderRadius: BorderRadius.circular(15.0),
-  side: BorderSide(color: Colors.white)
-),
-                   )
-                
-              ),
-              Container(
-                        height: 100.0,
-                        child: Row(
-                          children: <Widget>[
-                            Image(
-                  image: NetworkImage('https://img.icons8.com/cotton/64/000000/add--v2.png'),
-                  height: 40.0,
-                  width: 40.0,
-
-                ),
-                Image(
-                  image: NetworkImage('https://img.icons8.com/windows/32/000000/edit.png'),
-                  height: 40.0,
-                  width: 40.0,
-
-                ),
-                          ],
-                          mainAxisAlignment:MainAxisAlignment.spaceAround,
+                  width: 150.0,
+                  child: RaisedButton(
+                    padding: EdgeInsets.all(20.0),
+                    color: Colors.blue,
+                    onPressed: () {},
+                    child: Row(
+                      children: <Widget>[
+                        Text(
+                          "view more",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                          ),
+                        ),
+                        Image(
+                          image: NetworkImage(
+                              'https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
+                          height: 20.0,
+                          width: 20.0,
                         )
-                   ),
+                      ],
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                        side: BorderSide(color: Colors.white)),
+                  )),
+              Container(
+                  height: 100.0,
+                  child: Row(
+                    children: <Widget>[
+                      Image(
+                        image: NetworkImage(
+                            'https://img.icons8.com/cotton/64/000000/add--v2.png'),
+                        height: 40.0,
+                        width: 40.0,
+                      ),
+                      Image(
+                        image: NetworkImage(
+                            'https://img.icons8.com/windows/32/000000/edit.png'),
+                        height: 40.0,
+                        width: 40.0,
+                      ),
+                    ],
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  )),
             ],
           ),
         ),
@@ -534,10 +407,10 @@ class _HomePageState extends State<HomePage> {
               SizedBox(width: (MediaQuery.of(context).size.width) - 175),
               InkWell(
                 child: Image(
-                  image: NetworkImage('https://img.icons8.com/cotton/64/000000/add--v2.png'),
+                  image: NetworkImage(
+                      'https://img.icons8.com/cotton/64/000000/add--v2.png'),
                   height: 40.0,
                   width: 40.0,
-
                 ),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -554,7 +427,8 @@ class _HomePageState extends State<HomePage> {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: <Widget>[
-              for (Map<String,dynamic> item in list_projects) MyProjects(item['info'], item['starts']),
+              for (Map<String, dynamic> item in list_projects)
+                MyProjects(item['info'], item['starts']),
 
               //MyProjects('Booking 2', '1 May 2020'),
               //MyProjects('Booking 3', '1 May 2021'),
@@ -562,47 +436,41 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         SizedBox(
-           height: 20.0,
+          height: 20.0,
         ),
         Container(
           width: 200.0,
-          child:RaisedButton(
-                         padding: EdgeInsets.all(20.0),
-                         color: Colors.blue,
-                         onPressed: (){
-
-                         },
-                        
-                         child : Row(
-                           children: <Widget>[
-                             Text(
-                               "view more",
-                               style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18.0,
-                               ),
-                             ),
-                             Image(
-                               image: NetworkImage('https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
-                               height: 20.0,
-                               width:20.0,
-                             )
-                           ],
-                           mainAxisAlignment: MainAxisAlignment.spaceAround,
-
-                         ),
-                        shape: RoundedRectangleBorder(
-  borderRadius: BorderRadius.circular(15.0),
-  side: BorderSide(color: Colors.white)
-),
-                   ),
+          child: RaisedButton(
+            padding: EdgeInsets.all(20.0),
+            color: Colors.blue,
+            onPressed: () {},
+            child: Row(
+              children: <Widget>[
+                Text(
+                  "view more",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18.0,
+                  ),
+                ),
+                Image(
+                  image: NetworkImage(
+                      'https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
+                  height: 20.0,
+                  width: 20.0,
+                )
+              ],
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+            ),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+                side: BorderSide(color: Colors.white)),
+          ),
         ),
         Container(
-          width:double.infinity,
+          width: double.infinity,
         ),
       ],
-    
-      
     ); // MyProjects function is defined at the end. Usage Syntax: MyProjects(heading,subheading)
 
     final badges = Container(
@@ -627,10 +495,10 @@ class _HomePageState extends State<HomePage> {
               SizedBox(width: (MediaQuery.of(context).size.width) - 165),
               Link(
                 child: Image(
-                  image: NetworkImage('https://img.icons8.com/cotton/64/000000/add--v2.png'),
+                  image: NetworkImage(
+                      'https://img.icons8.com/cotton/64/000000/add--v2.png'),
                   height: 40.0,
                   width: 40.0,
-
                 ),
                 url: 'Edit URL',
                 onError: _showErrorSnackBar,
@@ -657,20 +525,18 @@ class _HomePageState extends State<HomePage> {
             SizedBox(width: (MediaQuery.of(context).size.width) - 235),
             InkWell(
               child: Image(
-                  image: NetworkImage('https://img.icons8.com/cotton/64/000000/add--v2.png'),
-                  height: 40.0,
-                  width: 40.0,
+                image: NetworkImage(
+                    'https://img.icons8.com/cotton/64/000000/add--v2.png'),
+                height: 40.0,
+                width: 40.0,
+              ),
 
-                ),
-
-              /// Pop Up form to add hobbies and interests
+              /// Pop Up form to add achievements
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return new EDIT_ACHIEVEMENT() ;
-            }));
-                },
-
-
+                  return new EDIT_ACHIEVEMENT();
+                }));
+              },
             ),
           ],
         ),
@@ -679,86 +545,83 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.fromLTRB(16, 5, 16, 5),
           child: Column(
             children: <Widget>[
-              for (Map<String,dynamic> item in list_achievements) _MyAchievemnts(context,item['date'], item['title'],'Testing_Text'),
+              for (Map<String, dynamic> item in list_achievements)
+                _MyAchievemnts(
+                    context, item['date'], item['title'], 'Testing_Text'),
               //_MyAchievemnts(context, 'May 10', 'Testing', 'Testin text'),
               //_MyAchievemnts(context, 'May 11', 'Testing2',
-               //   'Grammaticality Wise men speak because they have something to say; Fools because they have to say something'),
+              //   'Grammaticality Wise men speak because they have something to say; Fools because they have to say something'),
             ],
           ),
         ),
         Container(
-               width: 200.0,
-             child:RaisedButton(
-                         padding: EdgeInsets.all(20.0),
-                         color: Colors.blue,
-                         onPressed: (){
-
-                         },
-                        
-                         child : Row(
-                           children: <Widget>[
-                             Text(
-                               "view more",
-                               style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18.0,
-                               ),
-                             ),
-                             Image(
-                               image: NetworkImage('https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
-                               height: 20.0,
-                               width:20.0,
-                             )
-                           ],
-                           mainAxisAlignment: MainAxisAlignment.spaceAround,
-
-                         ),
-                        shape: RoundedRectangleBorder(
-  borderRadius: BorderRadius.circular(15.0),
-  side: BorderSide(color: Colors.white)
-),
-                   ),
+          width: 200.0,
+          child: RaisedButton(
+            padding: EdgeInsets.all(20.0),
+            color: Colors.blue,
+            onPressed: () {},
+            child: Row(
+              children: <Widget>[
+                Text(
+                  "view more",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18.0,
+                  ),
+                ),
+                Image(
+                  image: NetworkImage(
+                      'https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
+                  height: 20.0,
+                  width: 20.0,
+                )
+              ],
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+            ),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+                side: BorderSide(color: Colors.white)),
+          ),
         ),
       ],
     );
 
-    final body=
-      ListView(
-        scrollDirection: Axis.vertical,
-        children: <Widget>[
-          SizedBox(
-            height: 40,
-          ),
-          profile_picture,
-          SizedBox(
-            height: 10,
-          ),
-          name,
-          city,
-          social_icons,
-          SizedBox(
-            height: 10,
-          ),
-          about,
-          SizedBox(
-            height: 40,
-          ),
-          hobby,
-          SizedBox(
-            height: 40,
-          ),
-          skills,
-          projects,
-          SizedBox(
-            height: 30,
-          ),
-          badges,
-          SizedBox(
-            height: 30,
-          ),
-          achievemnets,
-        ],
-      );
+    final body = ListView(
+      scrollDirection: Axis.vertical,
+      children: <Widget>[
+        SizedBox(
+          height: 40,
+        ),
+        profile_picture,
+        SizedBox(
+          height: 10,
+        ),
+        name,
+        city,
+        social_icons,
+        SizedBox(
+          height: 10,
+        ),
+        about,
+        SizedBox(
+          height: 40,
+        ),
+        hobby,
+        SizedBox(
+          height: 40,
+        ),
+        skills,
+        projects,
+        SizedBox(
+          height: 30,
+        ),
+        badges,
+        SizedBox(
+          height: 30,
+        ),
+        achievemnets,
+      ],
+    );
 
     return Scaffold(
       body: SafeArea(
@@ -767,25 +630,24 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-
-
-
   ///Functions called above. Sorry for non uniformity in the type returned.
-  Padding MySkills(String image,int percentage,){
+  Padding MySkills(
+    String image,
+    int percentage,
+  ) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(25, 15, 5, 6),
       child: new LinearPercentIndicator(
         width: MediaQuery.of(context).size.width - 120,
         lineHeight: 3.0,
-        leading: new Image.network(
-            image),
+        leading: new Image.network(image),
         trailing: Text(
-          percentage.toString()+'%',
+          percentage.toString() + '%',
           style: TextStyle(color: Colors.blue),
         ),
         animation: true,
         animationDuration: 1000,
-        percent: percentage*0.01,
+        percent: percentage * 0.01,
         backgroundColor: Colors.grey[300],
         progressColor: Colors.blue,
       ),
@@ -796,22 +658,21 @@ class _HomePageState extends State<HomePage> {
     return Container(
       width: 250,
       decoration: BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.only(
-      topLeft: Radius.circular(20),
-        topRight: Radius.circular(20),
-        bottomLeft: Radius.circular(20),
-        bottomRight: Radius.circular(20)
-    ),
-    boxShadow: [
-      BoxShadow(
-        color: Colors.grey.withOpacity(0.5),
-        spreadRadius: 5,
-        blurRadius: 7,
-        offset: Offset(0, 3), // changes position of shadow
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(20)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
       ),
-    ],
-  ),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
@@ -825,24 +686,17 @@ class _HomePageState extends State<HomePage> {
                   style: TextStyle(color: Colors.lightBlueAccent)),
             ),
             SizedBox(
-                 height: 100.0,
+              height: 100.0,
             ),
             Row(
-              children : <Widget>[
-
-                   viewmorebutton,
-                  
-                   Image(
-                  image: NetworkImage('https://img.icons8.com/windows/32/000000/edit.png'),
+              children: <Widget>[
+                viewmorebutton,
+                Image(
+                  image: NetworkImage(
+                      'https://img.icons8.com/windows/32/000000/edit.png'),
                   height: 40.0,
                   width: 40.0,
-              
-
                 ),
-
-                
-
-                  
               ],
               mainAxisAlignment: MainAxisAlignment.spaceAround,
             )
@@ -852,68 +706,59 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Container _MyAchievemnts(context, String date, String heading, String subHeading) {
+  Container _MyAchievemnts(
+      context, String date, String heading, String subHeading) {
     return Container(
       padding: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
-         border: Border(
-           bottom: BorderSide(
-             color: Colors.grey,
-             width: 0.8
-           )
-         )
-      ),
-      margin: EdgeInsets.symmetric(horizontal:0.0,vertical:15.0),
-      
+          border: Border(bottom: BorderSide(color: Colors.grey, width: 0.8))),
+      margin: EdgeInsets.symmetric(horizontal: 0.0, vertical: 15.0),
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Text(
-          date,
-          style: TextStyle(fontSize: 17),
-        ),
-        Container(
-          decoration: BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.only(
-      topLeft: Radius.circular(20),
-        topRight: Radius.circular(20),
-        bottomLeft: Radius.circular(20),
-        bottomRight: Radius.circular(20)
-    ),
-    boxShadow: [
-      BoxShadow(
-        color: Colors.grey.withOpacity(0.5),
-        spreadRadius: 5,
-        blurRadius: 7,
-        offset: Offset(0, 3), // changes position of shadow
-      ),
-    ],
-  ),
-          height: 100,
-          width: screenWidth(context) - 150,
-          child: Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
+          children: <Widget>[
+            Text(
+              date,
+              style: TextStyle(fontSize: 17),
             ),
-            color: Colors.red[200],
-            child: Wrap(
-              children: <Widget>[
-                ListTile(
-                  title: Text(heading, style: TextStyle(color: Colors.black)),
-                  subtitle:
-                      Text(subHeading, style: TextStyle(color: Colors.black)),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+              ),
+              height: 100,
+              width: screenWidth(context) - 150,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
                 ),
-              ],
+                color: Colors.red[200],
+                child: Wrap(
+                  children: <Widget>[
+                    ListTile(
+                      title:
+                          Text(heading, style: TextStyle(color: Colors.black)),
+                      subtitle: Text(subHeading,
+                          style: TextStyle(color: Colors.black)),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
-        ),
-      ]
-      ),
-      
+          ]),
     );
   }
-
 
   void _showErrorSnackBar() {
     Scaffold(

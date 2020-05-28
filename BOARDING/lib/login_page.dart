@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
           'password': password,
         },
     );
-    //print(res.body);
+    print(res.body);
     //print(res.statusCode);
     if (res.statusCode == 200) {
       list_token = json.decode(res.body);

@@ -467,7 +467,7 @@ class _EDITINFOState extends State<EDITINFO> {
                     submitNew(_name, _location,_about);
                     print('something2');
                     Navigator.push(context,MaterialPageRoute(builder: (context){
-                    return new HomePage();
+                    return HomePage();
 
 
                     }));

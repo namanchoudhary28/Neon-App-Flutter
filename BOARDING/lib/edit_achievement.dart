@@ -41,7 +41,7 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
 
       },
     );
-    print('success');
+    //print('success');
     print(response1.body);
   }
 
@@ -372,7 +372,7 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
 
                     submitAchievements(_dates, _title,);
                     Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return new HomePage();
+                      return HomePage();
                     }));
                   },
 

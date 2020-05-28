@@ -484,7 +484,7 @@ class _MyAppState extends State<MyApp> {
 
                     submitProjects(_projectinfo, _description, _myActivityResult);
                     Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return new HomePage();
+                      return HomePage();
                     }));
                   },
 
