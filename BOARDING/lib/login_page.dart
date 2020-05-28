@@ -179,10 +179,5 @@ class _LoginPageState extends State<LoginPage> {
         ),
       );
     }
-    void _performLogin() {
-      String username = _usernameController.text;
-      String password = _passwordController.text;
 
-      print(username);
-    }
   }

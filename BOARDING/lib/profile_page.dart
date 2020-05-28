@@ -555,6 +555,7 @@ class _HomePageState extends State<HomePage> {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
     });
+    print(response2.body);
 
     var response3 =
         await http.get('http://10.0.2.2:8000/api/getproject', headers: {
@@ -692,9 +693,6 @@ class _HomePageState extends State<HomePage> {
               for(Map<String,dynamic> item in list_communications)
                communication(item['medium']),
 
-
-            
-              
             ],
           ),
         ),
@@ -721,45 +719,67 @@ class _HomePageState extends State<HomePage> {
     );
 
     final hobby = Container(
-      height: 170,
+      height: 220,
+      width: (MediaQuery.of(context).size.width) ,
       color: Colors.cyan[100],
-      child: Row(
+      child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    'HOBBIES AND INTERESTS',
-                    style: TextStyle(
-                      fontSize: 17.0,
-                      letterSpacing: 1.7,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'HOBBIES AND INTERESTS',
+                        style: TextStyle(
+                          fontSize: 17.0,
+                          letterSpacing: 1.7,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                SizedBox(width: (MediaQuery.of(context).size.width) - 350),
-                InkWell(
-                  child: Image(
-                    image: NetworkImage(
-                        'https://img.icons8.com/cotton/64/000000/add--v2.png'),
-                    height: 40.0,
-                    width: 40.0,
-                  ),
+                    SizedBox(width: (MediaQuery.of(context).size.width) - 350),
+                    InkWell(
+                      child: Image(
+                        image: NetworkImage(
+                            'https://img.icons8.com/cotton/64/000000/add--v2.png'),
+                        height: 40.0,
+                        width: 40.0,
+                      ),
 
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return new EDIT_HOBBY(); //Function from edit_info.dart
-                    }));
-                  },
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return new EDIT_HOBBY(); //Function from edit_info.dart
+                        }));
+                      },
+                    ),
+                  ],
                 ),
               ],
-            )
-          ]),
-    );
+          ),
+      Container(
+        height: 120,
+        padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: <Widget>[
+            for (Map<String, dynamic> item in list_hobby)
+              MyHobbies(item['name'], item['hobby_image_url']),
+
+            //MyProjects('Booking 2', '1 May 2020'),
+            //MyProjects('Booking 3', '1 May 2021'),
+          ],
+        ),
+      ),
+        ],
+      ),);
+
+
 
     final skills = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1119,6 +1139,50 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Padding MyHobbies(String name, String hobby_image_url) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        width: 90,
+        height:90,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+              bottomLeft: Radius.circular(10),
+              bottomRight: Radius.circular(10)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
+        ),
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          //color: Colors.blue,
+          child: Wrap(
+            children: <Widget>[
+                  Image(
+                    image: AssetImage(
+                        hobby_image_url),
+                    height: 90.0,
+                    width: 90.0,
+                  ),
+              Text(name),
+                ],
+              )
+          ),
+        ),
+    );
+  }
+
+
   Container MyProjects(String heading, String subHeading) {
     return Container(
       width: 250,
@@ -1132,8 +1196,8 @@ class _HomePageState extends State<HomePage> {
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 5,
-            blurRadius: 7,
+            spreadRadius: 3,
+            blurRadius: 5,
             offset: Offset(0, 3), // changes position of shadow
           ),
         ],
