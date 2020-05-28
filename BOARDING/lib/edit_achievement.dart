@@ -18,6 +18,9 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 
 class EDIT_ACHIEVEMENT extends StatefulWidget {
+  final String title;
+  final String description;
+  const EDIT_ACHIEVEMENT(this.title,this.description);
   @override
   _EDIT_ACHIEVEMENTState createState() => _EDIT_ACHIEVEMENTState();
 }
@@ -25,10 +28,14 @@ class EDIT_ACHIEVEMENT extends StatefulWidget {
 class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
   DateTime _selectedDateTime = DateTime.now();
 
-  Future<String> submitAchievements(String _dates, String _title) async {
+  Future<String> submitAchievements(int decider,String _dates, String _title,String _description) async {
     var token = await storage.read(key: 'jwt');
+    var response1;
+    if(decider==1){
 
-    var response1 = await http.post(
+    
+
+     response1 = await http.post(
       'http://10.0.2.2:8000/api/addachievement',
       headers: {
         'Accept': 'application/json',
@@ -37,12 +44,34 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
       body: {
         'date':_dates,
         'title': _title,
+        'description' : _description
         //'status':_myActivityResult,
 
       },
     );
-    //print('success');
+    }
+    else{
+      String url = 'http://10.0.2.2:8000/api/updateachievement/' +widget.title;
+      response1 = await http.put(
+      url,
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Token $token',
+      },
+      body: {
+        'date':_dates,
+        'title': _title,
+        'description' : _description
+        //'status':_myActivityResult,
+
+      },
+    );
+
+       
+    }
     print(response1.body);
+    //print('success');
+    
   }
 
 
@@ -57,14 +86,26 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
 
   var _title;       //accessing title
 
-  var _description;     //accessing description
+  var _description;
+  int decider;     //accessing description
 
 
   final titlecon= new TextEditingController();
 
 
   final descriptioncon= new TextEditingController();
+  @override
+  void initState(){
+    titlecon.text = widget.title;
+    descriptioncon.text = widget.description;
+    if(widget.title==''){
+      decider=1;
+    }
+    else{
+      decider=0;
+    }
 
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -370,7 +411,7 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
                     print(_dates);
                     print(_title);
 
-                    submitAchievements(_dates, _title,);
+                    submitAchievements(decider,_dates, _title,_description);
                     Navigator.push(context, MaterialPageRoute(builder: (context) {
                       return HomePage();
                     }));

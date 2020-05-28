@@ -999,7 +999,7 @@ class _HomePageState extends State<HomePage> {
               /// Pop Up form to add achievements
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return new EDIT_ACHIEVEMENT();
+                  return new EDIT_ACHIEVEMENT('','');
                 }));
               },
             ),
@@ -1012,7 +1012,7 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               for (Map<String, dynamic> item in list_achievements)
                 _MyAchievemnts(
-                    context, item['date'], item['title'], 'Testing_Text'),
+                    context, item['date'], item['title'], item['description']),
               //_MyAchievemnts(context, 'May 10', 'Testing', 'Testin text'),
               //_MyAchievemnts(context, 'May 11', 'Testing2',
               //   'Grammaticality Wise men speak because they have something to say; Fools because they have to say something'),
@@ -1225,7 +1225,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-              height: 100,
+              height: 120,
               width: screenWidth(context) - 150,
               child: Card(
                 shape: RoundedRectangleBorder(
@@ -1239,7 +1239,23 @@ class _HomePageState extends State<HomePage> {
                           Text(heading, style: TextStyle(color: Colors.black)),
                       subtitle: Text(subHeading,
                           style: TextStyle(color: Colors.black)),
+                          
                     ),
+                    InkWell(
+              child: Image(
+                image: NetworkImage(
+                    'https://img.icons8.com/windows/32/000000/edit.png'),
+                height: 40.0,
+                width: 40.0,
+              ),
+
+              /// Pop Up form to add achievements
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return new EDIT_ACHIEVEMENT(heading,subHeading);
+                }));
+              },
+            )
                   ],
                 ),
               ),
