@@ -83,6 +83,7 @@ class _EDITINFOState extends State<EDITINFO> {
             },
     );
     print(responsecommu.body);
+       print("This is response for adding new communication methods");
       }
     }
 
