@@ -1169,8 +1169,7 @@ class _HomePageState extends State<HomePage> {
           child: Wrap(
             children: <Widget>[
                   Image(
-                    image: AssetImage(
-                        hobby_image_url),
+                    image: AssetImage('assets/banks/$name.png'),
                     height: 90.0,
                     width: 90.0,
                   ),
