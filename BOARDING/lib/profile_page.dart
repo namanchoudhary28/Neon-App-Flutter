@@ -538,7 +538,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   static String tag = 'home-page';
 
-  List list_about, list_hobby, list_achievements, list_projects, list_skills,list_communications;
+  List list_about, list_hobby, list_achievements, list_projects, list_skills,list_communications, list_badges;
   bool got = false;
 
   Future<String> getData() async {
@@ -579,6 +579,12 @@ class _HomePageState extends State<HomePage> {
       'Authorization': 'Token $token',
     });
 
+    var response7 =
+    await http.get('http://10.0.2.2:8000/api/getbadge', headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Token $token',
+    });
+
 
     this.setState(() {
       list_about = jsonDecode(response1.body);
@@ -587,6 +593,7 @@ class _HomePageState extends State<HomePage> {
       list_achievements = jsonDecode(response4.body);
       list_skills = jsonDecode(response5.body);
       list_communications = jsonDecode(response6.body);
+      list_badges=jsonDecode(response7.body);
       got = true;
     });
 
@@ -959,40 +966,64 @@ class _HomePageState extends State<HomePage> {
     ); // MyProjects function is defined at the end. Usage Syntax: MyProjects(heading,subheading)
 
     final badges = Container(
-      height: 170,
+      height: 220,
+      width: (MediaQuery.of(context).size.width) ,
       color: Colors.cyan[100],
-      child: Row(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  'BADGES',
-                  style: TextStyle(
-                    fontSize: 17.0,
-                    letterSpacing: 1.7,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      'BADGES',
+                      style: TextStyle(
+                        fontSize: 17.0,
+                        letterSpacing: 1.7,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              SizedBox(width: (MediaQuery.of(context).size.width) - 165),
-              Link(
-                child: Image(
-                  image: NetworkImage(
-                      'https://img.icons8.com/cotton/64/000000/add--v2.png'),
-                  height: 40.0,
-                  width: 40.0,
-                ),
-                url: 'Edit URL',
-                onError: _showErrorSnackBar,
+                  SizedBox(width: (MediaQuery.of(context).size.width) - 350),
+                  InkWell(
+                    child: Image(
+                      image: NetworkImage(
+                          'https://img.icons8.com/cotton/64/000000/add--v2.png'),
+                      height: 40.0,
+                      width: 40.0,
+                    ),
+
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                            return new EDIT_HOBBY(); //Function from edit_info.dart
+                          }));
+                    },
+                  ),
+                ],
               ),
             ],
           ),
+          Container(
+            height: 120,
+            padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                for (Map<String, dynamic> item in list_badges)
+                  MyBadges(item['title'], item['image_url'],item['description']),
+
+
+              ],
+            ),
+          ),
         ],
-      ),
-    );
+      ),);
 
     final achievemnets = Column(
       children: <Widget>[
@@ -1180,6 +1211,49 @@ class _HomePageState extends State<HomePage> {
         ),
     );
   }
+
+  Padding MyBadges(String title, String image_url, String description) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(4,8,2,4),
+      child: Container(
+        width: 110,
+        height:110,
+        /*decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(55),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
+        ),*/
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(10,4,0,0),
+          child: Card(
+              shape: CircleBorder(
+                //borderRadius: BorderRadius.circular(55.0),
+              ),
+              //color: Colors.blue,
+              child: Wrap(
+                children: <Widget>[
+                  Image(
+                    image: AssetImage(image_url),
+                    height: 90.0,
+                    width: 90.0,
+                  ),
+                  //Text(title),
+                ],
+              )
+          ),
+        ),
+
+      ),
+    );
+  }
+
 
 
   Container MyProjects(String heading, String subHeading) {
