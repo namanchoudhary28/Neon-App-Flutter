@@ -67,7 +67,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
           ),
           Loading(indicator: BallPulseIndicator(),size: 100.0),
-          Text("please wait deleting your hobby...",style:TextStyle(color:Colors.white))
+          Text("please wait deleting your hobby...",style:TextStyle(color:Colors.white,fontSize: 20.0))
           ]
           
          
