@@ -7,6 +7,8 @@ import 'package:BOARDING/login_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:BOARDING/main_loading_screen.dart';
+import 'package:BOARDING/loading_login.dart';
 
 
 
@@ -499,11 +501,7 @@ class _EDITINFOState extends State<EDITINFO> {
 
                   ),
                   onPressed: (){
-                    Navigator.push(context,MaterialPageRoute(builder: (context){
-                      return new HomePage();
-
-
-                    }));
+                    Navigator.pop(context);
                     // Navigator.of(context).pushNamed(HomePage.tag);
                   },
                   padding: EdgeInsets.all(20),
@@ -556,7 +554,7 @@ class _EDITINFOState extends State<EDITINFO> {
                     submitNew(_name, _location,_about,commu);
                     print('something2');
                     Navigator.push(context,MaterialPageRoute(builder: (context){
-                    return HomePage();
+                    return LoadData();
 
 
                     }));

@@ -9,6 +9,7 @@ import 'package:BOARDING/login_page.dart';
 import 'package:BOARDING/edit_info.dart';
 import 'package:BOARDING/edit_achievement.dart';
 import 'package:BOARDING/add_hobby.dart';
+
 import 'package:BOARDING/date_time_picker_widget2.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 //import 'package:BOARDING/grid_hobby.dart';
@@ -19,592 +20,27 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:BOARDING/delete_popup.dart';
 
-Widget _buildSkillsPopup(BuildContext context) {
-  return AlertDialog(
-    title: Text("SKILLS USED", style: TextStyle(fontSize: 15.0)),
-    actions: <Widget>[
-      FlatButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: Text("close"))
-    ],
-    content: Column(
-      children: <Widget>[
-        Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: Offset(0, 3), // changes position of shadow
-                ),
-              ],
-            ),
-            padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-            margin: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Image(
-                    image: NetworkImage(
-                        'https://img.icons8.com/color/48/000000/html-5.png'),
-                  ),
-                  Text("HTML")
-                ])),
-        Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: Offset(0, 3), // changes position of shadow
-                ),
-              ],
-            ),
-            padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-            margin: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Image(
-                    image: NetworkImage(
-                        'https://img.icons8.com/color/48/000000/html-5.png'),
-                  ),
-                  Text("JAVASCRIPT")
-                ])),
-        Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: Offset(0, 3), // changes position of shadow
-                ),
-              ],
-            ),
-            padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-            margin: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Image(
-                    image: NetworkImage(
-                        'https://img.icons8.com/color/48/000000/html-5.png'),
-                  ),
-                  Text("PYTHON")
-                ])),
-        Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: Offset(0, 3), // changes position of shadow
-                ),
-              ],
-            ),
-            padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-            margin: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Image(
-                    image: NetworkImage(
-                        'https://img.icons8.com/color/48/000000/html-5.png'),
-                  ),
-                  Text("FLUTTER")
-                ])),
-      ],
-    ),
-  );
-}
-
-Widget _buildCollabPopup(BuildContext context) {
-  return AlertDialog(
-      title: Text("Collaborators"),
-      actions: <Widget>[
-        FlatButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text("close"))
-      ],
-      content: Column(
-        children: <Widget>[
-          Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-              margin: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Container(
-                        width: 100.0,
-                        height: 100.0,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: NetworkImage(
-                                  "https://img.freepik.com/free-vector/businessman-profile-cartoon_18591-58479.jpg?size=338&ext=jpg")),
-                        )),
-                    Text("User's name")
-                  ])),
-          Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-              margin: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Container(
-                        width: 100.0,
-                        height: 100.0,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: NetworkImage(
-                                  "https://img.freepik.com/free-vector/businessman-profile-cartoon_18591-58479.jpg?size=338&ext=jpg")),
-                        )),
-                    Text("User's name")
-                  ]))
-        ],
-      ));
-}
-
-Widget _buildAboutDialog(BuildContext context) {
-  return Scaffold(
-      appBar: AppBar(
-        title: Text("Project info"),
-      ),
-      body: ListView(scrollDirection: Axis.vertical, children: <Widget>[
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            Container(
-              width: double.infinity,
-            ),
-            SizedBox(
-              height: 30.0,
-            ),
-            Container(
-                padding: EdgeInsets.fromLTRB(30.0, 15.0, 30.0, 15.0),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20.0),
-                      topRight: Radius.circular(20.0),
-                    ),
-                    border: Border.all(
-                      color: Colors.blue,
-                      width: 1,
-                    )),
-                child: Text(
-                  "Neon Application",
-                  style: TextStyle(
-                    fontFamily: "sans-serif",
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )),
-            SizedBox(
-              height: 30.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Container(
-                  child: Row(
-                    children: <Widget>[
-                      Image(
-                        image: NetworkImage(
-                            'https://img.icons8.com/ultraviolet/40/000000/start.png'),
-                        height: 25.0,
-                        width: 25.0,
-                      ),
-                      SizedBox(
-                        width: 15.0,
-                      ),
-                      Text("STARTS")
-                    ],
-                  ),
-                  decoration: BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(
-                    color: Colors.blue,
-                    width: 0.8,
-                  ))),
-                  padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 10.0),
-                ),
-                Container(
-                    decoration: BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(
-                      color: Colors.blue,
-                      width: 0.8,
-                    ))),
-                    padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 10.0),
-                    child: Row(
-                      children: <Widget>[
-                        Image(
-                          image: NetworkImage(
-                              'https://img.icons8.com/flat_round/64/000000/end--v1.png'),
-                          height: 25.0,
-                          width: 25.0,
-                        ),
-                        SizedBox(
-                          width: 15.0,
-                        ),
-                        Text("ENDS")
-                      ],
-                    )),
-              ],
-            ),
-            SizedBox(
-              height: 30.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Container(
-                      height: 35.0,
-                      width: 35.0,
-                      child: Text("20"),
-                      padding: EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        border: Border.all(
-                          color: Colors.blue,
-                          width: 0.8,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 35.0,
-                      width: 35.0,
-                      child: Text("09"),
-                      padding: EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        border: Border.all(
-                          color: Colors.blue,
-                          width: 0.8,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 35.0,
-                      width: 70.0,
-                      child: Text("2020"),
-                      padding: EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        border: Border.all(
-                          color: Colors.blue,
-                          width: 0.8,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Container(
-                      height: 35.0,
-                      width: 35.0,
-                      child: Text("20"),
-                      padding: EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        border: Border.all(
-                          color: Colors.blue,
-                          width: 0.8,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 35.0,
-                      width: 35.0,
-                      child: Text("09"),
-                      padding: EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        border: Border.all(
-                          color: Colors.blue,
-                          width: 0.8,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 35.0,
-                      width: 70.0,
-                      child: Text("2020"),
-                      padding: EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        border: Border.all(
-                          color: Colors.blue,
-                          width: 0.8,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 30.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Text(
-                  "Status :",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                  ),
-                ),
-                Image(
-                  image: NetworkImage(
-                      'https://img.icons8.com/fluent/50/000000/arrow.png'),
-                ),
-                Text(
-                  "FINISHED",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 30.0,
-            ),
-            Container(
-              width: 350.0,
-              padding: EdgeInsets.all(20.0),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Text(
-                "this is the description of the project. it will be 200 words long. here u will know what this project is all about. read on to see technologies used in this project",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 15.0,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 30.0,
-            ),
-            RaisedButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) => _buildSkillsPopup(context),
-                );
-              },
-              child: Text("View Skills", style: TextStyle(color: Colors.white)),
-              color: Colors.blue,
-              padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-            ),
-            SizedBox(
-              height: 30.0,
-            ),
-            RaisedButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) => _buildCollabPopup(context),
-                );
-              },
-              child: Text("View Collaborators",
-                  style: TextStyle(color: Colors.white)),
-              color: Colors.blue,
-              padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-            )
-          ],
-        )
-      ]));
-}
-
-final viewmorebutton = RaisedButton(
-  color: Colors.white,
-  onPressed: () {},
-  child: Row(
-    children: <Widget>[
-      Text("View more"),
-      Image(
-        image: NetworkImage(
-            'https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
-        height: 20.0,
-        width: 20.0,
-      )
-    ],
-  ),
-  shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(15.0),
-      side: BorderSide(color: Colors.blue)),
-);
-
+import 'package:BOARDING/projectinfo.dart';
+import 'package:BOARDING/main_loading_screen.dart';
+import 'package:BOARDING/loading_login.dart';
 class HomePage extends StatefulWidget {
-  static String tag = 'home-page';
+  final List list_about;
+  final List list_hobby;
+  final List list_projects;
+  final List list_achievements;
+  final List list_badges;
+  final List list_communications;
+  final List list_skills;
+  const HomePage(this.list_about,this.list_hobby,this.list_projects,this.list_achievements,this.list_communications,this.list_badges,this.list_skills);
+  
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  static String tag = 'home-page';
-
-  List list_about, list_hobby, list_achievements, list_projects, list_skills,list_communications, list_badges;
-  bool got = false;
-
-  Future<String> getData() async {
-    var token = await storage.read(key: 'jwt');
-    print(token);
-    var response1 =
-        await http.get('http://10.0.2.2:8000/api/getuserinfo', headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Token $token',
-    });
-
-    var response2 =
-        await http.get('http://10.0.2.2:8000/api/gethobby', headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Token $token',
-    });
-    print(response2.body);
-
-    var response3 =
-        await http.get('http://10.0.2.2:8000/api/getproject', headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Token $token',
-    });
-
-    var response4 =
-        await http.get('http://10.0.2.2:8000/api/getachievement', headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Token $token',
-    });
-    var response5 =
-        await http.get('http://10.0.2.2:8000/api/getskill', headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Token $token',
-    });
-    var response6 =
-        await http.get('http://10.0.2.2:8000/api/getcommunication', headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Token $token',
-    });
-
-    var response7 =
-    await http.get('http://10.0.2.2:8000/api/getbadge', headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Token $token',
-    });
-
-
-    this.setState(() {
-      list_about = jsonDecode(response1.body);
-      list_hobby = jsonDecode(response2.body);
-      list_projects = jsonDecode(response3.body);
-      list_achievements = jsonDecode(response4.body);
-      list_skills = jsonDecode(response5.body);
-      list_communications = jsonDecode(response6.body);
-      list_badges=jsonDecode(response7.body);
-      got = true;
-    });
-
-    //print(list_projects);
-    return 'Success';
-  }
-
-  @override
-  void initState() {
-    this.getData();
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -638,11 +74,10 @@ class _HomePageState extends State<HomePage> {
           child: CircleAvatar(
             radius: 50,
             backgroundColor: Colors.transparent,
-            backgroundImage: NetworkImage(
-                'https://www.postplanner.com/hs-fs/hub/513577/file-2886416984-png/blog-files/facebook-profile-pic-vs-cover-photo-sq.png?width=250&height=250&name=facebook-profile-pic-vs-cover-photo-sq.png'),
-          ),
+            backgroundImage:AssetImage('assets/icons/profile.jpg'),
         ),
       ),
+    )
     );
 
     final name = Padding(
@@ -651,22 +86,20 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            (() {
-              if (got = true) {
-                return list_about[0]['name'];
-              }
-              return 'Loading';
-            }()),
+            widget.list_about[0]['name'],
             style: TextStyle(
               fontSize: 20,
             ),
           ),
           InkWell(
-            child: Image.network(
-                'https://img.icons8.com/windows/32/000000/edit.png'),
+            child: Image(
+                image: AssetImage('assets/icons/edit.png'),
+                height:30,
+                width:30,
+            ),
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return new EDITINFO(list_about[0]['name'],list_about[0]['aboutme'],list_about[0]['location'],list_communications); //Function from edit_info.dart
+                return new EDITINFO(widget.list_about[0]['name'],widget.list_about[0]['aboutme'],widget.list_about[0]['location'],widget.list_communications); //Function from edit_info.dart
               }));
             },
           ),
@@ -676,12 +109,7 @@ class _HomePageState extends State<HomePage> {
 
     final city = Center(
       child: Text(
-        (() {
-          if (got = true) {
-            return list_about[0]['location'];
-          }
-          return 'Loading';
-        }()),
+        widget.list_about[0]['location'],
         style: TextStyle(
           color: Colors.orangeAccent,
           fontWeight: FontWeight.bold,
@@ -697,7 +125,7 @@ class _HomePageState extends State<HomePage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              for(Map<String,dynamic> item in list_communications)
+              for(Map<String,dynamic> item in widget.list_communications)
                communication(item['medium']),
 
             ],
@@ -710,12 +138,7 @@ class _HomePageState extends State<HomePage> {
       padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: Center(
         child: Text(
-          (() {
-            if (got = true) {
-              return list_about[0]['aboutme'];
-            }
-            return 'Loading';
-          }()),
+         widget.list_about[0]['aboutme'],
           textAlign: TextAlign.center,
           style: TextStyle(
             //color: Colors.orangeAccent,,
@@ -726,7 +149,7 @@ class _HomePageState extends State<HomePage> {
     );
 
     final hobby = Container(
-      height: 220,
+      height: 400,
       width: (MediaQuery.of(context).size.width) ,
       color: Colors.cyan[100],
       child: Column(
@@ -752,17 +175,19 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(width: (MediaQuery.of(context).size.width) - 350),
                     InkWell(
                       child: Image(
-                        image: NetworkImage(
-                            'https://img.icons8.com/cotton/64/000000/add--v2.png'),
+                        image: AssetImage('assets/icons/add.png'),
                         height: 40.0,
                         width: 40.0,
                       ),
 
                       onTap: () {
+                         
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
                           return new EDIT_HOBBY(); //Function from edit_info.dart
                         }));
+                         
+
                       },
                     ),
                   ],
@@ -770,12 +195,12 @@ class _HomePageState extends State<HomePage> {
               ],
           ),
       Container(
-        height: 120,
+        height: 300,
         padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[
-            for (Map<String, dynamic> item in list_hobby)
+            for (Map<String, dynamic> item in widget.list_hobby)
               MyHobbies(item['name'], item['hobby_image_url']),
 
             //MyProjects('Booking 2', '1 May 2020'),
@@ -789,8 +214,13 @@ class _HomePageState extends State<HomePage> {
 
 
     final skills = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+
       children: <Widget>[
+         Container(
+          width: double.infinity,
+         ),
         DefaultTabController(
           length: 2,
           child: Column(
@@ -814,9 +244,9 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       child: Column(
                         children: <Widget>[
-                          for (Map<String, dynamic> item in list_skills)
+                          for (Map<String, dynamic> item in widget.list_skills)
                             MySkills(
-                                'https://img.icons8.com/color/48/000000/python.png',
+                                'assets/icons/python.png',
                                 item['proficiency']),
                           /*MySkills('https://img.icons8.com/color/48/000000/python.png', 74),
                           MySkills('https://img.icons8.com/color/48/000000/python.png', 23),
@@ -832,47 +262,18 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              Container(
-                  width: 150.0,
-                  child: RaisedButton(
-                    padding: EdgeInsets.all(20.0),
-                    color: Colors.blue,
-                    onPressed: () {},
-                    child: Row(
-                      children: <Widget>[
-                        Text(
-                          "view more",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.0,
-                          ),
-                        ),
-                        Image(
-                          image: NetworkImage(
-                              'https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
-                          height: 20.0,
-                          width: 20.0,
-                        )
-                      ],
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    ),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                        side: BorderSide(color: Colors.white)),
-                  )),
+              
               Container(
                   height: 100.0,
                   child: Row(
                     children: <Widget>[
                       Image(
-                        image: NetworkImage(
-                            'https://img.icons8.com/cotton/64/000000/add--v2.png'),
+                        image: AssetImage('assets/icons/add.png'),
                         height: 40.0,
                         width: 40.0,
                       ),
                       Image(
-                        image: NetworkImage(
-                            'https://img.icons8.com/windows/32/000000/edit.png'),
+                        image: AssetImage('assets/icons/edit.png'),
                         height: 40.0,
                         width: 40.0,
                       ),
@@ -881,6 +282,26 @@ class _HomePageState extends State<HomePage> {
                   )),
             ],
           ),
+        ),
+        Container(
+          width: 150.0,
+          child : FlatButton(
+            color:Colors.white,
+            textColor: Colors.blue,
+            onPressed: (){
+
+            },
+            child:Row(
+                 children: <Widget>[
+                   Text("VIEW MORE"),
+                   Icon(
+                     Icons.arrow_forward_ios
+
+                   ),
+                  
+                 ], 
+            ),
+        ),
         ),
       ],
     );
@@ -899,8 +320,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(width: (MediaQuery.of(context).size.width) - 175),
               InkWell(
                 child: Image(
-                  image: NetworkImage(
-                      'https://img.icons8.com/cotton/64/000000/add--v2.png'),
+                  image: AssetImage('assets/icons/add.png'),
                   height: 40.0,
                   width: 40.0,
                 ),
@@ -919,7 +339,7 @@ class _HomePageState extends State<HomePage> {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: <Widget>[
-              for (Map<String, dynamic> item in list_projects)
+              for (Map<String, dynamic> item in widget.list_projects)
                 MyProjects(item['info'], item['starts']),
 
               //MyProjects('Booking 2', '1 May 2020'),
@@ -931,34 +351,26 @@ class _HomePageState extends State<HomePage> {
           height: 20.0,
         ),
         Container(
-          width: 200.0,
-          child: RaisedButton(
-            padding: EdgeInsets.all(20.0),
-            color: Colors.blue,
-            onPressed: () {},
-            child: Row(
-              children: <Widget>[
-                Text(
-                  "view more",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.0,
-                  ),
-                ),
-                Image(
-                  image: NetworkImage(
-                      'https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
-                  height: 20.0,
-                  width: 20.0,
-                )
-              ],
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+          width: 150.0,
+          child : FlatButton(
+            color:Colors.white,
+            textColor: Colors.blue,
+            onPressed: (){
+
+            },
+            child:Row(
+                 children: <Widget>[
+                   Text("VIEW MORE"),
+                   Icon(
+                     Icons.arrow_forward_ios
+
+                   ),
+                  
+                 ], 
             ),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-                side: BorderSide(color: Colors.white)),
-          ),
         ),
+        ),
+        
         Container(
           width: double.infinity,
         ),
@@ -966,7 +378,7 @@ class _HomePageState extends State<HomePage> {
     ); // MyProjects function is defined at the end. Usage Syntax: MyProjects(heading,subheading)
 
     final badges = Container(
-      height: 220,
+      height: 400,
       width: (MediaQuery.of(context).size.width) ,
       color: Colors.cyan[100],
       child: Column(
@@ -992,8 +404,7 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(width: (MediaQuery.of(context).size.width) - 350),
                   InkWell(
                     child: Image(
-                      image: NetworkImage(
-                          'https://img.icons8.com/cotton/64/000000/add--v2.png'),
+                      image: AssetImage('assets/icons/add.png'),
                       height: 40.0,
                       width: 40.0,
                     ),
@@ -1010,12 +421,12 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           Container(
-            height: 120,
+            height: 300,
             padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: <Widget>[
-                for (Map<String, dynamic> item in list_badges)
+                for (Map<String, dynamic> item in widget.list_badges)
                   MyBadges(item['title'], item['image_url'],item['description']),
 
 
@@ -1026,6 +437,7 @@ class _HomePageState extends State<HomePage> {
       ),);
 
     final achievemnets = Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Row(
           children: <Widget>[
@@ -1041,8 +453,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(width: (MediaQuery.of(context).size.width) - 235),
             InkWell(
               child: Image(
-                image: NetworkImage(
-                    'https://img.icons8.com/cotton/64/000000/add--v2.png'),
+                image: AssetImage('assets/icons/add.png'),
                 height: 40.0,
                 width: 40.0,
               ),
@@ -1061,7 +472,7 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.fromLTRB(16, 5, 16, 5),
           child: Column(
             children: <Widget>[
-              for (Map<String, dynamic> item in list_achievements)
+              for (Map<String, dynamic> item in widget.list_achievements)
                 _MyAchievemnts(
                     context, item['date'], item['title'], item['description']),
               //_MyAchievemnts(context, 'May 10', 'Testing', 'Testin text'),
@@ -1071,34 +482,29 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         Container(
-          width: 200.0,
-          child: RaisedButton(
-            padding: EdgeInsets.all(20.0),
-            color: Colors.blue,
-            onPressed: () {},
-            child: Row(
-              children: <Widget>[
-                Text(
-                  "view more",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.0,
-                  ),
-                ),
-                Image(
-                  image: NetworkImage(
-                      'https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
-                  height: 20.0,
-                  width: 20.0,
-                )
-              ],
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-            ),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-                side: BorderSide(color: Colors.white)),
-          ),
+            width:double.infinity
         ),
+        Container(
+          width: 150.0,
+          child : FlatButton(
+            color:Colors.white,
+            textColor: Colors.blue,
+            onPressed: (){
+
+            },
+            child:Row(
+                 children: <Widget>[
+                   Text("VIEW MORE"),
+                   Icon(
+                     Icons.arrow_forward_ios
+
+                   ),
+                  
+                 ], 
+            ),
+        ),
+        )
+        
       ],
     );
 
@@ -1156,7 +562,7 @@ class _HomePageState extends State<HomePage> {
       child: new LinearPercentIndicator(
         width: MediaQuery.of(context).size.width - 120,
         lineHeight: 3.0,
-        leading: new Image.network(image),
+        leading: new Image.asset(image),
         trailing: Text(
           percentage.toString() + '%',
           style: TextStyle(color: Colors.blue),
@@ -1174,8 +580,9 @@ class _HomePageState extends State<HomePage> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        width: 90,
-        height:90,
+        height: 250,
+        width:250,
+        
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -1192,7 +599,14 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        child: Card(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+             children: <Widget>[
+               Container(
+                   width: double.infinity, 
+               ),
+                  Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
@@ -1204,10 +618,51 @@ class _HomePageState extends State<HomePage> {
                     height: 90.0,
                     width: 90.0,
                   ),
-              Text(name),
+             
                 ],
               )
           ),
+          Text(
+            name,
+            
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              InkWell(
+                      child: Image(
+                        image: AssetImage('assets/icons/edit.png'),
+                        height: 40.0,
+                        width: 40.0,
+                      ),
+
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return new EDIT_HOBBY(); //Function from edit_info.dart
+                        }));
+                      }
+                    ),
+                    InkWell(
+                      child: Image(
+                        image: AssetImage('assets/icons/delete.png'),
+                        height: 40.0,
+                        width: 40.0,
+                      ),
+
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return new deletepopup('hobby',[name,hobby_image_url]); //Function from edit_info.dart
+                        }));
+                      },
+                    )
+
+              
+            ],
+          ),
+             ],
+        ),
         ),
     );
   }
@@ -1216,11 +671,13 @@ class _HomePageState extends State<HomePage> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(4,8,2,4),
       child: Container(
-        width: 110,
-        height:110,
-        /*decoration: BoxDecoration(
+        
+         height: 250,
+        width:250,
+        
+        decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(55),
+          borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.5),
@@ -1229,10 +686,18 @@ class _HomePageState extends State<HomePage> {
               offset: Offset(0, 3), // changes position of shadow
             ),
           ],
-        ),*/
+        ),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(10,4,0,0),
-          child: Card(
+          child:Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+
+              children: <Widget>[
+                Container(
+                  width: double.infinity,
+                ),
+                     Card(
               shape: CircleBorder(
                 //borderRadius: BorderRadius.circular(55.0),
               ),
@@ -1240,7 +705,7 @@ class _HomePageState extends State<HomePage> {
               child: Wrap(
                 children: <Widget>[
                   Image(
-                    image: AssetImage(image_url),
+                    image: AssetImage('assets/badges/$image_url.png'),
                     height: 90.0,
                     width: 90.0,
                   ),
@@ -1248,6 +713,46 @@ class _HomePageState extends State<HomePage> {
                 ],
               )
           ),
+          Text(title),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              InkWell(
+                      child: Image(
+                        image: AssetImage('assets/icons/edit.png'),
+                        height: 40.0,
+                        width: 40.0,
+                      ),
+
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return new EDIT_HOBBY(); //Function from edit_info.dart
+                        }));
+                      }
+                    ),
+                    InkWell(
+                      child: Image(
+                        image: AssetImage('assets/icons/delete.png'),
+                        height: 40.0,
+                        width: 40.0,
+                      ),
+
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return new EDIT_HOBBY(); //Function from edit_info.dart
+                        }));
+                      },
+                    )
+
+              
+            ],
+          )
+
+              ],
+          ),
+           
         ),
 
       ),
@@ -1295,11 +800,10 @@ class _HomePageState extends State<HomePage> {
                 RaisedButton(
                   color: Colors.white,
                   onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) =>
-                          _buildAboutDialog(context),
-                    );
+                      Navigator.push(
+                       context,
+                       MaterialPageRoute(builder: (context)=>projectinfo()),
+                      );
                   },
                   child: Row(
                     children: <Widget>[
@@ -1316,12 +820,36 @@ class _HomePageState extends State<HomePage> {
                       borderRadius: BorderRadius.circular(15.0),
                       side: BorderSide(color: Colors.blue)),
                 ),
-                Image(
-                  image: NetworkImage(
-                      'https://img.icons8.com/windows/32/000000/edit.png'),
-                  height: 40.0,
-                  width: 40.0,
-                ),
+                InkWell(
+              child: Image(
+                image: AssetImage('assets/icons/edit.png'),
+                height: 40.0,
+                width: 40.0,
+              ),
+
+              /// Pop Up form to add achievements
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return new EDIT_ACHIEVEMENT(heading,subHeading);
+                }));
+              },
+            ),
+            InkWell(
+              child: Image(
+                image: AssetImage('assets/icons/delete.png'),
+                height: 40.0,
+                width: 40.0,
+              ),
+
+              /// Pop Up form to add achievements
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return new EDIT_ACHIEVEMENT(heading,subHeading);
+                }));
+              },
+            ),
+
+
               ],
               mainAxisAlignment: MainAxisAlignment.spaceAround,
             )
@@ -1362,7 +890,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-              height: 120,
+              height: 135,
               width: screenWidth(context) - 150,
               child: Card(
                 shape: RoundedRectangleBorder(
@@ -1378,12 +906,18 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(color: Colors.black)),
                           
                     ),
-                    InkWell(
+                    Padding(
+                      padding : EdgeInsets.all(20.0),
+                      child:Row(
+                      mainAxisAlignment:MainAxisAlignment.end,
+                      
+
+                      children: <Widget>[
+                          InkWell(
               child: Image(
-                image: NetworkImage(
-                    'https://img.icons8.com/windows/32/000000/edit.png'),
-                height: 40.0,
-                width: 40.0,
+                image: AssetImage('assets/icons/edit.png'),
+                height: 30.0,
+                width: 30.0,
               ),
 
               /// Pop Up form to add achievements
@@ -1392,7 +926,30 @@ class _HomePageState extends State<HomePage> {
                   return new EDIT_ACHIEVEMENT(heading,subHeading);
                 }));
               },
-            )
+            ),
+            SizedBox(
+               width:15.0
+                 
+            ),
+            InkWell(
+              child: Image(
+                image: AssetImage('assets/icons/delete.png'),
+                height: 30.0,
+                width:30.0,
+              ),
+
+              /// Pop Up form to add achievements
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return new EDIT_ACHIEVEMENT(heading,subHeading);
+                }));
+              },
+            ),
+                      ],
+                    ) ,
+                    )
+                    ,
+                    
                   ],
                 ),
               ),
@@ -1423,7 +980,9 @@ double screenWidth(BuildContext context) {
 }
 Image communication(String medium){
   return Image(
-    image:AssetImage('assets/images/$medium.png')
+    image:AssetImage('assets/images/$medium.png'),
+    height: 30.0,
+    width:30.0,
     
   );
 }

@@ -1,9 +1,11 @@
+import 'package:BOARDING/main_loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:BOARDING/login_page.dart';
 import 'package:BOARDING/profile_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:BOARDING/loading_login.dart';
 
 //void main() => runApp(MyApp());
 /*
@@ -233,7 +235,7 @@ class EDIT_HOBBYState extends State<EDIT_HOBBY> {
 
                     submitNew(image, name);
                     Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return HomePage();
+                      return LoadData();
                     }));
                     // print(_myActivityResult);
 

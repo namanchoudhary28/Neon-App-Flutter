@@ -1,3 +1,4 @@
+import 'package:BOARDING/main_loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:BOARDING/profile_page.dart';
 import 'package:BOARDING/profile_page.dart';
@@ -11,6 +12,7 @@ import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:BOARDING/loading_login.dart';
 
 
 
@@ -362,11 +364,7 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
 
                   ),
                   onPressed: (){
-                    Navigator.push(context,MaterialPageRoute(builder: (context){
-                      return new HomePage();
-
-
-                    }));
+                    Navigator.pop(context);
                     // Navigator.of(context).pushNamed(HomePage.tag);
                   },
                   padding: EdgeInsets.all(20),
@@ -413,7 +411,7 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
 
                     submitAchievements(decider,_dates, _title,_description);
                     Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return HomePage();
+                      return LoadData();
                     }));
                   },
 

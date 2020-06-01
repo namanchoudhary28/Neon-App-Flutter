@@ -3,10 +3,12 @@ import 'package:BOARDING/profile_page.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
-import 'dart:io';
-import 'dart:convert';
 
-final storage = FlutterSecureStorage();
+import 'dart:convert';
+import 'package:BOARDING/main_loading_screen.dart';
+import 'package:BOARDING/loading_login.dart';
+
+
 
 
 
@@ -27,29 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordController = TextEditingController();
   List list_token;
 
-  Future<String> attemptLogIn(String username, String password) async {
-    /*Map data={
-      'username': username,
-      'password': password,
-    };*/
-    //String body=json.encode(data);
-
-    http.Response res = await http.post(
-        'http://10.0.2.2:8000/api/login',
-        headers: {'Accept': 'application/json',},
-        body: {
-          'username': username,
-          'password': password,
-        },
-    );
-    print(res.body);
-    //print(res.statusCode);
-    if (res.statusCode == 200) {
-      list_token = json.decode(res.body);
-      //print(list_token[0]['Key']);
-      return list_token[0]['Key'];
-    }else return null;
-  }
+  
 
     @override
     Widget build(BuildContext context) {
@@ -103,31 +83,21 @@ class _LoginPageState extends State<LoginPage> {
             borderRadius: BorderRadius.circular(24.0),
 
           ),
-          onPressed: () async {
+          onPressed: ()  {
             var username = _usernameController.text;
             var password = _passwordController.text;
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context)=>LoginLoader(username,password)),
+
+            );
             /* Navigator.push(
               context,
               MaterialPageRoute(
               builder: (context) {return new HomePage();}));*/
-            print('something1');
-            var jwt = await attemptLogIn(username, password);
-            print('something2');
+            
 
-
-            if (jwt != null) {
-              storage.write(key: "jwt", value: jwt);
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) {
-                        return new HomePage();
-                      }
-                  )
-              );
-            } else {
-              print("An Error Occurred");
-            }
           },
           padding: EdgeInsets.all(12),
           color: Colors.blue,

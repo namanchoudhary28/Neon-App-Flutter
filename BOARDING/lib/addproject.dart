@@ -1,3 +1,4 @@
+import 'package:BOARDING/main_loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboard/flutter_onboard.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +11,7 @@ import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:BOARDING/loading_login.dart';
 
 class MyApp extends StatefulWidget {
   @override
@@ -484,7 +486,7 @@ class _MyAppState extends State<MyApp> {
 
                     submitProjects(_projectinfo, _description, _myActivityResult);
                     Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return HomePage();
+                      return LoadData();
                     }));
                   },
 
