@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:expand_widget/expand_widget.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:link/link.dart';
 import 'package:BOARDING/login_page.dart';
@@ -203,24 +204,24 @@ class _HomePageState extends State<HomePage> {
             for (Map<String, dynamic> item in widget.list_hobby)
               MyHobbies(item['name'], item['hobby_image_url']),
 
-            //MyProjects('Booking 2', '1 May 2020'),
-            //MyProjects('Booking 3', '1 May 2021'),
-          ],
-        ),
-      ),
+                //MyProjects('Booking 2', '1 May 2020'),
+                //MyProjects('Booking 3', '1 May 2021'),
+              ],
+            ),
+          ),
         ],
-      ),);
+      ),
+    );
 
-
-
+    var i = widget.list_skills.length;
+    var n = 2;
     final skills = Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
-
       children: <Widget>[
-         Container(
+        Container(
           width: double.infinity,
-         ),
+        ),
         DefaultTabController(
           length: 2,
           child: Column(
@@ -237,32 +238,47 @@ class _HomePageState extends State<HomePage> {
                       Tab(text: "PERSONALITY TRAITS"),
                     ]),
               ),
-              Container(
-                height: 200,
-                child: TabBarView(
-                  children: [
-                    Container(
-                      child: Column(
-                        children: <Widget>[
-                          for (Map<String, dynamic> item in widget.list_skills)
-                            MySkills(
-                                'assets/icons/python.png',
-                                item['proficiency']),
-                          /*MySkills('https://img.icons8.com/color/48/000000/python.png', 74),
-                          MySkills('https://img.icons8.com/color/48/000000/python.png', 23),
-                          MySkills('https://img.icons8.com/color/48/000000/python.png', 91),
-                          MySkills('https://img.icons8.com/color/48/000000/python.png', 84),*/
-                        ],
-                      ),
+              ShowChild(
+                indicator: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Text(
+                    "SHOW MORE",
+                    style: TextStyle(
+                      color: Colors.blue,
+                      decoration: TextDecoration.underline,
                     ),
-                    Container(
-                      height: 100.0,
-                      child: Text("Personality Traits Here!"),
-                    )
-                  ],
+                  ),
+                ),
+                child: Container(
+                  height: 300,
+                  child: TabBarView(
+                    children: [
+                      Container(
+                        child: Column(
+                          children: <Widget>[
+
+                            for (Map<String, dynamic> item in widget
+                                .list_skills)
+                              MySkills(
+                                  'assets/icons/python.png',
+                                  item['proficiency']),
+
+                            /*MySkills('https://img.icons8.com/color/48/000000/python.png', 74),
+                            MySkills('https://img.icons8.com/color/48/000000/python.png', 23),
+                            MySkills('https://img.icons8.com/color/48/000000/python.png', 91),
+                            MySkills('https://img.icons8.com/color/48/000000/python.png', 84),*/
+                          ],
+                        ),
+                      ),
+                      Container(
+                        height: 100.0,
+                        child: Text("Personality Traits Here!"),
+                      )
+                    ],
+                  ),
                 ),
               ),
-              
+
               Container(
                   height: 100.0,
                   child: Row(
@@ -283,26 +299,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        Container(
-          width: 150.0,
-          child : FlatButton(
-            color:Colors.white,
-            textColor: Colors.blue,
-            onPressed: (){
 
-            },
-            child:Row(
-                 children: <Widget>[
-                   Text("VIEW MORE"),
-                   Icon(
-                     Icons.arrow_forward_ios
-
-                   ),
-                  
-                 ], 
-            ),
-        ),
-        ),
       ],
     );
 
@@ -347,29 +344,8 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        SizedBox(
-          height: 20.0,
-        ),
-        Container(
-          width: 150.0,
-          child : FlatButton(
-            color:Colors.white,
-            textColor: Colors.blue,
-            onPressed: (){
 
-            },
-            child:Row(
-                 children: <Widget>[
-                   Text("VIEW MORE"),
-                   Icon(
-                     Icons.arrow_forward_ios
 
-                   ),
-                  
-                 ], 
-            ),
-        ),
-        ),
         
         Container(
           width: double.infinity,
@@ -461,50 +437,47 @@ class _HomePageState extends State<HomePage> {
               /// Pop Up form to add achievements
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return new EDIT_ACHIEVEMENT('','');
+                  return new EDIT_ACHIEVEMENT('', '');
                 }));
               },
             ),
           ],
         ),
-        Container(
-          width: (MediaQuery.of(context).size.width),
-          padding: EdgeInsets.fromLTRB(16, 5, 16, 5),
-          child: Column(
-            children: <Widget>[
-              for (Map<String, dynamic> item in widget.list_achievements)
-                _MyAchievemnts(
-                    context, item['date'], item['title'], item['description']),
-              //_MyAchievemnts(context, 'May 10', 'Testing', 'Testin text'),
-              //_MyAchievemnts(context, 'May 11', 'Testing2',
-              //   'Grammaticality Wise men speak because they have something to say; Fools because they have to say something'),
-            ],
+        ShowChild(
+          indicator: Padding(
+            padding: EdgeInsets.all(8),
+            child: Text(
+              "SHOW MORE",
+              style: TextStyle(
+                color: Colors.blue,
+                decoration: TextDecoration.underline,
+              ),
+            ),
+          ),
+          child: Container(
+            width: (MediaQuery
+                .of(context)
+                .size
+                .width),
+            padding: EdgeInsets.fromLTRB(16, 5, 16, 5),
+            child: Column(
+              children: <Widget>[
+                for (Map<String, dynamic> item in widget.list_achievements)
+                  _MyAchievemnts(
+                      context, item['date'], item['title'],
+                      item['description']),
+                //_MyAchievemnts(context, 'May 10', 'Testing', 'Testin text'),
+                //_MyAchievemnts(context, 'May 11', 'Testing2',
+                //   'Grammaticality Wise men speak because they have something to say; Fools because they have to say something'),
+              ],
+            ),
           ),
         ),
         Container(
-            width:double.infinity
+            width: double.infinity
         ),
-        Container(
-          width: 150.0,
-          child : FlatButton(
-            color:Colors.white,
-            textColor: Colors.blue,
-            onPressed: (){
 
-            },
-            child:Row(
-                 children: <Widget>[
-                   Text("VIEW MORE"),
-                   Icon(
-                     Icons.arrow_forward_ios
 
-                   ),
-                  
-                 ], 
-            ),
-        ),
-        )
-        
       ],
     );
 
