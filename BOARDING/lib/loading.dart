@@ -18,12 +18,13 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
+  String msg;
 
-  Future<String> deletehobby(String title) async{
+  Future<String> deletehobby(String name,String title) async{
      var token = await storage.read(key: 'jwt');
     
  
-     var res =await http.delete('http://10.0.2.2:8000/api/deletehobby/'+title, headers: {
+     var res =await http.delete('http://10.0.2.2:8000/api/delete$name/'+title, headers: {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
     },
@@ -33,7 +34,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     ).then((value) =>
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => SuccessPopup(),),
+        MaterialPageRoute(builder: (context) => SuccessPopup(widget.item),),
       )
     );
     
@@ -47,7 +48,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
   @override
   void initState(){
-    Future <String> f = deletehobby(widget.params[0]);
+    msg = 'please wait deleting your '+ widget.item+'....';
+    Future <String> f = deletehobby(widget.item,widget.params[0]);
     
 
   }
@@ -67,7 +69,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
           ),
           Loading(indicator: BallPulseIndicator(),size: 100.0),
-          Text("please wait deleting your hobby...",style:TextStyle(color:Colors.white,fontSize: 20.0))
+          Text(msg,style:TextStyle(color:Colors.white,fontSize: 20.0))
           ]
           
          

@@ -3,11 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:BOARDING/profile_page.dart';
 
 class SuccessPopup extends StatefulWidget {
+
+  final String item;
+  const SuccessPopup(this.item);
   @override
   _SuccessPopupState createState() => _SuccessPopupState();
 }
 
 class _SuccessPopupState extends State<SuccessPopup> {
+  String item;
+  @override
+  void initState(){
+    item= widget.item;
+  }
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -34,7 +42,7 @@ class _SuccessPopupState extends State<SuccessPopup> {
             
             children: <Widget>[
               Container(width:double.infinity),
-              Center(child: Text("Hobby is deleted successfully",
+              Center(child: Text("$item is deleted successfully",
                   textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'sans-serif',

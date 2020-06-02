@@ -739,10 +739,10 @@ class _HomePageState extends State<HomePage> {
                       ),
 
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return new EDIT_HOBBY(); //Function from edit_info.dart
-                        }));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context)=>deletepopup('badge', [title])),
+                        );
                       },
                     )
 
@@ -843,10 +843,12 @@ class _HomePageState extends State<HomePage> {
 
               /// Pop Up form to add achievements
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return new EDIT_ACHIEVEMENT(heading,subHeading);
-                }));
-              },
+                  Navigator.push(
+                   context,
+                   MaterialPageRoute(builder: (context)=>deletepopup('project', [heading])),
+                  );
+                               
+                          },
             ),
 
 
@@ -940,9 +942,10 @@ class _HomePageState extends State<HomePage> {
 
               /// Pop Up form to add achievements
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return new EDIT_ACHIEVEMENT(heading,subHeading);
-                }));
+                Navigator.push(
+                   context,
+                   MaterialPageRoute(builder: (context)=>deletepopup('achievement', [heading])),
+                  );
               },
             ),
                       ],
