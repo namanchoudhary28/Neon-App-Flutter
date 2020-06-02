@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_onboard/flutter_onboard.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,7 @@ class App extends StatelessWidget {
 
 class HomeScreen extends StatelessWidget {
   final PageController _pageController = PageController();
+ 
   @override
   Widget build(BuildContext context) {
     return Provider<OnBoardState>(
@@ -84,7 +86,7 @@ class HomeScreen extends StatelessWidget {
           nextButton: Consumer<OnBoardState>(
             builder: (BuildContext context, OnBoardState state, Widget child) {
               return InkWell(
-                onTap: () => _onNextTap(state),
+                onTap: () => _onNextTap(state,context),
                 child: Container(
                   width: 230,
                   height: 50,
@@ -111,7 +113,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  void _onNextTap(OnBoardState onBoardState) {
+  void _onNextTap(OnBoardState onBoardState,BuildContext context) {
     if (!onBoardState.isLastPage) {
       _pageController.animateToPage(
         onBoardState.page + 1,
@@ -120,8 +122,8 @@ class HomeScreen extends StatelessWidget {
       );
     }
      else {
-       
-      print("gggg");
+     
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
       
     }
   }
@@ -131,18 +133,23 @@ final List<OnBoardModel> onBoardData = [
   OnBoardModel(
     title: "Welcome to Neon",
     description: "Manage all your activities ",
-    imgUrl: "assets/images/weight.png",
+    imgUrl: 'assets/banks/Camping.png',
+    
   ),
   OnBoardModel(
     title: "What is Lorem ipsum?",
     description:
         "i dont know what is lorem ipsum plz tell",
-    imgUrl: 'assets/images/graph.png',
+        imgUrl: 'assets/banks/Cooking.png',
+   
+  
+    
   ),
   OnBoardModel(
     title: "Do you know who is lorem ipsum",
     description:
         "Nobody i dont know head to next page",
-    imgUrl: 'assets/images/graph.png',
+        imgUrl: 'assets/banks/Cycling.png',
+   
   ),
 ];

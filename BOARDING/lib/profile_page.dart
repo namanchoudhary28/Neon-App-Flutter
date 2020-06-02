@@ -770,6 +770,29 @@ class _HomePageState extends State<HomePage> {
             ),
             Row(
               children: <Widget>[
+                RaisedButton(
+                  color: Colors.white,
+                  onPressed: () {
+                      Navigator.push(
+                       context,
+                       MaterialPageRoute(builder: (context)=>projectinfo()),
+                      );
+                  },
+                  child: Row(
+                    children: <Widget>[
+                      Text("View more"),
+                      Image(
+                        image: NetworkImage(
+                            'https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
+                        height: 20.0,
+                        width: 20.0,
+                      )
+                    ],
+                  ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                      side: BorderSide(color: Colors.blue)),
+                ),
                 InkWell(
               child: Image(
                 image: AssetImage('assets/icons/edit.png'),
