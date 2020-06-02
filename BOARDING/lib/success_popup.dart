@@ -1,6 +1,7 @@
 import 'package:BOARDING/main_loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:BOARDING/profile_page.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SuccessPopup extends StatefulWidget {
 

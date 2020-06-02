@@ -25,44 +25,52 @@ class _deletepopupState extends State<deletepopup> {
     
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30.0),
-            topRight: Radius.circular(30.0),
-
-          )
-      ),
+        topLeft: Radius.circular(30.0),
+        topRight: Radius.circular(30.0),
+        bottomRight: Radius.circular(30.0),
+        bottomLeft: Radius.circular(30.0),
+      )),
       content: Container(
-        height: 150.0,
-        
-         
-        child:Container(
-          
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+        height: MediaQuery
+            .of(context)
+            .size
+            .height - 350,
+        width: 200,
 
 
-            
-            children: <Widget>[
-              Container(width:double.infinity),
-              Center(child: Text("Are u sure u want to delete this $item ?",
-                  textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'sans-serif',
-                      fontSize: 20.0,
-                    
+        child: Container(
 
-                    ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
 
-              ) ),
-              
-              SizedBox(
-                height: 30.0,
-              ),
-              Row(
-               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-               children: <Widget>[
-                 Ink(
-                   decoration: ShapeDecoration(
-                       color:Colors.green[700],
+
+              children: <Widget>[
+                Container(width: double.infinity),
+
+                Container(
+                  height: 120,
+                  child: Center(
+                      child: Text("Are u sure u want to delete this $item ?",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'sans-serif',
+                          fontSize: 20.0,
+
+
+                        ),
+
+                      )),
+                ),
+
+                SizedBox(
+                  height: 30.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Ink(
+                      decoration: ShapeDecoration(
+                        color: Colors.green[700],
                        shape: CircleBorder(),
                    ),
                    child: IconButton(

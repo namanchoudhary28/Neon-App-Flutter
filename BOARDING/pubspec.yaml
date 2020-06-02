@@ -27,6 +27,7 @@ dependencies:
   http:  ^0.12.1
   flutter_secure_storage: ^3.3.3
   expand_widget: ^0.2.0+2
+  fluttertoast: ^4.0.0
 
   sleek_circular_slider: ^1.1.0
   dropdown_formfield: ^0.1.2

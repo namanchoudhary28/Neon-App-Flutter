@@ -73,7 +73,8 @@ class _LoadDataState extends State<LoadData> {
       list_skills = jsonDecode(response5.body);
       list_communications = jsonDecode(response6.body);
       list_badges=jsonDecode(response7.body);
-      Navigator.push(
+
+    Navigator.push(
           context,
           MaterialPageRoute(builder: (context)=> HomePage(list_about, list_hobby, list_projects, list_achievements, list_communications, list_badges, list_skills))
       );
