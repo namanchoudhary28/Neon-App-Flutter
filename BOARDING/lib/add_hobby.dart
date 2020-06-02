@@ -59,24 +59,12 @@ class EDIT_HOBBYState extends State<EDIT_HOBBY> {
     {"id": '2', "image": "assets/banks/Singing.png", "name": "Singing"},
     {"id": '3', "image": "assets/banks/Cycling.png", "name": "Cycling"},
     {"id": '4', "image": "assets/banks/Drawing.png", "name": "Drawing"},
-    {
-      "id": '5',
-      "image": "assets/banks/Cooking.png",
-      "name": "Cooking"
-    },
+    {"id": '5', "image": "assets/banks/Cooking.png", "name": "Cooking"},
     {"id": '6', "image": "assets/banks/Surfing.png", "name": "Surfing"},
-    {
-      "id": '7',
-      "image": "assets/banks/Writing.png",
-      "name": "Writing"
-    },
+    {"id": '7', "image": "assets/banks/Writing.png", "name": "Writing"},
     {"id": '8', "image": "assets/banks/Reading.png", "name": "Reading"},
     {"id": '9', "image": "assets/banks/Archery.png", "name": "Archery"},
-    {
-      "id": '10',
-      "image": "assets/banks/Camping.png",
-      "name": "Camping"
-    },
+    {"id": '10', "image": "assets/banks/Camping.png", "name": "Camping"},
     // {"id": '11', "image": "assets/banks/rhb-now.png", "name": "RHB NOW"},
     // {
     //   "id": '12',
