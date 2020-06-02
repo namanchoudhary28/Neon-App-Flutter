@@ -242,7 +242,7 @@ class _HomePageState extends State<HomePage> {
                 indicator: Padding(
                   padding: EdgeInsets.all(8),
                   child: Text(
-                    "SHOW MORE",
+                    "View More",
                     style: TextStyle(
                       color: Colors.blue,
                       decoration: TextDecoration.underline,
@@ -447,7 +447,7 @@ class _HomePageState extends State<HomePage> {
           indicator: Padding(
             padding: EdgeInsets.all(8),
             child: Text(
-              "SHOW MORE",
+              "View More",
               style: TextStyle(
                 color: Colors.blue,
                 decoration: TextDecoration.underline,
@@ -770,29 +770,6 @@ class _HomePageState extends State<HomePage> {
             ),
             Row(
               children: <Widget>[
-                RaisedButton(
-                  color: Colors.white,
-                  onPressed: () {
-                      Navigator.push(
-                       context,
-                       MaterialPageRoute(builder: (context)=>projectinfo()),
-                      );
-                  },
-                  child: Row(
-                    children: <Widget>[
-                      Text("View more"),
-                      Image(
-                        image: NetworkImage(
-                            'https://img.icons8.com/cute-clipart/64/000000/circled-chevron-down.png'),
-                        height: 20.0,
-                        width: 20.0,
-                      )
-                    ],
-                  ),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                      side: BorderSide(color: Colors.blue)),
-                ),
                 InkWell(
               child: Image(
                 image: AssetImage('assets/icons/edit.png'),
@@ -840,7 +817,7 @@ class _HomePageState extends State<HomePage> {
       padding: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
           border: Border(bottom: BorderSide(color: Colors.grey, width: 0.8))),
-      margin: EdgeInsets.symmetric(horizontal: 0.0, vertical: 15.0),
+      //margin: EdgeInsets.symmetric(horizontal: 0.0, vertical: 5.0),
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
