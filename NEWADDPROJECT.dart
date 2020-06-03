@@ -106,12 +106,18 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    var _dates;
+    var _dates1;
+    String _selected=_selectedDateTime.toString();
+    String to_dates=_selected.substring(0,10);
+    String _selected1=_selectedDateTime1.toString();
+    String to_dates1=_selected1.substring(0,10);
     //////........................DATE.........................//////////
     ///
     ///
     var _dates;
-    final String formattedDate = DateFormat.yMd().format(_selectedDateTime);        //accesing starting date
-    final selectedText = Text('You selected: $formattedDate');
+    // final String formattedDate = DateFormat.yMd().format(_selectedDateTime);        //accesing starting date
+    // final selectedText = Text('You selected: $formattedDate');
 
     final birthdayTile = new Material(
       color: Colors.transparent,
@@ -146,8 +152,8 @@ class _MyAppState extends State<MyApp> {
     ///
     ///
     // var _dates;
-    final String formattedDate1 = DateFormat.yMd().format(_selectedDateTime1);         //accesing ending date
-    final selectedText1 = Text('You selected: $formattedDate1');
+    // final String formattedDate1 = DateFormat.yMd().format(_selectedDateTime1);         //accesing ending date
+    // final selectedText1 = Text('You selected: $formattedDate1');
 
     final birthdayTile1 = new Material(
       color: Colors.transparent,
@@ -625,6 +631,11 @@ class _MyAppState extends State<MyApp> {
                   // ),
                   onPressed: () {
                     setState(() {
+                      _dates=to_dates;
+                      _dates1=to_dates1;
+                      
+
+
                       _jkval = _jk;
                       _projectinfo = projectinfocon.text;
                       _assignedto = assignedtocon.text;
