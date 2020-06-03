@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:BOARDING/signup.dart';
 import 'package:BOARDING/login_page.dart';
 import 'package:BOARDING/profile_page.dart';
+
 // import 'package:BOARDING/dropdown.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
@@ -12,13 +13,29 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:BOARDING/loading_login.dart';
+import 'package:cupertino_date_textbox/cupertino_date_textbox.dart';
+// import 'package:flutter/material.dart';
 
+import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
+
+////////////////.................COMMENTS FOR ACCESSING INFO.................////////////////////
+///Line 38--projectinfo
+///Line 39--assignedto
+///Line 40--project status
+///Line 41--radio button external internal
+///Line 43--description
+///Line 113--starting date
+///Line 149--ending date
+///..........................END...............
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
+  DateTime _selectedDateTime = DateTime.now();
+  DateTime _selectedDateTime1 = DateTime.now();
   var _projectinfo; //accessing projectinfo
   var _assignedto; //accessing assignedto
   String _myActivityResult; //accessing dropdown value project status
@@ -32,9 +49,10 @@ class _MyAppState extends State<MyApp> {
   final descriptioncon = new TextEditingController();
   String _jk = "";
   String _myActivity;
+
   // String _myActivityResult;         //accessing Dropdown value
-  Future<String> submitProjects(
-      String _projectinfo, String _description, String _myActivityResult) async {
+  Future<String> submitProjects(String _projectinfo, String _description,
+      String _myActivityResult, String _start, String _end) async {
     var token = await storage.read(key: 'jwt');
 
     var response1 = await http.post(
@@ -44,11 +62,11 @@ class _MyAppState extends State<MyApp> {
         'Authorization': 'Token $token',
       },
       body: {
-        'info':_projectinfo,
+        'info': _projectinfo,
         'description': _description,
-        'status':_myActivityResult,
-        'starts':'2020-09-06',
-        'ends':'2017-06-07',
+        'status': _myActivityResult,
+        'starts': _start,
+        'ends': _end,
       },
     );
     print(response1.body);
@@ -61,12 +79,27 @@ class _MyAppState extends State<MyApp> {
   }
 
   final formKey = new GlobalKey<FormState>();
+
   @override
+  void onBirthdayChange(DateTime birthday) {
+    setState(() {
+      _selectedDateTime = birthday;
+    });
+  }
+
+  void onBirthdayChange1(DateTime birthday1) {
+    setState(() {
+      _selectedDateTime1 = birthday1;
+    });
+  }
+
   void initState() {
     super.initState();
     _myActivity = '';
     _myActivityResult = '';
   }
+
+  var _start, _end;
 
   _saveForm() {
     var form = formKey.currentState;
@@ -80,6 +113,65 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    //////........................DATE.........................//////////
+    ///
+    ///
+    var _dates;
+    String _selected1 = _selectedDateTime.toString();
+    String to_dates1 = _selected1.substring(0, 10);
+
+    final birthdayTile = new Material(
+      color: Colors.transparent,
+      child: new Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const Text('Start Date',
+              style: TextStyle(
+                color: CupertinoColors.systemBlue,
+                fontSize: 15.0,
+              )),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 5.0),
+          ),
+          CupertinoDateTextBox(
+              initialValue: _selectedDateTime,
+              onDateChange: onBirthdayChange,
+              hintText: DateFormat.yMd().format(_selectedDateTime)),
+        ],
+      ),
+    );
+
+    ////.............................DATE........................///////
+
+    //////........................DATE222222222222.........................//////////
+    ///
+    ///
+    // var _dates;
+    String _selected2 = _selectedDateTime.toString();
+    String to_dates2 = _selected2.substring(0, 10);
+
+    final birthdayTile1 = new Material(
+      color: Colors.transparent,
+      child: new Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const Text('End Date',
+              style: TextStyle(
+                color: CupertinoColors.systemBlue,
+                fontSize: 15.0,
+              )),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 5.0),
+          ),
+          CupertinoDateTextBox(
+              initialValue: _selectedDateTime1,
+              onDateChange: onBirthdayChange1,
+              hintText: DateFormat.yMd().format(_selectedDateTime1)),
+        ],
+      ),
+    );
+
+    ////.............................DATE2222222222222222222...................
     final projectname = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
@@ -281,6 +373,38 @@ class _MyAppState extends State<MyApp> {
         ],
       ),
     );
+    final dateheading = Padding(
+      padding: EdgeInsets.all(20),
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.le,
+        children: <Widget>[
+          InkWell(
+            child: Image.network(
+                'https://img.icons8.com/metro/26/000000/date-to.png'),
+            onTap: () {
+              //      Navigator.push(context,MaterialPageRoute(builder: (context){
+
+              // return new MyApp();
+
+
+              // }));
+
+
+            },
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            'Date',
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+
+        ],
+      ),
+    );
     final uploadname = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
@@ -322,6 +446,27 @@ class _MyAppState extends State<MyApp> {
           assignedname,
           assignedinfo,
           dropdownname,
+          dateheading,
+          Container(
+            child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                child: Column(children: <Widget>[
+                  // selectedText,
+                  const SizedBox(height: 15.0),
+                  birthdayTile
+                ])),
+          ),
+/////.....................DATE2...............
+          Container(
+            child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+                child: Column(children: <Widget>[
+                  // selectedText,
+                  const SizedBox(height: 15.0),
+                  birthdayTile1
+                ])),
+          ),
+/////........................DATE2
           Container(
             child: Form(
               key: formKey,
@@ -477,6 +622,8 @@ class _MyAppState extends State<MyApp> {
                   // ),
                   onPressed: () {
                     setState(() {
+                      _start = to_dates1;
+                      _end = to_dates2;
                       _jkval = _jk;
                       _projectinfo = projectinfocon.text;
                       _assignedto = assignedtocon.text;
@@ -484,8 +631,11 @@ class _MyAppState extends State<MyApp> {
                     });
                     print(_myActivityResult);
 
-                    submitProjects(_projectinfo, _description, _myActivityResult);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    submitProjects(
+                        _projectinfo, _description, _myActivityResult, _start,
+                        _end);
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) {
                       return LoadData();
                     }));
                   },

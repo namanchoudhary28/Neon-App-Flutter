@@ -256,12 +256,14 @@ class _HomePageState extends State<HomePage> {
                       Container(
                         child: Column(
                           children: <Widget>[
-
-                            for (Map<String, dynamic> item in widget
-                                .list_skills)
-                              MySkills(
-                                  'assets/icons/python.png',
+                            //List<widget>,
+                            //if(i<=2)[
+                            for (Map<String, dynamic> item
+                                in widget.list_skills)
+                              MySkills('assets/icons/python.png',
                                   item['proficiency']),
+
+                            //while(n<2)
 
                             /*MySkills('https://img.icons8.com/color/48/000000/python.png', 74),
                             MySkills('https://img.icons8.com/color/48/000000/python.png', 23),
@@ -337,7 +339,8 @@ class _HomePageState extends State<HomePage> {
             scrollDirection: Axis.horizontal,
             children: <Widget>[
               for (Map<String, dynamic> item in widget.list_projects)
-                MyProjects(item['info'], item['starts']),
+                MyProjects(item['info'], item['starts'], item['ends'],
+                    item['description'], item['status']),
 
               //MyProjects('Booking 2', '1 May 2020'),
               //MyProjects('Booking 3', '1 May 2021'),
@@ -526,25 +529,28 @@ class _HomePageState extends State<HomePage> {
   }
 
   ///Functions called above. Sorry for non uniformity in the type returned.
-  Padding MySkills(
-    String image,
-    int percentage,
-  ) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(25, 15, 5, 6),
-      child: new LinearPercentIndicator(
-        width: MediaQuery.of(context).size.width - 120,
-        lineHeight: 3.0,
-        leading: new Image.asset(image),
-        trailing: Text(
-          percentage.toString() + '%',
-          style: TextStyle(color: Colors.blue),
+  Container MySkills(String image,
+      int percentage,) {
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(25, 15, 5, 6),
+        child: new LinearPercentIndicator(
+          width: MediaQuery
+              .of(context)
+              .size
+              .width - 120,
+          lineHeight: 3.0,
+          leading: new Image.asset(image),
+          trailing: Text(
+            percentage.toString() + '%',
+            style: TextStyle(color: Colors.blue),
+          ),
+          animation: true,
+          animationDuration: 1000,
+          percent: percentage * 0.01,
+          backgroundColor: Colors.grey[300],
+          progressColor: Colors.blue,
         ),
-        animation: true,
-        animationDuration: 1000,
-        percent: percentage * 0.01,
-        backgroundColor: Colors.grey[300],
-        progressColor: Colors.blue,
       ),
     );
   }
@@ -733,8 +739,8 @@ class _HomePageState extends State<HomePage> {
   }
 
 
-
-  Container MyProjects(String heading, String subHeading) {
+  Container MyProjects(String name, String _start, String _end,
+      String description, String status) {
     return Container(
       width: 250,
       decoration: BoxDecoration(
@@ -761,22 +767,26 @@ class _HomePageState extends State<HomePage> {
         child: Wrap(
           children: <Widget>[
             ListTile(
-              title: Text(heading, style: TextStyle(color: Colors.white)),
-              subtitle: Text(subHeading,
+              title: Text(name, style: TextStyle(color: Colors.white)),
+              subtitle: Text(_start + ' - ' + _end,
                   style: TextStyle(color: Colors.lightBlueAccent)),
             ),
-            SizedBox(
-              height: 100.0,
+            Container(
+              height: 30.0,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(15, 0, 15, 2),
+                child: Text(description, style: TextStyle(color: Colors.white)),
+              ),
             ),
             Row(
               children: <Widget>[
                 RaisedButton(
                   color: Colors.white,
                   onPressed: () {
-                      Navigator.push(
-                       context,
-                       MaterialPageRoute(builder: (context)=>projectinfo()),
-                      );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => projectinfo()),
+                    );
                   },
                   child: Row(
                     children: <Widget>[
@@ -803,7 +813,7 @@ class _HomePageState extends State<HomePage> {
               /// Pop Up form to add achievements
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return new EDIT_ACHIEVEMENT(heading,subHeading);
+                  return new EDIT_ACHIEVEMENT(name, _start);
                 }));
               },
             ),
@@ -817,8 +827,9 @@ class _HomePageState extends State<HomePage> {
               /// Pop Up form to add achievements
               onTap: () {
                   Navigator.push(
-                   context,
-                   MaterialPageRoute(builder: (context)=>deletepopup('project', [heading])),
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => deletepopup('project', [name])),
                   );
                                
                           },
