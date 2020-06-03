@@ -684,10 +684,10 @@ class _HomePageState extends State<HomePage> {
               child: Wrap(
                 children: <Widget>[
                   Image(
-                    image: AssetImage('assets/badges/$image_url.png'),
-                    height: 90.0,
-                    width: 90.0,
-                  ),
+                    image: AssetImage('$image_url.png'),
+                        height: 90.0,
+                        width: 90.0,
+                      ),
                   //Text(title),
                 ],
               )
