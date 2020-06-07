@@ -26,12 +26,14 @@ class _LoginLoaderState extends State<LoginLoader> {
     //String body=json.encode(data);
    List list_token;
     http.Response res = await http.post(
-        'http://10.0.2.2:8000/api/login',
-        headers: {'Accept': 'application/json',},
-        body: {
-          'username': username,
-          'password': password,
-        },
+        'http://192.168.1.6:8000/api/login',
+      headers: {
+        'Accept': 'application/json',
+      },
+      body: {
+        'username': username,
+        'password': password,
+      },
     );
     print(res.body);
     //print(res.statusCode);

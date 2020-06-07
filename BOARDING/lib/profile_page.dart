@@ -150,20 +150,20 @@ class _HomePageState extends State<HomePage> {
     );
 
     final hobby = Container(
-      height: 400,
-      width: (MediaQuery.of(context).size.width) ,
-      color: Colors.cyan[100],
+      height: 220,
+      width: (MediaQuery.of(context).size.width),
+      color: Colors.cyan[50],
       child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Padding(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Text(
                         'HOBBIES AND INTERESTS',
@@ -185,24 +185,22 @@ class _HomePageState extends State<HomePage> {
                          
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return new EDIT_HOBBY(); //Function from edit_info.dart
-                        }));
-                         
-
+                              return new EDIT_HOBBY(); //Function from edit_info.dart
+                            }));
                       },
                     ),
-                  ],
-                ),
-              ],
+                ],
+              ),
+            ],
           ),
-      Container(
-        height: 300,
-        padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          children: <Widget>[
-            for (Map<String, dynamic> item in widget.list_hobby)
-              MyHobbies(item['name'], item['hobby_image_url']),
+          Container(
+            height: 160,
+            padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                for (Map<String, dynamic> item in widget.list_hobby)
+                  MyHobbies(item['name'], item['hobby_image_url']),
 
                 //MyProjects('Booking 2', '1 May 2020'),
                 //MyProjects('Booking 3', '1 May 2021'),
@@ -357,8 +355,11 @@ class _HomePageState extends State<HomePage> {
     ); // MyProjects function is defined at the end. Usage Syntax: MyProjects(heading,subheading)
 
     final badges = Container(
-      height: 400,
-      width: (MediaQuery.of(context).size.width) ,
+      height: 240,
+      width: (MediaQuery
+          .of(context)
+          .size
+          .width),
       color: Colors.cyan[100],
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -400,13 +401,14 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           Container(
-            height: 300,
+            height: 180,
             padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: <Widget>[
                 for (Map<String, dynamic> item in widget.list_badges)
-                  MyBadges(item['title'], item['image_url'],item['description']),
+                  MyBadges(
+                      item['title'], item['image_url'], item['description']),
 
 
               ],
@@ -555,186 +557,114 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Padding MyHobbies(String name, String hobby_image_url) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        height: 250,
-        width:250,
-        
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
-              bottomLeft: Radius.circular(10),
-              bottomRight: Radius.circular(10)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: Offset(0, 3), // changes position of shadow
-            ),
-          ],
-        ),
-        child: Column(
+  Column MyHobbies(String name, String hobby_image_url) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(8.0, 4, 2, 5),
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
-             children: <Widget>[
-               Container(
-                   width: double.infinity, 
-               ),
-                  Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          //color: Colors.blue,
-          child: Wrap(
             children: <Widget>[
-                  Image(
-                    image: AssetImage('assets/banks/$name.png'),
-                    height: 90.0,
-                    width: 90.0,
+
+              Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
                   ),
-             
-                ],
-              )
-          ),
-          Text(
-            name,
-            
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              InkWell(
-                      child: Image(
-                        image: AssetImage('assets/icons/edit.png'),
-                        height: 40.0,
-                        width: 40.0,
-                      ),
-
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return new EDIT_HOBBY(); //Function from edit_info.dart
-                        }));
-                      }
-                    ),
-                    InkWell(
-                      child: Image(
-                        image: AssetImage('assets/icons/delete.png'),
-                        height: 40.0,
-                        width: 40.0,
-                      ),
-
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return new deletepopup('hobby',[name,hobby_image_url]); //Function from edit_info.dart
-                        }));
-                      },
-                    )
-
-              
-            ],
-          ),
-             ],
-        ),
-        ),
-    );
-  }
-
-  Padding MyBadges(String title, String image_url, String description) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(4,8,2,4),
-      child: Container(
-        
-         height: 250,
-        width:250,
-        
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: Offset(0, 3), // changes position of shadow
-            ),
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(10,4,0,0),
-          child:Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-
-              children: <Widget>[
-                Container(
-                  width: double.infinity,
-                ),
-                     Card(
-              shape: CircleBorder(
-                //borderRadius: BorderRadius.circular(55.0),
-              ),
-              //color: Colors.blue,
-              child: Wrap(
-                children: <Widget>[
-                  Image(
-                    image: AssetImage('$image_url.png'),
+                  elevation: 5,
+                  //color: Colors.blue,
+                  child: Wrap(
+                    children: <Widget>[
+                      Image(
+                        image: AssetImage('assets/banks/$name.png'),
                         height: 90.0,
                         width: 90.0,
                       ),
-                  //Text(title),
-                ],
-              )
-          ),
-          Text(title),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              InkWell(
-                      child: Image(
-                        image: AssetImage('assets/icons/edit.png'),
-                        height: 40.0,
-                        width: 40.0,
-                      ),
 
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return new EDIT_HOBBY(); //Function from edit_info.dart
-                        }));
-                      }
-                    ),
-                    InkWell(
-                      child: Image(
-                        image: AssetImage('assets/icons/delete.png'),
-                        height: 40.0,
-                        width: 40.0,
-                      ),
+                    ],
+                  )
+              ),
 
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context)=>deletepopup('badge', [title])),
-                        );
-                      },
-                    )
 
-              
             ],
-          )
-
-              ],
           ),
-           
-        ),
 
-      ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Align(
+              alignment: Alignment.center,
+              child: Text(name)),
+        ),
+      ],
+
+    );
+  }
+
+  Column MyBadges(String title, String image_url, String description) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(4, 8, 2, 4),
+          child: Container(
+
+            height: 110,
+            width: 110,
+
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 3,
+                  blurRadius: 3,
+                  offset: Offset(0, 4), // changes position of shadow
+                ),
+              ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(10, 4, 0, 0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+
+                children: <Widget>[
+                  Container(
+                    width: double.infinity,
+                  ),
+                  Card(
+                      shape: CircleBorder(
+                        //borderRadius: BorderRadius.circular(55.0),
+                      ),
+                      //color: Colors.blue,
+                      child: Wrap(
+                        children: <Widget>[
+                          Image(
+                            image: AssetImage('$image_url.png'),
+                            height: 90.0,
+                            width: 90.0,
+                          ),
+                          //Text(title),
+                        ],
+                      )
+                  ),
+
+
+                ],
+              ),
+
+            ),
+
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Align(
+              alignment: Alignment.center,
+              child: Text(title)),
+        ),
+      ],
     );
   }
 
@@ -767,7 +697,8 @@ class _HomePageState extends State<HomePage> {
         child: Wrap(
           children: <Widget>[
             ListTile(
-              title: Text(name, style: TextStyle(color: Colors.white)),
+              title: Text(name + '              ' + status,
+                  style: TextStyle(color: Colors.white)),
               subtitle: Text(_start + ' - ' + _end,
                   style: TextStyle(color: Colors.lightBlueAccent)),
             ),

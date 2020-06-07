@@ -38,32 +38,32 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
     
 
      response1 = await http.post(
-      'http://10.0.2.2:8000/api/addachievement',
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Token $token',
-      },
-      body: {
-        'date':_dates,
-        'title': _title,
-        'description' : _description
-        //'status':_myActivityResult,
-
-      },
+      'http://192.168.1.6:8000/api/addachievement',
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Token $token',
+        },
+        body: {
+          'date': _dates,
+          'title': _title,
+          'description': _description
+          //'status':_myActivityResult,
+        },
     );
     }
     else{
-      String url = 'http://10.0.2.2:8000/api/updateachievement/' +widget.title;
+      String url = 'http://192.168.1.6:8000/api/updateachievement/' +
+          widget.title;
       response1 = await http.put(
-      url,
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Token $token',
-      },
-      body: {
-        'date':_dates,
-        'title': _title,
-        'description' : _description
+        url,
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Token $token',
+        },
+        body: {
+          'date': _dates,
+          'title': _title,
+          'description': _description
         //'status':_myActivityResult,
 
       },

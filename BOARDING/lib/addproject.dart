@@ -56,7 +56,7 @@ class _MyAppState extends State<MyApp> {
     var token = await storage.read(key: 'jwt');
 
     var response1 = await http.post(
-      'http://10.0.2.2:8000/api/addproject',
+      'http://192.168.1.6:8000/api/addproject',
       headers: {
         'Accept': 'application/json',
         'Authorization': 'Token $token',

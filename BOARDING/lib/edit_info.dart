@@ -57,16 +57,16 @@ class _EDITINFOState extends State<EDITINFO> {
     var token=await storage.read(key:'jwt');
 
     var response1=await http.put(
-        'http://10.0.2.2:8000/api/updateuserinfo',
-        headers: {
-          'Accept':'application/json',
-          'Authorization':'Token $token',
-        },
-        body:{
-                'name': _name,
-                'location': _location,
-                'aboutme': _about,
-            },
+        'http://192.168.1.6:8000/api/updateuserinfo',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Token $token',
+      },
+      body: {
+        'name': _name,
+        'location': _location,
+        'aboutme': _about,
+      },
     );
     var  responsecommu;
     for(int i=0;i<mediums.length;i++){
@@ -74,16 +74,16 @@ class _EDITINFOState extends State<EDITINFO> {
       if(communications[i]!=''){
         print(communications[i]);
         responsecommu=await http.post(
-        'http://10.0.2.2:8000/api/addcommunication',
-        headers: {
-          'Accept':'application/json',
-          'Authorization':'Token $token',
-        },
-        body:{
-               'medium' : mediums[i],
-               'medium_url' : communications[i],
-            },
-    );
+          'http://192.168.1.6:8000/api/addcommunication',
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Token $token',
+          },
+          body: {
+            'medium': mediums[i],
+            'medium_url': communications[i],
+          },
+        );
     print(responsecommu.body);
        print("This is response for adding new communication methods");
       }
