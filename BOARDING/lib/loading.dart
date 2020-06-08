@@ -27,7 +27,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
 
     var res = await http.delete(
-        'http://192.168.1.6:8000/api/delete$name/' + title, headers: {
+        'http://192.168.1.6:8000/delete$name/' + title, headers: {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
     });

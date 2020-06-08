@@ -38,7 +38,7 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
     
 
      response1 = await http.post(
-      'http://192.168.1.6:8000/api/addachievement',
+      'http://192.168.1.6:8000/addachievement',
         headers: {
           'Accept': 'application/json',
           'Authorization': 'Token $token',
@@ -49,10 +49,10 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
           'description': _description
           //'status':_myActivityResult,
         },
-    );
+      );
     }
     else{
-      String url = 'http://192.168.1.6:8000/api/updateachievement/' +
+      String url = 'http://192.168.1.6:8000/updateachievement/' +
           widget.title;
       response1 = await http.put(
         url,

@@ -31,11 +31,19 @@ class HomePage extends StatefulWidget {
   final List list_hobby;
   final List list_projects;
   final List list_achievements;
-  final List list_badges;
+  //final List list_badges;
   final List list_communications;
   final List list_skills;
-  const HomePage(this.list_about,this.list_hobby,this.list_projects,this.list_achievements,this.list_communications,this.list_badges,this.list_skills);
-  
+
+  const HomePage(
+      this.list_about,
+      this.list_hobby,
+      this.list_projects,
+      this.list_achievements,
+      this.list_communications,
+      /*this.list_badges,*/
+      this.list_skills);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -210,7 +218,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
-
+/*
     var i = widget.list_skills.length;
     var n = 2;
     final skills = Column(
@@ -302,7 +310,7 @@ class _HomePageState extends State<HomePage> {
 
       ],
     );
-
+*/
     final projects = Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
@@ -353,7 +361,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ],
     ); // MyProjects function is defined at the end. Usage Syntax: MyProjects(heading,subheading)
-
+/*
     final badges = Container(
       height: 240,
       width: (MediaQuery
@@ -416,7 +424,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),);
-
+*/
     final achievemnets = Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
@@ -510,12 +518,12 @@ class _HomePageState extends State<HomePage> {
         SizedBox(
           height: 40,
         ),
-        skills,
+        //skills,
         projects,
         SizedBox(
           height: 30,
         ),
-        badges,
+        //badges,
         SizedBox(
           height: 30,
         ),
