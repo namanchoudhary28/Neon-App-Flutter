@@ -22,7 +22,7 @@ environment:
 
 dependencies:
   flutter_onboard: ^0.1.0
-  percent_indicator: "^2.1.1"
+  percent_indicator: "^2.1.4"
   link: ^1.0.0
   http:  ^0.12.1
   flutter_secure_storage: ^3.3.3

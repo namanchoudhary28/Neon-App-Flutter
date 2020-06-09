@@ -26,6 +26,7 @@ import 'package:BOARDING/delete_popup.dart';
 import 'package:BOARDING/projectinfo.dart';
 import 'package:BOARDING/main_loading_screen.dart';
 import 'package:BOARDING/loading_login.dart';
+import 'package:BOARDING/skills.dart';
 class HomePage extends StatefulWidget {
   final List list_about;
   final List list_hobby;
@@ -158,12 +159,16 @@ class _HomePageState extends State<HomePage> {
     );
 
     final hobby = Container(
-      height: 220,
+      height: 300,
       width: (MediaQuery.of(context).size.width),
       color: Colors.cyan[50],
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
+           Container(
+             width: double.infinity,
+           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -209,108 +214,158 @@ class _HomePageState extends State<HomePage> {
               children: <Widget>[
                 for (Map<String, dynamic> item in widget.list_hobby)
                   MyHobbies(item['name'], item['hobby_image_url']),
-
+                
                 //MyProjects('Booking 2', '1 May 2020'),
                 //MyProjects('Booking 3', '1 May 2021'),
               ],
+
             ),
           ),
+          SizedBox(
+             height: 20.0,
+          ),
+          
+          
+         
+
         ],
       ),
     );
-/*
-    var i = widget.list_skills.length;
-    var n = 2;
-    final skills = Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: <Widget>[
-        Container(
-          width: double.infinity,
-        ),
-        DefaultTabController(
-          length: 2,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Container(
-                child: TabBar(
-                    labelStyle: TextStyle(fontSize: 14),
-                    labelColor: Colors.blue,
-                    tabs: [
-                      Tab(
-                        text: "TOP SKILLS",
-                      ),
-                      Tab(text: "PERSONALITY TRAITS"),
-                    ]),
-              ),
-              ShowChild(
-                indicator: Padding(
-                  padding: EdgeInsets.all(8),
-                  child: Text(
-                    "View More",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      decoration: TextDecoration.underline,
+  final skill_card  = Container(
+                padding: EdgeInsets.all(10.0),
+                height: 150.0,
+                child: Card(
+                 child: Row(
+                   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                   crossAxisAlignment:  CrossAxisAlignment.center,
+                   children: <Widget>[
+                     
+                     Column(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       crossAxisAlignment: CrossAxisAlignment.center,
+                       children: <Widget>[
+                         Image(
+                             image: NetworkImage('https://img.icons8.com/color/48/000000/python.png')
+                         ),
+                         Text("Python",
+                         style: TextStyle(
+                          fontSize: 17.0,
+                          fontFamily: 'sans-serif',
+                        
+                     ),
+                         )
+                        
+                  
+                           
+                         
+                       ],
+                     ),
+                     Column(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       crossAxisAlignment: CrossAxisAlignment.center,
+                       children: <Widget>[
+                          new CircularPercentIndicator(
+                      radius: 60.0,
+                      lineWidth: 4.0,
+                      percent: 0.80,
+                      center: new Text("90%"),
+                      progressColor: Colors.blue
                     ),
+                  SizedBox(
+                     height: 15.0,
                   ),
+                  Text("Beginner",style: TextStyle(
+                          fontSize: 17.0,
+                          fontFamily: 'sans-serif'
+                     ),)
+
+
+                       ],
+                     )
+
+                   ],
+                 ),
                 ),
-                child: Container(
-                  height: 300,
-                  child: TabBarView(
-                    children: [
-                      Container(
-                        child: Column(
-                          children: <Widget>[
-                            //List<widget>,
-                            //if(i<=2)[
-                            for (Map<String, dynamic> item
-                                in widget.list_skills)
-                              MySkills('assets/icons/python.png',
-                                  item['proficiency']),
-
-                            //while(n<2)
-
-                            /*MySkills('https://img.icons8.com/color/48/000000/python.png', 74),
-                            MySkills('https://img.icons8.com/color/48/000000/python.png', 23),
-                            MySkills('https://img.icons8.com/color/48/000000/python.png', 91),
-                            MySkills('https://img.icons8.com/color/48/000000/python.png', 84),*/
-                          ],
-                        ),
-                      ),
-                      Container(
-                        height: 100.0,
-                        child: Text("Personality Traits Here!"),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-
-              Container(
-                  height: 100.0,
-                  child: Row(
-                    children: <Widget>[
-                      Image(
-                        image: AssetImage('assets/icons/add.png'),
-                        height: 40.0,
-                        width: 40.0,
-                      ),
-                      Image(
-                        image: AssetImage('assets/icons/edit.png'),
-                        height: 40.0,
-                        width: 40.0,
-                      ),
-                    ],
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  )),
-            ],
-          ),
-        ),
+              );
+    final list_of_all_cards= Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+          skill_card,
+          skill_card,
 
       ],
     );
-*/
+  
+        
+     final skill_heading = Padding(
+               padding:EdgeInsets.fromLTRB(0, 10.0, 0, 0),
+               child:Row(
+                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                 children: <Widget>[
+                   Text("SKILLS",style: TextStyle(
+                     fontSize: 17.0,
+                     letterSpacing: 1.7,
+                   ),),
+                   Icon(
+                     Icons.add_box,
+                     color: Colors.lightBlueAccent[700],
+                     size: 40.0,
+                   )
+                 ],
+               ),
+             );
+    
+        
+  final line =  Container(
+            width:200.0,
+            child:Divider(
+                   color: Colors.white,
+                   thickness: 4.0,
+            ),
+          );
+
+  final view_more_button = Container(
+    width:150.0,
+    child: Padding(padding:EdgeInsets.all(10.0),child:FlatButton(
+      onPressed: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context)=>SkillsDisplay()),
+        );
+
+      },
+      shape: RoundedRectangleBorder(
+         borderRadius: BorderRadius.circular(15.0)
+      ),
+      color: Colors.white,
+      textColor: Colors.blue,
+      hoverColor: Colors.blue,
+      splashColor: Colors.blue,
+      child: Row(
+        children: <Widget>[
+          Text("View more"),
+          Icon(
+            Icons.arrow_forward,
+          )
+        ],
+      ),
+    ),
+  )
+  );
+   final skills = Container(
+     color: Colors.lightBlue[100],
+     height: 450.0,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          skill_heading,
+          line,
+            list_of_all_cards,
+            view_more_button,
+          
+        ],
+      ),
+   );
     final projects = Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
@@ -515,10 +570,11 @@ class _HomePageState extends State<HomePage> {
           height: 40,
         ),
         hobby,
+        skills,
         SizedBox(
           height: 40,
         ),
-        //skills,
+        
         projects,
         SizedBox(
           height: 30,
@@ -540,7 +596,7 @@ class _HomePageState extends State<HomePage> {
 
   ///Functions called above. Sorry for non uniformity in the type returned.
   Container MySkills(String image,
-      int percentage,) {
+      String competancy,) {
     return Container(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(25, 15, 5, 6),
@@ -552,12 +608,12 @@ class _HomePageState extends State<HomePage> {
           lineHeight: 3.0,
           leading: new Image.asset(image),
           trailing: Text(
-            percentage.toString() + '%',
+            "B",
             style: TextStyle(color: Colors.blue),
           ),
           animation: true,
           animationDuration: 1000,
-          percent: percentage * 0.01,
+          percent:0.8,
           backgroundColor: Colors.grey[300],
           progressColor: Colors.blue,
         ),
