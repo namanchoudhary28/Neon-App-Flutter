@@ -51,15 +51,17 @@ Row card_panel(BuildContext context){
 
                           },
                          icon: Icon(
-                           Icons.short_text
+                           Icons.short_text,
+                           color: Colors.white,
+                           
 
                          ),
                        ),
-                       Checkbox(
+                       Tooltip(message: "check it to delete this skill",child: Checkbox(
                          value: true,
                          tristate: true,
-                         activeColor: Colors.blue,
-                         checkColor: Colors.white,
+                         activeColor: Colors.white,
+                         checkColor: Colors.blueAccent[200],
                          onChanged: (value) {
                            
                            
@@ -70,10 +72,12 @@ Row card_panel(BuildContext context){
                          },
                       
 
-                       ),
+                       ),),
+                       
                        IconButton(
                          icon: Icon(
-                           Icons.edit
+                           Icons.edit,
+                           color: Colors.white,
                          ),
                          onPressed: (){
                         
@@ -91,23 +95,29 @@ Container skills_card(BuildContext context){
   return Container(
                  width:160.0,
                  child: Card(
+                   elevation: 6.0,
+                   color: Colors.lightBlue[400],
+                   
                   child: InkWell(
                     
                     child: Column(
                       children: <Widget>[
                         card_panel(context),
+                        Image(
+                           image: NetworkImage('https://img.icons8.com/color/48/000000/python.png'),
+                        ),
+                        Text(
+                          "Python",
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            color: Colors.white
+                          ),
+
+                        )
                         
                         
                       
-                        Center(
-                          child: Text(
-                            "Python",
-                            textAlign: TextAlign.center,
-                            style:TextStyle(
-                              fontSize: 20.0,
-                            ),
-                          ),
-                        )
+                       
                        
                       ],
                     ),
@@ -117,12 +127,12 @@ Container skills_card(BuildContext context){
 }
 Container list_cards(BuildContext context){
   return Container(
-               margin: EdgeInsets.all(20.0),
+               margin: EdgeInsets.all(10.0),
               
-               child: ListView(
+               child: Row(
                  
             
-              scrollDirection: Axis.horizontal,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 
                 skills_card(context),
@@ -136,6 +146,57 @@ Container list_cards(BuildContext context){
               ],
             )
              );
+}
+
+
+Row button_rows(){
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: <Widget>[
+      
+      RaisedButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0)
+        ),
+        color: Colors.blue,
+        padding: EdgeInsets.all(15.0),
+        onPressed: (){
+
+        },
+        child: Row(children: <Widget>[
+          Icon(
+            Icons.cancel,
+            color: Colors.white,
+          ),
+          SizedBox(
+            width: 10.0,
+          ),
+          Text("Cancel",style: TextStyle(color:Colors.white),)
+        ],),
+      ),
+      RaisedButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0)
+        ),
+        padding: EdgeInsets.all(15.0),
+        color:Colors.blue,
+        onPressed: (){
+
+        },
+        child: Row(children: <Widget>[
+          Icon(
+            Icons.save,
+            color: Colors.white,
+          ),
+           SizedBox(
+            width: 10.0,
+          ),
+          Text("Save",style: TextStyle(color:Colors.white),)
+        ],),
+      ),
+
+    ],
+  );
 }
 
 class SkillsDisplay extends StatefulWidget {
@@ -154,8 +215,11 @@ class _SkillsDisplayState extends State<SkillsDisplay> {
              fontSize: 20.0,
            ),),
          ),
-         body:GridView.count(
+         body:
+           
+             GridView.count(
            crossAxisCount: 1,
+           mainAxisSpacing: 0,
            childAspectRatio: 2.5,
            children: <Widget>[
              list_cards(context),
@@ -166,14 +230,21 @@ class _SkillsDisplayState extends State<SkillsDisplay> {
              list_cards(context),
              list_cards(context),
              list_cards(context),
+             button_rows(),
+
+
             
             
             
 
 
            ],
-         )
-       ),
+         ),
+
+
+          
+        
+                ),
     );
   }
 }
