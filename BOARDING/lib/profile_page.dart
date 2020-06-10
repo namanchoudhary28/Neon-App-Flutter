@@ -234,7 +234,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   Container skill_card(double percent,String competancy, String name){
-     double g  = percent*10;
+     double g  = percent*100;
      int percentage = g.toInt();
      String circle_text = percentage.toString() +'%';
     return Container(
@@ -273,7 +273,7 @@ class _HomePageState extends State<HomePage> {
                           new CircularPercentIndicator(
                       radius: 60.0,
                       lineWidth: 4.0,
-                      percent: 0.80,
+                      percent: percent,
                       center: new Text(circle_text),
                       progressColor: Colors.blue
                     ),
@@ -309,7 +309,7 @@ class _HomePageState extends State<HomePage> {
 
     for(int i=0;i<num;i++){
           int percent = competancies[list_skills[i]['competancy']];
-          double fraction = percent/10;
+          double fraction = percent/100;
           skill_cards.add(skill_card(fraction, list_skills[i]['competancy'], list_skills[i]['name']));
           
 

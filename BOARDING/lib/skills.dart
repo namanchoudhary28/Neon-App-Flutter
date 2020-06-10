@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 Row card_panel(BuildContext context,String competancy, double percent){
-  String percentage = (percent*10).toString() +'%';
+  String percentage = (percent*100).toString() +'%';
   return Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
@@ -132,9 +132,9 @@ Container skills_card(BuildContext context,String name,double percent,String com
 }
 Container list_cards(BuildContext context, skill1,skill2){
   var competancies = {'Beginner':25,'Intermediate':50,'Advanced':75,'Pro':100};
-  double percent1  = competancies[skill1['competancy']]/10;
+  double percent1  = competancies[skill1['competancy']]/100;
 
-  double percent2 = competancies[skill2['competancy']]/10;
+  double percent2 = competancies[skill2['competancy']]/100;
 
   return Container(
                margin: EdgeInsets.all(10.0),
