@@ -233,6 +233,24 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
+  Image skill_image_returner(String name){
+    try{
+      return Image(
+        image: AssetImage('assets/skills/$name.png'),
+        height: 50.0,
+        width: 50.0,
+      );
+    }
+    on Exception{
+      return Image(
+        image: AssetImage('assets/skills/DEFAULT.png'),
+        height: 50.0,
+        width: 50.0,
+      );
+
+    }
+
+  }
   Container skill_card(double percent,String competancy, String name){
      double g  = percent*100;
      int percentage = g.toInt();
@@ -250,9 +268,7 @@ class _HomePageState extends State<HomePage> {
                        mainAxisAlignment: MainAxisAlignment.center,
                        crossAxisAlignment: CrossAxisAlignment.center,
                        children: <Widget>[
-                         Image(
-                             image: NetworkImage('https://img.icons8.com/color/48/000000/python.png')
-                         ),
+                         skill_image_returner(name),
                          Text(name,
                          style: TextStyle(
                           fontSize: 17.0,
@@ -310,7 +326,7 @@ class _HomePageState extends State<HomePage> {
     for(int i=0;i<num;i++){
           int percent = competancies[list_skills[i]['competancy']];
           double fraction = percent/100;
-          skill_cards.add(skill_card(fraction, list_skills[i]['competancy'], list_skills[i]['name']));
+          skill_cards.add(skill_card(fraction, list_skills[i]['competancy'], list_skills[i]['name'].toUpperCase()));
           
 
           

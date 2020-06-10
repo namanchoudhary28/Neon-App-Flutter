@@ -91,6 +91,24 @@ Row card_panel(BuildContext context,String competancy, double percent){
 
                      
 }
+Image skill_image_returner(String name){
+    try{
+      return Image(
+        image: AssetImage('assets/skills/$name.png'),
+        height: 50.0,
+        width: 50.0,
+      );
+    }
+    on Exception{
+      return Image(
+        image: AssetImage('assets/skills/DEFAULT.png'),
+        height: 50.0,
+        width: 50.0,
+      );
+
+    }
+
+  }
 
 Container skills_card(BuildContext context,String name,double percent,String competancy){
    
@@ -108,9 +126,7 @@ Container skills_card(BuildContext context,String name,double percent,String com
                     child: Column(
                       children: <Widget>[
                         card_panel(context,competancy,percent),
-                        Image(
-                           image: NetworkImage('https://img.icons8.com/color/48/000000/python.png'),
-                        ),
+                        skill_image_returner(name),
                         Text(
                           name,
                           style: TextStyle(
@@ -145,8 +161,8 @@ Container list_cards(BuildContext context, skill1,skill2){
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 
-                skills_card(context,skill1['name'],percent1,skill1['competancy']),
-                skills_card(context,skill2['name'],percent2,skill2['competancy'])
+                skills_card(context,skill1['name'].toUpperCase(),percent1,skill1['competancy']),
+                skills_card(context,skill2['name'].toUpperCase(),percent2,skill2['competancy'])
                   
                   
               
@@ -218,6 +234,7 @@ class SkillsDisplay extends StatefulWidget {
 }
 
 class _SkillsDisplayState extends State<SkillsDisplay> {
+  
   List<Widget> skill_children_returner(){
     List<Widget>children = List<Widget>();
     int g = (widget.skills.length~/2).toInt();
@@ -245,6 +262,7 @@ class _SkillsDisplayState extends State<SkillsDisplay> {
     
 
   }
+  
  
   @override
   Widget build(BuildContext context) {
