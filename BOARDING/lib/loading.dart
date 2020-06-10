@@ -27,10 +27,12 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
 
     var res = await http.delete(
-        'http://192.168.1.6:8000/delete$name/' + title, headers: {
+        'http://192.168.1.3:8000/$name/' + title, headers: {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
     });
+
+
     Fluttertoast.showToast(
         msg: name + ' is now deleted!',
         toastLength: Toast.LENGTH_SHORT,

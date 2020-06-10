@@ -57,7 +57,7 @@ class _EDITINFOState extends State<EDITINFO> {
     var token=await storage.read(key:'jwt');
 
     var response1=await http.put(
-        'http://192.168.1.6:8000/userinfo',
+        'http://192.168.1.3:8000/userinfo',
       headers: {
         'Accept': 'application/json',
         'Authorization': 'Token $token',
@@ -74,7 +74,7 @@ class _EDITINFOState extends State<EDITINFO> {
       if(communications[i]!=''){
         print(communications[i]);
         responsecommu=await http.post(
-          'http://192.168.1.6:8000/communications',
+          'http://192.168.1.3:8000/communications',
           headers: {
             'Accept': 'application/json',
             'Authorization': 'Token $token',

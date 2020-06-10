@@ -79,19 +79,18 @@ class _HomePageState extends State<HomePage> {
       // },
     );
     final profile_picture = Hero(
-      tag: 'hero',
-      child: Padding(
-        padding: EdgeInsets.all(10),
-        child: Center(
-          child: CircleAvatar(
-            radius: 50,
-            backgroundColor: Colors.transparent,
-            backgroundImage:AssetImage('assets/icons/profile.jpg'),
+        tag: 'hero',
+        child: Padding(
+          padding: EdgeInsets.all(10),
+          child: Center(
+            child: CircleAvatar(
+              radius: 50,
+              backgroundColor: Colors.transparent,
+              backgroundImage: AssetImage('assets/icons/profile.jpg'),
           
-        ),
-      ),
-    )
-    );
+            ),
+          ),
+        ));
 
     final name = Padding(
       padding: EdgeInsets.all(8),
@@ -105,12 +104,14 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           InkWell(
-            child: Icon(
-                     Icons.edit
-            ),
+            child: Icon(Icons.edit),
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return new EDITINFO(widget.list_about[0]['name'],widget.list_about[0]['aboutme'],widget.list_about[0]['location'],widget.list_communications); //Function from edit_info.dart
+                return new EDITINFO(
+                    widget.list_about[0]['name'],
+                    widget.list_about[0]['aboutme'],
+                    widget.list_about[0]['location'],
+                    widget.list_communications); //Function from edit_info.dart
               }));
             },
           ),
@@ -136,8 +137,8 @@ class _HomePageState extends State<HomePage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              for(Map<String,dynamic> item in widget.list_communications)
-               communication(item['medium']),
+              for (Map<String, dynamic> item in widget.list_communications)
+                communication(item['medium']),
               
 
                
@@ -152,7 +153,7 @@ class _HomePageState extends State<HomePage> {
       padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: Center(
         child: Text(
-         widget.list_about[0]['aboutme'],
+          widget.list_about[0]['aboutme'],
           textAlign: TextAlign.center,
           style: TextStyle(
             //color: Colors.orangeAccent,,
@@ -163,16 +164,16 @@ class _HomePageState extends State<HomePage> {
     );
 
     final hobby = Container(
-      height: 230,
+      height: 250,
       width: (MediaQuery.of(context).size.width),
       color: Colors.cyan[50],
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-           Container(
-             width: double.infinity,
-           ),
+          Container(
+            width: double.infinity,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -181,31 +182,31 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                        'HOBBIES AND INTERESTS',
-                        style: TextStyle(
-                          fontSize: 17.0,
-                          letterSpacing: 1.7,
-                        ),
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      'HOBBIES AND INTERESTS',
+                      style: TextStyle(
+                        fontSize: 17.0,
+                        letterSpacing: 1.7,
                       ),
                     ),
-                    SizedBox(width: (MediaQuery.of(context).size.width) - 350),
-                    InkWell(
-                      child: Image(
-                        image: AssetImage('assets/icons/add.png'),
-                        height: 40.0,
-                        width: 40.0,
-                      ),
+                  ),
+                  SizedBox(width: (MediaQuery.of(context).size.width) - 350),
+                  InkWell(
+                    child: Image(
+                      image: AssetImage('assets/icons/add.png'),
+                      height: 40.0,
+                      width: 40.0,
+                    ),
 
-                      onTap: () {
+                    onTap: () {
                          
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                              return new EDIT_HOBBY(); //Function from edit_info.dart
-                            }));
-                      },
-                    ),
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return new EDIT_HOBBY(); //Function from edit_info.dart
+                      }));
+                    },
+                  ),
                 ],
               ),
             ],
@@ -217,7 +218,7 @@ class _HomePageState extends State<HomePage> {
               scrollDirection: Axis.horizontal,
               children: <Widget>[
                 for (Map<String, dynamic> item in widget.list_hobby)
-                  MyHobbies(item['name'], item['hobby_image_url']),
+                  MyHobbies(item['name']),
                 
                 //MyProjects('Booking 2', '1 May 2020'),
                 //MyProjects('Booking 3', '1 May 2021'),
@@ -263,7 +264,6 @@ class _HomePageState extends State<HomePage> {
                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                    crossAxisAlignment:  CrossAxisAlignment.center,
                    children: <Widget>[
-                     
                      Column(
                        mainAxisAlignment: MainAxisAlignment.center,
                        crossAxisAlignment: CrossAxisAlignment.center,
@@ -289,14 +289,14 @@ class _HomePageState extends State<HomePage> {
                           new CircularPercentIndicator(
                       radius: 60.0,
                       lineWidth: 4.0,
-                      percent: percent,
-                      center: new Text(circle_text),
+                      percent: 0.80,
+                      center: new Text("90%"),
                       progressColor: Colors.blue
                     ),
                   SizedBox(
                      height: 15.0,
                   ),
-                  Text(competancy,style: TextStyle(
+                  Text("Beginner",style: TextStyle(
                           fontSize: 17.0,
                           fontFamily: 'sans-serif'
                      ),)
@@ -310,7 +310,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
   }
-  
+
     List<Widget> skill_card_returner(){
       List<Widget> skill_cards=List<Widget>();
       var competancies = {'Beginner':25,'Intermediate':50,'Advanced':75,'Pro':100};
@@ -327,96 +327,99 @@ class _HomePageState extends State<HomePage> {
           int percent = competancies[list_skills[i]['competancy']];
           double fraction = percent/100;
           skill_cards.add(skill_card(fraction, list_skills[i]['competancy'], list_skills[i]['name'].toUpperCase()));
-          
 
-          
+
+
         }
         return skill_cards;
-      
-      
-      
 
-    } 
-    final list_of_all_cards= Column(
+
+
+
+    }
+    final list_of_all_cards = Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      children: skill_card_returner(),
+      children: <Widget>[
+        skill_card,
+        skill_card,
+      ],
     );
-    
   
-        
-     final skill_heading = Padding(
-               padding:EdgeInsets.fromLTRB(0, 10.0, 0, 0),
-               child:Row(
-                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                 children: <Widget>[
-                   Text("SKILLS",style: TextStyle(
-                     fontSize: 17.0,
-                     letterSpacing: 1.7,
-                   ),),
-                   Icon(
-                     Icons.add_box,
-                     color: Colors.lightBlueAccent[700],
-                     size: 40.0,
-                   )
-                 ],
-               ),
-             );
-    
-        
-  final line =  Container(
-            width:200.0,
-            child:Divider(
-                   color: Colors.white,
-                   thickness: 4.0,
-            ),
-          );
 
-  final view_more_button = Container(
-    width:150.0,
-    child: Padding(padding:EdgeInsets.all(10.0),child:FlatButton(
-      onPressed: (){
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context)=>SkillsDisplay(widget.list_skills)),
-        );
-
-      },
-      shape: RoundedRectangleBorder(
-         borderRadius: BorderRadius.circular(15.0)
-      ),
-      color: Colors.white,
-      textColor: Colors.blue,
-      hoverColor: Colors.blue,
-      splashColor: Colors.blue,
+    final skill_heading = Padding(
+      padding: EdgeInsets.fromLTRB(0, 10.0, 0, 0),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          Text("View more"),
+          Text(
+            "SKILLS",
+            style: TextStyle(
+              fontSize: 17.0,
+              letterSpacing: 1.7,
+            ),
+          ),
           Icon(
-            Icons.arrow_forward,
+            Icons.add_box,
+            color: Colors.lightBlueAccent[700],
+            size: 40.0,
           )
         ],
       ),
-    ),
+    );
+
+        
+    final line = Container(
+      width: 200.0,
+      child: Divider(
+        color: Colors.white,
+        thickness: 4.0,
+      ),
+    );
+
+    final view_more_button = Container(
+        width: 150.0,
+        child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: FlatButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+          MaterialPageRoute(builder: (context)=>SkillsDisplay()),
+              );
+
+            },
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0)),
+            color: Colors.white,
+            textColor: Colors.blue,
+            hoverColor: Colors.blue,
+            splashColor: Colors.blue,
+            child: Row(
+              children: <Widget>[
+                Text("View more"),
+                Icon(
+                  Icons.arrow_forward,
+                )
+              ],
+            ),
+          ),
   )
   );
-  List<Widget> skills_children_returner(){
-    
-    
-    if(widget.list_skills.length<=2){
-      return [skill_heading,list_of_all_cards];
-    }
-    else{
-      return [skill_heading,list_of_all_cards,view_more_button];
-    }
-  
-  }
-   
    final skills = Container(
      color: Colors.lightBlue[100],
      height: 450.0,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: skills_children_returner(),
+        children: <Widget>[
+          
+     
+         
+          skill_heading,
+          line,
+            list_of_all_cards,
+            view_more_button,
+          
+        ],
       ),
    );
     final projects = Column(

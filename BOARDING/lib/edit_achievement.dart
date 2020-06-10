@@ -38,7 +38,7 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
     
 
      response1 = await http.post(
-      'http://192.168.1.6:8000/addachievement',
+      'http://192.168.1.3:8000/achievements',
         headers: {
           'Accept': 'application/json',
           'Authorization': 'Token $token',
@@ -52,7 +52,7 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
       );
     }
     else{
-      String url = 'http://192.168.1.6:8000/updateachievement/' +
+      String url = 'http://192.168.1.3:8000/achievements' +
           widget.title;
       response1 = await http.put(
         url,
@@ -115,8 +115,12 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
 
     var _dates;
     //print(_selectedDateTime);
-    String _selected=_selectedDateTime.toString();
-    String to_dates=_selected.substring(0,10);
+
+
+    var test1=DateFormat.MMMMd().format(_selectedDateTime);
+    String _selected=test1.toString();
+    String to_dates=_selected;
+
     //print(_selected.substring(0,10));
     //final String formattedDate = DateFormat.yMd().format(_selectedDateTime);        //accesing date
     //final selectedText = Text('You selected: $formattedDate');

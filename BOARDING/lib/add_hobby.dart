@@ -34,20 +34,20 @@ class EDIT_HOBBYState extends State<EDIT_HOBBY> {
   var image;      //accessing image folder location
   var name;       //accessing name of hobby
 
-  Future<String> submitNew(String image, String name) async {
+  Future<String> submitNew(List hobbies) async {
 
     List list_info;
     var token=await storage.read(key:'jwt');
 
     var response1=await http.post(
-      'http://192.168.1.6:8000/addhobby',
+      'http://192.168.1.3:8000/hobbies',
       headers: {
         'Accept': 'application/json',
         'Authorization': 'Token $token',
       },
       body: {
-        'name': name,
-        'hobby_image_url': image,
+        'hobbies': hobbies,
+        //'hobby_image_url': image,
       },
     );
     print(response1.body);
@@ -81,6 +81,7 @@ class EDIT_HOBBYState extends State<EDIT_HOBBY> {
 
   @override
   Widget build(BuildContext context) {
+    List hobbies=[];
     final hobbytag = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
@@ -213,15 +214,16 @@ class EDIT_HOBBYState extends State<EDIT_HOBBY> {
                   // ),
                   onPressed: () {
                     setState(() {
-                      image=_selected;
                       name=_selected2;
+
                       // _jkval = _jk;
                       // _projectinfo = projectinfocon.text;
                       // _assignedto = assignedtocon.text;
                       // _description = descriptioncon.text;
                     });
-
-                    submitNew(image, name);
+                    print(hobbies);
+                    hobbies.add({'name':name});
+                    submitNew( name);
                     Navigator.push(context, MaterialPageRoute(builder: (context) {
                       return LoadData();
                     }));
