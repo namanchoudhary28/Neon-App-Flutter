@@ -102,8 +102,8 @@ Image skill_image_returner(String name){
     on Exception{
       return Image(
         image: AssetImage('assets/skills/DEFAULT.png'),
-        height: 50.0,
-        width: 50.0,
+        height: 60.0,
+        width: 60.0,
       );
 
     }
