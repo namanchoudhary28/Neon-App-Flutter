@@ -10,6 +10,8 @@ import 'package:BOARDING/login_page.dart';
 import 'package:BOARDING/edit_info.dart';
 import 'package:BOARDING/edit_achievement.dart';
 import 'package:BOARDING/add_hobby.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 
 import 'package:BOARDING/date_time_picker_widget2.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
@@ -85,6 +87,7 @@ class _HomePageState extends State<HomePage> {
             radius: 50,
             backgroundColor: Colors.transparent,
             backgroundImage:AssetImage('assets/icons/profile.jpg'),
+          
         ),
       ),
     )
@@ -102,10 +105,8 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           InkWell(
-            child: Image(
-                image: AssetImage('assets/icons/edit.png'),
-                height:30,
-                width:30,
+            child: Icon(
+                     Icons.edit
             ),
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -137,6 +138,9 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               for(Map<String,dynamic> item in widget.list_communications)
                communication(item['medium']),
+              
+
+               
 
             ],
           ),
@@ -159,7 +163,7 @@ class _HomePageState extends State<HomePage> {
     );
 
     final hobby = Container(
-      height: 300,
+      height: 250,
       width: (MediaQuery.of(context).size.width),
       color: Colors.cyan[50],
       child: Column(
@@ -221,9 +225,7 @@ class _HomePageState extends State<HomePage> {
 
             ),
           ),
-          SizedBox(
-             height: 20.0,
-          ),
+         
           
           
          
@@ -358,6 +360,9 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
+          
+     
+         
           skill_heading,
           line,
             list_of_all_cards,
@@ -557,7 +562,7 @@ class _HomePageState extends State<HomePage> {
         ),
         profile_picture,
         SizedBox(
-          height: 10,
+          height: 4,
         ),
         name,
         city,
@@ -962,9 +967,9 @@ double screenWidth(BuildContext context) {
 }
 Image communication(String medium){
   return Image(
-    image:AssetImage('assets/images/$medium.png'),
-    height: 30.0,
-    width:30.0,
-    
-  );
+      // Use the EvaIcons class for the IconData
+       image: AssetImage('assets/social_icons/$medium.png'),
+       height: 40.0,
+       width: 40.0,
+     );
 }
