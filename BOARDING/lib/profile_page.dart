@@ -163,7 +163,7 @@ class _HomePageState extends State<HomePage> {
     );
 
     final hobby = Container(
-      height: 250,
+      height: 230,
       width: (MediaQuery.of(context).size.width),
       color: Colors.cyan[50],
       child: Column(
@@ -233,7 +233,11 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
-  final skill_card  = Container(
+  Container skill_card(double percent,String competancy, String name){
+     double g  = percent*10;
+     int percentage = g.toInt();
+     String circle_text = percentage.toString() +'%';
+    return Container(
                 padding: EdgeInsets.all(10.0),
                 height: 150.0,
                 child: Card(
@@ -249,7 +253,7 @@ class _HomePageState extends State<HomePage> {
                          Image(
                              image: NetworkImage('https://img.icons8.com/color/48/000000/python.png')
                          ),
-                         Text("Python",
+                         Text(name,
                          style: TextStyle(
                           fontSize: 17.0,
                           fontFamily: 'sans-serif',
@@ -270,13 +274,13 @@ class _HomePageState extends State<HomePage> {
                       radius: 60.0,
                       lineWidth: 4.0,
                       percent: 0.80,
-                      center: new Text("90%"),
+                      center: new Text(circle_text),
                       progressColor: Colors.blue
                     ),
                   SizedBox(
                      height: 15.0,
                   ),
-                  Text("Beginner",style: TextStyle(
+                  Text(competancy,style: TextStyle(
                           fontSize: 17.0,
                           fontFamily: 'sans-serif'
                      ),)
@@ -289,14 +293,39 @@ class _HomePageState extends State<HomePage> {
                  ),
                 ),
               );
+  }
+  
+    List<Widget> skill_card_returner(){
+      List<Widget> skill_cards=List<Widget>();
+      var competancies = {'Beginner':25,'Intermediate':50,'Advanced':75,'Pro':100};
+      List list_skills = widget.list_skills;
+      int num;
+      if(list_skills.length<=2){
+           num = list_skills.length;
+      }
+      else{
+        num = 2;
+      }
+
+    for(int i=0;i<num;i++){
+          int percent = competancies[list_skills[i]['competancy']];
+          double fraction = percent/10;
+          skill_cards.add(skill_card(fraction, list_skills[i]['competancy'], list_skills[i]['name']));
+          
+
+          
+        }
+        return skill_cards;
+      
+      
+      
+
+    } 
     final list_of_all_cards= Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-          skill_card,
-          skill_card,
-
-      ],
+      children: skill_card_returner(),
     );
+    
   
         
      final skill_heading = Padding(
@@ -332,7 +361,7 @@ class _HomePageState extends State<HomePage> {
       onPressed: (){
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context)=>SkillsDisplay()),
+          MaterialPageRoute(builder: (context)=>SkillsDisplay(widget.list_skills)),
         );
 
       },
@@ -354,21 +383,24 @@ class _HomePageState extends State<HomePage> {
     ),
   )
   );
+  List<Widget> skills_children_returner(){
+    
+    
+    if(widget.list_skills.length<=2){
+      return [skill_heading,list_of_all_cards];
+    }
+    else{
+      return [skill_heading,list_of_all_cards,view_more_button];
+    }
+  
+  }
+   
    final skills = Container(
      color: Colors.lightBlue[100],
      height: 450.0,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          
-     
-         
-          skill_heading,
-          line,
-            list_of_all_cards,
-            view_more_button,
-          
-        ],
+        children: skills_children_returner(),
       ),
    );
     final projects = Column(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
-Row card_panel(BuildContext context){
+Row card_panel(BuildContext context,String competancy, double percent){
+  String percentage = (percent*10).toString() +'%';
   return Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
@@ -31,7 +32,7 @@ Row card_panel(BuildContext context){
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
-                                  title: Text("Beginner"),
+                                  title: Text(competancy),
                                   elevation: 24.0,
                                   content: Padding(
               padding: EdgeInsets.all(15.0),
@@ -40,8 +41,8 @@ Row card_panel(BuildContext context){
                 animation: true,
                 lineHeight: 20.0,
                 animationDuration: 2000,
-                percent: 0.8,
-                center: Text("80.0%",style: TextStyle(color:Colors.white),),
+                percent: percent,
+                center: Text(percentage,style: TextStyle(color:Colors.white),),
                 linearStrokeCap: LinearStrokeCap.roundAll,
                 progressColor: Colors.blue,
               ),
@@ -91,9 +92,13 @@ Row card_panel(BuildContext context){
                      
 }
 
-Container skills_card(BuildContext context){
+Container skills_card(BuildContext context,String name,double percent,String competancy){
+   
+
+
   return Container(
                  width:160.0,
+                 height: 160.0,
                  child: Card(
                    elevation: 6.0,
                    color: Colors.lightBlue[400],
@@ -102,12 +107,12 @@ Container skills_card(BuildContext context){
                     
                     child: Column(
                       children: <Widget>[
-                        card_panel(context),
+                        card_panel(context,competancy,percent),
                         Image(
                            image: NetworkImage('https://img.icons8.com/color/48/000000/python.png'),
                         ),
                         Text(
-                          "Python",
+                          name,
                           style: TextStyle(
                             fontSize: 15.0,
                             color: Colors.white
@@ -125,7 +130,12 @@ Container skills_card(BuildContext context){
                 ), 
                 );
 }
-Container list_cards(BuildContext context){
+Container list_cards(BuildContext context, skill1,skill2){
+  var competancies = {'Beginner':25,'Intermediate':50,'Advanced':75,'Pro':100};
+  double percent1  = competancies[skill1['competancy']]/10;
+
+  double percent2 = competancies[skill2['competancy']]/10;
+
   return Container(
                margin: EdgeInsets.all(10.0),
               
@@ -135,8 +145,8 @@ Container list_cards(BuildContext context){
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 
-                skills_card(context),
-                skills_card(context)
+                skills_card(context,skill1['name'],percent1,skill1['competancy']),
+                skills_card(context,skill2['name'],percent2,skill2['competancy'])
                   
                   
               
@@ -200,11 +210,41 @@ Row button_rows(){
 }
 
 class SkillsDisplay extends StatefulWidget {
+  final List skills;
+  const SkillsDisplay(this.skills);
+
   @override
   _SkillsDisplayState createState() => _SkillsDisplayState();
 }
 
 class _SkillsDisplayState extends State<SkillsDisplay> {
+  List<Widget> skill_children_returner(){
+    List<Widget>children = List<Widget>();
+    int g = (widget.skills.length~/2).toInt();
+    int f = 0;
+    for(int i=0;i<g;i++){
+        children.add(list_cards(context,widget.skills[f],widget.skills[f+1]));
+        f+=2;
+      
+    }
+    if(widget.skills.length%2!=0){
+      var last_child = widget.skills[widget.skills.length-1];
+       var competancies = {'Beginner':25,'Intermediate':50,'Advanced':75,'Pro':100};
+       double percent = competancies[last_child['competancy']]/10;
+       
+      children.add(skills_card(context,last_child['name'] , percent, last_child['competancy']));
+
+    }
+    children.add(SizedBox(height: 10.0,));
+    children.add(button_rows());
+    children.add(SizedBox(height: 15.0,));
+    return children;
+
+
+
+    
+
+  }
  
   @override
   Widget build(BuildContext context) {
@@ -215,31 +255,16 @@ class _SkillsDisplayState extends State<SkillsDisplay> {
              fontSize: 20.0,
            ),),
          ),
-         body:
+         body:ListView(
+           scrollDirection: Axis.vertical,
+           children: skill_children_returner(),
+              
+               
+   
+
+         )
            
-             GridView.count(
-           crossAxisCount: 1,
-           mainAxisSpacing: 0,
-           childAspectRatio: 2.5,
-           children: <Widget>[
-             list_cards(context),
-             list_cards(context),
-             list_cards(context),
-             list_cards(context),
-             list_cards(context),
-             list_cards(context),
-             list_cards(context),
-             list_cards(context),
-             button_rows(),
-
-
-            
-            
-            
-
-
-           ],
-         ),
+             
 
 
           
