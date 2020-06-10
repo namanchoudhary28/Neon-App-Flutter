@@ -116,10 +116,9 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
     var _dates;
     //print(_selectedDateTime);
 
-
-    var test1=DateFormat.MMMMd().format(_selectedDateTime);
-    String _selected=test1.toString();
-    String to_dates=_selected;
+    var test1 = DateFormat.MMMMd().format(_selectedDateTime);
+    String _selected = test1.toString();
+    String to_dates = _selected;
 
     //print(_selected.substring(0,10));
     //final String formattedDate = DateFormat.yMd().format(_selectedDateTime);        //accesing date

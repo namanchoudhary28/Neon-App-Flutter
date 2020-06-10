@@ -29,6 +29,7 @@ import 'package:BOARDING/projectinfo.dart';
 import 'package:BOARDING/main_loading_screen.dart';
 import 'package:BOARDING/loading_login.dart';
 import 'package:BOARDING/skills.dart';
+
 class HomePage extends StatefulWidget {
   final List list_about;
   final List list_hobby;
@@ -52,8 +53,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
-
   @override
   Widget build(BuildContext context) {
     final achievementaboutme = TextField(
@@ -87,7 +86,6 @@ class _HomePageState extends State<HomePage> {
               radius: 50,
               backgroundColor: Colors.transparent,
               backgroundImage: AssetImage('assets/icons/profile.jpg'),
-          
             ),
           ),
         ));
@@ -139,10 +137,6 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               for (Map<String, dynamic> item in widget.list_communications)
                 communication(item['medium']),
-              
-
-               
-
             ],
           ),
         ),
@@ -164,7 +158,7 @@ class _HomePageState extends State<HomePage> {
     );
 
     final hobby = Container(
-      height: 250,
+      height: 240,
       width: (MediaQuery.of(context).size.width),
       color: Colors.cyan[50],
       child: Column(
@@ -198,9 +192,7 @@ class _HomePageState extends State<HomePage> {
                       height: 40.0,
                       width: 40.0,
                     ),
-
                     onTap: () {
-                         
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return new EDIT_HOBBY(); //Function from edit_info.dart
@@ -218,120 +210,114 @@ class _HomePageState extends State<HomePage> {
               scrollDirection: Axis.horizontal,
               children: <Widget>[
                 for (Map<String, dynamic> item in widget.list_hobby)
-                  MyHobbies(item['name']),
-                
+                  MyHobbies(item['name'], item['image_url']),
+
                 //MyProjects('Booking 2', '1 May 2020'),
                 //MyProjects('Booking 3', '1 May 2021'),
               ],
-
             ),
           ),
-         
-          
-          
-         
-
         ],
       ),
     );
-  Image skill_image_returner(String name){
-    try{
-      return Image(
-        image: AssetImage('assets/skills/$name.png'),
-        height: 50.0,
-        width: 50.0,
-      );
+    Image skill_image_returner(String name) {
+      try {
+        return Image(
+          image: AssetImage('assets/skills/$name.png'),
+          height: 50.0,
+          width: 50.0,
+        );
+      }
+      on Exception {
+        return Image(
+          image: AssetImage('assets/skills/DEFAULT.png'),
+          height: 50.0,
+          width: 50.0,
+        );
+      }
     }
-    on Exception{
-      return Image(
-        image: AssetImage('assets/skills/DEFAULT.png'),
-        height: 50.0,
-        width: 50.0,
-      );
+    Container skill_card(double percent, String competancy, String name) {
+      double g = percent * 100;
+      int percentage = g.toInt();
+      String circle_text = percentage.toString() + '%';
+      return Container(
+        padding: EdgeInsets.all(10.0),
+        height: 150.0,
+        child: Card(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
 
-    }
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  skill_image_returner(name),
+                  Text(name,
+                    style: TextStyle(
+                      fontSize: 17.0,
+                      fontFamily: 'sans-serif',
 
-  }
-  Container skill_card(double percent,String competancy, String name){
-     double g  = percent*100;
-     int percentage = g.toInt();
-     String circle_text = percentage.toString() +'%';
-    return Container(
-                padding: EdgeInsets.all(10.0),
-                height: 150.0,
-                child: Card(
-                 child: Row(
-                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                   crossAxisAlignment:  CrossAxisAlignment.center,
-                   children: <Widget>[
-                     Column(
-                       mainAxisAlignment: MainAxisAlignment.center,
-                       crossAxisAlignment: CrossAxisAlignment.center,
-                       children: <Widget>[
-                         skill_image_returner(name),
-                         Text(name,
-                         style: TextStyle(
-                          fontSize: 17.0,
-                          fontFamily: 'sans-serif',
-                        
-                     ),
-                         )
-                        
-                  
-                           
-                         
-                       ],
-                     ),
-                     Column(
-                       mainAxisAlignment: MainAxisAlignment.center,
-                       crossAxisAlignment: CrossAxisAlignment.center,
-                       children: <Widget>[
-                          new CircularPercentIndicator(
+                    ),
+                  )
+
+
+                ],
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  new CircularPercentIndicator(
                       radius: 60.0,
                       lineWidth: 4.0,
-                      percent: 0.80,
-                      center: new Text("90%"),
+                      percent: percent,
+                      center: new Text(circle_text),
                       progressColor: Colors.blue
-                    ),
-                  SizedBox(
-                     height: 15.0,
                   ),
-                  Text("Beginner",style: TextStyle(
-                          fontSize: 17.0,
-                          fontFamily: 'sans-serif'
-                     ),)
+                  SizedBox(
+                    height: 15.0,
+                  ),
+                  Text(competancy, style: TextStyle(
+                      fontSize: 17.0,
+                      fontFamily: 'sans-serif'
+                  ),)
 
 
-                       ],
-                     )
+                ],
+              )
 
-                   ],
-                 ),
-                ),
-              );
-  }
+            ],
+          ),
+        ),
+      );
+    }
 
     List<Widget> skill_card_returner(){
       List<Widget> skill_cards=List<Widget>();
-      var competancies = {'Beginner':25,'Intermediate':50,'Advanced':75,'Pro':100};
+      var competancies = {
+        'Beginner': 25,
+        'Intermediate': 50,
+        'Advanced': 75,
+        'Pro': 100
+      };
       List list_skills = widget.list_skills;
       int num;
-      if(list_skills.length<=2){
-           num = list_skills.length;
+      if (list_skills.length <= 2) {
+        num = list_skills.length;
       }
-      else{
+      else {
         num = 2;
       }
 
-    for(int i=0;i<num;i++){
-          int percent = competancies[list_skills[i]['competancy']];
-          double fraction = percent/100;
-          skill_cards.add(skill_card(fraction, list_skills[i]['competancy'], list_skills[i]['name'].toUpperCase()));
-
-
-
-        }
-        return skill_cards;
+      for (int i = 0; i < num; i++) {
+        int percent = competancies[list_skills[i]['competancy']];
+        double fraction = percent / 100;
+        skill_cards.add(skill_card(fraction, list_skills[i]['competancy'],
+            list_skills[i]['name'].toUpperCase()));
+      }
+      return skill_cards;
 
 
 
@@ -339,25 +325,19 @@ class _HomePageState extends State<HomePage> {
     }
     final list_of_all_cards = Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        skill_card,
-        skill_card,
-      ],
+      children: skill_card_returner(),
     );
-  
+
 
     final skill_heading = Padding(
       padding: EdgeInsets.fromLTRB(0, 10.0, 0, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          Text(
-            "SKILLS",
-            style: TextStyle(
-              fontSize: 17.0,
-              letterSpacing: 1.7,
-            ),
-          ),
+          Text("SKILLS", style: TextStyle(
+            fontSize: 17.0,
+            letterSpacing: 1.7,
+          ),),
           Icon(
             Icons.add_box,
             color: Colors.lightBlueAccent[700],
@@ -367,7 +347,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
 
-        
+
     final line = Container(
       width: 200.0,
       child: Divider(
@@ -378,50 +358,50 @@ class _HomePageState extends State<HomePage> {
 
     final view_more_button = Container(
         width: 150.0,
-        child: Padding(
-          padding: EdgeInsets.all(10.0),
-          child: FlatButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-          MaterialPageRoute(builder: (context)=>SkillsDisplay()),
-              );
-
-            },
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0)),
-            color: Colors.white,
-            textColor: Colors.blue,
-            hoverColor: Colors.blue,
-            splashColor: Colors.blue,
-            child: Row(
-              children: <Widget>[
-                Text("View more"),
-                Icon(
-                  Icons.arrow_forward,
-                )
-              ],
-            ),
+        child: Padding(padding: EdgeInsets.all(10.0), child: FlatButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => SkillsDisplay(widget.list_skills)),
+            );
+          },
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0)
           ),
-  )
-  );
-   final skills = Container(
-     color: Colors.lightBlue[100],
-     height: 450.0,
+          color: Colors.white,
+          textColor: Colors.blue,
+          hoverColor: Colors.blue,
+          splashColor: Colors.blue,
+          child: Row(
+            children: <Widget>[
+              Text("View more"),
+              Icon(
+                Icons.arrow_forward,
+              )
+            ],
+          ),
+        ),
+        )
+    );
+    List<Widget> skills_children_returner() {
+      if (widget.list_skills.length <= 2) {
+        return [skill_heading, list_of_all_cards];
+      }
+      else {
+        return [skill_heading, list_of_all_cards, view_more_button];
+      }
+    }
+
+    final skills = Container(
+      color: Colors.lightBlue[100],
+      height: 450.0,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          
-     
-         
-          skill_heading,
-          line,
-            list_of_all_cards,
-            view_more_button,
-          
-        ],
+        children: skills_children_returner(),
       ),
-   );
+    );
+
     final projects = Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
@@ -464,9 +444,6 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-
-
-        
         Container(
           width: double.infinity,
         ),
@@ -587,8 +564,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: <Widget>[
                 for (Map<String, dynamic> item in widget.list_achievements)
-                  _MyAchievemnts(
-                      context, item['date'], item['title'],
+                  _MyAchievemnts(context, item['date'], item['title'],
                       item['description']),
                 //_MyAchievemnts(context, 'May 10', 'Testing', 'Testin text'),
                 //_MyAchievemnts(context, 'May 11', 'Testing2',
@@ -597,11 +573,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        Container(
-            width: double.infinity
-        ),
-
-
+        Container(width: double.infinity),
       ],
     );
 
@@ -630,7 +602,7 @@ class _HomePageState extends State<HomePage> {
         SizedBox(
           height: 40,
         ),
-        
+
         projects,
         SizedBox(
           height: 30,
@@ -669,7 +641,7 @@ class _HomePageState extends State<HomePage> {
           ),
           animation: true,
           animationDuration: 1000,
-          percent:0.8,
+          percent: 0.8,
           backgroundColor: Colors.grey[300],
           progressColor: Colors.blue,
         ),
@@ -686,7 +658,6 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-
               Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.0),
@@ -700,24 +671,16 @@ class _HomePageState extends State<HomePage> {
                         height: 90.0,
                         width: 90.0,
                       ),
-
                     ],
-                  )
-              ),
-
-
+                  )),
             ],
           ),
-
         ),
         Padding(
           padding: const EdgeInsets.all(12.0),
-          child: Align(
-              alignment: Alignment.center,
-              child: Text(name)),
+          child: Align(alignment: Alignment.center, child: Text(name)),
         ),
       ],
-
     );
   }
 
@@ -727,10 +690,8 @@ class _HomePageState extends State<HomePage> {
         Padding(
           padding: const EdgeInsets.fromLTRB(4, 8, 2, 4),
           child: Container(
-
             height: 110,
             width: 110,
-
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
@@ -748,7 +709,6 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
-
                 children: <Widget>[
                   Container(
                     width: double.infinity,
@@ -767,27 +727,19 @@ class _HomePageState extends State<HomePage> {
                           ),
                           //Text(title),
                         ],
-                      )
-                  ),
-
-
+                      )),
                 ],
               ),
-
             ),
-
           ),
         ),
         Padding(
           padding: const EdgeInsets.all(12.0),
-          child: Align(
-              alignment: Alignment.center,
-              child: Text(title)),
+          child: Align(alignment: Alignment.center, child: Text(title)),
         ),
       ],
     );
   }
-
 
   Container MyProjects(String name, String _start, String _end,
       String description, String status) {
@@ -855,38 +807,28 @@ class _HomePageState extends State<HomePage> {
                       side: BorderSide(color: Colors.blue)),
                 ),
                 InkWell(
-              child: Image(
-                image: AssetImage('assets/icons/edit.png'),
-                height: 40.0,
-                width: 40.0,
-              ),
+                  child: Icon(Icons.edit),
 
-              /// Pop Up form to add achievements
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return new EDIT_ACHIEVEMENT(name, _start);
-                }));
-              },
-            ),
-            InkWell(
-              child: Image(
-                image: AssetImage('assets/icons/delete.png'),
-                height: 40.0,
-                width: 40.0,
-              ),
+                  /// Pop Up form to add achievements
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                          return new EDIT_ACHIEVEMENT(name, _start);
+                        }));
+                  },
+                ),
+                InkWell(
+                  child: Icon(Icons.delete),
 
-              /// Pop Up form to add achievements
-              onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => deletepopup('project', [name])),
-                  );
-                               
-                          },
-            ),
-
-
+                  /// Pop Up form to add achievements
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => deletepopup('project', [name])),
+                    );
+                  },
+                ),
               ],
               mainAxisAlignment: MainAxisAlignment.spaceAround,
             )
@@ -903,96 +845,65 @@ class _HomePageState extends State<HomePage> {
       decoration: BoxDecoration(
           border: Border(bottom: BorderSide(color: Colors.grey, width: 0.8))),
       //margin: EdgeInsets.symmetric(horizontal: 0.0, vertical: 5.0),
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Text(
-              date,
-              style: TextStyle(fontSize: 17),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <
+          Widget>[
+        Text(
+          date,
+          style: TextStyle(fontSize: 17),
+        ),
+        Container(
+          height: 135,
+          width: screenWidth(context) - 140,
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
             ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
+            elevation: 4,
+            color: Colors.red[100],
+            child: Wrap(
+              children: <Widget>[
+                ListTile(
+                  title: Text(heading, style: TextStyle(color: Colors.black)),
+                  subtitle:
+                  Text(subHeading, style: TextStyle(color: Colors.black)),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      InkWell(
+                        child: Icon(Icons.edit),
+
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                                return new EDIT_ACHIEVEMENT(
+                                    heading, subHeading);
+                              }));
+                        },
+                      ),
+                      SizedBox(width: 15.0),
+                      InkWell(
+                        child: Icon(Icons.delete),
+
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    deletepopup('achievements', [heading])),
+                          );
+                        },
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              height: 135,
-              width: screenWidth(context) - 150,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
                 ),
-                color: Colors.red[200],
-                child: Wrap(
-                  children: <Widget>[
-                    ListTile(
-                      title:
-                          Text(heading, style: TextStyle(color: Colors.black)),
-                      subtitle: Text(subHeading,
-                          style: TextStyle(color: Colors.black)),
-                          
-                    ),
-                    Padding(
-                      padding : EdgeInsets.all(20.0),
-                      child:Row(
-                      mainAxisAlignment:MainAxisAlignment.end,
-                      
-
-                      children: <Widget>[
-                          InkWell(
-              child: Image(
-                image: AssetImage('assets/icons/edit.png'),
-                height: 30.0,
-                width: 30.0,
-              ),
-
-              /// Pop Up form to add achievements
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return new EDIT_ACHIEVEMENT(heading,subHeading);
-                }));
-              },
+              ],
             ),
-            SizedBox(
-               width:15.0
-                 
-            ),
-            InkWell(
-              child: Image(
-                image: AssetImage('assets/icons/delete.png'),
-                height: 30.0,
-                width:30.0,
-              ),
-
-              /// Pop Up form to add achievements
-              onTap: () {
-                Navigator.push(
-                   context,
-                   MaterialPageRoute(builder: (context)=>deletepopup('achievement', [heading])),
-                  );
-              },
-            ),
-                      ],
-                    ) ,
-                    )
-                    ,
-                    
-                  ],
-                ),
-              ),
-            ),
-          ]),
+          ),
+        ),
+      ]),
     );
   }
 
@@ -1006,7 +917,9 @@ class _HomePageState extends State<HomePage> {
 }
 
 Size screenSize(BuildContext context) {
-  return MediaQuery.of(context).size;
+  return MediaQuery
+      .of(context)
+      .size;
 }
 
 double screenHeight(BuildContext context) {
@@ -1016,11 +929,12 @@ double screenHeight(BuildContext context) {
 double screenWidth(BuildContext context) {
   return screenSize(context).width;
 }
-Image communication(String medium){
+
+Image communication(String medium) {
   return Image(
-      // Use the EvaIcons class for the IconData
-       image: AssetImage('assets/social_icons/$medium.png'),
-       height: 40.0,
-       width: 40.0,
-     );
+    // Use the EvaIcons class for the IconData
+    image: AssetImage('assets/social_icons/$medium.png'),
+    height: 40.0,
+    width: 40.0,
+  );
 }

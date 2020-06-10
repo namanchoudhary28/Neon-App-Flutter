@@ -35,11 +35,10 @@ class EDIT_HOBBYState extends State<EDIT_HOBBY> {
   var name;       //accessing name of hobby
 
   Future<String> submitNew(List hobbies) async {
-
     List list_info;
-    var token=await storage.read(key:'jwt');
+    var token = await storage.read(key: 'jwt');
 
-    var response1=await http.post(
+    var response1 = await http.post(
       'http://192.168.1.3:8000/hobbies',
       headers: {
         'Accept': 'application/json',
@@ -81,7 +80,7 @@ class EDIT_HOBBYState extends State<EDIT_HOBBY> {
 
   @override
   Widget build(BuildContext context) {
-    List hobbies=[];
+    List hobbies = [];
     final hobbytag = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
@@ -141,7 +140,6 @@ class EDIT_HOBBYState extends State<EDIT_HOBBY> {
                           setState(() {
                             _selected = newValue;
                             _selected2 = newValue.substring(13,20);
-
                           });
 
                           print(_selected);
@@ -214,7 +212,7 @@ class EDIT_HOBBYState extends State<EDIT_HOBBY> {
                   // ),
                   onPressed: () {
                     setState(() {
-                      name=_selected2;
+                      name = _selected2;
 
                       // _jkval = _jk;
                       // _projectinfo = projectinfocon.text;
@@ -222,9 +220,10 @@ class EDIT_HOBBYState extends State<EDIT_HOBBY> {
                       // _description = descriptioncon.text;
                     });
                     print(hobbies);
-                    hobbies.add({'name':name});
-                    submitNew( name);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    hobbies.add({'name': name});
+                    submitNew(name);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
                       return LoadData();
                     }));
                     // print(_myActivityResult);
