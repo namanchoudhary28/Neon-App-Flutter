@@ -48,6 +48,8 @@ dependencies:
   awesome_loader: ^0.0.3
   eva_icons_flutter: ^1.0.4
   font_awesome_flutter: ^8.8.1
+  multiple_select: ^0.1.22
+  searchable_dropdown: ^1.1.3
 
 
 

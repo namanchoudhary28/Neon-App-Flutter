@@ -1,5 +1,7 @@
 //import 'dart:html';
 
+import 'package:BOARDING/ADDSKILLN/multi_form.dart';
+import 'package:BOARDING/add_skill.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -193,11 +195,11 @@ class _HomePageState extends State<HomePage> {
                       width: 40.0,
                     ),
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return new EDIT_HOBBY(); //Function from edit_info.dart
-                      }));
-                    },
+                       Navigator.push(
+                         context,
+                         MaterialPageRoute(builder: (context)=> HobbyForm()),
+                       );
+                    }
                   ),
                 ],
               ),
@@ -338,11 +340,20 @@ class _HomePageState extends State<HomePage> {
             fontSize: 17.0,
             letterSpacing: 1.7,
           ),),
-          Icon(
+          InkWell(
+            child:Icon(
             Icons.add_box,
             color: Colors.lightBlueAccent[700],
             size: 40.0,
+          ),
+          onTap: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context)=>MultiForm()),
+            );
+          },
           )
+          
         ],
       ),
     );
