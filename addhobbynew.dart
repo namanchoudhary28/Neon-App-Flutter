@@ -67,7 +67,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     String wordPair = "";
     loremIpsum
-        .toUpperCase()
+        
         .replaceAll(",", "")
         .replaceAll(".", "")
         .split(" ")
@@ -118,7 +118,11 @@ class _MyAppState extends State<MyApp> {
           padding: const EdgeInsets.all(12.0),
           child: Text("Select any"),
         ),
-        searchHint: "Select any",
+        searchHint:Text("Select any",style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w500,
+            ),
+            ),
         
         onChanged: (value) {
           setState(() {
