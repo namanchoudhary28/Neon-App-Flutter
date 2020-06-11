@@ -37,8 +37,12 @@ class _LoginPageState extends State<LoginPage> {
         tag: 'hero',
         child: Container(
           width: double.infinity,
-          height: 350.0,
-          child: Image.asset('assets/images/login.png'),
+          height: 150.0,
+          child: Image(
+            image: AssetImage('assets/images/man.png'),
+            
+
+          )
         ),
       );
 
@@ -53,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
       },*/
         autofocus: false,
         decoration: InputDecoration(
-            hintText: 'Email',
+            hintText: 'Username',
             contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0)
         ),
       );
@@ -128,16 +132,27 @@ class _LoginPageState extends State<LoginPage> {
         body: Center(
           child: ListView(
             shrinkWrap: true,
-            padding: EdgeInsets.fromLTRB(24, 0, 24, 0),
+            padding: EdgeInsets.fromLTRB(30, 0, 24, 0),
             children: <Widget>[
               logo,
+              SizedBox(
+                height: 75.0,
+              ),
               Container(
-                child: Text('Email address'),
+                child: Text('Username',style: TextStyle(
+                  fontFamily: 'sans-serif',
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w800
+                ),),
               ),
               email,
               SizedBox(height: 30,),
               Container(
-                child: Text('Password'),
+                child: Text('Password',style: TextStyle(
+                  fontFamily: 'sans-serif',
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w800
+                )),
               ),
               password,
               forgot,

@@ -160,7 +160,7 @@ class _HomePageState extends State<HomePage> {
     );
 
     final hobby = Container(
-      height: 240,
+      height: 220,
       width: (MediaQuery.of(context).size.width),
       color: Colors.cyan[50],
       child: Column(
@@ -221,15 +221,15 @@ class _HomePageState extends State<HomePage> {
       try {
         return Image(
           image: AssetImage('assets/skills/$name.png'),
-          height: 50.0,
-          width: 50.0,
+          height: 30.0,
+          width: 30.0,
         );
       }
       on Exception {
         return Image(
           image: AssetImage('assets/skills/DEFAULT.png'),
-          height: 50.0,
-          width: 50.0,
+          height: 30.0,
+          width: 30.0,
         );
       }
     }
@@ -239,7 +239,7 @@ class _HomePageState extends State<HomePage> {
       String circle_text = percentage.toString() + '%';
       return Container(
         padding: EdgeInsets.all(10.0),
-        height: 150.0,
+        height: 100.0,
         child: Card(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -251,9 +251,9 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   skill_image_returner(name),
-                  Text(name,
+                  Text(name[0].toUpperCase()+name.substring(1).toLowerCase(),
                     style: TextStyle(
-                      fontSize: 17.0,
+                      fontSize: 15.0,
                       fontFamily: 'sans-serif',
 
                     ),
@@ -266,13 +266,16 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  new CircularPercentIndicator(
-                      radius: 60.0,
-                      lineWidth: 4.0,
-                      percent: percent,
-                      center: new Text(circle_text),
-                      progressColor: Colors.blue
-                  ),
+                  new LinearPercentIndicator(
+                width: MediaQuery.of(context).size.width - 150,
+                animation: true,
+                lineHeight: 10.0,
+                animationDuration: 2500,
+                percent: percent,
+                center: Text(circle_text,style: TextStyle(color: Colors.white,fontSize: 10.0),),
+                linearStrokeCap: LinearStrokeCap.roundAll,
+                progressColor: Colors.blue,
+              ),
                   SizedBox(
                     height: 15.0,
                   ),
@@ -394,22 +397,71 @@ class _HomePageState extends State<HomePage> {
     );
     List<Widget> skills_children_returner() {
       if (widget.list_skills.length <= 2) {
-        return [skill_heading, list_of_all_cards];
+        return [SizedBox(height:10.0),list_of_all_cards];
       }
       else {
-        return [skill_heading, list_of_all_cards, view_more_button];
+        return [SizedBox(height:10.0),list_of_all_cards, view_more_button];
       }
     }
-
     final skills = Container(
-      color: Colors.lightBlue[100],
+      color:Colors.cyan[50],
       height: 450.0,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: skills_children_returner(),
       ),
     );
+    final personality_traits = Container(
 
+    );
+    final tabs = Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        Container(
+          width: double.infinity,
+        ),
+        DefaultTabController(
+          length: 2,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Container(
+                child: TabBar(
+                    labelStyle: TextStyle(fontSize: 17),
+                    labelColor: Colors.black,
+                    tabs: [
+                      Tab(
+                        text: "TOP SKILLS",
+                      ),
+                      Tab(text: "PERSONALITY TRAITS"),
+                    ]),
+              ),
+            
+                
+                Container(
+                  height: 300,
+                  child: TabBarView(
+                    children: [
+                       skills,
+                      Container(
+                        height: 100.0,
+                        child: Text("Personality Traits Here!"),
+                      )
+                    ],
+                  ),
+                ),
+              
+
+             
+            ],
+          ),
+        ),
+
+      ],
+    );
+ 
+   
     final projects = Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
@@ -598,7 +650,7 @@ class _HomePageState extends State<HomePage> {
           height: 40,
         ),
         hobby,
-        skills,
+        tabs,
         SizedBox(
           height: 40,
         ),
@@ -668,8 +720,8 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       Image(
                         image: AssetImage('assets/banks/$name.png'),
-                        height: 90.0,
-                        width: 90.0,
+                        height: 80.0,
+                        width: 80.0,
                       ),
                     ],
                   )),
@@ -746,20 +798,13 @@ class _HomePageState extends State<HomePage> {
     return Container(
       width: 250,
       decoration: BoxDecoration(
-        color: Colors.white,
+        
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),
             bottomLeft: Radius.circular(20),
             bottomRight: Radius.circular(20)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 3,
-            blurRadius: 5,
-            offset: Offset(0, 3), // changes position of shadow
-          ),
-        ],
+        
       ),
       child: Card(
         shape: RoundedRectangleBorder(

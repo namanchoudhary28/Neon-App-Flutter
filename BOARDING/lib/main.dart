@@ -28,6 +28,7 @@ class HomeScreen extends StatelessWidget {
     return Provider<OnBoardState>(
       create: (_) => OnBoardState(),
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: OnBoard(
           pageController: _pageController,
           onSkip: () {
@@ -51,12 +52,12 @@ class HomeScreen extends StatelessWidget {
           onBoardData: onBoardData,
           titleStyles: TextStyle(
             color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.w900,
+            fontSize: 20,
+            fontWeight: FontWeight.w800,
             letterSpacing: 0.15,
           ),
           descriptionStyles: TextStyle(
-            fontSize: 12,
+            fontSize: 13,
             color: Colors.black,
           ),
           pageIndicatorStyle: PageIndicatorStyle(
@@ -133,14 +134,14 @@ final List<OnBoardModel> onBoardData = [
   OnBoardModel(
     title: "Welcome to Neon",
     description: "Manage all your activities ",
-    imgUrl: 'assets/banks/Camping.png',
+    imgUrl: 'assets/images/image-1.jpeg',
     
   ),
   OnBoardModel(
     title: "What is Lorem ipsum?",
     description:
         "i dont know what is lorem ipsum plz tell",
-        imgUrl: 'assets/banks/Cooking.png',
+        imgUrl: 'assets/images/image-2.jpeg',
    
   
     
@@ -149,7 +150,7 @@ final List<OnBoardModel> onBoardData = [
     title: "Do you know who is lorem ipsum",
     description:
         "Nobody i dont know head to next page",
-        imgUrl: 'assets/banks/Cycling.png',
+        imgUrl: 'assets/images/image-3.jpeg',
    
   ),
 ];
