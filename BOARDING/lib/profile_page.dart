@@ -189,18 +189,13 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SizedBox(width: (MediaQuery.of(context).size.width) - 350),
                   InkWell(
-                    child: Image(
-                      image: AssetImage('assets/icons/add.png'),
-                      height: 40.0,
-                      width: 40.0,
-                    ),
-                    onTap: () {
-                       Navigator.push(
-                         context,
-                         MaterialPageRoute(builder: (context)=> HobbyForm()),
-                       );
-                    }
-                  ),
+                    child: Icon(Icons.add),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HobbyForm()),
+                        );
+                      }),
                 ],
               ),
             ],
@@ -341,17 +336,19 @@ class _HomePageState extends State<HomePage> {
             letterSpacing: 1.7,
           ),),
           InkWell(
-            child:Icon(
+            child: Icon(Icons.add),
+            /*
+            Icon(
             Icons.add_box,
             color: Colors.lightBlueAccent[700],
             size: 40.0,
-          ),
-          onTap: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context)=>MultiForm()),
-            );
-          },
+          ),*/
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MultiForm()),
+              );
+            },
           )
           
         ],
@@ -426,11 +423,7 @@ class _HomePageState extends State<HomePage> {
               ),
               SizedBox(width: (MediaQuery.of(context).size.width) - 175),
               InkWell(
-                child: Image(
-                  image: AssetImage('assets/icons/add.png'),
-                  height: 40.0,
-                  width: 40.0,
-                ),
+                child: Icon(Icons.add),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return new MyApp();
@@ -540,11 +533,7 @@ class _HomePageState extends State<HomePage> {
                 )),
             SizedBox(width: (MediaQuery.of(context).size.width) - 235),
             InkWell(
-              child: Image(
-                image: AssetImage('assets/icons/add.png'),
-                height: 40.0,
-                width: 40.0,
-              ),
+              child: Icon(Icons.add),
 
               /// Pop Up form to add achievements
               onTap: () {
@@ -820,7 +809,6 @@ class _HomePageState extends State<HomePage> {
                 InkWell(
                   child: Icon(Icons.edit),
 
-                  /// Pop Up form to add achievements
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
@@ -831,7 +819,6 @@ class _HomePageState extends State<HomePage> {
                 InkWell(
                   child: Icon(Icons.delete),
 
-                  /// Pop Up form to add achievements
                   onTap: () {
                     Navigator.push(
                       context,
