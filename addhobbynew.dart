@@ -116,7 +116,7 @@ class _MyAppState extends State<MyApp> {
         selectedItems: selectedItems,
         hint: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: Text("Select any"),
+          child: Text("Choose options"),
         ),
         searchHint:Text("Select any",style: TextStyle(
             color: Colors.black,
