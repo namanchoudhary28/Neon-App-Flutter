@@ -256,7 +256,7 @@ class _projectinfoState extends State<projectinfo> {
                     MaterialPageRoute(builder: (context)=>collabpopup()),
                  );
               },
-              child: Text("View Skills", style: TextStyle(color: Colors.white)),
+              child: Text("View Collaborators", style: TextStyle(color: Colors.white)),
               color: Colors.blue,
               padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
               shape: RoundedRectangleBorder(
@@ -274,7 +274,7 @@ class _projectinfoState extends State<projectinfo> {
                   MaterialPageRoute(builder: (context)=>skillspopup()),
                 );
               },
-              child: Text("View Collaborators",
+              child: Text("View Skills",
                   style: TextStyle(color: Colors.white)),
               color: Colors.blue,
               padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),

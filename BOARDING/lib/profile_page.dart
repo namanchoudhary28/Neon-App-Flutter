@@ -14,6 +14,8 @@ import 'package:BOARDING/edit_achievement.dart';
 import 'package:BOARDING/add_hobby.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:flutter/rendering.dart';
+
 
 import 'package:BOARDING/date_time_picker_widget2.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
@@ -26,6 +28,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:BOARDING/delete_popup.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:BOARDING/projectinfo.dart';
 import 'package:BOARDING/main_loading_screen.dart';
@@ -432,7 +435,22 @@ class _HomePageState extends State<HomePage> {
                     labelColor: Colors.black,
                     tabs: [
                       Tab(
-                        text: "TOP SKILLS",
+                         child: Row( mainAxisAlignment: MainAxisAlignment.spaceAround, children:<Widget>[
+                           Text("TOP SKILLS"),
+                           InkWell(
+                             child: Icon(
+                               Icons.add
+                             ),
+                             onTap: (){
+                               Navigator.push(
+                                 context,
+                                 MaterialPageRoute(builder: (context)=> MultiForm() ),
+                               );
+                             
+                             },
+                           )
+
+                         ]),
                       ),
                       Tab(text: "PERSONALITY TRAITS"),
                     ]),
@@ -473,7 +491,7 @@ class _HomePageState extends State<HomePage> {
                 'PROJECTS',
                 style: TextStyle(fontSize: 17, letterSpacing: 1.7),
               ),
-              SizedBox(width: (MediaQuery.of(context).size.width) - 175),
+              SizedBox(width: (MediaQuery.of(context).size.width) - 200),
               InkWell(
                 child: Icon(Icons.add),
                 onTap: () {
@@ -701,6 +719,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+
   Column MyHobbies(String name, String hobby_image_url) {
     return Column(
       children: [
@@ -718,11 +737,21 @@ class _HomePageState extends State<HomePage> {
                   //color: Colors.blue,
                   child: Wrap(
                     children: <Widget>[
-                      Image(
-                        image: AssetImage('assets/banks/$name.png'),
+                       /*Image(
+                         image:AssetImage('assets/banks/$name.png'),
+                         height: 80.0,
+                         width: 80.0,
+                       ),*/
+                      SvgPicture.asset(
+                        'assets/svg_images/$name.svg',
+                        color: Colors.blue,
+                        semanticsLabel: 'Hobby',
                         height: 80.0,
                         width: 80.0,
-                      ),
+
+
+
+                      )
                     ],
                   )),
             ],
@@ -774,8 +803,8 @@ class _HomePageState extends State<HomePage> {
                         children: <Widget>[
                           Image(
                             image: AssetImage('$image_url.png'),
-                            height: 90.0,
-                            width: 90.0,
+                            height: 80.0,
+                            width: 80.0,
                           ),
                           //Text(title),
                         ],
@@ -973,11 +1002,18 @@ double screenWidth(BuildContext context) {
   return screenSize(context).width;
 }
 
-Image communication(String medium) {
-  return Image(
+SvgPicture communication(String medium) {
+  /*return Image(
     // Use the EvaIcons class for the IconData
     image: AssetImage('assets/social_icons/$medium.png'),
     height: 40.0,
     width: 40.0,
+  );*/
+  return SvgPicture.asset(
+    'assets/svg_images/$medium.svg',
+    color: Colors.blue,
+    height: 30.0,
+    width : 30.0,
+
   );
 }

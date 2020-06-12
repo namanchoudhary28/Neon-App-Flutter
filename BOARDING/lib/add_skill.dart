@@ -116,7 +116,7 @@ class _HobbyFormState extends State<HobbyForm> {
         selectedItems: selectedItems,
         hint: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: Text("Select any"),
+          child: Text("Select any",style: TextStyle(fontWeight: FontWeight.bold),),
         ),
         searchHint: "Select any",
         
