@@ -58,6 +58,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int i;
+  void initState(){
+     i=0;
+  }
   @override
   Widget build(BuildContext context) {
     final achievementaboutme = TextField(
@@ -242,7 +246,7 @@ class _HomePageState extends State<HomePage> {
       String circle_text = percentage.toString() + '%';
       return Container(
         padding: EdgeInsets.all(10.0),
-        height: 100.0,
+        height: 80.0,
         child: Card(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -254,13 +258,7 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   skill_image_returner(name),
-                  Text(name[0].toUpperCase()+name.substring(1).toLowerCase(),
-                    style: TextStyle(
-                      fontSize: 15.0,
-                      fontFamily: 'sans-serif',
-
-                    ),
-                  )
+                  
 
 
                 ],
@@ -269,27 +267,34 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  new LinearPercentIndicator(
+
+                  Text(name[0].toUpperCase()+name.substring(1).toLowerCase()+','+' '+competancy,
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      fontFamily: 'sans-serif',
+
+                    ),
+                  ),
+                  SizedBox(
+                       height: 5.0,
+                  ),
+                 LinearPercentIndicator(
                 width: MediaQuery.of(context).size.width - 150,
                 animation: true,
-                lineHeight: 10.0,
+                lineHeight: 6.0,
                 animationDuration: 2500,
                 percent: percent,
-                center: Text(circle_text,style: TextStyle(color: Colors.white,fontSize: 10.0),),
+                center: Text(circle_text,style: TextStyle(color: Colors.white,fontSize: 5.0),),
                 linearStrokeCap: LinearStrokeCap.roundAll,
                 progressColor: Colors.blue,
               ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                  Text(competancy, style: TextStyle(
-                      fontSize: 17.0,
-                      fontFamily: 'sans-serif'
-                  ),)
+                 
+                  
 
 
                 ],
-              )
+              ),
+            
 
             ],
           ),
@@ -389,9 +394,10 @@ class _HomePageState extends State<HomePage> {
           splashColor: Colors.blue,
           child: Row(
             children: <Widget>[
-              Text("View more"),
+              Text("View more",style: TextStyle(color:Colors.black),),
               Icon(
                 Icons.arrow_forward,
+                color:Colors.black,
               )
             ],
           ),
@@ -458,7 +464,7 @@ class _HomePageState extends State<HomePage> {
             
                 
                 Container(
-                  height: 300,
+                  height: 240,
                   child: TabBarView(
                     children: [
                        skills,
@@ -730,6 +736,10 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Card(
+                   
+
+
+                
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.0),
                   ),
@@ -737,21 +747,12 @@ class _HomePageState extends State<HomePage> {
                   //color: Colors.blue,
                   child: Wrap(
                     children: <Widget>[
-                       /*Image(
+                       Image(
                          image:AssetImage('assets/banks/$name.png'),
                          height: 80.0,
                          width: 80.0,
-                       ),*/
-                      SvgPicture.asset(
-                        'assets/svg_images/$name.svg',
-                        color: Colors.blue,
-                        semanticsLabel: 'Hobby',
-                        height: 80.0,
-                        width: 80.0,
-
-
-
-                      )
+                       )
+                     
                     ],
                   )),
             ],
@@ -881,7 +882,7 @@ class _HomePageState extends State<HomePage> {
                       side: BorderSide(color: Colors.blue)),
                 ),
                 InkWell(
-                  child: Icon(Icons.edit),
+                  child: Icon(Icons.edit,color:Colors.white),
 
                   onTap: () {
                     Navigator.push(context,
@@ -891,7 +892,7 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
                 InkWell(
-                  child: Icon(Icons.delete),
+                  child: Icon(Icons.delete,color:Colors.white),
 
                   onTap: () {
                     Navigator.push(
@@ -1002,18 +1003,19 @@ double screenWidth(BuildContext context) {
   return screenSize(context).width;
 }
 
-SvgPicture communication(String medium) {
-  /*return Image(
-    // Use the EvaIcons class for the IconData
-    image: AssetImage('assets/social_icons/$medium.png'),
+Container communication(String medium) {
+  return   Container(
     height: 40.0,
     width: 40.0,
-  );*/
-  return SvgPicture.asset(
-    'assets/svg_images/$medium.svg',
-    color: Colors.blue,
-    height: 30.0,
-    width : 30.0,
 
-  );
+  decoration: BoxDecoration(
+	shape: BoxShape.circle,
+	image: DecorationImage(
+	  image:AssetImage('assets/social_icons/$medium.png'),
+
+	  fit: BoxFit.fill
+	),
+  ),
+);
+  
 }
