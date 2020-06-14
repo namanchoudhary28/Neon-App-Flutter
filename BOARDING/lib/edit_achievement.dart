@@ -409,26 +409,7 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
 
                     submitAchievements(decider, _dates, _title, _description);
 
-                    Fluttertoast.showToast(
-                        msg: 'Your achievement is being edited...',
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.BOTTOM,
-                        timeInSecForIosWeb: 3,
-                        backgroundColor: Colors.grey,
-                        textColor: Colors.white,
-                        fontSize: 14.0
-                    );
 
-
-                    Fluttertoast.showToast(
-                        msg: 'Your achievement is now edited!',
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.BOTTOM,
-                        timeInSecForIosWeb: 2,
-                        backgroundColor: Colors.grey,
-                        textColor: Colors.white,
-                        fontSize: 14.0
-                    );
 
                     Navigator.push(
                         context, MaterialPageRoute(builder: (context) {

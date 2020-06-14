@@ -942,8 +942,8 @@ class _HomePageState extends State<HomePage> {
       "11": "Nov",
       "12": "Dec"
     };
-    print(date.substring(2));
-    print(months[date.substring(5, 7)]);
+    print(date);
+    //print(months[date.substring(5, 7)]);
     return Container(
       padding: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
@@ -956,14 +956,12 @@ class _HomePageState extends State<HomePage> {
         ),
         Column(
           children: <Widget>[
-            Text(months[date.substring(5, 7)]),
+            Text(date.substring(0, 3)),
             SizedBox(height: 10.0),
             Text(
-
-              date.substring(8, 10),
+              date.substring(date.length - 2, date.length),
               style: TextStyle(fontSize: 20),
             ),
-
           ],
         ),
 
