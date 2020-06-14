@@ -13,11 +13,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:BOARDING/loading_login.dart';
-
-
-
-
-
+import 'package:fluttertoast/fluttertoast.dart';
 
 class EDIT_ACHIEVEMENT extends StatefulWidget {
   final String title;
@@ -38,21 +34,21 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
     
 
      response1 = await http.post(
-      'http://10.0.2.2:8000/achievements',
-        headers: {
-          'Accept': 'application/json',
-          'Authorization': 'Token $token',
-        },
-        body: {
-          'date': _dates,
-          'title': _title,
-          'description': _description
-          //'status':_myActivityResult,
-        },
+       'http://192.168.1.9:8000/achievements',
+       headers: {
+         'Accept': 'application/json',
+         'Authorization': 'Token $token',
+       },
+       body: {
+         'date': _dates,
+         'title': _title,
+         'description': _description
+         //'status':_myActivityResult,
+       },
       );
     }
     else{
-      String url = 'http://10.0.2.2:8000/achievements' +
+      String url = 'http://192.168.1.9:8000/achievements/' +
           widget.title;
       response1 = await http.put(
         url,
@@ -404,16 +400,38 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
                   color:Colors.blue,
                   onPressed: () {
                     setState(() {
-                      _dates=to_dates;
-                      _title=titlecon.text;
-                      _description=descriptioncon.text;
-
+                      _dates = to_dates;
+                      _title = titlecon.text;
+                      _description = descriptioncon.text;
                     });
                     print(_dates);
                     print(_title);
 
-                    submitAchievements(decider,_dates, _title,_description);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    submitAchievements(decider, _dates, _title, _description);
+
+                    Fluttertoast.showToast(
+                        msg: 'Your achievement is being edited...',
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 3,
+                        backgroundColor: Colors.grey,
+                        textColor: Colors.white,
+                        fontSize: 14.0
+                    );
+
+
+                    Fluttertoast.showToast(
+                        msg: 'Your achievement is now edited!',
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 2,
+                        backgroundColor: Colors.grey,
+                        textColor: Colors.white,
+                        fontSize: 14.0
+                    );
+
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) {
                       return LoadData();
                     }));
                   },

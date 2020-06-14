@@ -86,10 +86,6 @@ class _deletepopupState extends State<deletepopup> {
                        MaterialPageRoute(builder: (context)=>LoadingScreen(widget.item,widget.params)
                      ),
                      );
-
-                        
-
-                         
                      },
                    ),
                  ),

@@ -39,7 +39,7 @@ class EDIT_HOBBYState extends State<EDIT_HOBBY> {
     var token = await storage.read(key: 'jwt');
 
     var response1 = await http.post(
-      'http://192.168.1.8:8000/hobbies',
+      'http://192.168.1.9:8000/hobbies',
       headers: {
         'Accept': 'application/json',
         'Authorization': 'Token $token',

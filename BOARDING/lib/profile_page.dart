@@ -64,7 +64,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int i;
   void initState(){
-     i=0;
+    i = 0;
   }
   @override
   Widget build(BuildContext context) {
@@ -200,7 +200,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SizedBox(width: (MediaQuery.of(context).size.width) - 350),
                   InkWell(
-                    child: Icon(Icons.add),
+                      child: Icon(Icons.add),
                       onTap: () {
                         Navigator.push(
                           context,
@@ -262,9 +262,6 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   skill_image_returner(name),
-                  
-
-
                 ],
               ),
               Column(
@@ -272,7 +269,8 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
 
-                  Text(name[0].toUpperCase()+name.substring(1).toLowerCase()+','+' '+competancy,
+                  Text(name[0].toUpperCase() + name.substring(1).toLowerCase() +
+                      ',' + ' ' + competancy,
                     style: TextStyle(
                       fontSize: 15.0,
                       fontFamily: 'sans-serif',
@@ -280,25 +278,27 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(
-                       height: 5.0,
+                    height: 5.0,
                   ),
-                 LinearPercentIndicator(
-                width: MediaQuery.of(context).size.width - 150,
-                animation: true,
-                lineHeight: 6.0,
-                animationDuration: 2500,
-                percent: percent,
-                center: Text(circle_text,style: TextStyle(color: Colors.white,fontSize: 5.0),),
-                linearStrokeCap: LinearStrokeCap.roundAll,
-                progressColor: Colors.blue,
-              ),
-                 
-                  
+                  LinearPercentIndicator(
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width - 150,
+                    animation: true,
+                    lineHeight: 6.0,
+                    animationDuration: 2500,
+                    percent: percent,
+                    center: Text(circle_text,
+                      style: TextStyle(color: Colors.white, fontSize: 5.0),),
+                    linearStrokeCap: LinearStrokeCap.roundAll,
+                    progressColor: Colors.blue,
+                  ),
 
 
                 ],
               ),
-            
+
 
             ],
           ),
@@ -365,7 +365,7 @@ class _HomePageState extends State<HomePage> {
               );
             },
           )
-          
+
         ],
       ),
     );
@@ -445,51 +445,52 @@ class _HomePageState extends State<HomePage> {
                     labelColor: Colors.black,
                     tabs: [
                       Tab(
-                         child: Row( mainAxisAlignment: MainAxisAlignment.spaceAround, children:<Widget>[
-                           Text("TOP SKILLS"),
-                           InkWell(
-                             child: Icon(
-                               Icons.add
-                             ),
-                             onTap: (){
-                               Navigator.push(
-                                 context,
-                                 MaterialPageRoute(builder: (context)=> MultiForm() ),
-                               );
-                             
-                             },
-                           )
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              Text("TOP SKILLS"),
+                              InkWell(
+                                child: Icon(
+                                    Icons.add
+                                ),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => MultiForm()),
+                                  );
+                                },
+                              )
 
-                         ]),
+                            ]),
                       ),
                       Tab(text: "PERSONALITY TRAITS"),
                     ]),
               ),
-            
-                
-                Container(
-                  height: 240,
-                  child: TabBarView(
-                    children: [
-                       skills,
-                      Container(
-                        height: 100.0,
-                        child: Text("Personality Traits Here!"),
-                      )
-                    ],
-                  ),
-                ),
-              
 
-             
+
+              Container(
+                height: 240,
+                child: TabBarView(
+                  children: [
+                    skills,
+                    Container(
+                      height: 100.0,
+                      child: Text("Personality Traits Here!"),
+                    )
+                  ],
+                ),
+              ),
+
+
             ],
           ),
         ),
 
       ],
     );
- 
-   
+
+
     final projects =Container(height: 210.0, child:Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
@@ -533,7 +534,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ],
     )
-     ); // MyProjects function is defined at the end. Usage Syntax: MyProjects(heading,subheading)
+    ); // MyProjects function is defined at the end. Usage Syntax: MyProjects(heading,subheading)
 /*
     final badges = Container(
       height: 240,
@@ -569,7 +570,6 @@ class _HomePageState extends State<HomePage> {
                       height: 40.0,
                       width: 40.0,
                     ),
-
                     onTap: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
@@ -590,8 +590,6 @@ class _HomePageState extends State<HomePage> {
                 for (Map<String, dynamic> item in widget.list_badges)
                   MyBadges(
                       item['title'], item['image_url'], item['description']),
-
-
               ],
             ),
           ),
@@ -625,26 +623,26 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        
-          
-            Container(
-            width: (MediaQuery
-                .of(context)
-                .size
-                .width),
-            padding: EdgeInsets.fromLTRB(16, 5, 16, 5),
-            child: Column(
-              children: <Widget>[
-                for (Map<String, dynamic> item in widget.list_achievements)
-                  _MyAchievemnts(context, item['date'], item['title'],
-                      item['description']),
-                //_MyAchievemnts(context, 'May 10', 'Testing', 'Testin text'),
-                //_MyAchievemnts(context, 'May 11', 'Testing2',
-                //   'Grammaticality Wise men speak because they have something to say; Fools because they have to say something'),
-              ],
-            ),
+
+
+        Container(
+          width: (MediaQuery
+              .of(context)
+              .size
+              .width),
+          padding: EdgeInsets.fromLTRB(16, 5, 16, 5),
+          child: Column(
+            children: <Widget>[
+              for (Map<String, dynamic> item in widget.list_achievements)
+                _MyAchievemnts(context, item['date'], item['title'],
+                    item['description']),
+              //_MyAchievemnts(context, 'May 10', 'Testing', 'Testin text'),
+              //_MyAchievemnts(context, 'May 11', 'Testing2',
+              //   'Grammaticality Wise men speak because they have something to say; Fools because they have to say something'),
+            ],
           ),
-       
+        ),
+
         Container(width: double.infinity),
       ],
     );
@@ -654,56 +652,53 @@ class _HomePageState extends State<HomePage> {
       children: <Widget>[
 
         ListView(
-      scrollDirection: Axis.vertical,
-      children: <Widget>[
-        
-        SizedBox(
-          height: 40,
-        ),
-        profile_picture,
-        SizedBox(
-          height: 4,
-        ),
-        name,
-        city,
-        social_icons,
-        SizedBox(
-          height: 10,
-        ),
-        about,
-        SizedBox(
-          height: 40,
-        ),
-        hobby,
-        tabs,
-        SizedBox(
-          height: 40,
-        ),
+          scrollDirection: Axis.vertical,
+          children: <Widget>[
 
-        projects,
-        SizedBox(
-          height: 30,
-        ),
-        //badges,
-        SizedBox(
-          height: 30,
-        ),
-        achievemnets,
-        
-       
+            SizedBox(
+              height: 40,
+            ),
+            profile_picture,
+            SizedBox(
+              height: 4,
+            ),
+            name,
+            city,
+            social_icons,
+            SizedBox(
+              height: 10,
+            ),
+            about,
+            SizedBox(
+              height: 40,
+            ),
+            hobby,
+            tabs,
+            SizedBox(
+              height: 40,
+            ),
 
-        
+            projects,
+            SizedBox(
+              height: 30,
+            ),
+            //badges,
+            SizedBox(
+              height: 30,
+            ),
+            achievemnets,
 
-      ],
-    ),
-    new Positioned(
-      
-       
-       child: Align(
-         alignment: Alignment.bottomCenter,
-         child: BottomNavigation(),
-       )
-      )
+
+          ],
+        ),
+        new Positioned(
+
+
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: BottomNavigation(),
+            )
+        )
 
       ],
     );
@@ -758,10 +753,8 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Card(
-                   
 
 
-                
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.0),
                   ),
@@ -769,12 +762,12 @@ class _HomePageState extends State<HomePage> {
                   //color: Colors.blue,
                   child: Wrap(
                     children: <Widget>[
-                       Image(
-                         image:AssetImage('assets/banks/$name.png'),
-                         height: 80.0,
-                         width: 80.0,
-                       )
-                     
+                      Image(
+                        image: AssetImage('assets/banks/$name.png'),
+                        height: 80.0,
+                        width: 80.0,
+                      )
+
                     ],
                   )),
             ],
@@ -850,13 +843,13 @@ class _HomePageState extends State<HomePage> {
     return Container(
       width: 250,
       decoration: BoxDecoration(
-        
-        borderRadius: BorderRadius.only(
+
+      borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),
             bottomLeft: Radius.circular(20),
             bottomRight: Radius.circular(20)),
-        
+
       ),
       child: Card(
         shape: RoundedRectangleBorder(
@@ -935,7 +928,22 @@ class _HomePageState extends State<HomePage> {
 
   Container _MyAchievemnts(
       context, String date, String heading, String subHeading) {
-      var months = {"01" : "Jan","02":"Feb","03" : "Mar","04":"April","05":"May","06":"June","07":"July","08":"Aug","09":"Sep","10":"Oct","11":"Nov","12":"Dec"};  
+    var months = {
+      "01": "Jan",
+      "02": "Feb",
+      "03": "Mar",
+      "04": "April",
+      "05": "May",
+      "06": "June",
+      "07": "July",
+      "08": "Aug",
+      "09": "Sep",
+      "10": "Oct",
+      "11": "Nov",
+      "12": "Dec"
+    };
+    print(date.substring(2));
+    print(months[date.substring(5, 7)]);
     return Container(
       padding: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
@@ -943,22 +951,22 @@ class _HomePageState extends State<HomePage> {
       //margin: EdgeInsets.symmetric(horizontal: 0.0, vertical: 5.0),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <
           Widget>[
-            SizedBox(
-                width: 0.7,
-            ),
-           Column(
-             children: <Widget>[
-               Text(months[date.substring(5,7)]),
-               SizedBox(height:10.0),
-               Text(
+        SizedBox(
+          width: 0.7,
+        ),
+        Column(
+          children: <Widget>[
+            Text(months[date.substring(5, 7)]),
+            SizedBox(height: 10.0),
+            Text(
 
-          date.substring(8,10),
-          style: TextStyle(fontSize: 17),
+              date.substring(8, 10),
+              style: TextStyle(fontSize: 20),
+            ),
+
+          ],
         ),
 
-             ],
-           ), 
-        
         Container(
           height: 135,
           width: screenWidth(context) - 140,
@@ -1039,18 +1047,17 @@ double screenWidth(BuildContext context) {
 }
 
 Container communication(String medium) {
-  return   Container(
+  return Container(
     height: 40.0,
     width: 40.0,
 
-  decoration: BoxDecoration(
-	shape: BoxShape.circle,
-	image: DecorationImage(
-	  image:AssetImage('assets/social_icons/$medium.png'),
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      image: DecorationImage(
+          image: AssetImage('assets/social_icons/$medium.png'),
 
-	  fit: BoxFit.fill
-	),
-  ),
-);
-  
+          fit: BoxFit.fill
+      ),
+    ),
+  );
 }

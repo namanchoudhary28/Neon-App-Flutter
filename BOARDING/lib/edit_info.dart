@@ -1,3 +1,4 @@
+import 'package:BOARDING/edit_loading.dart';
 import 'package:BOARDING/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboard/flutter_onboard.dart';
@@ -9,26 +10,23 @@ import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:BOARDING/main_loading_screen.dart';
 import 'package:BOARDING/loading_login.dart';
-
-
+import 'dart:io';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class EDITINFO extends StatefulWidget {
   final String name;
   final String aboutme;
   final String location;
-  final List communication; 
-  
-  const EDITINFO(this.name,this.aboutme,this.location,this.communication);
-  
-  
+  final List communication;
+
+  const EDITINFO(this.name, this.aboutme, this.location, this.communication);
 
   @override
   _EDITINFOState createState() => _EDITINFOState();
-
 }
 
 class _EDITINFOState extends State<EDITINFO> {
-  
+
   var _name;          //accesing name
   var _location;     //accesing location
   var _about;        //acessing about me
@@ -49,7 +47,7 @@ class _EDITINFOState extends State<EDITINFO> {
   final twittercon= new TextEditingController();
   final facebookcon= new TextEditingController();
 
-
+/*
   Future<String> submitNew(String _name, String _location, String _about, List<String>communications) async {
 
     List list_info;
@@ -57,7 +55,7 @@ class _EDITINFOState extends State<EDITINFO> {
     var token=await storage.read(key:'jwt');
 
     var response1=await http.put(
-        'http://10.0.2.2:8000/userinfo',
+      'http://192.168.1.9:8000/userinfo',
       headers: {
         'Accept': 'application/json',
         'Authorization': 'Token $token',
@@ -70,11 +68,11 @@ class _EDITINFOState extends State<EDITINFO> {
     );
     var  responsecommu;
     for(int i=0;i<mediums.length;i++){
-      
+
       if(communications[i]!=''){
         print(communications[i]);
         responsecommu=await http.post(
-          'http://192.168.1.8:8000/communications',
+          'http://192.168.1.9:8000/communications',
           headers: {
             'Accept': 'application/json',
             'Authorization': 'Token $token',
@@ -84,42 +82,43 @@ class _EDITINFOState extends State<EDITINFO> {
             'medium_url': communications[i],
           },
         );
-    print(responsecommu.body);
-       print("This is response for adding new communication methods");
+        print(responsecommu.body);
+        print("This is response for adding new communication methods");
       }
     }
 
     print(response1.body);
   }
+  */
+
   @override
-  void initState(){
+  void initState() {
     namecon.text = widget.name;
     aboutcon.text = widget.aboutme;
     locationcon.text = widget.location;
-    for(int i=0;i<widget.communication.length;i++){
-          String medium=  widget.communication[i]['medium'];
-          if(medium=='phone'){
-            phonecon.text = widget.communication[i]['medium_url'];
-          }
-          if(medium=='whatsapp'){
-            whatsappnocon.text = widget.communication[i]['medium_url'];
-          }
-          if(medium=='skype'){
-            skypenocon.text = widget.communication[i]['medium_url'];
-          }
-          if(medium=='facebook'){
-            facebookcon.text = widget.communication[i]['medium_url'];
-          }
-          if(medium=='twitter'){
-            twittercon.text = widget.communication[i]['medium_url'];
-          }
-          if(medium=='linkedin'){
-            linkedincon.text = widget.communication[i]['medium_url'];
-          }
-          
-
+    for (int i = 0; i < widget.communication.length; i++) {
+      String medium = widget.communication[i]['medium'];
+      if (medium == 'phone') {
+        phonecon.text = widget.communication[i]['medium_url'];
+      }
+      if (medium == 'whatsapp') {
+        whatsappnocon.text = widget.communication[i]['medium_url'];
+      }
+      if (medium == 'skype') {
+        skypenocon.text = widget.communication[i]['medium_url'];
+      }
+      if (medium == 'facebook') {
+        facebookcon.text = widget.communication[i]['medium_url'];
+      }
+      if (medium == 'twitter') {
+        twittercon.text = widget.communication[i]['medium_url'];
+      }
+      if (medium == 'linkedin') {
+        linkedincon.text = widget.communication[i]['medium_url'];
+      }
     }
   }
+
   @override
   Widget build(BuildContext context) {
     /*
@@ -524,7 +523,6 @@ class _EDITINFOState extends State<EDITINFO> {
                   ),
 
 
-
                   // onPressed: (){
 
                   //   // Navigator.push(context,MaterialPageRoute(builder: (context){
@@ -541,24 +539,50 @@ class _EDITINFOState extends State<EDITINFO> {
                       _name=namecon.text;
                       _location=locationcon.text;
                       _about=aboutcon.text;
-                      _phoneno=phonecon.text;
-                      _whatsappno=whatsappnocon.text;
-                      _skypeno=skypenocon.text;
-                      _linkedin=linkedincon.text;
-                      _twitter=twittercon.text;
-                      _facebook=facebookcon.text;
-
+                      _phoneno = phonecon.text;
+                      _whatsappno = whatsappnocon.text;
+                      _skypeno = skypenocon.text;
+                      _linkedin = linkedincon.text;
+                      _twitter = twittercon.text;
+                      _facebook = facebookcon.text;
                     });
                     print('something 1');
-                    List<String>commu = [_phoneno,_whatsappno,_skypeno,_linkedin,_twitter,_facebook];
-                    submitNew(_name, _location,_about,commu);
+                    List<String>commu = [
+                      _phoneno,
+                      _whatsappno,
+                      _skypeno,
+                      _linkedin,
+                      _twitter,
+                      _facebook
+                    ];
+                    print(_name);
+
+
+                    /*Fluttertoast.showToast(
+                        msg: 'Your info is being edited...',
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 3,
+                        backgroundColor: Colors.grey,
+                        textColor: Colors.white,
+                        fontSize: 14.0
+                    );
+
+                    //sleep(const Duration(seconds: 3));
+                    Fluttertoast.showToast(
+                        msg: 'Your info is now edited!',
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 2,
+                        backgroundColor: Colors.grey,
+                        textColor: Colors.white,
+                        fontSize: 14.0
+                    );*/
                     print('something2');
-                    Navigator.push(context,MaterialPageRoute(builder: (context){
-                    return LoadData();
-
-
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) {
+                      return LoadingScreenEdit(_name, _location, _about, commu);
                     }));
-
                   },
                   child: Text('Save Changes', style:TextStyle(color:Colors.white,fontSize: 20.0)
                   ),
@@ -582,20 +606,10 @@ class _EDITINFOState extends State<EDITINFO> {
           // ),
 
 
-
-
-
-
-
-
-
-
-
         ],
       ),
 
 
     );
-
   }
 }

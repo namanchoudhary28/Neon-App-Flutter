@@ -27,7 +27,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
 
     var res = await http.delete(
-        'http://10.0.2.2:8000/$name/' + title, headers: {
+        'http://192.168.1.9:8000/$name/' + title, headers: {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
     });
@@ -48,19 +48,17 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
   @override
   void initState(){
-    msg = 'please wait deleting your '+ widget.item+'....';
-    Future <String> f = deletehobby(widget.item,widget.params[0]);
-    
-
+    msg = 'Please wait deleting your ' + widget.item + '....';
+    Future<String> f = deletehobby(widget.item, widget.params[0]);
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue,
       body:Container(
-        
-        
-        child: Column(
+
+
+      child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children : <Widget>[

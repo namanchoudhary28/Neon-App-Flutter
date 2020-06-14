@@ -29,18 +29,14 @@ class _SkillLoadingScreenState extends State<SkillLoadingScreen> {
   
    
     var res = await http.post(
-        'http://10.0.2.2:8000/skills', headers: {
-          'Content-Type' : 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Token $token',
-
-    },
-     body:jsonEncode(<String,List<Map<String,String>>>{
-       "skills" : skills
-
-
-     }
-    ));
+        'http://192.168.1.9:8000/skills',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Token $token',
+        },
+        body:
+            jsonEncode(<String, List<Map<String, String>>>{"skills": skills}));
     print(res.body);
 
     Fluttertoast.showToast(
