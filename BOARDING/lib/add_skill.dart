@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:searchable_dropdown/searchable_dropdown.dart';
+import 'package:BOARDING/hobbies_adder.dart';
+import 'package:BOARDING/hobby_class.dart';
 // import 'package:searchable_dropdown/searchable_dropdown.dart';
 
 class ExampleNumber {
@@ -57,6 +59,7 @@ class _HobbyFormState extends State<HobbyForm> {
   ExampleNumber selectedNumber;
   List<int> selectedItems = [];                //accesing all hobbies id
   final List<DropdownMenuItem> items = [];
+  List<String>hobbies_name = List<String>();
 
   static const String appTitle = "Search Choices demo";
   final String loremIpsum =
@@ -80,6 +83,7 @@ class _HobbyFormState extends State<HobbyForm> {
               return (item.value == wordPair);
             }) ==
             -1) {
+              hobbies_name.add(wordPair);
           items.add(DropdownMenuItem(
             child: Text(wordPair),
             value: wordPair,
@@ -205,7 +209,7 @@ class _HobbyFormState extends State<HobbyForm> {
               ),
               body: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
-                child: Column(
+                child: Column(children: <Widget>[ Column(
                   children: widgets
                       .map((k, v) {
                         return (MapEntry(
@@ -238,6 +242,43 @@ class _HobbyFormState extends State<HobbyForm> {
                       .toList(),
                       
                 ),
+                Container(
+                  width: 150.0,
+                  child:
+                RaisedButton(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0)
+        ),
+        padding: EdgeInsets.all(15.0),
+        color: Colors.blue,
+        onPressed: () {
+          List<Map<String,String>> hobbies = List<Map<String,String>>();
+          for(int i=0;i<selectedItems.length;i++){
+            hobbies.add({"name" : hobbies_name[selectedItems[i]]});
+
+          }
+          print(hobbies);
+          Navigator.push(
+             context,
+             MaterialPageRoute(builder: (context) => HobbyLoadingScreen(hobbies)),
+          );
+
+
+        },
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+          Icon(
+            Icons.save,
+            color: Colors.white,
+          ),
+          SizedBox(
+            width: 10.0,
+          ),
+          Text("Save", style: TextStyle(color: Colors.white),)
+        ],),
+      ),
+                )
+                
+                ]
                 
                  
                 
@@ -248,6 +289,7 @@ class _HobbyFormState extends State<HobbyForm> {
     
          
             
+    )
     );
   }
 }

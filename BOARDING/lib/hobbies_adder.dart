@@ -8,32 +8,48 @@ import 'package:BOARDING/success_popup.dart';
 import 'package:BOARDING/loading_login.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:BOARDING/main_loading_screen.dart';
+import 'package:BOARDING/hobby_class.dart';
+import 'dart:convert';
 
-class LoadingScreen extends StatefulWidget {
-  final String item;
-  final List<String> params;
+class HobbyLoadingScreen extends StatefulWidget {
+ final List<Map<String,String>> hobbies;
 
-  const LoadingScreen(this.item, this.params);
+  const HobbyLoadingScreen(this.hobbies);
 
   @override
-  _LoadingScreenState createState() => _LoadingScreenState();
+  _HobbyLoadingScreenState createState() => _HobbyLoadingScreenState();
 }
 
-class _LoadingScreenState extends State<LoadingScreen> {
-  String msg;
+class _HobbyLoadingScreenState extends State<HobbyLoadingScreen> {
+  String msg ="Your hobbies are being added. please wait...";
 
-  Future<String> deletehobby(String name, String title) async {
+  Future<String> addhobbies(List<Map<String,String>> hobbies) async {
     var token = await storage.read(key: 'jwt');
 
+  var body = jsonEncode(<String,List<Map<String,String>>>{
+       "hobbies" : hobbies
 
-    var res = await http.delete(
-        'http://10.0.2.2:8000/$name/' + title, headers: {
+
+     }
+    );
+    print(body);
+    var res = await http.post(
+        'http://10.0.2.2:8000/hobbies', headers: {
+          'Content-Type' : 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Token $token',
-    });
+
+    },
+     body:jsonEncode(<String,List<Map<String,String>>>{
+       "hobbies" : hobbies
+
+
+     }
+    ));
+    print(res.body);
 
     Fluttertoast.showToast(
-        msg: name + ' is now deleted!',
+        msg: 'hobbies are added',
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 2,
@@ -42,15 +58,21 @@ class _LoadingScreenState extends State<LoadingScreen> {
         fontSize: 14.0
     );
 
+
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => LoadData()),);
+      return "success";
   }
   @override
   void initState(){
-    msg = 'please wait deleting your '+ widget.item+'....';
-    Future <String> f = deletehobby(widget.item,widget.params[0]);
+  
+    //Future <String> f = addhobbies(widget.hobbies);
     
+      print(widget.hobbies);
+      Future <String> res = addhobbies(widget.hobbies);
+      
+      
 
   }
   @override
@@ -58,8 +80,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     return Scaffold(
       backgroundColor: Colors.blue,
       body:Container(
-        
-        
+             
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
