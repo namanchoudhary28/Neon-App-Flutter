@@ -2,6 +2,9 @@
 
 import 'package:BOARDING/ADDSKILLN/multi_form.dart';
 import 'package:BOARDING/add_skill.dart';
+import 'package:BOARDING/bottom_navigation.dart';
+import 'package:BOARDING/drawer.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -18,6 +21,7 @@ import 'package:flutter/rendering.dart';
 
 
 import 'package:BOARDING/date_time_picker_widget2.dart';
+import 'package:scroll_app_bar/scroll_app_bar.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 //import 'package:BOARDING/grid_hobby.dart';
 import 'package:BOARDING/addproject.dart';
@@ -486,7 +490,7 @@ class _HomePageState extends State<HomePage> {
     );
  
    
-    final projects = Column(
+    final projects =Container(height: 210.0, child:Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Padding(
@@ -528,7 +532,8 @@ class _HomePageState extends State<HomePage> {
           width: double.infinity,
         ),
       ],
-    ); // MyProjects function is defined at the end. Usage Syntax: MyProjects(heading,subheading)
+    )
+     ); // MyProjects function is defined at the end. Usage Syntax: MyProjects(heading,subheading)
 /*
     final badges = Container(
       height: 240,
@@ -599,7 +604,7 @@ class _HomePageState extends State<HomePage> {
         Row(
           children: <Widget>[
             Padding(
-                padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                padding: EdgeInsets.fromLTRB(15, 0, 15, 10),
                 child: Text(
                   'ACHIEVEMENTS',
                   style: TextStyle(
@@ -620,18 +625,9 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        ShowChild(
-          indicator: Padding(
-            padding: EdgeInsets.all(8),
-            child: Text(
-              "View More",
-              style: TextStyle(
-                color: Colors.blue,
-                decoration: TextDecoration.underline,
-              ),
-            ),
-          ),
-          child: Container(
+        
+          
+            Container(
             width: (MediaQuery
                 .of(context)
                 .size
@@ -648,14 +644,19 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-        ),
+       
         Container(width: double.infinity),
       ],
     );
 
-    final body = ListView(
+    final body =  Stack(
+
+      children: <Widget>[
+
+        ListView(
       scrollDirection: Axis.vertical,
       children: <Widget>[
+        
         SizedBox(
           height: 40,
         ),
@@ -688,13 +689,34 @@ class _HomePageState extends State<HomePage> {
           height: 30,
         ),
         achievemnets,
+        
+       
+
+        
+
+      ],
+    ),
+    new Positioned(
+      
+       
+       child: Align(
+         alignment: Alignment.bottomCenter,
+         child: BottomNavigation(),
+       )
+      )
+
       ],
     );
 
     return Scaffold(
+      appBar: ScrollAppBar(
+        controller: ScrollController(),
+        title: Text("Neon"),
+      ),
       body: SafeArea(
         child: body,
       ),
+      drawer: MainDrawer(),
     );
   }
 
