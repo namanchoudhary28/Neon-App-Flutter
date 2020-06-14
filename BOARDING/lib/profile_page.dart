@@ -935,6 +935,7 @@ class _HomePageState extends State<HomePage> {
 
   Container _MyAchievemnts(
       context, String date, String heading, String subHeading) {
+      var months = {"01" : "Jan","02":"Feb","03" : "Mar","04":"April","05":"May","06":"June","07":"July","08":"Aug","09":"Sep","10":"Oct","11":"Nov","12":"Dec"};  
     return Container(
       padding: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
@@ -942,10 +943,22 @@ class _HomePageState extends State<HomePage> {
       //margin: EdgeInsets.symmetric(horizontal: 0.0, vertical: 5.0),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <
           Widget>[
-        Text(
-          date,
+            SizedBox(
+                width: 0.7,
+            ),
+           Column(
+             children: <Widget>[
+               Text(months[date.substring(5,7)]),
+               SizedBox(height:10.0),
+               Text(
+
+          date.substring(8,10),
           style: TextStyle(fontSize: 17),
         ),
+
+             ],
+           ), 
+        
         Container(
           height: 135,
           width: screenWidth(context) - 140,
