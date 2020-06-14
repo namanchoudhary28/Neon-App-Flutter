@@ -65,7 +65,7 @@ class _HobbyFormState extends State<HobbyForm> {
   static const String appTitle = "Search Choices demo";
   final String loremIpsum =
       // "Acting ,Archery, Board games";
-      " Archery Acting Camping Cycling Dancing Drawing Surfing Writing Board, Games Calligraphy  , Cooking  Dance Drama  DIY  Fishing  Gardening.  Hiking   Hunting , IceSkating Puzzle Solving Knitting  Kite flying lego building Magic . Model building origami  playing music Reading  Singing  Table tennis urban exploration volley ball. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+      " Archery , Acting , Camping , Cycling , Dancing , Drawing , Surfing , Writing , Board, Games, Calligraphy  , Cooking  Dance Drama  DIY  Fishing  Gardening.  Hiking   Hunting , IceSkating Puzzle Solving Knitting  Kite flying lego building Magic . Model building origami  playing music Reading  Singing  Table tennis urban exploration volley ball. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
   @override
   void initState() {
