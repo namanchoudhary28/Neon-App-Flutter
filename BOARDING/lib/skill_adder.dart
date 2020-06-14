@@ -11,45 +11,40 @@ import 'package:BOARDING/main_loading_screen.dart';
 import 'package:BOARDING/hobby_class.dart';
 import 'dart:convert';
 
-class HobbyLoadingScreen extends StatefulWidget {
- final List<Map<String,String>> hobbies;
+class SkillLoadingScreen extends StatefulWidget {
+ final List<Map<String,String>> skills;
 
-  const HobbyLoadingScreen(this.hobbies);
+  const SkillLoadingScreen(this.skills);
 
   @override
-  _HobbyLoadingScreenState createState() => _HobbyLoadingScreenState();
+  _SkillLoadingScreenState createState() => _SkillLoadingScreenState();
 }
 
-class _HobbyLoadingScreenState extends State<HobbyLoadingScreen> {
-  String msg ="Your hobbies are being added. please wait...";
+class _SkillLoadingScreenState extends State<SkillLoadingScreen> {
+  String msg ="Your Skills are being added. please wait...";
 
-  Future<String> addhobbies(List<Map<String,String>> hobbies) async {
+  Future<String> addskills(List<Map<String,String>> skills) async {
     var token = await storage.read(key: 'jwt');
 
-  var body = jsonEncode(<String,List<Map<String,String>>>{
-       "hobbies" : hobbies
-
-
-     }
-    );
-    print(body);
+  
+   
     var res = await http.post(
-        'http://10.0.2.2:8000/hobbies', headers: {
+        'http://10.0.2.2:8000/skills', headers: {
           'Content-Type' : 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Token $token',
 
     },
      body:jsonEncode(<String,List<Map<String,String>>>{
-       "hobbies" : hobbies
+       "skills" : skills
 
 
      }
     ));
-    
+    print(res.body);
 
     Fluttertoast.showToast(
-        msg: 'hobbies are added',
+        msg: 'New Skills are added',
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 2,
@@ -69,8 +64,8 @@ class _HobbyLoadingScreenState extends State<HobbyLoadingScreen> {
   
     //Future <String> f = addhobbies(widget.hobbies);
     
-      print(widget.hobbies);
-      Future <String> res = addhobbies(widget.hobbies);
+      print(widget.skills);
+      Future <String> res = addskills(widget.skills);
       
       
 

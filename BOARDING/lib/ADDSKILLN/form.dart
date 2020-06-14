@@ -68,7 +68,7 @@ class _UserFormState extends State<UserForm> {
                       val.length > 2 ? null : 'Type atleast one level',
                   decoration: InputDecoration(
                     labelText: 'Level',
-                    hintText: 'Beginner,Moderate,Advanced,Pro',
+                    hintText: 'Beginner,Intermediate,Advanced,Pro',
                     icon: Icon(Icons.arrow_forward),
                     isDense: true,
                   ),

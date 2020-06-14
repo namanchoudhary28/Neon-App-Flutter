@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:BOARDING/ADDSKILLN/empty_state.dart';
 import 'package:BOARDING/ADDSKILLN/form.dart';
 import 'package:BOARDING/ADDSKILLN/user.dart';
+import 'package:BOARDING/skill_adder.dart';
 
 class MultiForm extends StatefulWidget {
   @override
@@ -95,6 +96,8 @@ class _MultiFormState extends State<MultiForm> {
       users.forEach((form) => allValid = allValid && form.isValid());
       if (allValid) {
         var data = users.map((it) => it.user).toList();
+        print(data[0].email); //level
+        print(data[0].fullName);//name
         
         Navigator.push(
           context,
@@ -102,9 +105,60 @@ class _MultiFormState extends State<MultiForm> {
             fullscreenDialog: true,
             builder: (_) => Scaffold(
                   appBar: AppBar(
-                    title: Text('List of Skills'),
+                    title: Row(
+                      
+                      children: <Widget>[
+                        Text("Skills"),
+                        SizedBox(
+                             width: 130.0,
+                        ),
+                        RaisedButton(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0)
+        ),
+        padding: EdgeInsets.all(15.0),
+        color: Colors.blue,
+        onPressed: () {
+          List <Map<String,String>> skills = List<Map<String,String>>();
+          for(int i=0;i<data.length;i++){
+            skills.add({"name" : data[i].fullName,"competancy" : data[i].email});
+
+            }
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context)=>SkillLoadingScreen(skills) ),
+
+
+              );
+
+        
+
+
+
+
+          
+
+
+        },
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+          Icon(
+            Icons.save,
+            color: Colors.white,
+          ),
+          SizedBox(
+            width: 10.0,
+          ),
+          Text("Save", style: TextStyle(color: Colors.white),)
+        ],),
+      ),
+        
+
+                      ],
+                    )
+
                   ),
-                  body: ListView.builder(
+                  body: 
+                    ListView.builder(
                     itemCount: data.length,
                     itemBuilder: (_, i) => ListTile(
                           leading: CircleAvatar(
@@ -115,8 +169,18 @@ class _MultiFormState extends State<MultiForm> {
                         ),
                         
                   ),
+
+                 
+                )
+                  
+                  
+                
+                  
+
+                   
                 ),
-          ),
+          
+        
         );
       }
     }
