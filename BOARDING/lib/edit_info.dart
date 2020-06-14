@@ -57,7 +57,7 @@ class _EDITINFOState extends State<EDITINFO> {
     var token=await storage.read(key:'jwt');
 
     var response1=await http.put(
-        'http://192.168.1.8:8000/userinfo',
+        'http://10.0.2.2:8000/userinfo',
       headers: {
         'Accept': 'application/json',
         'Authorization': 'Token $token',

@@ -26,6 +26,7 @@ class ExampleNumber {
     13: "thirteen",
     14: "fourteen",
     15: "fifteen",
+    
   };
 
   String get numberString {
@@ -64,7 +65,7 @@ class _HobbyFormState extends State<HobbyForm> {
   static const String appTitle = "Search Choices demo";
   final String loremIpsum =
       // "Acting ,Archery, Board games";
-      " Archery Acting  Board, Games Calligraphy  , Cooking  Dance Drama  DIY  Fishing  Gardening.  Hiking   Hunting , IceSkating Puzzle Solving Knitting  Kite flying lego building Magic . Model building origami  playing music Reading  Singing  Table tennis urban exploration volley ball. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+      " Archery Acting Camping Cycling Dancing Drawing Surfing Writing Board, Games Calligraphy  , Cooking  Dance Drama  DIY  Fishing  Gardening.  Hiking   Hunting , IceSkating Puzzle Solving Knitting  Kite flying lego building Magic . Model building origami  playing music Reading  Singing  Table tennis urban exploration volley ball. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
   @override
   void initState() {
@@ -252,6 +253,7 @@ class _HobbyFormState extends State<HobbyForm> {
         padding: EdgeInsets.all(15.0),
         color: Colors.blue,
         onPressed: () {
+          print(hobbies_name.length);
           List<Map<String,String>> hobbies = List<Map<String,String>>();
           for(int i=0;i<selectedItems.length;i++){
             hobbies.add({"name" : hobbies_name[selectedItems[i]]});
