@@ -13,6 +13,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:BOARDING/loading_login.dart';
+import 'package:BOARDING/edit_achievement_loading.dart';
+
 import 'package:fluttertoast/fluttertoast.dart';
 
 class EDIT_ACHIEVEMENT extends StatefulWidget {
@@ -25,14 +27,11 @@ class EDIT_ACHIEVEMENT extends StatefulWidget {
 
 class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
   DateTime _selectedDateTime = DateTime.now();
-
+/*
   Future<String> submitAchievements(int decider,String _dates, String _title,String _description) async {
     var token = await storage.read(key: 'jwt');
     var response1;
     if(decider==1){
-
-    
-
      response1 = await http.post(
        'http://192.168.1.9:8000/achievements',
        headers: {
@@ -72,7 +71,7 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
     
   }
 
-
+*/
 
   @override
   void onBirthdayChange(DateTime birthday) {
@@ -81,22 +80,20 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
     });
   }
 
-
+  String title_old='';
   var _title;       //accessing title
 
   var _description;
   int decider;     //accessing description
-
-
   final titlecon= new TextEditingController();
-
-
   final descriptioncon= new TextEditingController();
   @override
   void initState(){
+
     titlecon.text = widget.title;
     descriptioncon.text = widget.description;
     if(widget.title==''){
+      print(widget.title);
       decider=1;
     }
     else{
@@ -403,17 +400,18 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
                       _dates = to_dates;
                       _title = titlecon.text;
                       _description = descriptioncon.text;
+                      title_old=widget.title;
                     });
-                    print(_dates);
+                    print(decider);
                     print(_title);
 
-                    submitAchievements(decider, _dates, _title, _description);
+                    //submitAchievements(decider, _dates, _title, _description);
 
 
 
                     Navigator.push(
                         context, MaterialPageRoute(builder: (context) {
-                      return LoadData();
+                      return LoadingScreenEditAchievement(decider,_dates,_title,_description,title_old);
                     }));
                   },
 
