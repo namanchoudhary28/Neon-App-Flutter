@@ -902,7 +902,7 @@ class _HomePageState extends State<HomePage> {
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                          return new EDIT_ACHIEVEMENT(name, _start);
+                          return MyApp(/*name, _start*/);
                         }));
                   },
                 ),

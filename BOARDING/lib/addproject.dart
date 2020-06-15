@@ -17,6 +17,25 @@ import 'package:cupertino_date_textbox/cupertino_date_textbox.dart';
 // import 'package:flutter/material.dart';
 
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';import 'package:BOARDING/main_loading_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_onboard/flutter_onboard.dart';
+import 'package:provider/provider.dart';
+import 'package:BOARDING/signup.dart';
+import 'package:BOARDING/login_page.dart';
+import 'package:BOARDING/profile_page.dart';
+
+// import 'package:BOARDING/dropdown.dart';
+import 'package:dropdown_formfield/dropdown_formfield.dart';
+import 'package:grouped_buttons/grouped_buttons.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:BOARDING/loading_login.dart';
+import 'package:cupertino_date_textbox/cupertino_date_textbox.dart';
+// import 'package:flutter/material.dart';
+
+import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 
 ////////////////.................COMMENTS FOR ACCESSING INFO.................////////////////////
@@ -47,6 +66,38 @@ class _MyAppState extends State<MyApp> {
 
   final assignedtocon = new TextEditingController();
   final descriptioncon = new TextEditingController();
+
+
+  /////////////////................15june2020......................................
+  ///
+  /////accesing vaiables new start/.....
+  var _jkval2;            //accessing yes no
+
+  var _iclientlocation2;
+  var _ilocationofprojectexecution2;
+  var _iindustryoftheclient2;
+  var _iroleintheproject2;
+  var _iteamsize2;
+  var _itoolsworked2;
+  /////accesing vaiables new/.....
+  final iclientlocation1= new TextEditingController();
+  final ilocationofprojectexecution1= new TextEditingController();
+  final iindustryoftheclient1= new TextEditingController();
+  final iroleintheproject1= new TextEditingController();
+  final itoolsworked1=new TextEditingController();
+  final iteamsize1= new TextEditingController();
+  String _jk2="";
+
+  // String _myActivityResult;         //accessing Dropdown value
+  void _pilihjk2(String value){
+    setState(() {
+      _jk2=value;
+    });
+  }
+
+
+
+  /////////////////////...............................................
   String _jk = "";
   String _myActivity;
 
@@ -56,7 +107,7 @@ class _MyAppState extends State<MyApp> {
     var token = await storage.read(key: 'jwt');
 
     var response1 = await http.post(
-      'http://10.0.2.2:8000/project/0',
+      'http://192.168.1.9:8000/project/0',
       headers: {
         'Accept': 'application/json',
         'Authorization': 'Token $token',
@@ -113,6 +164,326 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    /////////////////////////15 JUNE 2020.....................///////////////////////////
+    final hclientlocation = Padding(
+      padding: EdgeInsets.all(20),
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.le,
+        children: <Widget>[
+          InkWell(
+            child: Image.network('https://img.icons8.com/windows/32/000000/marker.png'),
+            onTap: (){
+              //      Navigator.push(context,MaterialPageRoute(builder: (context){
+              // return new MyApp();
+              // }));
+            },
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            'Client Location',
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+        ],
+      ),
+    );
+    final hlocationofprojectexecution = Padding(
+      padding: EdgeInsets.all(20),
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.le,
+        children: <Widget>[
+          InkWell(
+            child: Image.network('https://img.icons8.com/windows/32/000000/marker.png'),
+            onTap: (){
+              //      Navigator.push(context,MaterialPageRoute(builder: (context){
+              // return new MyApp();
+              // }));
+            },
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            'Location of Project Execution',
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+        ],
+      ),
+    );
+    final hindustryoftheclient = Padding(
+      padding: EdgeInsets.all(20),
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.le,
+        children: <Widget>[
+          InkWell(
+            child: Image.network('https://img.icons8.com/windows/32/000000/enterprise-resource-planning.png'),
+            onTap: (){
+              //      Navigator.push(context,MaterialPageRoute(builder: (context){
+              // return new MyApp();
+              // }));
+            },
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            'Client Industry',
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+        ],
+      ),
+    );
+    final hroleinproject = Padding(
+      padding: EdgeInsets.all(20),
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.le,
+        children: <Widget>[
+          InkWell(
+            child: Image.network('https://img.icons8.com/windows/32/000000/group-of-projects.png'),
+            onTap: (){
+              //      Navigator.push(context,MaterialPageRoute(builder: (context){
+              // return new MyApp();
+              // }));
+            },
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            'Role in project ',
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+        ],
+      ),
+    );
+    final htoolsworked = Padding(
+      padding: EdgeInsets.all(20),
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.le,
+        children: <Widget>[
+          InkWell(
+            child: Image.network('https://img.icons8.com/windows/32/000000/maintenance.png'),
+            onTap: (){
+              //      Navigator.push(context,MaterialPageRoute(builder: (context){
+              // return new MyApp();
+              // }));
+            },
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            'Tools Worked',
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+        ],
+      ),
+    );
+    final hteamsize = Padding(
+      padding: EdgeInsets.all(20),
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.le,
+        children: <Widget>[
+          InkWell(
+            child: Image.network('https://img.icons8.com/windows/32/000000/conference-background-selected.png'),
+            onTap: (){
+              //      Navigator.push(context,MaterialPageRoute(builder: (context){
+              // return new MyApp();
+              // }));
+            },
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            'Team Size',
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+        ],
+      ),
+    );
+    final hteammembers = Padding(
+      padding: EdgeInsets.all(20),
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.le,
+        children: <Widget>[
+          InkWell(
+            child: Image.network('https://img.icons8.com/windows/32/000000/add.png'),
+            onTap: (){
+              //      Navigator.push(context,MaterialPageRoute(builder: (context){
+              // return new MyApp();
+              // }));
+            },
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            'Add Team Members ',
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+        ],
+      ),
+    );
+    final hcasestudysubmission = Padding(
+      padding: EdgeInsets.all(20),
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.le,
+        children: <Widget>[
+          InkWell(
+            child: Image.network('https://img.icons8.com/windows/32/000000/submit-for-approval.png'),
+            onTap: (){
+              //      Navigator.push(context,MaterialPageRoute(builder: (context){
+              // return new MyApp();
+              // }));
+            },
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            'Case Study Submitted',
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+        ],
+      ),
+    );
+
+    final iclientlocation = Padding(
+      padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
+      child: TextFormField(
+        controller: iclientlocation1,
+        decoration: InputDecoration(labelText: 'location',
+            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)
+        ),
+        // maxLength: 10,
+        validator: (String value) {
+          if (value.isEmpty) {
+            return 'Name is Required';
+          }
+          return null;
+        },
+        // onSaved: (String value) {
+        //   _name = value;
+        // },
+      ),
+    );
+    final ilocationofprojectexecution = Padding(
+      padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
+      child: TextFormField(
+        controller: ilocationofprojectexecution1,
+        decoration: InputDecoration(labelText: 'location',
+            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)
+        ),
+        // maxLength: 10,
+        validator: (String value) {
+          if (value.isEmpty) {
+            return 'Name is Required';
+          }
+          return null;
+        },
+        // onSaved: (String value) {
+        //   _name = value;
+        // },
+      ),
+    );
+    final iindustryoftheclient = Padding(
+      padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
+      child: TextFormField(
+        controller: iindustryoftheclient1,
+        decoration: InputDecoration(labelText: 'industry name',
+            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)
+        ),
+        // maxLength: 10,
+        validator: (String value) {
+          if (value.isEmpty) {
+            return 'Name is Required';
+          }
+          return null;
+        },
+        // onSaved: (String value) {
+        //   _name = value;
+        // },
+      ),
+    );
+    final iroleintheproject = Padding(
+      padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
+      child: TextFormField(
+        controller: iroleintheproject1,
+        decoration: InputDecoration(labelText: 'Name',
+            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)
+        ),
+        // maxLength: 10,
+        validator: (String value) {
+          if (value.isEmpty) {
+            return 'Name is Required';
+          }
+          return null;
+        },
+        // onSaved: (String value) {
+        //   _name = value;
+        // },
+      ),
+    );
+    final itoolsworked = Padding(
+      padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
+      child: TextFormField(
+        controller: itoolsworked1,
+        decoration: InputDecoration(labelText: 'Name',
+            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)
+        ),
+        // maxLength: 10,
+        validator: (String value) {
+          if (value.isEmpty) {
+            return 'Name is Required';
+          }
+          return null;
+        },
+        // onSaved: (String value) {
+        //   _name = value;
+        // },
+      ),
+    );
+    final iteamsize = Padding(
+      padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
+      child: TextFormField(
+        controller: iteamsize1,
+        keyboardType: TextInputType.number,
+        decoration: InputDecoration(labelText: 'Name',
+            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)
+        ),
+        // maxLength: 10,
+        validator: (String value) {
+          if (value.isEmpty) {
+            return 'Name is Required';
+          }
+          return null;
+        },
+        // onSaved: (String value) {
+        //   _name = value;
+        // },
+      ),
+    );
+
+
+    ///................................***************************....................
     //////........................DATE.........................//////////
     ///
     ///
@@ -466,6 +837,24 @@ class _MyAppState extends State<MyApp> {
                 ])),
           ),
 /////........................DATE2
+          ///
+//////////............15june.................
+          hindustryoftheclient,
+          iindustryoftheclient,
+          hroleinproject,
+          iroleintheproject,
+          htoolsworked,
+          itoolsworked,
+          hteamsize,
+          iteamsize,
+          SizedBox(
+            height:20,
+          ),
+          hteammembers,
+          SizedBox(
+            height:10,
+          ),
+          ///////////////.............15jun..
           Container(
             child: Form(
               key: formKey,
@@ -571,7 +960,29 @@ class _MyAppState extends State<MyApp> {
           SizedBox(
             height: 20,
           ),
+          /////////////...............15june2020...............
+          hcasestudysubmission,
+          new RadioListTile(
+            value: "Yes",
+            title: new Text("Yes"),
+            groupValue: _jk2,
+            onChanged: (String value){
+              _pilihjk2(value);
+            },
+            activeColor: Colors.blue,
 
+          ),
+          new RadioListTile(
+            value: "No",
+            title: new Text("No"),
+            groupValue: _jk2,
+            onChanged: (String value){
+              _pilihjk2(value);
+            },
+            activeColor: Colors.blue,
+
+          ),
+          ///.................15june
           descriptionname,
           descriptioninfo,
           checklistname,
@@ -627,6 +1038,16 @@ class _MyAppState extends State<MyApp> {
                       _projectinfo = projectinfocon.text;
                       _assignedto = assignedtocon.text;
                       _description = descriptioncon.text;
+                      ////////////15jun2020..............
+                      _jkval2=_jk2;
+
+                      _iclientlocation2=iclientlocation1.text;
+                      _ilocationofprojectexecution2=ilocationofprojectexecution1.text;
+                      _iindustryoftheclient2=iindustryoftheclient1.text;
+                      _iroleintheproject2=iroleintheproject1.text;
+                      _iteamsize2= iteamsize1.text;
+                      _itoolsworked2=itoolsworked1.text;
+                      /////..................****************
                     });
                     print(_myActivityResult);
 
