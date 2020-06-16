@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:BOARDING/signup.dart';
 import 'package:BOARDING/login_page.dart';
 import 'package:BOARDING/profile_page.dart';
-
+import 'package:BOARDING/project_adder.dart';
 // import 'package:BOARDING/dropdown.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
@@ -79,6 +79,8 @@ class _MyAppState extends State<MyApp> {
   var _iroleintheproject2;
   var _iteamsize2;
   var _itoolsworked2;
+  var _iclientname2;
+  
   /////accesing vaiables new/.....
   final iclientlocation1= new TextEditingController();
   final ilocationofprojectexecution1= new TextEditingController();
@@ -86,6 +88,7 @@ class _MyAppState extends State<MyApp> {
   final iroleintheproject1= new TextEditingController();
   final itoolsworked1=new TextEditingController();
   final iteamsize1= new TextEditingController();
+  final iclientname1 = new TextEditingController();
   String _jk2="";
 
   // String _myActivityResult;         //accessing Dropdown value
@@ -102,26 +105,7 @@ class _MyAppState extends State<MyApp> {
   String _myActivity;
 
   // String _myActivityResult;         //accessing Dropdown value
-  Future<String> submitProjects(String _projectinfo, String _description,
-      String _myActivityResult, String _start, String _end) async {
-    var token = await storage.read(key: 'jwt');
 
-    var response1 = await http.post(
-      'http://192.168.1.9:8000/project/0',
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Token $token',
-      },
-      body: {
-        'info': _projectinfo,
-        'description': _description,
-        'status': _myActivityResult,
-        'starts': _start,
-        'ends': _end,
-      },
-    );
-    print(response1.body);
-  }
 
   void _pilihjk(String value) {
     setState(() {
@@ -164,14 +148,17 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+
+
     /////////////////////////15 JUNE 2020.....................///////////////////////////
-    final hclientlocation = Padding(
+    ///
+    final hclientname = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
         // mainAxisAlignment: MainAxisAlignment.le,
         children: <Widget>[
           InkWell(
-            child: Image.network('https://img.icons8.com/windows/32/000000/marker.png'),
+            child: Image.network('https://img.icons8.com/material-sharp/48/000000/name.png'),
             onTap: (){
               //      Navigator.push(context,MaterialPageRoute(builder: (context){
               // return new MyApp();
@@ -182,7 +169,7 @@ class _MyAppState extends State<MyApp> {
             width: 10,
           ),
           Text(
-            'Client Location',
+            'Client Name',
             style: TextStyle(
               fontSize: 18,
             ),
@@ -215,6 +202,32 @@ class _MyAppState extends State<MyApp> {
         ],
       ),
     );
+    final hclientlocation = Padding(
+      padding: EdgeInsets.all(20),
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.le,
+        children: <Widget>[
+          InkWell(
+            child: Image.network('https://img.icons8.com/windows/32/000000/marker.png'),
+            onTap: (){
+              //      Navigator.push(context,MaterialPageRoute(builder: (context){
+              // return new MyApp();
+              // }));
+            },
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            'Client Location',
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+        ],
+      ),
+    );
+    
     final hindustryoftheclient = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
@@ -365,7 +378,25 @@ class _MyAppState extends State<MyApp> {
         ],
       ),
     );
-
+final iclientname = Padding(
+      padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
+      child: TextFormField(
+        controller: iclientname1,
+        decoration: InputDecoration(labelText: 'name',
+            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)
+        ),
+        // maxLength: 10,
+        validator: (String value) {
+          if (value.isEmpty) {
+            return 'Name is Required';
+          }
+          return null;
+        },
+        // onSaved: (String value) {
+        //   _name = value;
+        // },
+      ),
+    );
     final iclientlocation = Padding(
       padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
       child: TextFormField(
@@ -839,6 +870,12 @@ class _MyAppState extends State<MyApp> {
 /////........................DATE2
           ///
 //////////............15june.................
+          hclientname,
+          iclientname,
+          hclientlocation,
+          iclientlocation,
+          hlocationofprojectexecution,
+          ilocationofprojectexecution,
           hindustryoftheclient,
           iindustryoftheclient,
           hroleinproject,
@@ -1040,24 +1077,38 @@ class _MyAppState extends State<MyApp> {
                       _description = descriptioncon.text;
                       ////////////15jun2020..............
                       _jkval2=_jk2;
-
+                       
                       _iclientlocation2=iclientlocation1.text;
                       _ilocationofprojectexecution2=ilocationofprojectexecution1.text;
                       _iindustryoftheclient2=iindustryoftheclient1.text;
                       _iroleintheproject2=iroleintheproject1.text;
                       _iteamsize2= iteamsize1.text;
                       _itoolsworked2=itoolsworked1.text;
-                      /////..................****************
-                    });
-                    print(_myActivityResult);
+                      _iclientname2 = iclientname1.text;
+                      print(_jkval); //internal/external;
+                      print(_jkval2); //yes/no;
+                      print(_start);
+                      print(_end);
+                      print(_myActivity); 
+                      Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context)=>ProjectLoadingScreen(_projectinfo,_start,_end,_myActivity,_description,_iclientname2,_iclientlocation2,_iindustryoftheclient2,_ilocationofprojectexecution2,_iteamsize2, _jkval2,_iroleintheproject2))
+                      
+                      );
+                       //status
 
-                    submitProjects(
+                      
+                                            /////..................****************
+                    });
+                   
+
+                    /*submitProjects(
                         _projectinfo, _description, _myActivityResult, _start,
                         _end);
                     Navigator.push(
                         context, MaterialPageRoute(builder: (context) {
                       return LoadData();
-                    }));
+                    }));*/
                   },
 
                   // _jkval=_jk;

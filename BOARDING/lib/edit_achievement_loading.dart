@@ -31,7 +31,7 @@ class _LoadingScreenEditAchievementState extends State<LoadingScreenEditAchievem
     var response1;
     if(decider==1){
       response1 = await http.post(
-        'http://192.168.1.9:8000/achievements',
+        'http://10.0.2.2:8000/achievements',
         headers: {
           'Accept': 'application/json',
           'Authorization': 'Token $token',
