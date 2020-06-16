@@ -522,7 +522,7 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               for (Map<String, dynamic> item in widget.list_projects)
                 MyProjects(item['info'], item['starts'], item['ends'],
-                    item['description'], item['status']),
+                    item['description'], item['status'],item['client_name'], item['client_location'], item['location_of_project_execution'],item['Industry_of_the_client'],item['Role'], item['team_size'],item['case_study_submitted']),
 
               //MyProjects('Booking 2', '1 May 2020'),
               //MyProjects('Booking 3', '1 May 2021'),
@@ -839,7 +839,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Container MyProjects(String name, String _start, String _end,
-      String description, String status) {
+      String description, String status, String client_name,String client_location,String location_of_project_execution,String Industry_of_the_client,String Role,String team_size,String case_study_submitted) {
     return Container(
       width: 250,
       decoration: BoxDecoration(
@@ -878,7 +878,8 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => projectinfo()),
+                      MaterialPageRoute(builder: (context) => projectinfo(name,_start,_end,description,status,client_name,client_location,location_of_project_execution,Industry_of_the_client,Role,team_size,case_study_submitted)
+                    )
                     );
                   },
                   child: Row(

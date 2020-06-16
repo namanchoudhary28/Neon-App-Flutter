@@ -3,6 +3,19 @@ import 'package:BOARDING/collabpopup.dart';
 import 'package:BOARDING/skillpopup.dart';
 
 class projectinfo extends StatefulWidget {
+  final String name;
+  final String start;
+  final String end;
+  final String status;
+  final String des;
+   final String client_name;
+  final String client_location;
+  final String client_industry;
+  final String location_of_project_execution;
+  final String teamsize;
+  final String case_study_submitted;
+  final String role;
+  const projectinfo(this.name,this.start,this.end,this.des,this.status,this.client_name,this.client_location,this.location_of_project_execution, this.client_industry,this.role,this.teamsize,this.case_study_submitted);
   @override
   _projectinfoState createState() => _projectinfoState();
 }
@@ -37,7 +50,7 @@ class _projectinfoState extends State<projectinfo> {
                       width: 1,
                     )),
                 child: Text(
-                  "Neon Application",
+                  widget.name,
                   style: TextStyle(
                     fontFamily: "sans-serif",
                     fontSize: 20.0,
@@ -192,23 +205,43 @@ class _projectinfoState extends State<projectinfo> {
               ],
             ),
             SizedBox(
-              height: 30.0,
+              height: 20.0,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            Container(
+               width:380.0,
+               child:
+            Card(
+              elevation: 5.0,
+              child:Padding(padding: EdgeInsets.fromLTRB(5.0, 15.0, 5.0, 15.0),
+            
+            child: Row(
+              
               children: <Widget>[
-                Text(
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.bubble_chart,
+                      color: Colors.blue,
+                    ),
+                    SizedBox(
+                      width:10.0
+                    ),
+                    Text(
                   "Status :",
                   style: TextStyle(
                     fontSize: 20.0,
+                    color: Colors.blue
                   ),
                 ),
-                Image(
-                  image: NetworkImage(
-                      'https://img.icons8.com/fluent/50/000000/arrow.png'),
+
+                  ],
                 ),
+                SizedBox(
+                  width:15.0
+                ),
+                
                 Text(
-                  "FINISHED",
+                  "Completed",
                   style: TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.w400,
@@ -216,9 +249,359 @@ class _projectinfoState extends State<projectinfo> {
                 ),
               ],
             ),
-            SizedBox(
-              height: 30.0,
             ),
+            ),
+            ),
+            SizedBox(
+              height:20.0
+            ),
+            Container(
+               width:380.0,
+               child:
+            Card(
+              elevation: 5.0,
+              child:Padding(padding: EdgeInsets.fromLTRB(5.0, 15.0, 5.0, 15.0),
+            
+            child: Row(
+              
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.bubble_chart,
+                      color: Colors.blue,
+                    ),
+                    SizedBox(
+                      width:10.0
+                    ),
+                    Text(
+                  "Client Name :",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.blue
+                  ),
+                ),
+
+                  ],
+                ),
+                SizedBox(
+                  width:15.0
+                ),
+                
+                Text(
+                  widget.client_name,
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
+            ),
+            ),
+            ),
+            ),
+            SizedBox(
+              height:20.0
+            ),
+            Container(
+               width:380.0,
+               child:
+            Card(
+              elevation: 5.0,
+              child:Padding(padding: EdgeInsets.fromLTRB(5.0, 15.0, 5.0, 15.0),
+            
+            child: Row(
+              
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.bubble_chart,
+                      color: Colors.blue,
+                    ),
+                    SizedBox(
+                      width:10.0
+                    ),
+                    Text(
+                  "Client Location :",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.blue
+                  ),
+                ),
+
+                  ],
+                ),
+                SizedBox(
+                  width:15.0
+                ),
+                
+                Text(
+                  widget.client_location,
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
+            ),
+            ),
+            ),
+            ),
+            SizedBox(
+              height:20.0
+            ),
+            Container(
+               width:380.0,
+               child:
+            Card(
+              elevation: 5.0,
+              child:Padding(padding: EdgeInsets.fromLTRB(5.0, 15.0, 5.0, 15.0),
+            
+            child: Row(
+              
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.bubble_chart,
+                      color: Colors.blue,
+                    ),
+                    SizedBox(
+                      width:10.0
+                    ),
+                    Text(
+                  "Project Location :",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.blue
+                  ),
+                ),
+
+                  ],
+                ),
+                SizedBox(
+                  width:15.0
+                ),
+                
+                Text(
+                  widget.location_of_project_execution,
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
+            ),
+            ),
+            ),
+            ),
+            SizedBox(
+              height:20.0
+            ),
+            Container(
+               width:380.0,
+               child:
+            Card(
+              elevation: 5.0,
+              child:Padding(padding: EdgeInsets.fromLTRB(5.0, 15.0, 5.0, 15.0),
+            
+            child: Row(
+              
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.bubble_chart,
+                      color: Colors.blue,
+                    ),
+                    SizedBox(
+                      width:10.0
+                    ),
+                    Text(
+                  "Client Industry :",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.blue
+                  ),
+                ),
+
+                  ],
+                ),
+                SizedBox(
+                  width:15.0
+                ),
+                
+                Text(
+                  widget.client_industry,
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
+            ),
+            ),
+            ),
+            ),
+            SizedBox(
+              height:20.0
+            ),
+            Container(
+               width:380.0,
+               child:
+            Card(
+              elevation: 5.0,
+              child:Padding(padding: EdgeInsets.fromLTRB(5.0, 15.0, 5.0, 15.0),
+            
+            child: Row(
+              
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.bubble_chart,
+                      color: Colors.blue,
+                    ),
+                    SizedBox(
+                      width:10.0
+                    ),
+                    Text(
+                  "Role :",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.blue
+                  ),
+                ),
+
+                  ],
+                ),
+                SizedBox(
+                  width:15.0
+                ),
+                
+                Text(
+                  widget.role,
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
+            ),
+            ),
+            ),
+            ),
+            SizedBox(
+              height:20.0
+            ),
+            Container(
+               width:380.0,
+               child:
+            Card(
+              elevation: 5.0,
+              child:Padding(padding: EdgeInsets.fromLTRB(5.0, 15.0, 5.0, 15.0),
+            
+            child: Row(
+              
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.bubble_chart,
+                      color: Colors.blue,
+                    ),
+                    SizedBox(
+                      width:10.0
+                    ),
+                    Text(
+                  "Team Size :",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.blue
+                  ),
+                ),
+
+                  ],
+                ),
+                SizedBox(
+                  width:15.0
+                ),
+                
+                Text(
+                  widget.teamsize,
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
+            ),
+            ),
+            ),
+            ),
+            SizedBox(
+              height:20.0
+            ),
+            Container(
+               width:380.0,
+               child:
+            Card(
+              elevation: 5.0,
+              child:Padding(padding: EdgeInsets.fromLTRB(5.0, 15.0, 5.0, 15.0),
+            
+            child: Row(
+              
+              children: <Widget>[
+                Row(
+                
+                  children: <Widget>[
+                    Icon(
+                      Icons.bubble_chart,
+                      color: Colors.blue,
+                    ),
+                    SizedBox(
+                      width:10.0
+                    ),
+                    Text(
+                  "Case Study Submitted :",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.blue
+                  ),
+                ),
+
+                  ],
+                ),
+              
+                 
+                
+                Text(
+                  
+                  widget.case_study_submitted,
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              
+
+              
+               
+              
+                
+              ],
+            ),
+            ),
+            ),
+            ),
+            SizedBox(
+              height:20.0
+            ),
+
+            
+            
+
             Container(
               width: 350.0,
               padding: EdgeInsets.all(20.0),
@@ -239,7 +622,7 @@ class _projectinfoState extends State<projectinfo> {
                 ],
               ),
               child: Text(
-                "this is the description of the project. it will be 200 words long. here u will know what this project is all about. read on to see technologies used in this project",
+                 widget.des,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 15.0,
