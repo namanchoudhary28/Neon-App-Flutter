@@ -28,7 +28,7 @@ class _LoadDataState extends State<LoadData> {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
     });
-
+    
     var response2 =
     await http.get('http://10.0.2.2:8000/hobbies', headers: {
       'Accept': 'application/json',
@@ -62,21 +62,22 @@ class _LoadDataState extends State<LoadData> {
     await http.get('http://192.168.1.9:8000/getbadge', headers: {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
-    })*/;
+    })*/
 
 
-    list_about = jsonDecode(response1.body);
+   list_about = jsonDecode(response1.body);
     list_hobby = jsonDecode(response2.body);
     list_projects = jsonDecode(response3.body);
     list_achievements = jsonDecode(response4.body);
     list_skills = jsonDecode(response5.body);
     list_communications = jsonDecode(response6.body);
     //list_badges=jsonDecode(response7.body);
+   print(list_about);
 
     Navigator.push(
           context,
         MaterialPageRoute(builder: (context) =>
-            HomePage(list_about, list_hobby, list_projects, list_achievements,
+            HomePage(list_hobby, list_projects, list_achievements,
                 list_communications, /*list_badges,*/ list_skills))
       );
 

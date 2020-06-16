@@ -40,16 +40,16 @@ import 'package:BOARDING/loading_login.dart';
 import 'package:BOARDING/skills.dart';
 
 class HomePage extends StatefulWidget {
-  final List list_about;
+  //final List list_about;
   final List list_hobby;
   final List list_projects;
-  final List list_achievements;
+ final List list_achievements;
   //final List list_badges;
   final List list_communications;
   final List list_skills;
 
   const HomePage(
-      this.list_about,
+     // this.list_about,
       this.list_hobby,
       this.list_projects,
       this.list_achievements,
@@ -103,13 +103,14 @@ class _HomePageState extends State<HomePage> {
           ),
         ));
 
+
     final name = Padding(
       padding: EdgeInsets.all(8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            widget.list_about[0]['name'],
+            "sanskar",
             style: TextStyle(
               fontSize: 20,
             ),
@@ -119,10 +120,12 @@ class _HomePageState extends State<HomePage> {
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return new EDITINFO(
-                    widget.list_about[0]['name'],
-                    widget.list_about[0]['aboutme'],
-                    widget.list_about[0]['location'],
-                    widget.list_communications); //Function from edit_info.dart
+                      "sansakr",
+                      "optimist",
+                      "Mumbai",
+                      widget.list_communications
+                      
+                     ); //Function from edit_info.dart
               }));
             },
           ),
@@ -132,7 +135,7 @@ class _HomePageState extends State<HomePage> {
 
     final city = Center(
       child: Text(
-        widget.list_about[0]['location'],
+       "Mumbai",
         style: TextStyle(
           color: Colors.orangeAccent,
           fontWeight: FontWeight.bold,
@@ -160,7 +163,7 @@ class _HomePageState extends State<HomePage> {
       padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: Center(
         child: Text(
-          widget.list_about[0]['aboutme'],
+          "Optimist",
           textAlign: TextAlign.center,
           style: TextStyle(
             //color: Colors.orangeAccent,,
