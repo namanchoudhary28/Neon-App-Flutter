@@ -18,6 +18,7 @@ import 'package:BOARDING/edit_achievement_loading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class EDIT_ACHIEVEMENT extends StatefulWidget {
+  
   final String title;
   final String description;
   const EDIT_ACHIEVEMENT(this.title,this.description);
@@ -27,6 +28,7 @@ class EDIT_ACHIEVEMENT extends StatefulWidget {
 
 class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
   DateTime _selectedDateTime = DateTime.now();
+  String heading;
 /*
   Future<String> submitAchievements(int decider,String _dates, String _title,String _description) async {
     var token = await storage.read(key: 'jwt');
@@ -90,14 +92,17 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
   @override
   void initState(){
 
+      
     titlecon.text = widget.title;
     descriptioncon.text = widget.description;
     if(widget.title==''){
       print(widget.title);
       decider=1;
+      heading  = "Add Achievement";
     }
     else{
       decider=0;
+      heading = "Update Achievement";
     }
 
   }
@@ -287,7 +292,7 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
       ),
     );
     return Scaffold(
-      appBar: AppBar(title: Text("Add Achievment"),
+      appBar: AppBar(title: Text(heading),
       ),
       body: ListView(
         scrollDirection: Axis.vertical,
@@ -351,11 +356,11 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.symmetric(vertical:20.0),
+                padding: EdgeInsets.symmetric(vertical:15.0),
                 child:RaisedButton(
 
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24.0),
+                    borderRadius: BorderRadius.circular(15.0),
 
 
                   ),
@@ -363,22 +368,22 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
                     Navigator.pop(context);
                     // Navigator.of(context).pushNamed(HomePage.tag);
                   },
-                  padding: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(15),
 
                   color:Colors.blue,
-                  child: Text('      Cancel        ', style:TextStyle(color:Colors.white,fontSize: 20.0)
-                  ),
+                  child:Row(children: <Widget>[Icon(Icons.cancel,color: Colors.white,), SizedBox(width:5.0),Text('Cancel', style:TextStyle(color:Colors.white,fontSize: 15.0))])
+                  
                 ),
               ),
               SizedBox(
                 width: 10,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical:20.0),
+                padding: EdgeInsets.symmetric(vertical:15.0),
                 child:RaisedButton(
 
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24.0),
+                    borderRadius: BorderRadius.circular(15.0),
 
                   ),
 
@@ -393,7 +398,7 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
                   //   // }));
                   //   // Navigator.of(context).pushNamed(HomePage.tag);
                   // },
-                  padding: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(15),
                   color:Colors.blue,
                   onPressed: () {
                     setState(() {
@@ -416,12 +421,12 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
                   },
 
 
-                  child: Text('Save Changes', style:TextStyle(color:Colors.white,fontSize: 20.0)
+                  child: Row(children: <Widget>[ Icon(Icons.save,color:Colors.white), SizedBox(width:5.0),  Text('Save', style:TextStyle(color:Colors.white,fontSize: 15.0))]),
                   ),
 
                 ),
 
-              ),
+            
               // Text("your name is $_name and your location is $_location "),
 
 

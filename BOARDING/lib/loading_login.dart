@@ -1,4 +1,5 @@
 
+import 'package:BOARDING/login_page.dart';
 import 'package:BOARDING/main_loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:loading/indicator/line_scale_pulse_out_indicator.dart';
@@ -6,6 +7,7 @@ import 'package:loading/loading.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:async';
 import 'dart:convert';
+import 'package:giffy_dialog/giffy_dialog.dart'; 
 import 'package:http/http.dart' as http;
 final storage = FlutterSecureStorage();
 class LoginLoader extends StatefulWidget {
@@ -48,7 +50,45 @@ class _LoginLoaderState extends State<LoginLoader> {
 
 
       return list_token[0]['Key'];
-    }else return null;
+    }else return showDialog(
+                      context: context,
+                      builder: (_) => NetworkGiffyDialog(
+                        
+                            // key: keys[1],
+                            image: Image.network(
+                              "https://raw.githubusercontent.com/Shashank02051997/FancyGifDialog-Android/master/GIF's/gif14.gif",
+                              fit: BoxFit.cover,
+                            ),
+                            entryAnimation: EntryAnimation.TOP_LEFT,
+                            title: Text(
+                              'Login Failed',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 22.0, fontWeight: FontWeight.w600),
+                            ),
+                            description: Text(
+                              'Your password or email is incorrect.               Please try again',
+                              textAlign: TextAlign.center,
+                            ),
+                            onOkButtonPressed: () {
+                              Navigator.push(
+
+                                context,
+                                MaterialPageRoute(builder: (context) =>LoginPage() )
+
+
+                              );
+                            },
+                            onCancelButtonPressed: (){
+                              Navigator.push(
+
+                                context,
+                                MaterialPageRoute(builder: (context) =>LoginPage() )
+
+
+                              );
+                            },
+                          ));
   }
   @override
   void initState(){

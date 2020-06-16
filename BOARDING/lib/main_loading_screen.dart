@@ -77,7 +77,7 @@ class _LoadDataState extends State<LoadData> {
     Navigator.push(
           context,
         MaterialPageRoute(builder: (context) =>
-            HomePage(list_hobby, list_projects, list_achievements,
+            HomePage(list_about,list_hobby, list_projects, list_achievements,
                 list_communications, /*list_badges,*/ list_skills))
       );
 

@@ -18,7 +18,7 @@ import 'package:BOARDING/add_hobby.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/rendering.dart';
-
+import 'dart:math';
 
 import 'package:BOARDING/date_time_picker_widget2.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
@@ -40,7 +40,7 @@ import 'package:BOARDING/loading_login.dart';
 import 'package:BOARDING/skills.dart';
 
 class HomePage extends StatefulWidget {
-  //final List list_about;
+  final List list_about;
   final List list_hobby;
   final List list_projects;
  final List list_achievements;
@@ -49,7 +49,7 @@ class HomePage extends StatefulWidget {
   final List list_skills;
 
   const HomePage(
-     // this.list_about,
+      this.list_about,
       this.list_hobby,
       this.list_projects,
       this.list_achievements,
@@ -110,7 +110,7 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            "sanskar",
+            widget.list_about[0]['name'],
             style: TextStyle(
               fontSize: 20,
             ),
@@ -120,9 +120,9 @@ class _HomePageState extends State<HomePage> {
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return new EDITINFO(
-                      "sansakr",
-                      "optimist",
-                      "Mumbai",
+                      widget.list_about[0]['name'],
+                      widget.list_about[0]['aboutme'],
+                      widget.list_about[0]['location'],
                       widget.list_communications
                       
                      ); //Function from edit_info.dart
@@ -524,7 +524,7 @@ class _HomePageState extends State<HomePage> {
             scrollDirection: Axis.horizontal,
             children: <Widget>[
               for (Map<String, dynamic> item in widget.list_projects)
-                MyProjects(item['info'], item['starts'], item['ends'],
+                MyProjects( item['id'],item['info'], item['starts'], item['ends'],
                     item['description'], item['status'],item['client_name'], item['client_location'], item['location_of_project_execution'],item['Industry_of_the_client'],item['Role'], item['team_size'],item['case_study_submitted']),
 
               //MyProjects('Booking 2', '1 May 2020'),
@@ -599,7 +599,11 @@ class _HomePageState extends State<HomePage> {
         ],
       ),);
 */
-    final achievemnets = Column(
+    final achievemnets =
+    
+      Column(
+
+       
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Row(
@@ -690,6 +694,9 @@ class _HomePageState extends State<HomePage> {
               height: 30,
             ),
             achievemnets,
+            SizedBox(
+                 height: 50.0,
+            ),
 
 
           ],
@@ -841,7 +848,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Container MyProjects(String name, String _start, String _end,
+  Container MyProjects(int id,String name, String _start, String _end,
       String description, String status, String client_name,String client_location,String location_of_project_execution,String Industry_of_the_client,String Role,String team_size,String case_study_submitted) {
     return Container(
       width: 250,
@@ -917,7 +924,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => deletepopup('project', [name])),
+                          builder: (context) => deletepopup('project',[id.toString()])),
                     );
                   },
                 ),
@@ -932,6 +939,10 @@ class _HomePageState extends State<HomePage> {
 
   Container _MyAchievemnts(
       context, String date, String heading, String subHeading) {
+        
+        List<Color> colors = [Colors.red[200],Colors.pinkAccent[200],Colors.deepOrange[200],Colors.orange[200],Colors.amber[200],Colors.lime[200],Colors.teal[200],Colors.cyan[200],Colors.purpleAccent[100],Colors.brown[200]];
+        Color c = colors[new Random().nextInt(colors.length)];
+
     var months = {
       "01": "Jan",
       "02": "Feb",
@@ -977,7 +988,7 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(20.0),
             ),
             elevation: 4,
-            color: Colors.red[100],
+            color: c,
             child: Wrap(
               children: <Widget>[
                 ListTile(

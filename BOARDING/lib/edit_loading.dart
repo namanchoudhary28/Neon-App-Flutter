@@ -57,7 +57,7 @@ class _LoadingScreenEditState extends State<LoadingScreenEdit> {
       if (communications[i] != '') {
         print(communications[i]);
         responsecommu = await http.post(
-          'http://192.168.1.9:8000/communications',
+          'http://10.0.2.2:8000/communications',
           headers: {
             'Accept': 'application/json',
             'Authorization': 'Token $token',

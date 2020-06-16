@@ -24,11 +24,14 @@ class LoadingScreenEditAchievement extends StatefulWidget {
 }
 
 class _LoadingScreenEditAchievementState extends State<LoadingScreenEditAchievement> {
-  String msg;
+ String msg;
 
   Future<String> submitAchievements(int decider,String _dates, String _title,String _description,String title_old) async {
     var token = await storage.read(key: 'jwt');
     var response1;
+    
+    
+    
     if(decider==1){
       response1 = await http.post(
         'http://10.0.2.2:8000/achievements',
@@ -45,7 +48,7 @@ class _LoadingScreenEditAchievementState extends State<LoadingScreenEditAchievem
       );
     }
     else{
-      String url = 'http://192.168.1.9:8000/achievements/' +
+      String url = 'http://10.0.2.2:8000/achievements/' +
           title_old;
       response1 = await http.put(
         url,
@@ -76,7 +79,8 @@ class _LoadingScreenEditAchievementState extends State<LoadingScreenEditAchievem
 
   @override
   void initState() {
-    msg = 'Please Wait! Updating your achievement...';
+     msg = widget.decider==1?"please wait adding your achivement...." : "please wait updating your achievement";
+   
 
     //print(widget.name);
     Future<String> f = submitAchievements(

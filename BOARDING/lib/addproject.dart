@@ -66,7 +66,7 @@ class _MyAppState extends State<MyApp> {
 
   final assignedtocon = new TextEditingController();
   final descriptioncon = new TextEditingController();
-
+  
 
   /////////////////................15june2020......................................
   ///
@@ -1032,10 +1032,10 @@ final iclientname = Padding(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 20.0),
+                padding: EdgeInsets.symmetric(vertical: 15.0),
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24.0),
+                    borderRadius: BorderRadius.circular(15.0),
                   ),
                   onPressed: () {
                     // Navigator.push(context,MaterialPageRoute(builder: (context){
@@ -1044,10 +1044,20 @@ final iclientname = Padding(
                     // }));
                     // Navigator.of(context).pushNamed(HomePage.tag);
                   },
-                  padding: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(15),
                   color: Colors.blue,
-                  child: Text('      Cancel        ',
-                      style: TextStyle(color: Colors.white, fontSize: 20.0)),
+                  child: Row(children: <Widget>[
+                    Icon(
+                       Icons.cancel,
+                       color:Colors.white
+                    ),
+                    SizedBox(
+                      width: 5.0,
+                    ),
+                    Text('Cancel',
+                      style: TextStyle(color: Colors.white, fontSize: 15.0))
+
+                  ]),
                 ),
               ),
               SizedBox(
@@ -1057,7 +1067,7 @@ final iclientname = Padding(
                 padding: EdgeInsets.symmetric(vertical: 20.0),
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24.0),
+                    borderRadius: BorderRadius.circular(15.0),
                   ),
                   // onPressed: _saveForm(),
                   //       Container(
@@ -1119,10 +1129,21 @@ final iclientname = Padding(
                   // }));
                   // Navigator.of(context).pushNamed(HomePage.tag);
 
-                  padding: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(15),
                   color: Colors.blue,
-                  child: Text('Save Changes',
-                      style: TextStyle(color: Colors.white, fontSize: 20.0)),
+                  child: Row( children: <Widget>[
+                    Icon(
+                       Icons.save,
+                       color:Colors.white
+                    ),
+                    SizedBox(
+                      width: 5.0,
+                    ),
+                    Text("Save",style: TextStyle(color: Colors.white, fontSize: 15.0)),
+
+
+                  ] ,
+                      ),
                 ),
               ),
             ],

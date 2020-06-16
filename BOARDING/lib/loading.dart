@@ -31,7 +31,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
     });
-
+     print(res.body);
     Fluttertoast.showToast(
         msg: name + ' is now deleted!',
         toastLength: Toast.LENGTH_SHORT,
