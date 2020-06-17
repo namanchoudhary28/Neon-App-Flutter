@@ -48,11 +48,26 @@ import 'package:intl/intl.dart';
 ///Line 149--ending date
 ///..........................END...............
 class MyApp extends StatefulWidget {
+  final String name;
+  final String start;
+  final String end;
+  final String status;
+  final String des;
+  final String client_name;
+  final String client_location;
+  final String client_industry;
+  final String location_of_project_execution;
+  final String teamsize;
+  final String case_study_submitted;
+  final String role;
+  const MyApp(this.name,this.start,this.end,this.des,this.status,this.client_name,this.client_location,this.location_of_project_execution, this.client_industry,this.role,this.teamsize,this.case_study_submitted);
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
+  var decider=0;
+
   DateTime _selectedDateTime = DateTime.now();
   DateTime _selectedDateTime1 = DateTime.now();
   var _projectinfo; //accessing projectinfo
@@ -130,8 +145,26 @@ class _MyAppState extends State<MyApp> {
 
   void initState() {
     super.initState();
-    _myActivity = '';
-    _myActivityResult = '';
+    if(widget.name==''){
+      decider=1;
+    }
+    //_start = to_dates1;
+    //_end = to_dates2;
+    _jkval = _jk;
+    projectinfocon.text=widget.name;
+    //assignedtocon.text=;
+    descriptioncon.text=widget.des;
+    _jkval2=_jk2;
+    iclientname1.text=widget.client_name;
+    iclientlocation1.text=widget.client_location;
+    ilocationofprojectexecution1.text=widget.location_of_project_execution;
+    iindustryoftheclient1.text=widget.client_industry;
+    _iroleintheproject2=widget.role;
+    iteamsize1.text=widget.teamsize;
+    _itoolsworked2=itoolsworked1.text;    ///
+    _iclientname2 = iclientname1.text;
+    _myActivity = widget.status;
+    _myActivityResult = '';             ///
   }
 
   var _start, _end;
@@ -150,8 +183,6 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
 
 
-    /////////////////////////15 JUNE 2020.....................///////////////////////////
-    ///
     final hclientname = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
@@ -1102,7 +1133,7 @@ final iclientname = Padding(
                       print(_myActivity); 
                       Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context)=>ProjectLoadingScreen(_projectinfo,_start,_end,_myActivity,_description,_iclientname2,_iclientlocation2,_iindustryoftheclient2,_ilocationofprojectexecution2,_iteamsize2, _jkval2,_iroleintheproject2))
+                              MaterialPageRoute(builder: (context)=>ProjectLoadingScreen(decider,_projectinfo,_start,_end,_myActivity,_description,_iclientname2,_iclientlocation2,_iindustryoftheclient2,_ilocationofprojectexecution2,_iteamsize2, _jkval2,_iroleintheproject2))
                       
                       );
                        //status
