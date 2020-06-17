@@ -23,27 +23,29 @@ class ProjectLoadingScreen extends StatefulWidget {
   final String client_industry;
   final String location_of_project_execution;
   final String teamsize;
-  final String case_study_submitted;
+  //final String case_study_submitted;
   final String role;
+  final String id;
 
 
-  const ProjectLoadingScreen(this.decider,this.name,this.start,this.end,this.status,this.des,this.client_name,this.client_location,this.client_industry,this.location_of_project_execution,this.teamsize,this.case_study_submitted,this.role);
+  const ProjectLoadingScreen(this.id,this.decider,this.name,this.start,this.end,this.status,this.des,this.client_name,this.client_location,this.client_industry,this.location_of_project_execution,this.teamsize,this.role);
 
   @override
   _ProjectLoadingScreenState createState() => _ProjectLoadingScreenState();
 }
 
 class _ProjectLoadingScreenState extends State<ProjectLoadingScreen> {
-  String msg ="Your project is being added. please wait...";
+  String msg1;
+  String msg2;
 
-  Future<String> addproject(String info,String start, String end, String status,String des, String client_name,String client_location,String location_of_project_execution,String client_industry,String role, String teamsize,String case_study_submitted ) async {
+  Future<String> addproject(String id,String info,String start, String end, String status,String des, String client_name,String client_location,String location_of_project_execution,String client_industry,String role, String teamsize, String msg ) async {
     var token = await storage.read(key: 'jwt');
     var res;
 
   
     if(widget.decider==1) {
       res = await http.post(
-          'http://192.168.1.9:8000/project/0',
+          'http://10.0.2.2:8000/project/0',
           headers: {
 
             'Accept': 'application/json',
@@ -60,15 +62,15 @@ class _ProjectLoadingScreenState extends State<ProjectLoadingScreen> {
             "location_of_project_execution": location_of_project_execution,
             "Industry_of_the_client": client_industry,
             "Role": role,
-            "team_size": teamsize,
-            "case_study_submitted": case_study_submitted
+            "team_size": teamsize
+           
           }
 
       );
     }
     else{
        res = await http.put(
-          'http://192.168.1.9:8000/project/0',
+          'http://10.0.2.2:8000/project',
           headers: {
 
             'Accept': 'application/json',
@@ -86,7 +88,8 @@ class _ProjectLoadingScreenState extends State<ProjectLoadingScreen> {
             "Industry_of_the_client": client_industry,
             "Role": role,
             "team_size": teamsize,
-            "case_study_submitted": case_study_submitted
+            "id" : id
+           
           }
 
       );
@@ -95,7 +98,7 @@ class _ProjectLoadingScreenState extends State<ProjectLoadingScreen> {
     
 
     Fluttertoast.showToast(
-        msg: 'new project added',
+        msg: msg,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 2,
@@ -112,10 +115,18 @@ class _ProjectLoadingScreenState extends State<ProjectLoadingScreen> {
   }
   @override
   void initState(){
+    if(widget.decider==1){
+      msg1 = "Your project is being added. please wait...";
+      msg2 = "New project added";
+    }
+    else{
+      msg1 = "Your project is being updated. please wait...";
+      msg2 = "Project updated";
+    }
   
     //Future <String> f = addhobbies(widget.hobbies);
     
-            Future <String> res = addproject(widget.name,widget.start,widget.end,widget.status,widget.des,widget.client_name,widget.client_location,widget.location_of_project_execution,widget.client_industry,widget.role,widget.teamsize,widget.case_study_submitted);
+            Future <String> res = addproject(widget.id,widget.name,widget.start,widget.end,widget.status,widget.des,widget.client_name,widget.client_location,widget.location_of_project_execution,widget.client_industry,widget.role,widget.teamsize,msg2);
       
       
 
@@ -135,7 +146,7 @@ class _ProjectLoadingScreenState extends State<ProjectLoadingScreen> {
 
           ),
           Loading(indicator: BallPulseIndicator(),size: 100.0),
-          Text(msg,style:TextStyle(color:Colors.white,fontSize: 20.0))
+          Text(msg1,style:TextStyle(color:Colors.white,fontSize: 20.0))
           ]
           
          

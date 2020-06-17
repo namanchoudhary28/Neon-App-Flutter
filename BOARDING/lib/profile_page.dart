@@ -888,7 +888,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => projectinfo(name,_start,_end,description,status,client_name,client_location,location_of_project_execution,Industry_of_the_client,Role,team_size,case_study_submitted)
+                      MaterialPageRoute(builder: (context) => projectinfo(name,_start,_end,description,status,client_name,client_location,location_of_project_execution,Industry_of_the_client,Role,team_size)
                     )
                     );
                   },
@@ -913,7 +913,7 @@ class _HomePageState extends State<HomePage> {
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                          return MyApp(name,_start,_end,description,status,client_name,client_location,location_of_project_execution,Industry_of_the_client,Role,team_size,case_study_submitted);
+                          return MyApp(id.toString(),name,_start,_end,description,status,client_name,client_location,location_of_project_execution,Industry_of_the_client,Role,team_size);
                         }));
                   },
                 ),

@@ -28,7 +28,7 @@ class _LoginLoaderState extends State<LoginLoader> {
     //String body=json.encode(data);
    List list_token;
     http.Response res = await http.post(
-        'http://192.168.1.9:8000/login',
+        'http://10.0.2.2:8000/login',
       headers: {
         'Accept': 'application/json',
       },
@@ -67,7 +67,7 @@ class _LoginLoaderState extends State<LoginLoader> {
                                   fontSize: 22.0, fontWeight: FontWeight.w600),
                             ),
                             description: Text(
-                              'Your password or email is incorrect.               Please try again',
+                              'Your password or email is incorrect.Please try again',
                               textAlign: TextAlign.center,
                             ),
                             onOkButtonPressed: () {

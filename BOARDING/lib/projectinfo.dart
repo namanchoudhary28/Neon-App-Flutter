@@ -13,9 +13,9 @@ class projectinfo extends StatefulWidget {
   final String client_industry;
   final String location_of_project_execution;
   final String teamsize;
-  final String case_study_submitted;
+ // final String case_study_submitted;
   final String role;
-  const projectinfo(this.name,this.start,this.end,this.des,this.status,this.client_name,this.client_location,this.location_of_project_execution, this.client_industry,this.role,this.teamsize,this.case_study_submitted);
+  const projectinfo(this.name,this.start,this.end,this.des,this.status,this.client_name,this.client_location,this.location_of_project_execution, this.client_industry,this.role,this.teamsize);
   @override
   _projectinfoState createState() => _projectinfoState();
 }
@@ -544,61 +544,7 @@ class _projectinfoState extends State<projectinfo> {
             SizedBox(
               height:20.0
             ),
-            Container(
-               width:380.0,
-               child:
-            Card(
-              elevation: 5.0,
-              child:Padding(padding: EdgeInsets.fromLTRB(5.0, 15.0, 5.0, 15.0),
             
-            child: Row(
-              
-              children: <Widget>[
-                Row(
-                
-                  children: <Widget>[
-                    Icon(
-                      Icons.bubble_chart,
-                      color: Colors.blue,
-                    ),
-                    SizedBox(
-                      width:10.0
-                    ),
-                    Text(
-                  "Case Study Submitted :",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.blue
-                  ),
-                ),
-
-                  ],
-                ),
-              
-                 
-                
-                Text(
-                  
-                  widget.case_study_submitted,
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              
-
-              
-               
-              
-                
-              ],
-            ),
-            ),
-            ),
-            ),
-            SizedBox(
-              height:20.0
-            ),
 
             
             

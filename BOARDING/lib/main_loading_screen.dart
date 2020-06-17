@@ -24,36 +24,36 @@ class _LoadDataState extends State<LoadData> {
     var token = await storage.read(key: 'jwt');
 
     var response1 =
-        await http.get('http://192.168.1.9:8000/userinfo', headers: {
+        await http.get('http://10.0.2.2:8000/userinfo', headers: {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
     });
     
     var response2 =
-    await http.get('http://192.168.1.9:8000/hobbies', headers: {
+    await http.get('http://10.0.2.2:8000/hobbies', headers: {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
     });
    
 
     var response3 =
-    await http.get('http://192.168.1.9:8000/project/0', headers: {
+    await http.get('http://10.0.2.2:8000/project/0', headers: {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
     });
 
     var response4 =
-    await http.get('http://192.168.1.9:8000/achievements', headers: {
+    await http.get('http://10.0.2.2:8000/achievements', headers: {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
     });
     var response5 =
-    await http.get('http://192.168.1.9:8000/skills', headers: {
+    await http.get('http://10.0.2.2:8000/skills', headers: {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
     });
     var response6 =
-    await http.get('http://192.168.1.9:8000/communications', headers: {
+    await http.get('http://10.0.2.2:8000/communications', headers: {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
     });

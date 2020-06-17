@@ -17,7 +17,8 @@ import 'package:cupertino_date_textbox/cupertino_date_textbox.dart';
 // import 'package:flutter/material.dart';
 
 import 'package:flutter/cupertino.dart';
-import 'package:intl/intl.dart';import 'package:BOARDING/main_loading_screen.dart';
+import 'package:intl/intl.dart';
+import 'package:BOARDING/main_loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboard/flutter_onboard.dart';
 import 'package:provider/provider.dart';
@@ -58,9 +59,11 @@ class MyApp extends StatefulWidget {
   final String client_industry;
   final String location_of_project_execution;
   final String teamsize;
-  final String case_study_submitted;
+  final String id;
+
+ // final String case_study_submitted;
   final String role;
-  const MyApp(this.name,this.start,this.end,this.des,this.status,this.client_name,this.client_location,this.location_of_project_execution, this.client_industry,this.role,this.teamsize,this.case_study_submitted);
+  const MyApp(this.id,this.name,this.start,this.end,this.des,this.status,this.client_name,this.client_location,this.location_of_project_execution, this.client_industry,this.role,this.teamsize);
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -86,7 +89,7 @@ class _MyAppState extends State<MyApp> {
   /////////////////................15june2020......................................
   ///
   /////accesing vaiables new start/.....
-  var _jkval2;            //accessing yes no
+ // var _jkval2;            //accessing yes no
 
   var _iclientlocation2;
   var _ilocationofprojectexecution2;
@@ -105,6 +108,7 @@ class _MyAppState extends State<MyApp> {
   final iteamsize1= new TextEditingController();
   final iclientname1 = new TextEditingController();
   String _jk2="";
+  String heading;
 
   // String _myActivityResult;         //accessing Dropdown value
   void _pilihjk2(String value){
@@ -147,6 +151,10 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     if(widget.name==''){
       decider=1;
+      heading = "Add project";
+    }
+    else{
+      heading = "Update project";
     }
     //_start = to_dates1;
     //_end = to_dates2;
@@ -154,7 +162,7 @@ class _MyAppState extends State<MyApp> {
     projectinfocon.text=widget.name;
     //assignedtocon.text=;
     descriptioncon.text=widget.des;
-    _jkval2=_jk2;
+    //_jkval2=_jk2;
     iclientname1.text=widget.client_name;
     iclientlocation1.text=widget.client_location;
     ilocationofprojectexecution1.text=widget.location_of_project_execution;
@@ -384,7 +392,7 @@ class _MyAppState extends State<MyApp> {
         ],
       ),
     );
-    final hcasestudysubmission = Padding(
+    /*final hcasestudysubmission = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
         // mainAxisAlignment: MainAxisAlignment.le,
@@ -408,7 +416,7 @@ class _MyAppState extends State<MyApp> {
           ),
         ],
       ),
-    );
+    );*/
 final iclientname = Padding(
       padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
       child: TextFormField(
@@ -868,7 +876,7 @@ final iclientname = Padding(
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Project"),
+        title: Text(heading),
       ),
       body: ListView(
         scrollDirection: Axis.vertical,
@@ -1029,7 +1037,7 @@ final iclientname = Padding(
             height: 20,
           ),
           /////////////...............15june2020...............
-          hcasestudysubmission,
+         /* hcasestudysubmission,
           new RadioListTile(
             value: "Yes",
             title: new Text("Yes"),
@@ -1049,7 +1057,7 @@ final iclientname = Padding(
             },
             activeColor: Colors.blue,
 
-          ),
+          ),*/
           ///.................15june
           descriptionname,
           descriptioninfo,
@@ -1117,7 +1125,7 @@ final iclientname = Padding(
                       _assignedto = assignedtocon.text;
                       _description = descriptioncon.text;
                       ////////////15jun2020..............
-                      _jkval2=_jk2;
+                     // _jkval2=_jk2;
                        
                       _iclientlocation2=iclientlocation1.text;
                       _ilocationofprojectexecution2=ilocationofprojectexecution1.text;
@@ -1127,13 +1135,13 @@ final iclientname = Padding(
                       _itoolsworked2=itoolsworked1.text;
                       _iclientname2 = iclientname1.text;
                       print(_jkval); //internal/external;
-                      print(_jkval2); //yes/no;
+                     // print(_jkval2); //yes/no;
                       print(_start);
                       print(_end);
                       print(_myActivity); 
                       Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context)=>ProjectLoadingScreen(decider,_projectinfo,_start,_end,_myActivity,_description,_iclientname2,_iclientlocation2,_iindustryoftheclient2,_ilocationofprojectexecution2,_iteamsize2, _jkval2,_iroleintheproject2))
+                              MaterialPageRoute(builder: (context)=>ProjectLoadingScreen(widget.id,decider,_projectinfo,_start,_end,_myActivity,_description,_iclientname2,_iclientlocation2,_iindustryoftheclient2,_ilocationofprojectexecution2,_iteamsize2,_iroleintheproject2))
                       
                       );
                        //status
