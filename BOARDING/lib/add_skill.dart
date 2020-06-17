@@ -71,7 +71,7 @@ class _HobbyFormState extends State<HobbyForm> {
   void initState() {
     String wordPair = "";
     loremIpsum
-        .toUpperCase()
+
         .replaceAll(",", "")
         .replaceAll(".", "")
         .split(" ")

@@ -940,7 +940,7 @@ class _HomePageState extends State<HomePage> {
   Container _MyAchievemnts(
       context, String date, String heading, String subHeading) {
         
-        List<Color> colors = [Colors.red[200],Colors.pinkAccent[200],Colors.deepOrange[200],Colors.orange[200],Colors.amber[200],Colors.lime[200],Colors.teal[200],Colors.cyan[200],Colors.purpleAccent[100],Colors.brown[200]];
+        List<Color> colors = [Colors.red[50],Colors.pinkAccent[50],Colors.deepOrange[50],Colors.orange[50],Colors.amber[50],Colors.lime[50],Colors.cyan[50],Colors.brown[50]];
         Color c = colors[new Random().nextInt(colors.length)];
 
     var months = {

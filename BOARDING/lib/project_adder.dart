@@ -42,7 +42,7 @@ class _ProjectLoadingScreenState extends State<ProjectLoadingScreen> {
     
    
     var res = await http.post(
-        'http://10.0.2.2:8000/project/0',
+        'http://192.168.1.9:8000/project/0',
         headers: {
          
           'Accept': 'application/json',
