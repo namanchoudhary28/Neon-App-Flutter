@@ -421,11 +421,11 @@ class _EDITINFOState extends State<EDITINFO> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.symmetric(vertical:20.0),
+                padding: EdgeInsets.symmetric(vertical:15.0),
                 child:RaisedButton(
 
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24.0),
+                    borderRadius: BorderRadius.circular(15.0),
 
 
                   ),
@@ -433,22 +433,30 @@ class _EDITINFOState extends State<EDITINFO> {
                     Navigator.pop(context);
                     // Navigator.of(context).pushNamed(HomePage.tag);
                   },
-                  padding: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(15),
 
                   color:Colors.blue,
-                  child: Text('      Cancel        ', style:TextStyle(color:Colors.white,fontSize: 20.0)
-                  ),
+                  child: Row(children:<Widget>[
+                    Icon(Icons.cancel,color:Colors.white),
+                    SizedBox(
+                      width:5.0,
+                    ),
+
+                    Text('Cancel', style:TextStyle(color:Colors.white,fontSize: 15.0)),
+
+
+                  ]),
                 ),
               ),
               SizedBox(
                 width: 10,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical:20.0),
+                padding: EdgeInsets.symmetric(vertical:15.0),
                 child:RaisedButton(
 
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24.0),
+                    borderRadius: BorderRadius.circular(15.0),
 
                   ),
 
@@ -462,7 +470,7 @@ class _EDITINFOState extends State<EDITINFO> {
                   //   // }));
                   //   // Navigator.of(context).pushNamed(HomePage.tag);
                   // },
-                  padding: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(15),
                   color:Colors.blue,
                   onPressed: () {
                     setState(() {
@@ -514,8 +522,17 @@ class _EDITINFOState extends State<EDITINFO> {
                       return LoadingScreenEdit(_name, _location, _about, commu);
                     }));
                   },
-                  child: Text('Save Changes', style:TextStyle(color:Colors.white,fontSize: 20.0)
-                  ),
+                  child: Row(children:<Widget>[
+                    Icon(Icons.save,color:Colors.white),
+                    SizedBox(
+                      width:5.0,
+                    ),
+
+                    Text('Save', style:TextStyle(color:Colors.white,fontSize: 15.0)),
+
+
+                  ])
+                  
 
                 ),
 
