@@ -1,20 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:dropdown_formfield/dropdown_formfield.dart';
+
 class BLOG extends StatefulWidget {
   @override
   _BLOGState createState() => _BLOGState();
 }
 
 class _BLOGState extends State<BLOG> {
+    final formKey = new GlobalKey<FormState>();
   var _ititle1;
   var _idescription1;
   var _ilink1;
+     String _myActivityResult;
   /////accesing vaiables new/.....
   final ititle1= new TextEditingController();
   final idescription1= new TextEditingController();
   final ilink1= new TextEditingController();
+      String _myActivity;
+      void initState() {
+    super.initState();
+    _myActivity = '';
+    _myActivityResult = '';
+    // final formKey = new GlobalKey<FormState>();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final dropdownname = Padding(
+      padding: EdgeInsets.all(20),
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.le,
+        children: <Widget>[
+          InkWell(
+            child: Image.network(
+                'https://img.icons8.com/ios-glyphs/32/000000/tags.png'),
+            onTap: () {
+              //      Navigator.push(context,MaterialPageRoute(builder: (context){
+
+              // return new MyApp();
+
+              // }));
+            },
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            'Medium',
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+        ],
+      ),
+    );
          final htitile = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
@@ -165,6 +204,69 @@ class _BLOGState extends State<BLOG> {
           ititle,
           hlink,
           ilink,
+                    dropdownname,
+            Container(
+            child: Form(
+              key: formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    color: Colors.white,
+                    
+                    padding: EdgeInsets.all(16),
+                    child: DropDownFormField(
+                      titleText: 'Status',
+                      
+                      hintText: 'Please choose one',
+                      value: _myActivity,
+                      onSaved: (value) {
+                        setState(() {
+                          _myActivity = value;
+                        });
+                      },
+                      onChanged: (value) {
+                        setState(() {
+                          _myActivity = value;
+                        });
+                      },
+                      dataSource: [
+                        {
+                          "display": "WordPress",
+                          "value": "WordPress",
+                        },
+                        {
+                          "display": "Medium",
+                          "value": "Medium",
+                        },
+                        {
+                          "display": "Jhoomla",
+                          "value": "Jhoomla",
+                        },
+                        {
+                          "display": "Ghost",
+                          "value": "Ghost",
+                        },
+                         {
+                          "display": "SquareSpace",
+                          "value": "SquareSpace",
+                        },
+                        {
+                          "display": "Wix",
+                          "value": "Wix",
+                        },
+
+                 
+                      ],
+                      textField: 'display',
+                      valueField: 'value',
+                    ),
+                  ),
+   
+                ],
+              ),
+            ),
+          ),
           hdescription,
           idescription,
           SizedBox(
@@ -216,6 +318,8 @@ class _BLOGState extends State<BLOG> {
                           _ititle1=ititle1.text;
                           _idescription1=idescription1.text;
                           _ilink1=ilink1.text;
+                          _myActivityResult=_myActivity;
+
   
                      
                     });
@@ -237,15 +341,17 @@ class _BLOGState extends State<BLOG> {
 
 
 
-          // Container(
-          //       padding: EdgeInsets.all(16),
-          //       child: Text('$_ititle1,   $_ilink1,    $_idescription1'),
+          Container(
+                padding: EdgeInsets.all(16),
+                child: Text('$_ititle1,   $_ilink1,    $_myActivityResult'),
 
-          //     ),
+              ),
 
 
         ],
+        
         ),
+        
     );
   }
 }
@@ -253,11 +359,7 @@ class _BLOGState extends State<BLOG> {
 
 
 
-//           // Container(
-//           //       padding: EdgeInsets.all(16),
-//           //       child: Text('$_jkval,   $_myActivity,    $_projectinfo,    $_assignedto,      $_description'),
 
-//           //     ),
 
 //           // Container(
 //           //   padding: EdgeInsets.all(16),
