@@ -47,6 +47,10 @@ class HomePage extends StatefulWidget {
   //final List list_badges;
   final List list_communications;
   final List list_skills;
+  final List list_blogs;
+   final List list_education;
+   final List list_certifications;
+
 
   const HomePage(
       this.list_about,
@@ -55,7 +59,12 @@ class HomePage extends StatefulWidget {
       this.list_achievements,
       this.list_communications,
       //this.list_badges,
-      this.list_skills);
+      this.list_skills,
+      this.list_blogs,
+      this.list_education,
+      this.list_certifications
+
+      );
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -720,7 +729,7 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: body,
       ),
-      drawer: MainDrawer(),
+      drawer: MainDrawer(widget.list_blogs,widget.list_education,widget.list_certifications),
     );
   }
 

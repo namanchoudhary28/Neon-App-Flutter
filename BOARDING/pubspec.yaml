@@ -79,6 +79,8 @@ flutter:
    - assets/social_icons/
    - assets/skills/
    - assets/svg_images/
+   - assets/blog_sites/
+   - assets/certificate_companies/
    
 
 

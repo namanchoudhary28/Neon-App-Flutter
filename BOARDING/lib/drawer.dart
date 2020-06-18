@@ -1,8 +1,14 @@
+import 'package:BOARDING/certifications.dart';
 import 'package:BOARDING/education.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:BOARDING/blog.dart';
 class MainDrawer extends StatefulWidget {
+  final List list_blogs;
+   final List list_education;
+   final List list_certifications;
+  MainDrawer(this.list_blogs,this.list_education,this.list_certifications);
   @override
   _MainDrawerState createState() => _MainDrawerState();
 }
@@ -71,7 +77,7 @@ class _MainDrawerState extends State<MainDrawer> {
              
               Navigator.push(
                    context,
-                   MaterialPageRoute(builder: (context)=> Education() ),
+                   MaterialPageRoute(builder: (context)=> Education(widget.list_education)),
               );
             
             },
@@ -84,7 +90,13 @@ class _MainDrawerState extends State<MainDrawer> {
             ),
             title: Text('Certifications',
             style: TextStyle(fontSize:16),),
-            onTap: null,
+            onTap: (){
+              Navigator.push(
+                   context,
+                   MaterialPageRoute(builder: (context)=> Certification(widget.list_certifications)),
+              );
+
+            },
           ),
           ListTile(
             leading: SvgPicture.asset(
@@ -94,7 +106,14 @@ class _MainDrawerState extends State<MainDrawer> {
             ),
             title: Text('Blogs',
             style: TextStyle(fontSize:16),),
-            onTap: null,
+            onTap: (){
+              print("something");
+              Navigator.push(
+                   context,
+                   MaterialPageRoute(builder: (context)=> Blog(widget.list_blogs) ),
+              );
+              
+            },
           ),
 
         ],

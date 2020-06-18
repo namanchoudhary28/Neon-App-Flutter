@@ -2,6 +2,8 @@ import 'package:BOARDING/education_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 class Education extends StatefulWidget {
+  final List list_education;
+  const Education(this.list_education);
   @override
   _EducationState createState() => _EducationState();
 }
@@ -80,7 +82,7 @@ Card education_element(String image_name,String heading,String value){
          ),
   );
 }
-Row deg_cgpa_year(){
+Row deg_cgpa_year( String degree, String cgpa,String year){
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
 
@@ -91,7 +93,7 @@ Row deg_cgpa_year(){
             width: 124,
            
             padding: EdgeInsets.all(10.0),
-           child:education_element("graduate","Degree" ,"B.Tech"),
+           child:education_element("graduate","Degree" ,degree),
                
           ),
           
@@ -102,7 +104,7 @@ Row deg_cgpa_year(){
           
           
             padding: EdgeInsets.all(10.0),
-           child:education_element("gpa","CGPA", "9.0"),
+           child:education_element("gpa","CGPA", cgpa),
          
           ),
           
@@ -113,7 +115,7 @@ Row deg_cgpa_year(){
           
             padding: EdgeInsets.all(10.0),
            
-           child:education_element("calendar","Year", "2020"),
+           child:education_element("calendar","Year", year),
           
           ),
           
@@ -122,7 +124,7 @@ Row deg_cgpa_year(){
 
     ]);
 }
-Padding education_card(){
+Padding education_card(String degree,String institute,String year,String specialization,String gpa,String status){
   return Padding(padding: EdgeInsets.all(15.0),child: Card(
     shape: RoundedRectangleBorder(
                              borderRadius: BorderRadius.circular(10.0),
@@ -135,9 +137,9 @@ Padding education_card(){
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     
                     children: <Widget>[
-                      big_education_element("school", "College","Indian Institute of Technology Bhilai"),
-                      deg_cgpa_year(),
-                      big_education_element("certificate","Specialization", "Electrical Engineering")
+                      big_education_element("school", "College",institute),
+                      deg_cgpa_year(degree,gpa,year),
+                      big_education_element("certificate","Specialization", specialization)
 
 
                       
@@ -197,9 +199,9 @@ class _EducationState extends State<Education> {
             children: <Widget>[
             
                 
+                 for (Map<String, dynamic> item in widget.list_education)
+                    education_card(item['degree'], item['institute'], item['year'], item['specialization'], item['gpa'], item['status'])
                 
-                education_card(),
-                education_card(),
              
               
                   
