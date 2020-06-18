@@ -18,7 +18,7 @@ class LoadData extends StatefulWidget {
 class _LoadDataState extends State<LoadData> {
    static String tag = 'home-page';
 
-  List list_about, list_hobby, list_achievements, list_projects, list_skills,list_communications, list_badges;
+  List list_about, list_hobby, list_achievements, list_projects, list_skills,list_communications/*, list_badges*/;
   bool got = false;
   Future<String> getData() async {
     var token = await storage.read(key: 'jwt');
@@ -59,10 +59,10 @@ class _LoadDataState extends State<LoadData> {
     });
 /*
     var response7 =
-    await http.get('http://192.168.1.9:8000/getbadge', headers: {
+    await http.get('http://192.168.1.9:8000/badge', headers: {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
-    })*/
+    });*/
 
 
    list_about = jsonDecode(response1.body);
@@ -78,7 +78,7 @@ class _LoadDataState extends State<LoadData> {
           context,
         MaterialPageRoute(builder: (context) =>
             HomePage(list_about,list_hobby, list_projects, list_achievements,
-                list_communications, /*list_badges,*/ list_skills))
+                list_communications,/* list_badges, */list_skills))
       );
 
 

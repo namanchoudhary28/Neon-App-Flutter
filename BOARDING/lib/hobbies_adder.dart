@@ -25,6 +25,7 @@ class _HobbyLoadingScreenState extends State<HobbyLoadingScreen> {
 
   Future<String> addhobbies(List<Map<String,String>> hobbies) async {
     var token = await storage.read(key: 'jwt');
+    print(hobbies);
 
   var body = jsonEncode(<String,List<Map<String,String>>>{
        "hobbies" : hobbies
@@ -42,6 +43,7 @@ class _HobbyLoadingScreenState extends State<HobbyLoadingScreen> {
         },
         body: jsonEncode(
             <String, List<Map<String, String>>>{"hobbies": hobbies}));
+
     
 
     Fluttertoast.showToast(

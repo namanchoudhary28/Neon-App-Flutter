@@ -35,7 +35,7 @@ class _EducationLoadingScreenState extends State<EducationLoadingScreen> {
   
     
     var res = await http.post(
-        'http://10.0.2.2:8000/education',
+        'http://192.168.1.9:8000/education',
         headers: {
           
           'Accept': 'application/json',

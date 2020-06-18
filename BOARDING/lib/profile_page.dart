@@ -43,7 +43,7 @@ class HomePage extends StatefulWidget {
   final List list_about;
   final List list_hobby;
   final List list_projects;
- final List list_achievements;
+  final List list_achievements;
   //final List list_badges;
   final List list_communications;
   final List list_skills;
@@ -54,7 +54,7 @@ class HomePage extends StatefulWidget {
       this.list_projects,
       this.list_achievements,
       this.list_communications,
-      /*this.list_badges,*/
+      //this.list_badges,
       this.list_skills);
 
   @override
@@ -538,14 +538,14 @@ class _HomePageState extends State<HomePage> {
       ],
     )
     ); // MyProjects function is defined at the end. Usage Syntax: MyProjects(heading,subheading)
-/*
+
     final badges = Container(
       height: 240,
       width: (MediaQuery
           .of(context)
           .size
           .width),
-      color: Colors.cyan[100],
+      color: Colors.cyan[50],
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
@@ -567,19 +567,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(width: (MediaQuery.of(context).size.width) - 350),
-                  InkWell(
-                    child: Image(
-                      image: AssetImage('assets/icons/add.png'),
-                      height: 40.0,
-                      width: 40.0,
-                    ),
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                            return new EDIT_HOBBY(); //Function from edit_info.dart
-                          }));
-                    },
-                  ),
+
                 ],
               ),
             ],
@@ -590,15 +578,25 @@ class _HomePageState extends State<HomePage> {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: <Widget>[
+            MyBadges(
+              'All Day Everyday', 'assets/badges/always_available', '100% Attendance'),
+                MyBadges(
+                    'Employee of the Month', 'assets/badges/employee_month', '100% Attendance'),
+                MyBadges(
+                    'Spotlight Award', 'assets/badges/voyager', '100% Attendance'),
+
+
+                ]
+                /*
                 for (Map<String, dynamic> item in widget.list_badges)
                   MyBadges(
                       item['title'], item['image_url'], item['description']),
-              ],
+              ],*/
             ),
           ),
         ],
       ),);
-*/
+
     final achievemnets =
     
       Column(
@@ -689,7 +687,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 30,
             ),
-            //badges,
+            badges,
             SizedBox(
               height: 30,
             ),
@@ -800,18 +798,7 @@ class _HomePageState extends State<HomePage> {
           child: Container(
             height: 110,
             width: 110,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 3,
-                  blurRadius: 3,
-                  offset: Offset(0, 4), // changes position of shadow
-                ),
-              ],
-            ),
+
             child: Padding(
               padding: const EdgeInsets.fromLTRB(10, 4, 0, 0),
               child: Column(
@@ -826,6 +813,7 @@ class _HomePageState extends State<HomePage> {
                         //borderRadius: BorderRadius.circular(55.0),
                       ),
                       //color: Colors.blue,
+                      elevation: 4,
                       child: Wrap(
                         children: <Widget>[
                           Image(
