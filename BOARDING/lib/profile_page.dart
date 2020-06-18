@@ -201,7 +201,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  SizedBox(width: (MediaQuery.of(context).size.width) - 350),
+                  SizedBox(width: (MediaQuery.of(context).size.width) - 330),
                   InkWell(
                       child: Icon(Icons.add),
                       onTap: () {
@@ -505,7 +505,7 @@ class _HomePageState extends State<HomePage> {
                 'PROJECTS',
                 style: TextStyle(fontSize: 17, letterSpacing: 1.7),
               ),
-              SizedBox(width: (MediaQuery.of(context).size.width) - 200),
+              SizedBox(width: (MediaQuery.of(context).size.width) - 170),
               InkWell(
                 child: Icon(Icons.add),
                 onTap: () {
