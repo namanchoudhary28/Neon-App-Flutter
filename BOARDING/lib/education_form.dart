@@ -1,3 +1,4 @@
+import 'package:BOARDING/education_adder.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
 
@@ -403,7 +404,10 @@ class _EDUCATIONState extends State<EDUCATION> {
                           _year1=iyear1.text;
                           _specs1=ispecs1.text;
                           _gpa1=igpa1.text;
-                          
+                          Navigator.push(
+                             context,
+                             MaterialPageRoute(builder: (context)=> EducationLoadingScreen(_name1,_institutename1, _year1, _myActivity,_specs1, _gpa1 )),
+                          );
                           
                           
 
