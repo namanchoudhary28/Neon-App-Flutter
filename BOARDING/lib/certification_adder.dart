@@ -36,18 +36,15 @@ class _CertificationLoadingScreenState extends State<CertificationLoadingScreen>
   
     
     var res = await http.post(
-        'http://10.0.2.2:8000/certification',
-        headers: {
-          
-          'Accept': 'application/json',
-          'Authorization': 'Token $token',
-        },
-        body: {
-            "title" : title,
-            "organization" : organization,
-            "certificate_type" : certificate_type,
-            "year" : year,
-            "certificate" : certificate
+        'http://192.168.1.9:8000/certification', headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Token $token',
+    }, body: {
+      "title": title,
+      "organization": organization,
+      "certificate_type": certificate_type,
+      "year": year,
+      "certificate" : certificate
         }
     );
 

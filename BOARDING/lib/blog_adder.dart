@@ -34,18 +34,15 @@ class _BlogLoadingScreenState extends State<BlogLoadingScreen> {
   
     
     var res = await http.post(
-        'http://10.0.2.2:8000/blog',
-        headers: {
-          
-          'Accept': 'application/json',
-          'Authorization': 'Token $token',
-        },
-        body: {
-            "title" : title,
-            "description" : description,
-            "link" : link,
-            "blog_site" : blog_site
-        }
+        'http://192.168.1.9:8000/blog', headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Token $token',
+    }, body: {
+      "title": title,
+      "description": description,
+      "link": link,
+      "blog_site": blog_site
+    }
     );
 
     Fluttertoast.showToast(

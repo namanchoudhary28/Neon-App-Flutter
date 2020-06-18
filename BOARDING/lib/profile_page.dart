@@ -461,19 +461,19 @@ class _HomePageState extends State<HomePage> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: <Widget>[
                               Text("TOP SKILLS"),
-                              InkWell(
-                                child: Icon(
-                                    Icons.add
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: InkWell(
+                                  child: Icon(Icons.add),
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => MultiForm()),
+                                    );
+                                  },
                                 ),
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => MultiForm()),
-                                  );
-                                },
                               )
-
                             ]),
                       ),
                       Tab(text: "PERSONALITY TRAITS"),

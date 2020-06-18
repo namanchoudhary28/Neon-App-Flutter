@@ -121,21 +121,21 @@ class _projectinfoState extends State<projectinfo> {
                   children: <Widget>[
                     Container(
                       height: 35.0,
-                      width: 35.0,
-                      child: Text("20"),
-                      padding: EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        border: Border.all(
-                          color: Colors.blue,
-                          width: 0.8,
+                        width: 35.0,
+                        child: Text(widget.start.substring(8, 10)),
+                        padding: EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          border: Border.all(
+                            color: Colors.blue,
+                            width: 0.8,
+                          ),
                         ),
                       ),
-                    ),
                     Container(
                       height: 35.0,
                       width: 35.0,
-                      child: Text("09"),
+                      child: Text(widget.start.substring(5, 7)),
                       padding: EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
@@ -148,7 +148,9 @@ class _projectinfoState extends State<projectinfo> {
                     Container(
                       height: 35.0,
                       width: 70.0,
-                      child: Text("2020"),
+                      child: Align(
+                          alignment: Alignment.center,
+                          child: Text(widget.start.substring(0, 4))),
                       padding: EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
@@ -165,7 +167,7 @@ class _projectinfoState extends State<projectinfo> {
                     Container(
                       height: 35.0,
                       width: 35.0,
-                      child: Text("20"),
+                      child: Text(widget.end.substring(8, 10)),
                       padding: EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
@@ -178,7 +180,7 @@ class _projectinfoState extends State<projectinfo> {
                     Container(
                       height: 35.0,
                       width: 35.0,
-                      child: Text("09"),
+                      child: Text(widget.end.substring(5, 7)),
                       padding: EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
@@ -191,7 +193,9 @@ class _projectinfoState extends State<projectinfo> {
                     Container(
                       height: 35.0,
                       width: 70.0,
-                      child: Text("2020"),
+                      child: Align(
+                          alignment: Alignment.center,
+                          child: Text(widget.end.substring(0, 4))),
                       padding: EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
