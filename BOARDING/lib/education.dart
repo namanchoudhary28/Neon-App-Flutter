@@ -1,3 +1,4 @@
+import 'package:BOARDING/education_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 class Education extends StatefulWidget {
@@ -177,6 +178,10 @@ class _EducationState extends State<Education> {
                   color:Colors.white,
                 ),
                 onPressed: (){
+                  Navigator.push(
+                         context,
+                         MaterialPageRoute(builder: (context)=>EDUCATION())
+                  );
 
                 },
               )
