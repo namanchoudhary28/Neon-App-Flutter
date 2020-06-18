@@ -752,7 +752,7 @@ class _HomePageState extends State<HomePage> {
           ),
           animation: true,
           animationDuration: 1000,
-          percent: 0.8,
+          //percent: 0.8,
           backgroundColor: Colors.grey[300],
           progressColor: Colors.blue,
         ),
