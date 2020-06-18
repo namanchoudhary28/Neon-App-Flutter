@@ -75,7 +75,7 @@ Card education_element(String image_name, String heading, String value) {
 
 Row deg_cgpa_year(String degree, String cgpa, String year) {
   return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Container(
           height: 124,
@@ -110,8 +110,8 @@ Padding education_card(String degree, String institute, String year,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          big_education_element("school", "College", institute),
           deg_cgpa_year(degree, gpa, year),
+          big_education_element("school", "College", institute),
           big_education_element("certificate", "Specialization", specialization)
         ],
       ),

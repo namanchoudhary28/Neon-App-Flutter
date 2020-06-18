@@ -549,11 +549,8 @@ class _HomePageState extends State<HomePage> {
     ); // MyProjects function is defined at the end. Usage Syntax: MyProjects(heading,subheading)
 
     final badges = Container(
-      height: 240,
-      width: (MediaQuery
-          .of(context)
-          .size
-          .width),
+      height: 200,
+      width: (MediaQuery.of(context).size.width),
       color: Colors.cyan[50],
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -575,24 +572,27 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  SizedBox(width: (MediaQuery.of(context).size.width) - 350),
+                  //SizedBox(width: (MediaQuery.of(context).size.width) - 350),
 
                 ],
               ),
             ],
           ),
           Container(
-            height: 180,
-            padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
+            height: 140,
+            padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-            MyBadges(
-              'All Day Everyday', 'assets/badges/always_available', '100% Attendance'),
-                MyBadges(
-                    'Employee of the Month', 'assets/badges/employee_month', '100% Attendance'),
-                MyBadges(
-                    'Spotlight Award', 'assets/badges/voyager', '100% Attendance'),
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  MyBadges(
+                      'All Day Everyday', 'assets/badges/always_available',
+                      '100% Attendance'),
+                  MyBadges(
+                      'Employee of the Month', 'assets/badges/employee_month',
+                      '100% Attendance'),
+                  MyBadges(
+                      'Spotlight Award', 'assets/badges/voyager',
+                      '100% Attendance'),
 
 
                 ]
@@ -752,7 +752,7 @@ class _HomePageState extends State<HomePage> {
           ),
           animation: true,
           animationDuration: 1000,
-          //percent: 0.8,
+          percent: 0.8,
           backgroundColor: Colors.grey[300],
           progressColor: Colors.blue,
         ),
@@ -803,10 +803,10 @@ class _HomePageState extends State<HomePage> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(4, 8, 2, 4),
+          padding: const EdgeInsets.fromLTRB(4, 0, 2, 4),
           child: Container(
-            height: 110,
-            width: 110,
+            height: 92,
+            width: 92,
 
             child: Padding(
               padding: const EdgeInsets.fromLTRB(10, 4, 0, 0),
@@ -937,9 +937,15 @@ class _HomePageState extends State<HomePage> {
 
   Container _MyAchievemnts(
       context, String date, String heading, String subHeading) {
-        
-        List<Color> colors = [Colors.red[50],Colors.pinkAccent[50],Colors.deepOrange[50],Colors.orange[50],Colors.amber[100] ,Colors.cyan[50]];
-        Color c = colors[new Random().nextInt(colors.length)];
+    List<Color> colors = [
+      Colors.red[100],
+      Colors.pinkAccent[50],
+      Colors.deepOrange[100],
+      Colors.orange[100],
+      Colors.amber[100],
+      Colors.cyan[100]
+    ];
+    Color c = colors[new Random().nextInt(colors.length)];
 
     var months = {
       "01": "Jan",

@@ -315,7 +315,7 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
           dateheading,
           Container(
             child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                 child: Column(children: <Widget>[
                   // selectedText,
                   const SizedBox(height: 15.0),

@@ -48,6 +48,7 @@ Row card_panel(BuildContext context, String competancy, double percent) {
           color: Colors.white,
         ),
       ),
+      /*
       Tooltip(
         message: "check it to delete this skill",
         child: Checkbox(
@@ -65,6 +66,8 @@ Row card_panel(BuildContext context, String competancy, double percent) {
         ),
         onPressed: () {},
       )
+
+       */
     ],
   );
 }

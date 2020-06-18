@@ -885,11 +885,11 @@ final iclientname = Padding(
           projectinfo,
           assignedname,
           assignedinfo,
-          dropdownname,
+          //dropdownname,
           dateheading,
           Container(
             child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                 child: Column(children: <Widget>[
                   // selectedText,
                   const SizedBox(height: 15.0),
@@ -899,7 +899,7 @@ final iclientname = Padding(
 /////.....................DATE2...............
           Container(
             child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                 child: Column(children: <Widget>[
                   // selectedText,
                   const SizedBox(height: 15.0),
@@ -924,13 +924,13 @@ final iclientname = Padding(
           hteamsize,
           iteamsize,
           SizedBox(
-            height:20,
+            height: 20,
           ),
           hteammembers,
           SizedBox(
-            height:10,
+            height: 10,
           ),
-          ///////////////.............15jun..
+          dropdownname,
           Container(
             child: Form(
               key: formKey,
@@ -1058,11 +1058,12 @@ final iclientname = Padding(
             activeColor: Colors.blue,
 
           ),*/
+
           ///.................15june
           descriptionname,
           descriptioninfo,
-          checklistname,
-          uploadname,
+          //checklistname,
+          // uploadname,
           SizedBox(
             height: 70,
           ),
