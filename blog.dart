@@ -11,7 +11,7 @@ class _BLOGState extends State<BLOG> {
   var _ititle1;
   var _idescription1;
   var _ilink1;
-     String _myActivityResult;
+  String _myActivityResult;
   /////accesing vaiables new/.....
   final ititle1= new TextEditingController();
   final idescription1= new TextEditingController();
@@ -341,11 +341,11 @@ class _BLOGState extends State<BLOG> {
 
 
 
-          Container(
-                padding: EdgeInsets.all(16),
-                child: Text('$_ititle1,   $_ilink1,    $_myActivityResult'),
+          // Container(
+          //       padding: EdgeInsets.all(16),
+          //       child: Text('$_ititle1,   $_ilink1,    $_myActivityResult'),
 
-              ),
+          //     ),
 
 
         ],
