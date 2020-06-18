@@ -1,3 +1,5 @@
+import 'package:BOARDING/education.dart';
+import 'package:BOARDING/sample.dart';
 import 'package:flutter/material.dart';
 class MainDrawer extends StatefulWidget {
   @override
@@ -57,19 +59,27 @@ class _MainDrawerState extends State<MainDrawer> {
           ),
           ListTile(
             leading: Icon(Icons.settings),
-            title: Text('Settings',
+            title: Text('Education',
             style: TextStyle(fontSize:16),),
-            onTap: null,
+            onTap: (){
+              print("something");
+             
+              Navigator.push(
+                   context,
+                   MaterialPageRoute(builder: (context)=> Education() ),
+              );
+            
+            },
           ),
           ListTile(
             leading: Icon(Icons.menu),
-            title: Text('Discover',
+            title: Text('Certifications',
             style: TextStyle(fontSize:16),),
             onTap: null,
           ),
           ListTile(
             leading: Icon(Icons.arrow_back),
-            title: Text('Logout',
+            title: Text('Blogs',
             style: TextStyle(fontSize:16),),
             onTap: null,
           ),

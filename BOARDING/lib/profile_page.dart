@@ -708,7 +708,8 @@ class _HomePageState extends State<HomePage> {
               alignment: Alignment.bottomCenter,
               child: BottomNavigation(),
             )
-        )
+        ),
+        
 
       ],
     );
