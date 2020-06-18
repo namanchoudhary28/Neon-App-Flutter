@@ -1,6 +1,7 @@
 import 'package:BOARDING/education.dart';
 import 'package:BOARDING/sample.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 class MainDrawer extends StatefulWidget {
   @override
   _MainDrawerState createState() => _MainDrawerState();
@@ -58,7 +59,11 @@ class _MainDrawerState extends State<MainDrawer> {
             onTap: null,
           ),
           ListTile(
-            leading: Icon(Icons.settings),
+            leading: SvgPicture.asset(
+              'assets/svg_images/education.svg',
+              height: 20.0,
+              width:20.0
+            ),
             title: Text('Education',
             style: TextStyle(fontSize:16),),
             onTap: (){
@@ -72,13 +77,21 @@ class _MainDrawerState extends State<MainDrawer> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.menu),
+            leading: SvgPicture.asset(
+              'assets/svg_images/certificate.svg',
+              height: 20.0,
+              width:20.0
+            ),
             title: Text('Certifications',
             style: TextStyle(fontSize:16),),
             onTap: null,
           ),
           ListTile(
-            leading: Icon(Icons.arrow_back),
+            leading: SvgPicture.asset(
+              'assets/svg_images/blog.svg',
+              height: 20.0,
+              width:20.0
+            ),
             title: Text('Blogs',
             style: TextStyle(fontSize:16),),
             onTap: null,
