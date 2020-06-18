@@ -45,7 +45,7 @@ class _ProjectLoadingScreenState extends State<ProjectLoadingScreen> {
   
     if(widget.decider==1) {
       res = await http.post(
-          'http://10.0.2.2:8000/project/0',
+          'http://192.168.1.9:8000/project/0',
           headers: {
 
             'Accept': 'application/json',
@@ -70,7 +70,7 @@ class _ProjectLoadingScreenState extends State<ProjectLoadingScreen> {
     }
     else{
        res = await http.put(
-          'http://10.0.2.2:8000/project',
+          'http://192.168.1.9:8000/project',
           headers: {
 
             'Accept': 'application/json',

@@ -135,7 +135,7 @@ class _HomePageState extends State<HomePage> {
 
     final city = Center(
       child: Text(
-       "Mumbai",
+        widget.list_about[0]['location'],
         style: TextStyle(
           color: Colors.orangeAccent,
           fontWeight: FontWeight.bold,
@@ -163,7 +163,7 @@ class _HomePageState extends State<HomePage> {
       padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: Center(
         child: Text(
-          "Optimist",
+          widget.list_about[0]['aboutme'],
           textAlign: TextAlign.center,
           style: TextStyle(
             //color: Colors.orangeAccent,,
@@ -870,7 +870,7 @@ class _HomePageState extends State<HomePage> {
         child: Wrap(
           children: <Widget>[
             ListTile(
-              title: Text(name + '              ' + status,
+              title: Text(name + '\n' + status,
                   style: TextStyle(color: Colors.white)),
               subtitle: Text(_start + ' - ' + _end,
                   style: TextStyle(color: Colors.lightBlueAccent)),
@@ -941,7 +941,7 @@ class _HomePageState extends State<HomePage> {
   Container _MyAchievemnts(
       context, String date, String heading, String subHeading) {
         
-        List<Color> colors = [Colors.red[50],Colors.pinkAccent[50],Colors.deepOrange[50],Colors.orange[50],Colors.amber[50],Colors.lime[50],Colors.cyan[50],Colors.brown[50]];
+        List<Color> colors = [Colors.red[50],Colors.pinkAccent[50],Colors.deepOrange[50],Colors.orange[50],Colors.amber[100] ,Colors.cyan[50]];
         Color c = colors[new Random().nextInt(colors.length)];
 
     var months = {

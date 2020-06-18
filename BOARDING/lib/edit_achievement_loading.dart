@@ -34,7 +34,7 @@ class _LoadingScreenEditAchievementState extends State<LoadingScreenEditAchievem
     
     if(decider==1){
       response1 = await http.post(
-        'http://10.0.2.2:8000/achievements',
+        'http://192.168.1.9:8000/achievements',
         headers: {
           'Accept': 'application/json',
           'Authorization': 'Token $token',
@@ -48,7 +48,7 @@ class _LoadingScreenEditAchievementState extends State<LoadingScreenEditAchievem
       );
     }
     else{
-      String url = 'http://10.0.2.2:8000/achievements/' +
+      String url = 'http://192.168.1.9:8000/achievements/' +
           title_old;
       response1 = await http.put(
         url,
