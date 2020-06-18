@@ -12,8 +12,9 @@ class _EDUCATIONState extends State<EDUCATION> {
   var _institutename1;
   var _year1;
   var _specs1;
-  var _gpa1;
-   String _myActivityResult; //accessing dropdown value project status
+  var _gpa1;   
+  String _myActivityResult
+; //accessing dropdown value project status
   /////accesing vaiables new/.....
   final iname1= new TextEditingController();
   final iinstitutename1= new TextEditingController();
@@ -403,6 +404,7 @@ class _EDUCATIONState extends State<EDUCATION> {
                           _year1=iyear1.text;
                           _specs1=ispecs1.text;
                           _gpa1=igpa1.text;
+                          _myActivityResult=_myActivity;
   
                      
                     });
