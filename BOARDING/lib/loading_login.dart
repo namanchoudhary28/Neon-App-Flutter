@@ -67,9 +67,9 @@ class _LoginLoaderState extends State<LoginLoader> {
                                   fontSize: 22.0, fontWeight: FontWeight.w600),
                             ),
                             description: Text(
-                              'Your password or email is incorrect.Please try again',
-                              textAlign: TextAlign.center,
-                            ),
+                              'Your password or email is incorrect! Please try again',
+                  textAlign: TextAlign.center,
+                ),
                             onOkButtonPressed: () {
                               Navigator.push(
 
@@ -129,13 +129,13 @@ class _LoginLoaderState extends State<LoginLoader> {
           Container(
                  padding: EdgeInsets.all(20.0),
                  child: Text(
-          
-            "Logging in....",
-            textAlign: TextAlign.center,
-            style:TextStyle(
-                    fontSize: 20.0,
-                    color:Colors.white, 
-            ),
+
+                   "Logging in...",
+                   textAlign: TextAlign.center,
+                   style: TextStyle(
+                     fontSize: 20.0,
+                     color: Colors.white,
+                   ),
           ),
           ),
           Loading(

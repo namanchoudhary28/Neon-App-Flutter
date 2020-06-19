@@ -155,8 +155,8 @@ class _LoginPageState extends State<LoginPage> {
                 )),
               ),
               password,
-              forgot,
-              SizedBox(height: 20,),
+              //forgot,
+            SizedBox(height: 20,),
               loginB,
 
             ],

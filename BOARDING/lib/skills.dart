@@ -220,7 +220,7 @@ class _SkillsDisplayState extends State<SkillsDisplay> {
           context, last_child['name'], percent, last_child['competancy']));
     }
     children.add(SizedBox(height: 10.0,));
-    children.add(button_rows());
+    //children.add(button_rows());
     children.add(SizedBox(height: 15.0,));
     return children;
   }

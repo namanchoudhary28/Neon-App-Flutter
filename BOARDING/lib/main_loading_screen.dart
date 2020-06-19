@@ -155,13 +155,13 @@ class _LoadDataState extends State<LoadData> {
                  padding: EdgeInsets.all(20.0),
                  child: Text(
           
-            "loading...achievements,projects,hobbies,badges and more. this may take a while...",
-            textAlign: TextAlign.center,
-            style:TextStyle(
-                    fontSize: 15.0,
-                    color:Colors.white, 
+            "Loading Achievements, Projects, Hobbies and more.\n This may take a while...",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 15.0,
+                color: Colors.white,
+              ),
             ),
-          ),
           ),
          
 

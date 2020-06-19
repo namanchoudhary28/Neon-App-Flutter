@@ -45,14 +45,14 @@ class _MainDrawerState extends State<MainDrawer> {
                   SizedBox(
                     height: 10.0,
                   ),
-                  Text("Naman",
-                  style: TextStyle(fontSize:22,
-                  color: Colors.white),
+                  Text(
+                    "Udbhav",
+                    style: TextStyle(fontSize: 22, color: Colors.white),
                   ),
-                
-                  Text("namanc@iitbhilai.ac.in",
-                  style: TextStyle(fontSize:17,
-                  color: Colors.white),
+
+                  Text("udbhava@iitbhilai.ac.in",
+                    style: TextStyle(fontSize: 17,
+                        color: Colors.white),
                   )
                 ],
               ),
