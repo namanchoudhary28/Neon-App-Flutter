@@ -67,7 +67,7 @@ class _LoginLoaderState extends State<LoginLoader> {
                                   fontSize: 22.0, fontWeight: FontWeight.w600),
                             ),
                             description: Text(
-                              'Your password or email is incorrect! Please try again',
+                              'Your password or email is incorrect!\nPlease try again',
                   textAlign: TextAlign.center,
                 ),
                             onOkButtonPressed: () {
