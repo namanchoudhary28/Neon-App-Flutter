@@ -736,7 +736,7 @@ class _HomePageState extends State<HomePage> {
             color: Colors.blue,
             
             onPressed: (){
-                reportView(context);
+                reportView(context,widget.list_about,widget.list_communications,widget.list_skills);
             },
           
           )
