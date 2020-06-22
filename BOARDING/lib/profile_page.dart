@@ -4,6 +4,7 @@ import 'package:BOARDING/ADDSKILLN/multi_form.dart';
 import 'package:BOARDING/add_skill.dart';
 import 'package:BOARDING/bottom_navigation.dart';
 import 'package:BOARDING/drawer.dart';
+import 'package:BOARDING/pdf_content.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -725,6 +726,22 @@ class _HomePageState extends State<HomePage> {
       appBar: ScrollAppBar(
         controller: ScrollController(),
         title: Text("Neon"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.picture_as_pdf,
+              color: Colors.white,
+
+            ),
+            color: Colors.blue,
+            
+            onPressed: (){
+                reportView(context);
+            },
+          
+          )
+
+        ],
       ),
       body: SafeArea(
         child: body,
