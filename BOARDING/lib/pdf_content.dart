@@ -242,16 +242,21 @@ reportView(context,List list_about,List list_communications, List skills) async 
     ),
   );   
   
-  
+final String dirs = (await getExternalStorageDirectory()).path;
+       print(dirs);
+  final String paths = '$dirs/report.pdf';
+  print(paths);
+  final File files = File(paths);
+  await files.writeAsBytes(pdf.save());
   final Email email = Email(
     body: "nothing",
     subject: "no subject",
     recipients: ['sanskarj@iitbhilai.ac.in'],
-    attachmentPaths: [path],
+    attachmentPaths: [paths],
     isHTML: false
   );
    await FlutterEmailSender.send(email);
-   
+
  
 
   //save PDF
