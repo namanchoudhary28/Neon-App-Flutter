@@ -1,5 +1,3 @@
-//import 'dart:html';
-
 import 'package:BOARDING/ADDSKILLN/multi_form.dart';
 import 'package:BOARDING/add_skill.dart';
 import 'package:BOARDING/bottom_navigation.dart';
@@ -9,7 +7,6 @@ import 'package:BOARDING/pdf_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:expand_widget/expand_widget.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:link/link.dart';
 import 'package:BOARDING/login_page.dart';
@@ -21,9 +18,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/rendering.dart';
 import 'dart:math';
 
-import 'package:BOARDING/date_time_picker_widget2.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
-import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 //import 'package:BOARDING/grid_hobby.dart';
 import 'package:BOARDING/addproject.dart';
 
@@ -241,6 +236,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
+
     Image skill_image_returner(String name) {
       try {
         return Image(
@@ -348,6 +344,7 @@ class _HomePageState extends State<HomePage> {
 
 
     }
+
     final list_of_all_cards = Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: skill_card_returner(),
@@ -629,7 +626,7 @@ class _HomePageState extends State<HomePage> {
             InkWell(
               child: Icon(Icons.add),
 
-              /// Pop Up form to add achievements
+
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return new EDIT_ACHIEVEMENT('', '');
