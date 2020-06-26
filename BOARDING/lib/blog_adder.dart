@@ -63,17 +63,7 @@ class _BlogLoadingScreenState extends State<BlogLoadingScreen> {
   }
   @override
   void initState(){
-  
-    //Future <String> f = addhobbies(widget.hobbies);
-    
-      
       Future <String> res = addblog(widget.title,widget.description,widget.link,widget.blog_site);
-
-
-      
-      
-      
-
   }
   @override
   Widget build(BuildContext context) {
@@ -92,8 +82,6 @@ class _BlogLoadingScreenState extends State<BlogLoadingScreen> {
           Loading(indicator: BallPulseIndicator(),size: 100.0),
           Text(msg,style:TextStyle(color:Colors.white,fontSize: 20.0))
           ]
-          
-         
         ),
       )
     );

@@ -7,21 +7,6 @@ import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:BOARDING/loading_login.dart';
 
-//void main() => runApp(MyApp());
-/*
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
-    );
-  }
-}*/
 
 class EDIT_HOBBY extends StatefulWidget {
   @override
@@ -64,18 +49,6 @@ class EDIT_HOBBYState extends State<EDIT_HOBBY> {
     {"id": '8', "image": "assets/banks/Reading.png", "name": "Reading"},
     {"id": '9', "image": "assets/banks/Archery.png", "name": "Archery"},
     {"id": '10', "image": "assets/banks/Camping.png", "name": "Camping"},
-    // {"id": '11', "image": "assets/banks/rhb-now.png", "name": "RHB NOW"},
-    // {
-    //   "id": '12',
-    //   "image": "assets/banks/standardchartered.png",
-    //   "name": "Standard Chartered"
-    // },
-    // {
-    //   "id": '13',
-    //   "image": "assets/banks/uob.png",
-    //   "name": "United Oversea Bank"
-    // },
-    // {"id": '14', "image": "assets/banks/ocbc.png", "name": "OCBC Bank"},
   ];
 
   @override
@@ -90,11 +63,6 @@ class EDIT_HOBBYState extends State<EDIT_HOBBY> {
             child: Image.network(
                 'https://img.icons8.com/ios-glyphs/30/000000/inspection.png'),
             onTap: () {
-              //      Navigator.push(context,MaterialPageRoute(builder: (context){
-
-              // return new MyApp();
-
-              // }));
             },
           ),
           SizedBox(
@@ -181,11 +149,6 @@ class EDIT_HOBBYState extends State<EDIT_HOBBY> {
                     borderRadius: BorderRadius.circular(24.0),
                   ),
                   onPressed: () {
-                    // Navigator.push(context,MaterialPageRoute(builder: (context){
-                    //   return new EDITINFO();
-
-                    // }));
-                    // Navigator.of(context).pushNamed(HomePage.tag);
                   },
                   padding: EdgeInsets.all(20),
                   color: Colors.blue,
@@ -226,21 +189,8 @@ class EDIT_HOBBYState extends State<EDIT_HOBBY> {
                         MaterialPageRoute(builder: (context) {
                       return LoadData();
                     }));
-                    // print(_myActivityResult);
 
-                    // submitProjects(_projectinfo, _description, _myActivityResult);
-                    // Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    //   return new HomePage();
-                    // }));
                   },
-
-                  // _jkval=_jk;
-
-                  // Navigator.push(context,MaterialPageRoute(builder: (context){
-                  //   return new EDITINFO();
-
-                  // }));
-                  // Navigator.of(context).pushNamed(HomePage.tag);
 
                   padding: EdgeInsets.all(20),
                   color: Colors.blue,
@@ -250,11 +200,7 @@ class EDIT_HOBBYState extends State<EDIT_HOBBY> {
               ),
             ],
           ),
-          // Container(
-          //       padding: EdgeInsets.all(16),
-          //       child: Text('$image,   $name'),
 
-          //     ),
         ],
       ),
     );

@@ -17,7 +17,6 @@ class _DateTimePickerWidget2State extends State<DateTimePickerWidget2> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        
         Text(dateFormat.format(selectedDate)),
         RaisedButton(
           child: Text('Choose new date time'),

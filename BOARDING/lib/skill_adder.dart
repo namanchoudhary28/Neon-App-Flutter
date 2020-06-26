@@ -12,7 +12,7 @@ import 'package:BOARDING/hobby_class.dart';
 import 'dart:convert';
 
 class SkillLoadingScreen extends StatefulWidget {
- final List<Map<String,String>> skills;
+  final List<Map<String, String>> skills;
 
   const SkillLoadingScreen(this.skills);
 
@@ -21,15 +21,12 @@ class SkillLoadingScreen extends StatefulWidget {
 }
 
 class _SkillLoadingScreenState extends State<SkillLoadingScreen> {
-  String msg ="Your Skills are being added. please wait...";
+  String msg = "Your Skills are being added. please wait...";
 
-  Future<String> addskills(List<Map<String,String>> skills) async {
+  Future<String> addskills(List<Map<String, String>> skills) async {
     var token = await storage.read(key: 'jwt');
 
-  
-   
-    var res = await http.post(
-        'http://192.168.1.9:8000/skills',
+    var res = await http.post('http://192.168.1.9:8000/skills',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -46,48 +43,38 @@ class _SkillLoadingScreenState extends State<SkillLoadingScreen> {
         timeInSecForIosWeb: 2,
         backgroundColor: Colors.grey,
         textColor: Colors.white,
-        fontSize: 14.0
-    );
-
+        fontSize: 14.0);
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => LoadData()),);
-      return "success";
+      MaterialPageRoute(builder: (context) => LoadData()),
+    );
+    return "success";
   }
-  @override
-  void initState(){
-  
-    //Future <String> f = addhobbies(widget.hobbies);
-    
-      print(widget.skills);
-      Future <String> res = addskills(widget.skills);
-      
-      
 
+  @override
+  void initState() {
+    //Future <String> f = addhobbies(widget.hobbies);
+
+    print(widget.skills);
+    Future<String> res = addskills(widget.skills);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
-      body:Container(
-             
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children : <Widget>[
+        backgroundColor: Colors.blue,
+        body: Container(
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
                 Container(
-           width: double.infinity,
-
-          ),
-          Loading(indicator: BallPulseIndicator(),size: 100.0),
-          Text(msg,style:TextStyle(color:Colors.white,fontSize: 20.0))
-          ]
-          
-         
-        ),
-      )
-    );
-        
+                  width: double.infinity,
+                ),
+                Loading(indicator: BallPulseIndicator(), size: 100.0),
+                Text(msg, style: TextStyle(color: Colors.white, fontSize: 20.0))
+              ]),
+        ));
   }
 }

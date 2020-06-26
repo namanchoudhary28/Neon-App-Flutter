@@ -39,15 +39,7 @@ import 'package:cupertino_date_textbox/cupertino_date_textbox.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 
-////////////////.................COMMENTS FOR ACCESSING INFO.................////////////////////
-///Line 38--projectinfo
-///Line 39--assignedto
-///Line 40--project status
-///Line 41--radio button external internal
-///Line 43--description
-///Line 113--starting date
-///Line 149--ending date
-///..........................END...............
+
 class MyApp extends StatefulWidget {
   final String name;
   final String start;
@@ -86,10 +78,6 @@ class _MyAppState extends State<MyApp> {
   final descriptioncon = new TextEditingController();
   
 
-  /////////////////................15june2020......................................
-  ///
-  /////accesing vaiables new start/.....
- // var _jkval2;            //accessing yes no
 
   var _iclientlocation2;
   var _ilocationofprojectexecution2;
@@ -119,7 +107,6 @@ class _MyAppState extends State<MyApp> {
 
 
 
-  /////////////////////...............................................
   String _jk = "";
   String _myActivity;
 
@@ -199,9 +186,7 @@ class _MyAppState extends State<MyApp> {
           InkWell(
             child: Image.network('https://img.icons8.com/material-sharp/48/000000/name.png'),
             onTap: (){
-              //      Navigator.push(context,MaterialPageRoute(builder: (context){
-              // return new MyApp();
-              // }));
+
             },
           ),
           SizedBox(
@@ -275,9 +260,7 @@ class _MyAppState extends State<MyApp> {
           InkWell(
             child: Image.network('https://img.icons8.com/windows/32/000000/enterprise-resource-planning.png'),
             onTap: (){
-              //      Navigator.push(context,MaterialPageRoute(builder: (context){
-              // return new MyApp();
-              // }));
+
             },
           ),
           SizedBox(
@@ -582,8 +565,7 @@ final iclientname = Padding(
       ),
     );
 
-    ////.............................DATE........................///////
-    //////........................DATE222222222222.........................//////////
+
     ///
     ///
     // var _dates;
@@ -611,7 +593,6 @@ final iclientname = Padding(
       ),
     );
 
-    ////.............................DATE2222222222222222222...................
     final projectname = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
@@ -906,9 +887,7 @@ final iclientname = Padding(
                   birthdayTile1
                 ])),
           ),
-/////........................DATE2
-          ///
-//////////............15june.................
+
           hclientname,
           iclientname,
           hclientlocation,
@@ -1059,7 +1038,6 @@ final iclientname = Padding(
 
           ),*/
 
-          ///.................15june
           descriptionname,
           descriptioninfo,
           //checklistname,
@@ -1109,14 +1087,7 @@ final iclientname = Padding(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  // onPressed: _saveForm(),
-                  //       Container(
-                  //   padding: EdgeInsets.all(8),
-                  //   child: RaisedButton(
-                  //     child: Text('Save'),
-                  //     onPressed: _saveForm,
-                  //   ),
-                  // ),
+
                   onPressed: () {
                     setState(() {
                       _start = to_dates1;
@@ -1125,7 +1096,6 @@ final iclientname = Padding(
                       _projectinfo = projectinfocon.text;
                       _assignedto = assignedtocon.text;
                       _description = descriptioncon.text;
-                      ////////////15jun2020..............
                      // _jkval2=_jk2;
                        
                       _iclientlocation2=iclientlocation1.text;
@@ -1148,7 +1118,6 @@ final iclientname = Padding(
                        //status
 
                       
-                                            /////..................****************
                     });
                    
 
@@ -1161,13 +1130,7 @@ final iclientname = Padding(
                     }));*/
                   },
 
-                  // _jkval=_jk;
 
-                  // Navigator.push(context,MaterialPageRoute(builder: (context){
-                  //   return new EDITINFO();
-
-                  // }));
-                  // Navigator.of(context).pushNamed(HomePage.tag);
 
                   padding: EdgeInsets.all(15),
                   color: Colors.blue,
@@ -1188,17 +1151,7 @@ final iclientname = Padding(
               ),
             ],
           ),
-          // Container(
-          //       padding: EdgeInsets.all(16),
-          //       child: Text('$_jkval,   $_myActivity,    $_projectinfo,    $_assignedto,      $_description'),
 
-          //     ),
-
-          // Container(
-          //   padding: EdgeInsets.all(16),
-          //   child: Text(_myActivity),
-
-          // )
         ],
       ),
     );

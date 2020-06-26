@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:loading/loading.dart';
@@ -20,23 +19,24 @@ class CertificationLoadingScreen extends StatefulWidget {
   final String year;
   final String certificate;
 
-
-  const CertificationLoadingScreen(this.title,this.organization,this.certification_type,this.year,this.certificate);
+  const CertificationLoadingScreen(this.title, this.organization,
+      this.certification_type, this.year, this.certificate);
 
   @override
-  _CertificationLoadingScreenState createState() => _CertificationLoadingScreenState();
+  _CertificationLoadingScreenState createState() =>
+      _CertificationLoadingScreenState();
 }
 
-class _CertificationLoadingScreenState extends State<CertificationLoadingScreen> {
-  String msg ="Certificate is being added. please wait...";
+class _CertificationLoadingScreenState
+    extends State<CertificationLoadingScreen> {
+  String msg = "Certificate is being added. please wait...";
 
-  Future<String> addcertification(String title,String organization,String certificate_type,String year,String certificate) async {
+  Future<String> addcertification(String title, String organization,
+      String certificate_type, String year, String certificate) async {
     var token = await storage.read(key: 'jwt');
 
-  
-    
-    var res = await http.post(
-        'http://192.168.1.9:8000/certification', headers: {
+    var res =
+        await http.post('http://192.168.1.9:8000/certification', headers: {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
     }, body: {
@@ -44,9 +44,8 @@ class _CertificationLoadingScreenState extends State<CertificationLoadingScreen>
       "organization": organization,
       "certificate_type": certificate_type,
       "year": year,
-      "certificate" : certificate
-        }
-    );
+      "certificate": certificate
+    });
 
     Fluttertoast.showToast(
         msg: 'Certificate Added',
@@ -55,52 +54,38 @@ class _CertificationLoadingScreenState extends State<CertificationLoadingScreen>
         timeInSecForIosWeb: 2,
         backgroundColor: Colors.grey,
         textColor: Colors.white,
-        fontSize: 14.0
-    );
-
+        fontSize: 14.0);
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => LoadData()),);
-      return "success";
+      MaterialPageRoute(builder: (context) => LoadData()),
+    );
+    return "success";
   }
+
   @override
-  void initState(){
-  
+  void initState() {
     //Future <String> f = addhobbies(widget.hobbies);
-    
-      
-      Future <String> res = addcertification(widget.title,widget.organization,widget.certification_type,widget.year,widget.certificate);
 
-
-      
-      
-      
-
+    Future<String> res = addcertification(widget.title, widget.organization,
+        widget.certification_type, widget.year, widget.certificate);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
-      body:Container(
-             
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children : <Widget>[
+        backgroundColor: Colors.blue,
+        body: Container(
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
                 Container(
-           width: double.infinity,
-
-          ),
-          Loading(indicator: BallPulseIndicator(),size: 100.0),
-          Text(msg,style:TextStyle(color:Colors.white,fontSize: 20.0))
-          ]
-          
-         
-        ),
-      )
-    );
-        
+                  width: double.infinity,
+                ),
+                Loading(indicator: BallPulseIndicator(), size: 100.0),
+                Text(msg, style: TextStyle(color: Colors.white, fontSize: 20.0))
+              ]),
+        ));
   }
 }
-

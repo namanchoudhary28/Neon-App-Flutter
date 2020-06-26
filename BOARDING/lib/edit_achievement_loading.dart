@@ -79,7 +79,7 @@ class _LoadingScreenEditAchievementState extends State<LoadingScreenEditAchievem
 
   @override
   void initState() {
-     msg = widget.decider==1?"please wait adding your achivement...." : "please wait updating your achievement";
+     msg = widget.decider==1?"Please Wait!\n Adding your achievement..." : "Please Wait!\nUpdating your achievement";
    
 
     //print(widget.name);

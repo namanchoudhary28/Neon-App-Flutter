@@ -113,9 +113,7 @@ class _BLOGState extends State<BLOG> {
           InkWell(
             child: Image.network('https://img.icons8.com/android/24/000000/link.png'),
             onTap: (){
-              //      Navigator.push(context,MaterialPageRoute(builder: (context){
-              // return new MyApp();
-              // }));
+
             },
           ),
           SizedBox(
@@ -144,9 +142,7 @@ class _BLOGState extends State<BLOG> {
           }
           return null;
         },
-        // onSaved: (String value) {
-        //   _name = value;
-        // },
+
       ),
     );
         final idescription = Padding(
@@ -163,9 +159,6 @@ class _BLOGState extends State<BLOG> {
           }
           return null;
         },
-        // onSaved: (String value) {
-        //   _name = value;
-        // },
       ),
     );
       final ilink = Padding(
@@ -182,9 +175,6 @@ class _BLOGState extends State<BLOG> {
           }
           return null;
         },
-        // onSaved: (String value) {
-        //   _name = value;
-        // },
       ),
     );
 
@@ -298,14 +288,7 @@ class _BLOGState extends State<BLOG> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  // onPressed: _saveForm(),
-                  //       Container(
-                  //   padding: EdgeInsets.all(8),
-                  //   child: RaisedButton(
-                  //     child: Text('Save'),
-                  //     onPressed: _saveForm,
-                  //   ),
-                  // ),
+
                   onPressed: () {
                     setState(() {
                    
@@ -337,15 +320,6 @@ class _BLOGState extends State<BLOG> {
               ),
             ],
           ),
-
-
-
-          // Container(
-          //       padding: EdgeInsets.all(16),
-          //       child: Text('$_ititle1,   $_ilink1,    $_myActivityResult'),
-
-          //     ),
-
 
         ],
         

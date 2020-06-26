@@ -18,7 +18,7 @@ class ProjectLoadingScreen extends StatefulWidget {
   final String end;
   final String status;
   final String des;
-   final String client_name;
+  final String client_name;
   final String client_location;
   final String client_industry;
   final String location_of_project_execution;
@@ -27,8 +27,20 @@ class ProjectLoadingScreen extends StatefulWidget {
   final String role;
   final String id;
 
-
-  const ProjectLoadingScreen(this.id,this.decider,this.name,this.start,this.end,this.status,this.des,this.client_name,this.client_location,this.client_industry,this.location_of_project_execution,this.teamsize,this.role);
+  const ProjectLoadingScreen(
+      this.id,
+      this.decider,
+      this.name,
+      this.start,
+      this.end,
+      this.status,
+      this.des,
+      this.client_name,
+      this.client_location,
+      this.client_industry,
+      this.location_of_project_execution,
+      this.teamsize,
+      this.role);
 
   @override
   _ProjectLoadingScreenState createState() => _ProjectLoadingScreenState();
@@ -38,64 +50,60 @@ class _ProjectLoadingScreenState extends State<ProjectLoadingScreen> {
   String msg1;
   String msg2;
 
-  Future<String> addproject(String id,String info,String start, String end, String status,String des, String client_name,String client_location,String location_of_project_execution,String client_industry,String role, String teamsize, String msg ) async {
+  Future<String> addproject(
+      String id,
+      String info,
+      String start,
+      String end,
+      String status,
+      String des,
+      String client_name,
+      String client_location,
+      String location_of_project_execution,
+      String client_industry,
+      String role,
+      String teamsize,
+      String msg) async {
     var token = await storage.read(key: 'jwt');
     var res;
 
-  
-    if(widget.decider==1) {
-      res = await http.post(
-          'http://192.168.1.9:8000/project/0',
-          headers: {
-
-            'Accept': 'application/json',
-            'Authorization': 'Token $token',
-          },
-          body: {
-            "info": info,
-            "starts": start,
-            "ends": end,
-            "status": status,
-            "description": des,
-            "client_name": client_name,
-            "client_location": client_location,
-            "location_of_project_execution": location_of_project_execution,
-            "Industry_of_the_client": client_industry,
-            "Role": role,
-            "team_size": teamsize
-           
-          }
-
-      );
+    if (widget.decider == 1) {
+      res = await http.post('http://192.168.1.9:8000/project/0', headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Token $token',
+      }, body: {
+        "info": info,
+        "starts": start,
+        "ends": end,
+        "status": status,
+        "description": des,
+        "client_name": client_name,
+        "client_location": client_location,
+        "location_of_project_execution": location_of_project_execution,
+        "Industry_of_the_client": client_industry,
+        "Role": role,
+        "team_size": teamsize
+      });
+    } else {
+      res = await http.put('http://192.168.1.9:8000/project', headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Token $token',
+      }, body: {
+        "info": info,
+        "starts": start,
+        "ends": end,
+        "status": status,
+        "description": des,
+        "client_name": client_name,
+        "client_location": client_location,
+        "location_of_project_execution": location_of_project_execution,
+        "Industry_of_the_client": client_industry,
+        "Role": role,
+        "team_size": teamsize,
+        "id": id
+      });
     }
-    else{
-       res = await http.put(
-          'http://192.168.1.9:8000/project',
-          headers: {
-
-            'Accept': 'application/json',
-            'Authorization': 'Token $token',
-          },
-          body: {
-            "info": info,
-            "starts": start,
-            "ends": end,
-            "status": status,
-            "description": des,
-            "client_name": client_name,
-            "client_location": client_location,
-            "location_of_project_execution": location_of_project_execution,
-            "Industry_of_the_client": client_industry,
-            "Role": role,
-            "team_size": teamsize,
-            "id" : id
-           
-          }
-
-      );
-    }
-        print(res.body);
-    
+    print(res.body);
 
     Fluttertoast.showToast(
         msg: msg,
@@ -104,55 +112,59 @@ class _ProjectLoadingScreenState extends State<ProjectLoadingScreen> {
         timeInSecForIosWeb: 2,
         backgroundColor: Colors.grey,
         textColor: Colors.white,
-        fontSize: 14.0
-    );
-
+        fontSize: 14.0);
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => LoadData()),);
-      return "success";
+      MaterialPageRoute(builder: (context) => LoadData()),
+    );
+    return "success";
   }
+
   @override
-  void initState(){
-    if(widget.decider==1){
+  void initState() {
+    if (widget.decider == 1) {
       msg1 = "Your project is being added. please wait...";
       msg2 = "New project added";
-    }
-    else{
+    } else {
       msg1 = "Your project is being updated. please wait...";
       msg2 = "Project updated";
     }
-  
-    //Future <String> f = addhobbies(widget.hobbies);
-    
-            Future <String> res = addproject(widget.id,widget.name,widget.start,widget.end,widget.status,widget.des,widget.client_name,widget.client_location,widget.location_of_project_execution,widget.client_industry,widget.role,widget.teamsize,msg2);
-      
-      
 
+    //Future <String> f = addhobbies(widget.hobbies);
+
+    Future<String> res = addproject(
+        widget.id,
+        widget.name,
+        widget.start,
+        widget.end,
+        widget.status,
+        widget.des,
+        widget.client_name,
+        widget.client_location,
+        widget.location_of_project_execution,
+        widget.client_industry,
+        widget.role,
+        widget.teamsize,
+        msg2);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
-      body:Container(
-             
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children : <Widget>[
+        backgroundColor: Colors.blue,
+        body: Container(
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
                 Container(
-           width: double.infinity,
-
-          ),
-          Loading(indicator: BallPulseIndicator(),size: 100.0),
-          Text(msg1,style:TextStyle(color:Colors.white,fontSize: 20.0))
-          ]
-          
-         
-        ),
-      )
-    );
-        
+                  width: double.infinity,
+                ),
+                Loading(indicator: BallPulseIndicator(), size: 100.0),
+                Text(msg1,
+                    style: TextStyle(color: Colors.white, fontSize: 20.0))
+              ]),
+        ));
   }
 }

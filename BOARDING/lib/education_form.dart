@@ -14,15 +14,14 @@ class _EDUCATIONState extends State<EDUCATION> {
   var _year1;
   var _specs1;
   var _gpa1;
-   String _myActivityResult; //accessing dropdown value project status
-  /////accesing vaiables new/.....
-  final iname1= new TextEditingController();
-  final iinstitutename1= new TextEditingController();
-  final iyear1= new TextEditingController();
-   final ispecs1= new TextEditingController();
-  final igpa1= new TextEditingController();
-    String _myActivity;
-      void initState() {
+  String _myActivityResult; //accessing dropdown value project status
+  final iname1 = new TextEditingController();
+  final iinstitutename1 = new TextEditingController();
+  final iyear1 = new TextEditingController();
+  final ispecs1 = new TextEditingController();
+  final igpa1 = new TextEditingController();
+  String _myActivity;
+  void initState() {
     super.initState();
     _myActivity = '';
     _myActivityResult = '';
@@ -31,14 +30,15 @@ class _EDUCATIONState extends State<EDUCATION> {
 
   @override
   Widget build(BuildContext context) {
-         final hname = Padding(
+    final hname = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
         // mainAxisAlignment: MainAxisAlignment.le,
         children: <Widget>[
           InkWell(
-            child: Image.network("https://img.icons8.com/windows/32/000000/flying-motarboard.png"),
-            onTap: (){
+            child: Image.network(
+                "https://img.icons8.com/windows/32/000000/flying-motarboard.png"),
+            onTap: () {
               //      Navigator.push(context,MaterialPageRoute(builder: (context){
               // return new MyApp();
               // }));
@@ -56,14 +56,15 @@ class _EDUCATIONState extends State<EDUCATION> {
         ],
       ),
     );
-     final hinstitutename = Padding(
+    final hinstitutename = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
         // mainAxisAlignment: MainAxisAlignment.le,
         children: <Widget>[
           InkWell(
-            child: Image.network("https://img.icons8.com/windows/32/000000/student-center.png"),
-            onTap: (){
+            child: Image.network(
+                "https://img.icons8.com/windows/32/000000/student-center.png"),
+            onTap: () {
               //      Navigator.push(context,MaterialPageRoute(builder: (context){
               // return new MyApp();
               // }));
@@ -81,14 +82,15 @@ class _EDUCATIONState extends State<EDUCATION> {
         ],
       ),
     );
-  final hyear = Padding(
+    final hyear = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
         // mainAxisAlignment: MainAxisAlignment.le,
         children: <Widget>[
           InkWell(
-            child: Image.network("https://img.icons8.com/metro/26/000000/minus-1year.png"),
-            onTap: (){
+            child: Image.network(
+                "https://img.icons8.com/metro/26/000000/minus-1year.png"),
+            onTap: () {
               //      Navigator.push(context,MaterialPageRoute(builder: (context){
               // return new MyApp();
               // }));
@@ -134,14 +136,15 @@ class _EDUCATIONState extends State<EDUCATION> {
         ],
       ),
     );
-     final hspecs = Padding(
+    final hspecs = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
         // mainAxisAlignment: MainAxisAlignment.le,
         children: <Widget>[
           InkWell(
-            child: Image.network("https://img.icons8.com/windows/32/000000/graduation-scroll.png"),
-            onTap: (){
+            child: Image.network(
+                "https://img.icons8.com/windows/32/000000/graduation-scroll.png"),
+            onTap: () {
               //      Navigator.push(context,MaterialPageRoute(builder: (context){
               // return new MyApp();
               // }));
@@ -159,14 +162,15 @@ class _EDUCATIONState extends State<EDUCATION> {
         ],
       ),
     );
-     final hgpa = Padding(
+    final hgpa = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
         // mainAxisAlignment: MainAxisAlignment.le,
         children: <Widget>[
           InkWell(
-            child: Image.network("https://img.icons8.com/metro/26/000000/percentage.png"),
-            onTap: (){
+            child: Image.network(
+                "https://img.icons8.com/metro/26/000000/percentage.png"),
+            onTap: () {
               //      Navigator.push(context,MaterialPageRoute(builder: (context){
               // return new MyApp();
               // }));
@@ -185,12 +189,12 @@ class _EDUCATIONState extends State<EDUCATION> {
       ),
     );
     final iname = Padding(
-          padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
-          child: TextFormField(
-            controller: iname1,
-        decoration: InputDecoration(labelText: 'Name',
-            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)
-        ),
+      padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
+      child: TextFormField(
+        controller: iname1,
+        decoration: InputDecoration(
+            labelText: 'Name',
+            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)),
         // maxLength: 10,
         validator: (String value) {
           if (value.isEmpty) {
@@ -203,13 +207,13 @@ class _EDUCATIONState extends State<EDUCATION> {
         // },
       ),
     );
-        final iinstitutename = Padding(
+    final iinstitutename = Padding(
       padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
       child: TextFormField(
         controller: iinstitutename1,
-        decoration: InputDecoration(labelText: 'Name ',
-            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)
-        ),
+        decoration: InputDecoration(
+            labelText: 'Name ',
+            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)),
         // maxLines: 5,
         validator: (String value) {
           if (value.isEmpty) {
@@ -222,14 +226,14 @@ class _EDUCATIONState extends State<EDUCATION> {
         // },
       ),
     );
-      final iyear = Padding(
+    final iyear = Padding(
       padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
       child: TextFormField(
         controller: iyear1,
         keyboardType: TextInputType.number,
-        decoration: InputDecoration(labelText: 'year-(yyyy)',
-            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)
-        ),
+        decoration: InputDecoration(
+            labelText: 'year-(yyyy)',
+            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)),
         // maxLength: 10,
         validator: (String value) {
           if (value.isEmpty) {
@@ -242,14 +246,14 @@ class _EDUCATIONState extends State<EDUCATION> {
         // },
       ),
     );
-     final ispecs = Padding(
+    final ispecs = Padding(
       padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
       child: TextFormField(
         controller: ispecs1,
         // keyboardType: TextInputType.number,
-        decoration: InputDecoration(labelText: 'Name',
-            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)
-        ),
+        decoration: InputDecoration(
+            labelText: 'Name',
+            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)),
         // maxLength: 10,
         validator: (String value) {
           if (value.isEmpty) {
@@ -262,14 +266,14 @@ class _EDUCATIONState extends State<EDUCATION> {
         // },
       ),
     );
-     final igpa = Padding(
+    final igpa = Padding(
       padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
       child: TextFormField(
         controller: igpa1,
         keyboardType: TextInputType.number,
-        decoration: InputDecoration(labelText: 'in percentage',
-            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)
-        ),
+        decoration: InputDecoration(
+            labelText: 'in percentage',
+            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)),
         // maxLength: 10,
         validator: (String value) {
           if (value.isEmpty) {
@@ -284,16 +288,18 @@ class _EDUCATIONState extends State<EDUCATION> {
     );
 
     return Scaffold(
-       appBar: AppBar(
+      appBar: AppBar(
         title: Text("Education Details"),
-        leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: (){
-            // Navigator.push(context,MaterialPageRoute(builder: (context){
-                  //   return new EDITINFO();
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              // Navigator.push(context,MaterialPageRoute(builder: (context){
+              //   return new EDITINFO();
 
-                  // }));
-        }),
+              // }));
+            }),
       ),
-        body: ListView(
+      body: ListView(
         scrollDirection: Axis.vertical,
         children: <Widget>[
           hname,
@@ -303,7 +309,7 @@ class _EDUCATIONState extends State<EDUCATION> {
           hyear,
           iyear,
           dropdownname,
-            Container(
+          Container(
             child: Form(
               key: formKey,
               child: Column(
@@ -311,11 +317,9 @@ class _EDUCATIONState extends State<EDUCATION> {
                 children: <Widget>[
                   Container(
                     color: Colors.white,
-
                     padding: EdgeInsets.all(16),
                     child: DropDownFormField(
                       titleText: 'Status',
-
                       hintText: 'Please choose one',
                       value: _myActivity,
                       onSaved: (value) {
@@ -337,13 +341,11 @@ class _EDUCATIONState extends State<EDUCATION> {
                           "display": "Part Time",
                           "value": "Part Time",
                         },
-
                       ],
                       textField: 'display',
                       valueField: 'value',
                     ),
                   ),
-
                 ],
               ),
             ),
@@ -354,9 +356,9 @@ class _EDUCATIONState extends State<EDUCATION> {
           igpa,
 
           SizedBox(
-            height:50 ,
+            height: 50,
           ),
-            Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Padding(
@@ -374,8 +376,13 @@ class _EDUCATIONState extends State<EDUCATION> {
                   },
                   padding: EdgeInsets.all(15),
                   color: Colors.blue,
-                  child:Row(children: <Widget>[Icon(Icons.cancel, color:Colors.white),Text('Cancel',
-                      style: TextStyle(color: Colors.white, fontSize:15.0))],),
+                  child: Row(
+                    children: <Widget>[
+                      Icon(Icons.cancel, color: Colors.white),
+                      Text('Cancel',
+                          style: TextStyle(color: Colors.white, fontSize: 15.0))
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
@@ -397,55 +404,49 @@ class _EDUCATIONState extends State<EDUCATION> {
                   // ),
                   onPressed: () {
                     setState(() {
-
-
-                          _name1=iname1.text;
-                          _institutename1=iinstitutename1.text;
-                          _year1=iyear1.text;
-                          _specs1=ispecs1.text;
-                          _gpa1=igpa1.text;
-                          Navigator.push(
-                             context,
-                             MaterialPageRoute(builder: (context)=> EducationLoadingScreen(_name1,_institutename1, _year1, _myActivity,_specs1, _gpa1 )),
-                          );
-                          
-                          
-
-
+                      _name1 = iname1.text;
+                      _institutename1 = iinstitutename1.text;
+                      _year1 = iyear1.text;
+                      _specs1 = ispecs1.text;
+                      _gpa1 = igpa1.text;
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EducationLoadingScreen(
+                                _name1,
+                                _institutename1,
+                                _year1,
+                                _myActivity,
+                                _specs1,
+                                _gpa1)),
+                      );
                     });
-
-
-
                   },
-
-
 
                   padding: EdgeInsets.all(15),
                   color: Colors.blue,
-                  child:Row(children: <Widget>[Icon(Icons.save,color:Colors.white), Text('Save',
-                      style: TextStyle(color: Colors.white, fontSize: 15.0))],),
+                  child: Row(
+                    children: <Widget>[
+                      Icon(Icons.save, color: Colors.white),
+                      Text('Save',
+                          style: TextStyle(color: Colors.white, fontSize: 15.0))
+                    ],
+                  ),
                 ),
               ),
             ],
           ),
-
-
 
           // Container(
           //       padding: EdgeInsets.all(16),
           //       child: Text('$_name1,$_institutename1,$_year1,$_myActivity,$_specs1,$_gpa1'),
 
           //     ),
-
-
         ],
-        ),
+      ),
     );
   }
 }
-
-
-
 
 //           // Container(
 //           //       padding: EdgeInsets.all(16),
@@ -462,4 +463,4 @@ class _EDUCATIONState extends State<EDUCATION> {
 //       ),
 //     );
 //   }
-// } 
+// }

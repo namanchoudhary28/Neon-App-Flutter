@@ -1,11 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_onboard/flutter_onboard.dart';
 import 'package:provider/provider.dart';
 import 'package:BOARDING/signup.dart';
 import 'package:BOARDING/login_page.dart';
-
-
 
 void main() {
   runApp(App());
@@ -22,7 +19,7 @@ class App extends StatelessWidget {
 
 class HomeScreen extends StatelessWidget {
   final PageController _pageController = PageController();
- 
+
   @override
   Widget build(BuildContext context) {
     return Provider<OnBoardState>(
@@ -33,22 +30,18 @@ class HomeScreen extends StatelessWidget {
           pageController: _pageController,
           onSkip: () {
             // print('skipped');
-            Navigator.push(context,MaterialPageRoute(builder: (context){
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
               return new Signup();
-
-
             }));
           },
-          onDone: ()  {
+          onDone: () {
             // print('skipped');
-            Navigator.push(context,MaterialPageRoute(builder: (context){
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
               return new LoginPage();
-
-
             }));
-          
-              // print('skipped');
-            },
+
+            // print('skipped');
+          },
           onBoardData: onBoardData,
           titleStyles: TextStyle(
             color: Colors.black,
@@ -68,16 +61,11 @@ class HomeScreen extends StatelessWidget {
             activeSize: Size(12, 12),
           ),
           skipButton: FlatButton(
-            onPressed: () 
-              {
-            // print('skipped');
-            Navigator.push(context,MaterialPageRoute(builder: (context){
-              return new LoginPage();
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return new LoginPage();
+              }));
 
-
-            }));
-          
-              // print('skipped');
             },
             child: Text(
               "Skip",
@@ -87,7 +75,7 @@ class HomeScreen extends StatelessWidget {
           nextButton: Consumer<OnBoardState>(
             builder: (BuildContext context, OnBoardState state, Widget child) {
               return InkWell(
-                onTap: () => _onNextTap(state,context),
+                onTap: () => _onNextTap(state, context),
                 child: Container(
                   width: 230,
                   height: 50,
@@ -114,18 +102,16 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  void _onNextTap(OnBoardState onBoardState,BuildContext context) {
+  void _onNextTap(OnBoardState onBoardState, BuildContext context) {
     if (!onBoardState.isLastPage) {
       _pageController.animateToPage(
         onBoardState.page + 1,
         duration: Duration(milliseconds: 250),
         curve: Curves.easeInOutSine,
       );
-    }
-     else {
-     
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
-      
+    } else {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => LoginPage()));
     }
   }
 }
@@ -135,22 +121,15 @@ final List<OnBoardModel> onBoardData = [
     title: "Welcome to Neon",
     description: "Manage all your activities ",
     imgUrl: 'assets/images/image-1.jpeg',
-    
   ),
   OnBoardModel(
     title: "What is Lorem ipsum?",
-    description:
-        "i dont know what is lorem ipsum plz tell",
-        imgUrl: 'assets/images/image-2.jpeg',
-   
-  
-    
+    description: "i dont know what is lorem ipsum plz tell",
+    imgUrl: 'assets/images/image-2.jpeg',
   ),
   OnBoardModel(
     title: "Do you know who is lorem ipsum",
-    description:
-        "Nobody i dont know head to next page",
-        imgUrl: 'assets/images/image-3.jpeg',
-   
+    description: "Nobody i dont know head to next page",
+    imgUrl: 'assets/images/image-3.jpeg',
   ),
 ];

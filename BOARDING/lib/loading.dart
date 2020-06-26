@@ -25,13 +25,12 @@ class _LoadingScreenState extends State<LoadingScreen> {
   Future<String> deletehobby(String name, String title) async {
     var token = await storage.read(key: 'jwt');
 
-
-    var res = await http.delete(
-        'http://192.168.1.9:8000/$name/' + title, headers: {
+    var res =
+        await http.delete('http://192.168.1.9:8000/$name/' + title, headers: {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
     });
-     print(res.body);
+    print(res.body);
     Fluttertoast.showToast(
         msg: name + ' is now deleted!',
         toastLength: Toast.LENGTH_SHORT,
@@ -39,41 +38,35 @@ class _LoadingScreenState extends State<LoadingScreen> {
         timeInSecForIosWeb: 2,
         backgroundColor: Colors.grey,
         textColor: Colors.white,
-        fontSize: 14.0
-    );
+        fontSize: 14.0);
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => LoadData()),);
+      MaterialPageRoute(builder: (context) => LoadData()),
+    );
   }
+
   @override
-  void initState(){
+  void initState() {
     msg = 'Please wait deleting your ' + widget.item + '....';
     Future<String> f = deletehobby(widget.item, widget.params[0]);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
-      body:Container(
-
-
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children : <Widget>[
+        backgroundColor: Colors.blue,
+        body: Container(
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
                 Container(
-           width: double.infinity,
-
-          ),
-          Loading(indicator: BallPulseIndicator(),size: 100.0),
-          Text(msg,style:TextStyle(color:Colors.white,fontSize: 20.0))
-          ]
-          
-         
-        ),
-      )
-    );
-        
+                  width: double.infinity,
+                ),
+                Loading(indicator: BallPulseIndicator(), size: 100.0),
+                Text(msg, style: TextStyle(color: Colors.white, fontSize: 20.0))
+              ]),
+        ));
   }
 }

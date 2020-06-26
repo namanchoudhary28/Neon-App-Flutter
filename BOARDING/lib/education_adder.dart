@@ -19,23 +19,21 @@ class EducationLoadingScreen extends StatefulWidget {
   final String specialization;
   final String cgpa;
 
-
-  const EducationLoadingScreen(this.degree,this.institute,this.year,this.status,this.specialization,this.cgpa);
+  const EducationLoadingScreen(this.degree, this.institute, this.year,
+      this.status, this.specialization, this.cgpa);
 
   @override
   _EducationLoadingScreenState createState() => _EducationLoadingScreenState();
 }
 
 class _EducationLoadingScreenState extends State<EducationLoadingScreen> {
-  String msg ="Education details are being updated. please wait...";
+  String msg = "Education details are being updated. please wait...";
 
-  Future<String> addeducation(String degree, String institute,String year,String cgpa,String status,String specialization) async {
+  Future<String> addeducation(String degree, String institute, String year,
+      String cgpa, String status, String specialization) async {
     var token = await storage.read(key: 'jwt');
 
-  
-    
-    var res = await http.post(
-        'http://192.168.1.9:8000/education', headers: {
+    var res = await http.post('http://192.168.1.9:8000/education', headers: {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
     }, body: {
@@ -43,10 +41,9 @@ class _EducationLoadingScreenState extends State<EducationLoadingScreen> {
       "institute": institute,
       "year": year,
       "specialization": specialization,
-      "gpa" : cgpa,
-            "status" : status
-        }
-    );
+      "gpa": cgpa,
+      "status": status
+    });
 
     Fluttertoast.showToast(
         msg: 'Education details updated',
@@ -55,50 +52,38 @@ class _EducationLoadingScreenState extends State<EducationLoadingScreen> {
         timeInSecForIosWeb: 2,
         backgroundColor: Colors.grey,
         textColor: Colors.white,
-        fontSize: 14.0
-    );
-
+        fontSize: 14.0);
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => LoadData()),);
-      return "success";
+      MaterialPageRoute(builder: (context) => LoadData()),
+    );
+    return "success";
   }
+
   @override
-  void initState(){
-  
+  void initState() {
     //Future <String> f = addhobbies(widget.hobbies);
-    
-      
-      Future <String> res = addeducation(widget.degree,widget.institute,widget.year,widget.cgpa,widget.status,widget.specialization);
 
-      
-      
-      
-
+    Future<String> res = addeducation(widget.degree, widget.institute,
+        widget.year, widget.cgpa, widget.status, widget.specialization);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
-      body:Container(
-             
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children : <Widget>[
+        backgroundColor: Colors.blue,
+        body: Container(
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
                 Container(
-           width: double.infinity,
-
-          ),
-          Loading(indicator: BallPulseIndicator(),size: 100.0),
-          Text(msg,style:TextStyle(color:Colors.white,fontSize: 20.0))
-          ]
-          
-         
-        ),
-      )
-    );
-        
+                  width: double.infinity,
+                ),
+                Loading(indicator: BallPulseIndicator(), size: 100.0),
+                Text(msg, style: TextStyle(color: Colors.white, fontSize: 20.0))
+              ]),
+        ));
   }
 }

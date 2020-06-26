@@ -18,10 +18,9 @@ import 'package:BOARDING/edit_achievement_loading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class EDIT_ACHIEVEMENT extends StatefulWidget {
-  
   final String title;
   final String description;
-  const EDIT_ACHIEVEMENT(this.title,this.description);
+  const EDIT_ACHIEVEMENT(this.title, this.description);
   @override
   _EDIT_ACHIEVEMENTState createState() => _EDIT_ACHIEVEMENTState();
 }
@@ -66,11 +65,11 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
       },
     );
 
-       
+
     }
     print(response1.body);
     //print('success');
-    
+
   }
 
 */
@@ -82,35 +81,29 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
     });
   }
 
-  String title_old='';
-  var _title;       //accessing title
+  String title_old = '';
+  var _title; //accessing title
 
   var _description;
-  int decider;     //accessing description
-  final titlecon= new TextEditingController();
-  final descriptioncon= new TextEditingController();
+  int decider; //accessing description
+  final titlecon = new TextEditingController();
+  final descriptioncon = new TextEditingController();
   @override
-  void initState(){
-
-      
+  void initState() {
     titlecon.text = widget.title;
     descriptioncon.text = widget.description;
-    if(widget.title==''){
+    if (widget.title == '') {
       print(widget.title);
-      decider=1;
-      heading  = "Add Achievement";
-    }
-    else{
-      decider=0;
+      decider = 1;
+      heading = "Add Achievement";
+    } else {
+      decider = 0;
       heading = "Update Achievement";
     }
-
   }
 
   @override
   Widget build(BuildContext context) {
-    //////........................DATE.........................//////////
-
     var _dates;
     //print(_selectedDateTime);
 
@@ -143,28 +136,20 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
       ),
     );
 
-
-
-
-
-
-    ////.............................DATE........................///////
     final titleheading = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
         // mainAxisAlignment: MainAxisAlignment.le,
         children: <Widget>[
           InkWell(
-            child: Image.network('https://img.icons8.com/windows/32/000000/title.png'),
-            onTap: (){
+            child: Image.network(
+                'https://img.icons8.com/windows/32/000000/title.png'),
+            onTap: () {
               //      Navigator.push(context,MaterialPageRoute(builder: (context){
 
               // return new MyApp();
 
-
               // }));
-
-
             },
           ),
           SizedBox(
@@ -175,21 +160,18 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
-
             ),
           ),
-
         ],
       ),
     );
-    final achievementname =Padding(
+    final achievementname = Padding(
       padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
       child: TextFormField(
-
         controller: titlecon,
-        decoration: InputDecoration(labelText: 'Title',
-            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)
-        ),
+        decoration: InputDecoration(
+            labelText: 'Title',
+            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)),
         // maxLength: 10,
         validator: (String value) {
           if (value.isEmpty) {
@@ -198,9 +180,6 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
 
           return null;
         },
-        // onSaved: (String value) {
-        //   _name = value;
-        // },
       ),
     );
     final dateheading = Padding(
@@ -209,16 +188,14 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
         // mainAxisAlignment: MainAxisAlignment.le,
         children: <Widget>[
           InkWell(
-            child: Image.network('https://img.icons8.com/metro/26/000000/date-to.png'),
-            onTap: (){
+            child: Image.network(
+                'https://img.icons8.com/metro/26/000000/date-to.png'),
+            onTap: () {
               //      Navigator.push(context,MaterialPageRoute(builder: (context){
 
               // return new MyApp();
 
-
               // }));
-
-
             },
           ),
           SizedBox(
@@ -229,10 +206,8 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
-
             ),
           ),
-
         ],
       ),
     );
@@ -242,16 +217,14 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
         // mainAxisAlignment: MainAxisAlignment.le,
         children: <Widget>[
           InkWell(
-            child: Image.network('https://img.icons8.com/windows/32/000000/edit.png'),
-            onTap: (){
+            child: Image.network(
+                'https://img.icons8.com/windows/32/000000/edit.png'),
+            onTap: () {
               //      Navigator.push(context,MaterialPageRoute(builder: (context){
 
               // return new MyApp();
 
-
               // }));
-
-
             },
           ),
           SizedBox(
@@ -262,22 +235,20 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
-
             ),
           ),
-
         ],
       ),
     );
-    final descriptioninfo =Padding(
+    final descriptioninfo = Padding(
       padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
       child: TextFormField(
         controller: descriptioncon,
         maxLines: 6,
         // controller: facebookcon,
-        decoration: InputDecoration(labelText: 'write your description here',
-            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)
-        ),
+        decoration: InputDecoration(
+            labelText: 'write your description here',
+            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)),
         // maxLength: 10,
         validator: (String value) {
           if (value.isEmpty) {
@@ -286,32 +257,21 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
 
           return null;
         },
-        // onSaved: (String value) {
-        //   _name = value;
-        // },
       ),
     );
     return Scaffold(
-      appBar: AppBar(title: Text(heading),
+      appBar: AppBar(
+        title: Text(heading),
       ),
       body: ListView(
         scrollDirection: Axis.vertical,
         children: <Widget>[
           titleheading,
           achievementname,
-
           SizedBox(
             height: 20,
           ),
-          Container(
-
-
-
-
-
-
-
-          ),
+          Container(),
           dateheading,
           Container(
             child: Padding(
@@ -322,31 +282,6 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
                   birthdayTile
                 ])),
           ),
-
-
-          // Container(
-          //   child: Column(
-          //     crossAxisAlignment: CrossAxisAlignment.start,
-          //     children: <Widget>[
-          //       ListTile(
-          //         title:Text( "Date: ${pickedDate.year},${pickedDate.month},${pickedDate.day}"
-
-          //         ),
-          //         trailing: Icon(Icons.keyboard_arrow_down),
-          //         onTap: _pickDate,
-          //                             )
-          //                           ]
-          //                         ),
-
-          //                       ),
-          // Container(
-          //   height: 100,
-          //           child: Align(
-          //             heightFactor: 2,
-          //             alignment: Alignment(-0.7, 0),
-          //             child: BasicDateField(),
-          //           ),
-          //   ),
           SizedBox(
             height: 20,
           ),
@@ -356,97 +291,70 @@ class _EDIT_ACHIEVEMENTState extends State<EDIT_ACHIEVEMENT> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.symmetric(vertical:15.0),
-                child:RaisedButton(
-
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-
-
-                  ),
-                  onPressed: (){
-                    Navigator.pop(context);
-                    // Navigator.of(context).pushNamed(HomePage.tag);
-                  },
-                  padding: EdgeInsets.all(15),
-
-                  color:Colors.blue,
-                  child:Row(children: <Widget>[Icon(Icons.cancel,color: Colors.white,), SizedBox(width:5.0),Text('Cancel', style:TextStyle(color:Colors.white,fontSize: 15.0))])
-                  
-                ),
+                padding: EdgeInsets.symmetric(vertical: 15.0),
+                child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      // Navigator.of(context).pushNamed(HomePage.tag);
+                    },
+                    padding: EdgeInsets.all(15),
+                    color: Colors.blue,
+                    child: Row(children: <Widget>[
+                      Icon(
+                        Icons.cancel,
+                        color: Colors.white,
+                      ),
+                      SizedBox(width: 5.0),
+                      Text('Cancel',
+                          style: TextStyle(color: Colors.white, fontSize: 15.0))
+                    ])),
               ),
               SizedBox(
                 width: 10,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical:15.0),
-                child:RaisedButton(
-
+                padding: EdgeInsets.symmetric(vertical: 15.0),
+                child: RaisedButton(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
-
                   ),
-
-
-
-                  // onPressed: (){
-
-                  //   // Navigator.push(context,MaterialPageRoute(builder: (context){
-                  //   //   return new HomePage();
-
-
-                  //   // }));
-                  //   // Navigator.of(context).pushNamed(HomePage.tag);
-                  // },
                   padding: EdgeInsets.all(15),
-                  color:Colors.blue,
+                  color: Colors.blue,
                   onPressed: () {
                     setState(() {
                       _dates = to_dates;
                       _title = titlecon.text;
                       _description = descriptioncon.text;
-                      title_old=widget.title;
+                      title_old = widget.title;
                     });
                     print(decider);
                     print(_title);
 
                     //submitAchievements(decider, _dates, _title, _description);
 
-
-
-                    Navigator.push(
-                        context, MaterialPageRoute(builder: (context) {
-                      return LoadingScreenEditAchievement(decider,_dates,_title,_description,title_old);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return LoadingScreenEditAchievement(
+                          decider, _dates, _title, _description, title_old);
                     }));
                   },
-
-
-                  child: Row(children: <Widget>[ Icon(Icons.save,color:Colors.white), SizedBox(width:5.0),  Text('Save', style:TextStyle(color:Colors.white,fontSize: 15.0))]),
-                  ),
-
+                  child: Row(children: <Widget>[
+                    Icon(Icons.save, color: Colors.white),
+                    SizedBox(width: 5.0),
+                    Text('Save',
+                        style: TextStyle(color: Colors.white, fontSize: 15.0))
+                  ]),
                 ),
+              ),
 
-            
               // Text("your name is $_name and your location is $_location "),
-
-
             ],
           ),
-
-
-
-
-
-
-
         ],
-
-
       ),
     );
-
-
   }
-
-
 }

@@ -136,53 +136,54 @@ Container list_cards(BuildContext context, skill1, skill2) {
       ));
 }
 
-
 Row button_rows() {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: <Widget>[
-
       RaisedButton(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0)
-        ),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
         color: Colors.blue,
         padding: EdgeInsets.all(15.0),
-        onPressed: () {
-
-        },
-        child: Row(children: <Widget>[
-          Icon(
-            Icons.cancel,
-            color: Colors.white,
-          ),
-          SizedBox(
-            width: 10.0,
-          ),
-          Text("Cancel", style: TextStyle(color: Colors.white),)
-        ],),
+        onPressed: () {},
+        child: Row(
+          children: <Widget>[
+            Icon(
+              Icons.cancel,
+              color: Colors.white,
+            ),
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(
+              "Cancel",
+              style: TextStyle(color: Colors.white),
+            )
+          ],
+        ),
       ),
       RaisedButton(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0)
-        ),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
         padding: EdgeInsets.all(15.0),
         color: Colors.blue,
-        onPressed: () {
-
-        },
-        child: Row(children: <Widget>[
-          Icon(
-            Icons.save,
-            color: Colors.white,
-          ),
-          SizedBox(
-            width: 10.0,
-          ),
-          Text("Save", style: TextStyle(color: Colors.white),)
-        ],),
+        onPressed: () {},
+        child: Row(
+          children: <Widget>[
+            Icon(
+              Icons.save,
+              color: Colors.white,
+            ),
+            SizedBox(
+              width: 10.0,
+            ),
+            Text(
+              "Save",
+              style: TextStyle(color: Colors.white),
+            )
+          ],
+        ),
       ),
-
     ],
   );
 }
@@ -197,9 +198,8 @@ class SkillsDisplay extends StatefulWidget {
 }
 
 class _SkillsDisplayState extends State<SkillsDisplay> {
-
   List<Widget> skill_children_returner() {
-    List<Widget>children = List<Widget>();
+    List<Widget> children = List<Widget>();
     int g = (widget.skills.length ~/ 2).toInt();
     int f = 0;
     for (int i = 0; i < g; i++) {
@@ -219,31 +219,32 @@ class _SkillsDisplayState extends State<SkillsDisplay> {
       children.add(skills_card(
           context, last_child['name'], percent, last_child['competancy']));
     }
-    children.add(SizedBox(height: 10.0,));
+    children.add(SizedBox(
+      height: 10.0,
+    ));
     //children.add(button_rows());
-    children.add(SizedBox(height: 15.0,));
+    children.add(SizedBox(
+      height: 15.0,
+    ));
     return children;
   }
-
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
-            title: Text("Skills", style: TextStyle(
-              fontSize: 20.0,
-            ),),
+            title: Text(
+              "Skills",
+              style: TextStyle(
+                fontSize: 20.0,
+              ),
+            ),
           ),
           body: ListView(
             scrollDirection: Axis.vertical,
             children: skill_children_returner(),
-
-
-          )
-
-
-      ),
+          )),
     );
   }
 }

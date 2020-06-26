@@ -80,7 +80,7 @@ class _LoadingScreenEditState extends State<LoadingScreenEdit> {
 
   @override
   void initState() {
-    msg = 'Please Wait! Updating your info...';
+    msg = 'Please Wait!\nUpdating your info...';
 
     /*
    for(int i=0;i<widget.communication.length;i++){

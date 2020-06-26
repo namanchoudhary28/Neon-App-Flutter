@@ -16,15 +16,10 @@ import 'package:BOARDING/login_page.dart';
 import 'package:BOARDING/edit_info.dart';
 import 'package:BOARDING/edit_achievement.dart';
 import 'package:BOARDING/add_hobby.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/rendering.dart';
 import 'dart:math';
 
-import 'package:BOARDING/date_time_picker_widget2.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
-import 'package:sleek_circular_slider/sleek_circular_slider.dart';
-//import 'package:BOARDING/grid_hobby.dart';
 import 'package:BOARDING/addproject.dart';
 
 import 'dart:async';
@@ -49,9 +44,8 @@ class HomePage extends StatefulWidget {
   final List list_communications;
   final List list_skills;
   final List list_blogs;
-   final List list_education;
-   final List list_certifications;
-
+  final List list_education;
+  final List list_certifications;
 
   const HomePage(
       this.list_about,
@@ -63,9 +57,7 @@ class HomePage extends StatefulWidget {
       this.list_skills,
       this.list_blogs,
       this.list_education,
-      this.list_certifications
-
-      );
+      this.list_certifications);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -73,9 +65,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int i;
-  void initState(){
+  void initState() {
     i = 0;
   }
+
   @override
   Widget build(BuildContext context) {
     final achievementaboutme = TextField(
@@ -96,9 +89,6 @@ class _HomePageState extends State<HomePage> {
 
         return null;
       },
-      // onSaved: (String value) {
-      //   _name = value;
-      // },
     );
     final profile_picture = Hero(
         tag: 'hero',
@@ -112,7 +102,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ));
-
 
     final name = Padding(
       padding: EdgeInsets.all(8),
@@ -130,12 +119,10 @@ class _HomePageState extends State<HomePage> {
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return new EDITINFO(
-                      widget.list_about[0]['name'],
-                      widget.list_about[0]['aboutme'],
-                      widget.list_about[0]['location'],
-                      widget.list_communications
-                      
-                     ); //Function from edit_info.dart
+                    widget.list_about[0]['name'],
+                    widget.list_about[0]['aboutme'],
+                    widget.list_about[0]['location'],
+                    widget.list_communications); //Function from edit_info.dart
               }));
             },
           ),
@@ -232,15 +219,13 @@ class _HomePageState extends State<HomePage> {
               children: <Widget>[
                 for (Map<String, dynamic> item in widget.list_hobby)
                   MyHobbies(item['name'], item['image_url']),
-
-                //MyProjects('Booking 2', '1 May 2020'),
-                //MyProjects('Booking 3', '1 May 2021'),
               ],
             ),
           ),
         ],
       ),
     );
+
     Image skill_image_returner(String name) {
       try {
         return Image(
@@ -248,8 +233,7 @@ class _HomePageState extends State<HomePage> {
           height: 30.0,
           width: 30.0,
         );
-      }
-      on Exception {
+      } on Exception {
         return Image(
           image: AssetImage('assets/skills/DEFAULT.png'),
           height: 30.0,
@@ -257,6 +241,7 @@ class _HomePageState extends State<HomePage> {
         );
       }
     }
+
     Container skill_card(double percent, String competancy, String name) {
       double g = percent * 100;
       int percentage = g.toInt();
@@ -269,7 +254,6 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -281,46 +265,43 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-
-                  Text(name[0].toUpperCase() + name.substring(1).toLowerCase() +
-                      ',' + ' ' + competancy,
+                  Text(
+                    name[0].toUpperCase() +
+                        name.substring(1).toLowerCase() +
+                        ',' +
+                        ' ' +
+                        competancy,
                     style: TextStyle(
                       fontSize: 15.0,
                       fontFamily: 'sans-serif',
-
                     ),
                   ),
                   SizedBox(
                     height: 5.0,
                   ),
                   LinearPercentIndicator(
-                    width: MediaQuery
-                        .of(context)
-                        .size
-                        .width - 150,
+                    width: MediaQuery.of(context).size.width - 150,
                     animation: true,
                     lineHeight: 6.0,
                     animationDuration: 2500,
                     percent: percent,
-                    center: Text(circle_text,
-                      style: TextStyle(color: Colors.white, fontSize: 5.0),),
+                    center: Text(
+                      circle_text,
+                      style: TextStyle(color: Colors.white, fontSize: 5.0),
+                    ),
                     linearStrokeCap: LinearStrokeCap.roundAll,
                     progressColor: Colors.blue,
                   ),
-
-
                 ],
               ),
-
-
             ],
           ),
         ),
       );
     }
 
-    List<Widget> skill_card_returner(){
-      List<Widget> skill_cards=List<Widget>();
+    List<Widget> skill_card_returner() {
+      List<Widget> skill_cards = List<Widget>();
       var competancies = {
         'Beginner': 25,
         'Intermediate': 50,
@@ -331,8 +312,7 @@ class _HomePageState extends State<HomePage> {
       int num;
       if (list_skills.length <= 2) {
         num = list_skills.length;
-      }
-      else {
+      } else {
         num = 2;
       }
 
@@ -343,26 +323,25 @@ class _HomePageState extends State<HomePage> {
             list_skills[i]['name'].toUpperCase()));
       }
       return skill_cards;
-
-
-
-
     }
+
     final list_of_all_cards = Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: skill_card_returner(),
     );
-
 
     final skill_heading = Padding(
       padding: EdgeInsets.fromLTRB(0, 10.0, 0, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          Text("SKILLS", style: TextStyle(
-            fontSize: 17.0,
-            letterSpacing: 1.7,
-          ),),
+          Text(
+            "SKILLS",
+            style: TextStyle(
+              fontSize: 17.0,
+              letterSpacing: 1.7,
+            ),
+          ),
           InkWell(
             child: Icon(Icons.add),
             /*
@@ -378,11 +357,9 @@ class _HomePageState extends State<HomePage> {
               );
             },
           )
-
         ],
       ),
     );
-
 
     final line = Container(
       width: 200.0,
@@ -394,52 +371,53 @@ class _HomePageState extends State<HomePage> {
 
     final view_more_button = Container(
         width: 150.0,
-        child: Padding(padding: EdgeInsets.all(10.0), child: FlatButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => SkillsDisplay(widget.list_skills)),
-            );
-          },
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0)
+        child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: FlatButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => SkillsDisplay(widget.list_skills)),
+              );
+            },
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0)),
+            color: Colors.white,
+            textColor: Colors.blue,
+            hoverColor: Colors.blue,
+            splashColor: Colors.blue,
+            child: Row(
+              children: <Widget>[
+                Text(
+                  "View more",
+                  style: TextStyle(color: Colors.black),
+                ),
+                Icon(
+                  Icons.arrow_forward,
+                  color: Colors.black,
+                )
+              ],
+            ),
           ),
-          color: Colors.white,
-          textColor: Colors.blue,
-          hoverColor: Colors.blue,
-          splashColor: Colors.blue,
-          child: Row(
-            children: <Widget>[
-              Text("View more",style: TextStyle(color:Colors.black),),
-              Icon(
-                Icons.arrow_forward,
-                color:Colors.black,
-              )
-            ],
-          ),
-        ),
-        )
-    );
+        ));
     List<Widget> skills_children_returner() {
       if (widget.list_skills.length <= 2) {
-        return [SizedBox(height:10.0),list_of_all_cards];
-      }
-      else {
-        return [SizedBox(height:10.0),list_of_all_cards, view_more_button];
+        return [SizedBox(height: 10.0), list_of_all_cards];
+      } else {
+        return [SizedBox(height: 10.0), list_of_all_cards, view_more_button];
       }
     }
+
     final skills = Container(
-      color:Colors.cyan[50],
+      color: Colors.cyan[50],
       height: 450.0,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: skills_children_returner(),
       ),
     );
-    final personality_traits = Container(
-
-    );
+    final personality_traits = Container();
     final tabs = Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -480,8 +458,6 @@ class _HomePageState extends State<HomePage> {
                       Tab(text: "PERSONALITY TRAITS"),
                     ]),
               ),
-
-
               Container(
                 height: 240,
                 child: TabBarView(
@@ -494,60 +470,68 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-
-
             ],
           ),
         ),
-
       ],
     );
 
-
-    final projects =Container(height: 210.0, child:Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16.0, 0, 0, 10),
-          child: Row(
-            children: <Widget>[
-              Text(
-                'PROJECTS',
-                style: TextStyle(fontSize: 17, letterSpacing: 1.7),
+    final projects = Container(
+        height: 210.0,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16.0, 0, 0, 10),
+              child: Row(
+                children: <Widget>[
+                  Text(
+                    'PROJECTS',
+                    style: TextStyle(fontSize: 17, letterSpacing: 1.7),
+                  ),
+                  SizedBox(width: (MediaQuery.of(context).size.width) - 170),
+                  InkWell(
+                    child: Icon(Icons.add),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return new MyApp(
+                            '', '', '', '', '', '', '', '', '', '', '', '');
+                      }));
+                    },
+                  ),
+                ],
               ),
-              SizedBox(width: (MediaQuery.of(context).size.width) - 170),
-              InkWell(
-                child: Icon(Icons.add),
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return new MyApp('','','','','','','','','','','','');
-                  }));
-                },
+            ),
+            Container(
+              height: 170,
+              padding: EdgeInsets.fromLTRB(16, 5, 16, 0),
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  for (Map<String, dynamic> item in widget.list_projects)
+                    MyProjects(
+                        item['id'],
+                        item['info'],
+                        item['starts'],
+                        item['ends'],
+                        item['description'],
+                        item['status'],
+                        item['client_name'],
+                        item['client_location'],
+                        item['location_of_project_execution'],
+                        item['Industry_of_the_client'],
+                        item['Role'],
+                        item['team_size'],
+                        item['case_study_submitted']),
+                ],
               ),
-            ],
-          ),
-        ),
-        Container(
-          height: 170,
-          padding: EdgeInsets.fromLTRB(16, 5, 16, 0),
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: <Widget>[
-              for (Map<String, dynamic> item in widget.list_projects)
-                MyProjects( item['id'],item['info'], item['starts'], item['ends'],
-                    item['description'], item['status'],item['client_name'], item['client_location'], item['location_of_project_execution'],item['Industry_of_the_client'],item['Role'], item['team_size'],item['case_study_submitted']),
-
-              //MyProjects('Booking 2', '1 May 2020'),
-              //MyProjects('Booking 3', '1 May 2021'),
-            ],
-          ),
-        ),
-        Container(
-          width: double.infinity,
-        ),
-      ],
-    )
-    ); // MyProjects function is defined at the end. Usage Syntax: MyProjects(heading,subheading)
+            ),
+            Container(
+              width: double.infinity,
+            ),
+          ],
+        )); // MyProjects function is defined at the end.
 
     final badges = Container(
       height: 200,
@@ -574,7 +558,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   //SizedBox(width: (MediaQuery.of(context).size.width) - 350),
-
                 ],
               ),
             ],
@@ -585,33 +568,25 @@ class _HomePageState extends State<HomePage> {
             child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
-                  MyBadges(
-                      'All Day Everyday', 'assets/badges/always_available',
+                  MyBadges('All Day Everyday', 'assets/badges/always_available',
                       '100% Attendance'),
-                  MyBadges(
-                      'Employee of the Month', 'assets/badges/employee_month',
+                  MyBadges('Employee of the Month',
+                      'assets/badges/employee_month', '100% Attendance'),
+                  MyBadges('Spotlight Award', 'assets/badges/voyager',
                       '100% Attendance'),
-                  MyBadges(
-                      'Spotlight Award', 'assets/badges/voyager',
-                      '100% Attendance'),
-
-
                 ]
                 /*
                 for (Map<String, dynamic> item in widget.list_badges)
                   MyBadges(
                       item['title'], item['image_url'], item['description']),
               ],*/
-            ),
+                ),
           ),
         ],
-      ),);
+      ),
+    );
 
-    final achievemnets =
-    
-      Column(
-
-       
+    final achievemnets = Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Row(
@@ -628,8 +603,6 @@ class _HomePageState extends State<HomePage> {
             SizedBox(width: (MediaQuery.of(context).size.width) - 235),
             InkWell(
               child: Icon(Icons.add),
-
-              /// Pop Up form to add achievements
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return new EDIT_ACHIEVEMENT('', '');
@@ -638,38 +611,28 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-
-
         Container(
-          width: (MediaQuery
-              .of(context)
-              .size
-              .width),
+          width: (MediaQuery.of(context).size.width),
           padding: EdgeInsets.fromLTRB(16, 5, 16, 5),
           child: Column(
             children: <Widget>[
               for (Map<String, dynamic> item in widget.list_achievements)
-                _MyAchievemnts(context, item['date'], item['title'],
-                    item['description']),
+                _MyAchievemnts(
+                    context, item['date'], item['title'], item['description']),
               //_MyAchievemnts(context, 'May 10', 'Testing', 'Testin text'),
-              //_MyAchievemnts(context, 'May 11', 'Testing2',
-              //   'Grammaticality Wise men speak because they have something to say; Fools because they have to say something'),
+              //_MyAchievemnts(context, 'May 11', 'Testing2', 'Txt'),
             ],
           ),
         ),
-
         Container(width: double.infinity),
       ],
     );
 
-    final body =  Stack(
-
+    final body = Stack(
       children: <Widget>[
-
         ListView(
           scrollDirection: Axis.vertical,
           children: <Widget>[
-
             SizedBox(
               height: 40,
             ),
@@ -692,7 +655,6 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 40,
             ),
-
             projects,
             SizedBox(
               height: 30,
@@ -703,22 +665,15 @@ class _HomePageState extends State<HomePage> {
             ),
             achievemnets,
             SizedBox(
-                 height: 50.0,
+              height: 50.0,
             ),
-
-
           ],
         ),
         new Positioned(
-
-
             child: Align(
-              alignment: Alignment.bottomCenter,
-              child: BottomNavigation(),
-            )
-        ),
-        
-
+          alignment: Alignment.bottomCenter,
+          child: BottomNavigation(),
+        )),
       ],
     );
 
@@ -731,36 +686,33 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(
               Icons.picture_as_pdf,
               color: Colors.white,
-
             ),
             color: Colors.blue,
-            
-            onPressed: (){
-                reportView(context,widget.list_about,widget.list_communications,widget.list_skills);
+            onPressed: () {
+              reportView(context, widget.list_about, widget.list_communications,
+                  widget.list_skills);
             },
-          
           )
-
         ],
       ),
       body: SafeArea(
         child: body,
       ),
-      drawer: MainDrawer(widget.list_blogs,widget.list_education,widget.list_certifications),
+      drawer: MainDrawer(
+          widget.list_blogs, widget.list_education, widget.list_certifications),
     );
   }
 
   ///Functions called above. Sorry for non uniformity in the type returned.
-  Container MySkills(String image,
-      String competancy,) {
+  Container MySkills(
+    String image,
+    String competancy,
+  ) {
     return Container(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(25, 15, 5, 6),
         child: new LinearPercentIndicator(
-          width: MediaQuery
-              .of(context)
-              .size
-              .width - 120,
+          width: MediaQuery.of(context).size.width - 120,
           lineHeight: 3.0,
           leading: new Image.asset(image),
           trailing: Text(
@@ -777,7 +729,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-
   Column MyHobbies(String name, String hobby_image_url) {
     return Column(
       children: [
@@ -788,8 +739,6 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Card(
-
-
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5.0),
                   ),
@@ -802,7 +751,6 @@ class _HomePageState extends State<HomePage> {
                         height: 80.0,
                         width: 80.0,
                       )
-
                     ],
                   )),
             ],
@@ -824,7 +772,6 @@ class _HomePageState extends State<HomePage> {
           child: Container(
             height: 92,
             width: 92,
-
             child: Padding(
               padding: const EdgeInsets.fromLTRB(10, 4, 0, 0),
               child: Column(
@@ -836,8 +783,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Card(
                       shape: CircleBorder(
-                        //borderRadius: BorderRadius.circular(55.0),
-                      ),
+                          //borderRadius: BorderRadius.circular(55.0),
+                          ),
                       //color: Colors.blue,
                       elevation: 4,
                       child: Wrap(
@@ -863,18 +810,28 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Container MyProjects(int id,String name, String _start, String _end,
-      String description, String status, String client_name,String client_location,String location_of_project_execution,String Industry_of_the_client,String Role,String team_size,String case_study_submitted) {
+  Container MyProjects(
+      int id,
+      String name,
+      String _start,
+      String _end,
+      String description,
+      String status,
+      String client_name,
+      String client_location,
+      String location_of_project_execution,
+      String Industry_of_the_client,
+      String Role,
+      String team_size,
+      String case_study_submitted) {
     return Container(
       width: 250,
       decoration: BoxDecoration(
-
-      borderRadius: BorderRadius.only(
+        borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),
             bottomLeft: Radius.circular(20),
             bottomRight: Radius.circular(20)),
-
       ),
       child: Card(
         shape: RoundedRectangleBorder(
@@ -902,10 +859,20 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.white,
                   onPressed: () {
                     Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => projectinfo(name,_start,_end,description,status,client_name,client_location,location_of_project_execution,Industry_of_the_client,Role,team_size)
-                    )
-                    );
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => projectinfo(
+                                name,
+                                _start,
+                                _end,
+                                description,
+                                status,
+                                client_name,
+                                client_location,
+                                location_of_project_execution,
+                                Industry_of_the_client,
+                                Role,
+                                team_size)));
                   },
                   child: Row(
                     children: <Widget>[
@@ -923,23 +890,34 @@ class _HomePageState extends State<HomePage> {
                       side: BorderSide(color: Colors.blue)),
                 ),
                 InkWell(
-                  child: Icon(Icons.edit,color:Colors.white),
-
+                  child: Icon(Icons.edit, color: Colors.white),
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                          return MyApp(id.toString(),name,_start,_end,description,status,client_name,client_location,location_of_project_execution,Industry_of_the_client,Role,team_size);
-                        }));
+                      return MyApp(
+                          id.toString(),
+                          name,
+                          _start,
+                          _end,
+                          description,
+                          status,
+                          client_name,
+                          client_location,
+                          location_of_project_execution,
+                          Industry_of_the_client,
+                          Role,
+                          team_size);
+                    }));
                   },
                 ),
                 InkWell(
-                  child: Icon(Icons.delete,color:Colors.white),
-
+                  child: Icon(Icons.delete, color: Colors.white),
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => deletepopup('project',[id.toString()])),
+                          builder: (context) =>
+                              deletepopup('project', [id.toString()])),
                     );
                   },
                 ),
@@ -1000,7 +978,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-
         Container(
           height: 135,
           width: screenWidth(context) - 140,
@@ -1015,7 +992,7 @@ class _HomePageState extends State<HomePage> {
                 ListTile(
                   title: Text(heading, style: TextStyle(color: Colors.black)),
                   subtitle:
-                  Text(subHeading, style: TextStyle(color: Colors.black)),
+                      Text(subHeading, style: TextStyle(color: Colors.black)),
                 ),
                 Padding(
                   padding: EdgeInsets.all(20.0),
@@ -1024,19 +1001,16 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       InkWell(
                         child: Icon(Icons.edit),
-
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                                return new EDIT_ACHIEVEMENT(
-                                    heading, subHeading);
-                              }));
+                            return new EDIT_ACHIEVEMENT(heading, subHeading);
+                          }));
                         },
                       ),
                       SizedBox(width: 15.0),
                       InkWell(
                         child: Icon(Icons.delete),
-
                         onTap: () {
                           Navigator.push(
                             context,
@@ -1057,6 +1031,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  ///Call this function to show error messages.
   void _showErrorSnackBar() {
     Scaffold(
       body: SnackBar(
@@ -1067,9 +1042,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 Size screenSize(BuildContext context) {
-  return MediaQuery
-      .of(context)
-      .size;
+  return MediaQuery.of(context).size;
 }
 
 double screenHeight(BuildContext context) {
@@ -1084,14 +1057,11 @@ Container communication(String medium) {
   return Container(
     height: 40.0,
     width: 40.0,
-
     decoration: BoxDecoration(
       shape: BoxShape.circle,
       image: DecorationImage(
           image: AssetImage('assets/social_icons/$medium.png'),
-
-          fit: BoxFit.fill
-      ),
+          fit: BoxFit.fill),
     ),
   );
 }

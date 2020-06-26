@@ -12,7 +12,7 @@ import 'package:BOARDING/hobby_class.dart';
 import 'dart:convert';
 
 class HobbyLoadingScreen extends StatefulWidget {
- final List<Map<String,String>> hobbies;
+  final List<Map<String, String>> hobbies;
 
   const HobbyLoadingScreen(this.hobbies);
 
@@ -21,21 +21,16 @@ class HobbyLoadingScreen extends StatefulWidget {
 }
 
 class _HobbyLoadingScreenState extends State<HobbyLoadingScreen> {
-  String msg ="Your hobbies are being added. please wait...";
+  String msg = "Your hobbies are being added. Please Wait...";
 
-  Future<String> addhobbies(List<Map<String,String>> hobbies) async {
+  Future<String> addhobbies(List<Map<String, String>> hobbies) async {
     var token = await storage.read(key: 'jwt');
     print(hobbies);
 
-  var body = jsonEncode(<String,List<Map<String,String>>>{
-       "hobbies" : hobbies
-
-
-     }
-    );
+    var body =
+        jsonEncode(<String, List<Map<String, String>>>{"hobbies": hobbies});
     print(body);
-    var res = await http.post(
-        'http://192.168.1.9:8000/hobbies',
+    var res = await http.post('http://192.168.1.9:8000/hobbies',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -44,8 +39,6 @@ class _HobbyLoadingScreenState extends State<HobbyLoadingScreen> {
         body: jsonEncode(
             <String, List<Map<String, String>>>{"hobbies": hobbies}));
 
-    
-
     Fluttertoast.showToast(
         msg: 'Hobbies are added!',
         toastLength: Toast.LENGTH_SHORT,
@@ -53,48 +46,38 @@ class _HobbyLoadingScreenState extends State<HobbyLoadingScreen> {
         timeInSecForIosWeb: 2,
         backgroundColor: Colors.grey,
         textColor: Colors.white,
-        fontSize: 14.0
-    );
-
+        fontSize: 14.0);
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => LoadData()),);
-      return "success";
+      MaterialPageRoute(builder: (context) => LoadData()),
+    );
+    return "success";
   }
-  @override
-  void initState(){
-  
-    //Future <String> f = addhobbies(widget.hobbies);
-    
-      print(widget.hobbies);
-      Future <String> res = addhobbies(widget.hobbies);
-      
-      
 
+  @override
+  void initState() {
+    //Future <String> f = addhobbies(widget.hobbies);
+
+    print(widget.hobbies);
+    Future<String> res = addhobbies(widget.hobbies);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
-      body:Container(
-             
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children : <Widget>[
+        backgroundColor: Colors.blue,
+        body: Container(
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
                 Container(
-           width: double.infinity,
-
-          ),
-          Loading(indicator: BallPulseIndicator(),size: 100.0),
-          Text(msg,style:TextStyle(color:Colors.white,fontSize: 20.0))
-          ]
-          
-         
-        ),
-      )
-    );
-        
+                  width: double.infinity,
+                ),
+                Loading(indicator: BallPulseIndicator(), size: 100.0),
+                Text(msg, style: TextStyle(color: Colors.white, fontSize: 20.0))
+              ]),
+        ));
   }
 }

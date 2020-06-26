@@ -42,7 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Center(
         child: Form(
           key: formKey,
@@ -66,8 +65,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     });
                   },
                   dataSource: [
-
-
                     {
                       "display": "Ongoing",
                       "value": "Ongoing",
@@ -80,8 +77,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       "display": "Pending",
                       "value": "Pending",
                     },
-
-
                   ],
                   textField: 'display',
                   valueField: 'value',

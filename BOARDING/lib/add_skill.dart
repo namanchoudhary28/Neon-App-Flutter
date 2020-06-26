@@ -64,7 +64,6 @@ class _HobbyFormState extends State<HobbyForm> {
 
   static const String appTitle = "Search Choices demo";
   final String loremIpsum =
-      // "Acting ,Archery, Board games";
       " Archery , Acting , Camping , Cycling , Dancing , Drawing , Surfing , Writing , Board, Games, Calligraphy  , Cooking  Dance Drama  DIY  Fishing  Gardening.  Hiking   Hunting , IceSkating Puzzle Solving Knitting  Kite flying lego building Magic . Model building origami  playing music Reading  Singing  Table tennis urban exploration volley ball. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
   @override
@@ -96,20 +95,6 @@ class _HobbyFormState extends State<HobbyForm> {
     super.initState();
   }
 
-  // List<Widget> get appBarActions {
-  //   return ([
-  //     Center(child: Text("Tabs:")),
-  //     Switch(
-  //       activeColor: Colors.white,
-  //       value: asTabs,
-  //       onChanged: (value) {
-  //         setState(() {
-  //           asTabs = value;
-  //         });
-  //       },
-  //     )
-  //   ]);
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -139,70 +124,13 @@ class _HobbyFormState extends State<HobbyForm> {
         isExpanded: true,
       ),
   
-      // "": Container(
-             
-      //             child:Text(" $selectedItems "),
-
-
-            
-      //     ),
-      
-     
-
 
     };
     
    
 
     return MaterialApp(
-      // home: asTabs
-      //     ? DefaultTabController(
-      //         length: widgets.length,
-      //         child: Scaffold(
-      //           appBar: AppBar(
-      //             title: const Text(appTitle),
-      //             actions: appBarActions,
-      //             bottom: TabBar(
-      //               isScrollable: true,
-      //               tabs: Iterable<int>.generate(widgets.length)
-      //                   .toList()
-      //                   .map((i) {
-      //                 return (Tab(
-      //                   text: (i + 1).toString(),
-      //                 ));
-      //               }).toList(), //widgets.keys.toList().map((k){return(Tab(text: k));}).toList(),
-      //             ),
-      //           ),
-      //           body: Container(
-      //             padding: EdgeInsets.all(20),
-      //             child: TabBarView(
-      //               children: widgets
-      //                   .map((k, v) {
-      //                     return (MapEntry(
-      //                         k,
-      //                         SingleChildScrollView(
-      //                           scrollDirection: Axis.vertical,
-      //                           child: Column(children: [
-      //                             Text(k),
-      //                             SizedBox(
-      //                               height: 20,
-      //                             ),
-      //                             v,
-      //                           ]),
-                                
-      //                         )));
-      //                   })
-      //                   .values
-      //                   .toList(),
-      //             ),
-      //           ),
-                
-                
 
-                
-      //         ),
-      //       )
-      //     : 
          home: Scaffold(
               appBar: AppBar(
                 title: const Text("Add Hobby"),
@@ -288,8 +216,7 @@ class _HobbyFormState extends State<HobbyForm> {
               
               
             )
-    
-         
+
             
     )
     );
