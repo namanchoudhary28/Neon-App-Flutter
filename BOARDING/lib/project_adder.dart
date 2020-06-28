@@ -25,6 +25,11 @@ class ProjectLoadingScreen extends StatefulWidget {
   final String teamsize;
   //final String case_study_submitted;
   final String role;
+  final String project_description;
+  final String project_details;
+  final String proposed_solution;
+  final bool multi_vendor;
+  final String benefits;
   final String id;
 
   const ProjectLoadingScreen(
@@ -40,7 +45,13 @@ class ProjectLoadingScreen extends StatefulWidget {
       this.client_industry,
       this.location_of_project_execution,
       this.teamsize,
-      this.role);
+      this.role,
+      this.project_description,
+      this.project_details,
+      this.proposed_solution,
+      this.multi_vendor,
+      this.benefits,
+      );
 
   @override
   _ProjectLoadingScreenState createState() => _ProjectLoadingScreenState();
@@ -63,6 +74,11 @@ class _ProjectLoadingScreenState extends State<ProjectLoadingScreen> {
       String client_industry,
       String role,
       String teamsize,
+      String project_description,
+      String project_details,
+      String proposed_solution,
+      bool multi_vendor,
+      String benefits,
       String msg) async {
     var token = await storage.read(key: 'jwt');
     var res;
@@ -82,7 +98,15 @@ class _ProjectLoadingScreenState extends State<ProjectLoadingScreen> {
         "location_of_project_execution": location_of_project_execution,
         "Industry_of_the_client": client_industry,
         "Role": role,
-        "team_size": teamsize
+        "team_size": teamsize,
+        "project_description":project_description,
+        "project_details":project_details,
+        "proposed_solution":proposed_solution,
+        "multi_vendor":multi_vendor,
+        "benefits":benefits,
+
+
+
       });
     } else {
       res = await http.put('http://192.168.1.9:8000/project', headers: {
@@ -99,6 +123,11 @@ class _ProjectLoadingScreenState extends State<ProjectLoadingScreen> {
         "location_of_project_execution": location_of_project_execution,
         "Industry_of_the_client": client_industry,
         "Role": role,
+        "project_description":project_description,
+        "project_details":project_details,
+        "proposed_solution":proposed_solution,
+        "multi_vendor":multi_vendor,
+        "benefits":benefits,
         "team_size": teamsize,
         "id": id
       });
@@ -145,7 +174,7 @@ class _ProjectLoadingScreenState extends State<ProjectLoadingScreen> {
         widget.location_of_project_execution,
         widget.client_industry,
         widget.role,
-        widget.teamsize,
+        widget.teamsize,widget.project_description,widget.project_details,widget.proposed_solution,widget.multi_vendor,widget.benefits,
         msg2);
   }
 

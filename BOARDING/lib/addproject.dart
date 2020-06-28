@@ -169,6 +169,10 @@ class _MyAppState extends State<MyApp> {
     _iclientname2 = iclientname1.text;
     _myActivity = widget.status;
     _myActivityResult = '';             ///
+    _projectdescription=widget.project_description;
+    _ibenefits2=widget.benefits;
+
+
   }
 
   var _start, _end;
@@ -1212,7 +1216,9 @@ class _MyAppState extends State<MyApp> {
                       _iteamsize2= iteamsize1.text;
                       _itoolsworked2=itoolsworked1.text;
                       _iclientname2 = iclientname1.text;
-                      _ibenefits2 = iclientname1.text;
+                      _ibenefits2 = _ibenefits2.text;
+                      _projectdescription=_projectdescription.text;
+
                       print(_jkval); //internal/external;
                       // print(_jkval2); //yes/no;
                       print(_start);
@@ -1220,7 +1226,7 @@ class _MyAppState extends State<MyApp> {
                       print(_myActivity);
                       Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context)=>ProjectLoadingScreen(widget.id,decider,_projectinfo,_start,_end,_myActivity,_description,_iclientname2,_iclientlocation2,_iindustryoftheclient2,_ilocationofprojectexecution2,_iteamsize2,_iroleintheproject2))
+                          MaterialPageRoute(builder: (context)=>ProjectLoadingScreen(widget.id,decider,_projectinfo,_start,_end,_myActivity,_description,_iclientname2,_iclientlocation2,_iindustryoftheclient2,_ilocationofprojectexecution2,_iteamsize2,_iroleintheproject2,_projectdescription,'','',false,_ibenefits2))
 
                       );
                       //status
