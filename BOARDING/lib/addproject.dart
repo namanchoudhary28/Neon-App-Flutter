@@ -51,11 +51,16 @@ class MyApp extends StatefulWidget {
   final String client_industry;
   final String location_of_project_execution;
   final String teamsize;
+  final String project_description;
+  final String project_details;
+  final String proposed_solution;
+  final bool multi_vendor;
+  final String benefits;
   final String id;
 
- // final String case_study_submitted;
+  // final String case_study_submitted;
   final String role;
-  const MyApp(this.id,this.name,this.start,this.end,this.des,this.status,this.client_name,this.client_location,this.location_of_project_execution, this.client_industry,this.role,this.teamsize);
+  const MyApp(this.id,this.name,this.start,this.end,this.des,this.status,this.client_name,this.client_location,this.location_of_project_execution, this.client_industry,this.role,this.teamsize,this.project_description,this.project_details,this.proposed_solution,this.multi_vendor,this.benefits);
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -71,12 +76,14 @@ class _MyAppState extends State<MyApp> {
   var _jkval; //accessing radio button value
 
   var _description; //accessing description
+  var _projectdescription;
 
   final projectinfocon = new TextEditingController();
 
   final assignedtocon = new TextEditingController();
   final descriptioncon = new TextEditingController();
-  
+  final projectdescriptioncon = new TextEditingController();
+
 
 
   var _iclientlocation2;
@@ -86,7 +93,8 @@ class _MyAppState extends State<MyApp> {
   var _iteamsize2;
   var _itoolsworked2;
   var _iclientname2;
-  
+  var _ibenefits2;
+
   /////accesing vaiables new/.....
   final iclientlocation1= new TextEditingController();
   final ilocationofprojectexecution1= new TextEditingController();
@@ -95,6 +103,7 @@ class _MyAppState extends State<MyApp> {
   final itoolsworked1=new TextEditingController();
   final iteamsize1= new TextEditingController();
   final iclientname1 = new TextEditingController();
+  final ibenefits1 = new TextEditingController();
   String _jk2="";
   String heading;
 
@@ -176,6 +185,29 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    final hbenefitsname = Padding(
+      padding: EdgeInsets.all(20),
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.le,
+        children: <Widget>[
+          InkWell(
+            child: Image.network('https://img.icons8.com/material-sharp/48/000000/name.png'),
+            onTap: (){
+
+            },
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            'Benefits',
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+        ],
+      ),
+    );
 
 
     final hclientname = Padding(
@@ -251,7 +283,7 @@ class _MyAppState extends State<MyApp> {
         ],
       ),
     );
-    
+
     final hindustryoftheclient = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
@@ -375,7 +407,7 @@ class _MyAppState extends State<MyApp> {
         ],
       ),
     );
-    /*final hcasestudysubmission = Padding(
+    final hcasestudysubmission = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
         // mainAxisAlignment: MainAxisAlignment.le,
@@ -392,15 +424,34 @@ class _MyAppState extends State<MyApp> {
             width: 10,
           ),
           Text(
-            'Case Study Submitted',
+            'Multi-Vendor',
             style: TextStyle(
               fontSize: 18,
             ),
           ),
         ],
       ),
-    );*/
-final iclientname = Padding(
+    );
+    final ibenifits = Padding(
+      padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
+      child: TextFormField(
+        controller: ibenefits1,
+        decoration: InputDecoration(labelText: 'name',
+            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)
+        ),
+        // maxLength: 10,
+        validator: (String value) {
+          if (value.isEmpty) {
+            return 'Name is Required';
+          }
+          return null;
+        },
+        // onSaved: (String value) {
+        //   _name = value;
+        // },
+      ),
+    );
+    final iclientname = Padding(
       padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
       child: TextFormField(
         controller: iclientname1,
@@ -709,7 +760,7 @@ final iclientname = Padding(
             width: 10,
           ),
           Text(
-            'Description',
+            'Project Description',
             style: TextStyle(
               fontSize: 18,
             ),
@@ -737,7 +788,60 @@ final iclientname = Padding(
         // },
       ),
     );
+    ///////////////////////////////////////////////////////////////////////////
+    final projectdetailsdescriptionname = Padding(
+      padding: EdgeInsets.all(20),
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.le,
+        children: <Widget>[
+          InkWell(
+            child: Image.network(
+                'https://img.icons8.com/windows/32/000000/edit.png'),
+            onTap: () {
+              //      Navigator.push(context,MaterialPageRoute(builder: (context){
 
+              // return new MyApp();
+
+              // }));
+            },
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            'Project Details',
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+        ],
+      ),
+    );
+    final projectdetailsdescriptioninfo = Padding(
+      padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
+      child: TextFormField(
+        controller: projectdescriptioncon,
+        decoration: InputDecoration(
+            labelText: 'Buisness Solutions',
+            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)),
+        maxLines: 5,
+        validator: (String value) {
+          if (value.isEmpty) {
+            return 'Name is Required';
+          }
+
+          return null;
+        },
+        // onSaved: (String value) {
+        //   _name = value;
+        // },
+      ),
+    );
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////
     final dropdownname = Padding(
       padding: EdgeInsets.all(20),
       child: Row(
@@ -898,6 +1002,8 @@ final iclientname = Padding(
           iindustryoftheclient,
           hroleinproject,
           iroleintheproject,
+          hbenefitsname,
+          ibenifits,
           htoolsworked,
           itoolsworked,
           hteamsize,
@@ -950,7 +1056,7 @@ final iclientname = Padding(
                       valueField: 'value',
                     ),
                   ),
-                 /* Container(
+                  /* Container(
                    padding: EdgeInsets.all(8),
                     child: RaisedButton(
                       child: Text('Save'),
@@ -1016,7 +1122,7 @@ final iclientname = Padding(
             height: 20,
           ),
           /////////////...............15june2020...............
-         /* hcasestudysubmission,
+          hcasestudysubmission,
           new RadioListTile(
             value: "Yes",
             title: new Text("Yes"),
@@ -1025,7 +1131,6 @@ final iclientname = Padding(
               _pilihjk2(value);
             },
             activeColor: Colors.blue,
-
           ),
           new RadioListTile(
             value: "No",
@@ -1035,11 +1140,12 @@ final iclientname = Padding(
               _pilihjk2(value);
             },
             activeColor: Colors.blue,
-
-          ),*/
+          ),
 
           descriptionname,
           descriptioninfo,
+          projectdetailsdescriptionname,
+          projectdetailsdescriptioninfo,
           //checklistname,
           // uploadname,
           SizedBox(
@@ -1066,14 +1172,14 @@ final iclientname = Padding(
                   color: Colors.blue,
                   child: Row(children: <Widget>[
                     Icon(
-                       Icons.cancel,
-                       color:Colors.white
+                        Icons.cancel,
+                        color:Colors.white
                     ),
                     SizedBox(
                       width: 5.0,
                     ),
                     Text('Cancel',
-                      style: TextStyle(color: Colors.white, fontSize: 15.0))
+                        style: TextStyle(color: Colors.white, fontSize: 15.0))
 
                   ]),
                 ),
@@ -1096,8 +1202,9 @@ final iclientname = Padding(
                       _projectinfo = projectinfocon.text;
                       _assignedto = assignedtocon.text;
                       _description = descriptioncon.text;
-                     // _jkval2=_jk2;
-                       
+                      _projectdescription= descriptioncon.text;
+                      //_jkval2=_jk2;
+
                       _iclientlocation2=iclientlocation1.text;
                       _ilocationofprojectexecution2=ilocationofprojectexecution1.text;
                       _iindustryoftheclient2=iindustryoftheclient1.text;
@@ -1105,21 +1212,22 @@ final iclientname = Padding(
                       _iteamsize2= iteamsize1.text;
                       _itoolsworked2=itoolsworked1.text;
                       _iclientname2 = iclientname1.text;
+                      _ibenefits2 = iclientname1.text;
                       print(_jkval); //internal/external;
-                     // print(_jkval2); //yes/no;
+                      // print(_jkval2); //yes/no;
                       print(_start);
                       print(_end);
-                      print(_myActivity); 
+                      print(_myActivity);
                       Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context)=>ProjectLoadingScreen(widget.id,decider,_projectinfo,_start,_end,_myActivity,_description,_iclientname2,_iclientlocation2,_iindustryoftheclient2,_ilocationofprojectexecution2,_iteamsize2,_iroleintheproject2))
-                      
-                      );
-                       //status
+                          context,
+                          MaterialPageRoute(builder: (context)=>ProjectLoadingScreen(widget.id,decider,_projectinfo,_start,_end,_myActivity,_description,_iclientname2,_iclientlocation2,_iindustryoftheclient2,_ilocationofprojectexecution2,_iteamsize2,_iroleintheproject2))
 
-                      
+                      );
+                      //status
+
+
                     });
-                   
+
 
                     /*submitProjects(
                         _projectinfo, _description, _myActivityResult, _start,
@@ -1136,8 +1244,8 @@ final iclientname = Padding(
                   color: Colors.blue,
                   child: Row( children: <Widget>[
                     Icon(
-                       Icons.save,
-                       color:Colors.white
+                        Icons.save,
+                        color:Colors.white
                     ),
                     SizedBox(
                       width: 5.0,
@@ -1146,7 +1254,7 @@ final iclientname = Padding(
 
 
                   ] ,
-                      ),
+                  ),
                 ),
               ),
             ],

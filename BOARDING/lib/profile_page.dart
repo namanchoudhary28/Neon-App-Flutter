@@ -496,7 +496,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return new MyApp(
-                            '', '', '', '', '', '', '', '', '', '', '', '');
+                            '', '', '', '', '', '', '', '', '', '', '', '','','','',false,'');
                       }));
                     },
                   ),
@@ -523,7 +523,12 @@ class _HomePageState extends State<HomePage> {
                         item['Industry_of_the_client'],
                         item['Role'],
                         item['team_size'],
-                        item['case_study_submitted']),
+                        item['case_study_submitted'],
+                        item['project_description'],
+                        item['project_details'],
+                        item['proposed_solution'],
+                        item['multi_vendor'],
+                      item['benefits'],),
                 ],
               ),
             ),
@@ -823,7 +828,7 @@ class _HomePageState extends State<HomePage> {
       String Industry_of_the_client,
       String Role,
       String team_size,
-      String case_study_submitted) {
+      String case_study_submitted,	String project_description,String project_details, String proposed_solution,bool multi_vendor, String benefits) {
     return Container(
       width: 250,
       decoration: BoxDecoration(
@@ -872,7 +877,7 @@ class _HomePageState extends State<HomePage> {
                                 location_of_project_execution,
                                 Industry_of_the_client,
                                 Role,
-                                team_size)));
+                                team_size,	project_description, project_details,  proposed_solution, multi_vendor,  benefits)));
                   },
                   child: Row(
                     children: <Widget>[
@@ -906,7 +911,7 @@ class _HomePageState extends State<HomePage> {
                           location_of_project_execution,
                           Industry_of_the_client,
                           Role,
-                          team_size);
+                          team_size,project_description,project_details,proposed_solution,multi_vendor,benefits);
                     }));
                   },
                 ),

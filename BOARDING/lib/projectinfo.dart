@@ -13,6 +13,11 @@ class projectinfo extends StatefulWidget {
   final String client_industry;
   final String location_of_project_execution;
   final String teamsize;
+  final String project_description;
+  final String project_details;
+  final String proposed_solution;
+  final bool multi_vendor;
+  final String benefits;
   // final String case_study_submitted;
   final String role;
   const projectinfo(
@@ -26,7 +31,9 @@ class projectinfo extends StatefulWidget {
       this.location_of_project_execution,
       this.client_industry,
       this.role,
-      this.teamsize);
+      this.teamsize,
+      this.project_description,this.project_details, this.proposed_solution,this.multi_vendor,this.benefits
+  );
   @override
   _projectinfoState createState() => _projectinfoState();
 }
@@ -258,6 +265,7 @@ class _projectinfoState extends State<projectinfo> {
                 ),
               ),
               SizedBox(height: 20.0),
+
               Container(
                 width: 380.0,
                 child: Card(
@@ -319,6 +327,186 @@ class _projectinfoState extends State<projectinfo> {
                         SizedBox(width: 15.0),
                         Text(
                           widget.client_location,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20.0),
+              Container(
+                width: 380.0,
+                child: Card(
+                  elevation: 5.0,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(5.0, 15.0, 5.0, 15.0),
+                    child: Row(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Icon(
+                              Icons.bubble_chart,
+                              color: Colors.blue,
+                            ),
+                            SizedBox(width: 10.0),
+                            Text(
+                              "Project Description :",
+                              style:
+                              TextStyle(fontSize: 20.0, color: Colors.blue),
+                            ),
+                          ],
+                        ),
+                        SizedBox(width: 15.0),
+                        Text(
+                          widget.project_description,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20.0),
+              Container(
+                width: 380.0,
+                child: Card(
+                  elevation: 5.0,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(5.0, 15.0, 5.0, 15.0),
+                    child: Row(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Icon(
+                              Icons.bubble_chart,
+                              color: Colors.blue,
+                            ),
+                            SizedBox(width: 10.0),
+                            Text(
+                              "Project Details :",
+                              style:
+                              TextStyle(fontSize: 20.0, color: Colors.blue),
+                            ),
+                          ],
+                        ),
+                        SizedBox(width: 15.0),
+                        Text(
+                          widget.project_details,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20.0),
+              Container(
+                width: 380.0,
+                child: Card(
+                  elevation: 5.0,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(5.0, 15.0, 5.0, 15.0),
+                    child: Row(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Icon(
+                              Icons.bubble_chart,
+                              color: Colors.blue,
+                            ),
+                            SizedBox(width: 10.0),
+                            Text(
+                              "Proposed Solution :",
+                              style:
+                              TextStyle(fontSize: 20.0, color: Colors.blue),
+                            ),
+                          ],
+                        ),
+                        SizedBox(width: 15.0),
+                        Text(
+                          widget.proposed_solution,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20.0),
+              Container(
+                width: 380.0,
+                child: Card(
+                  elevation: 5.0,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(5.0, 15.0, 5.0, 15.0),
+                    child: Row(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Icon(
+                              Icons.bubble_chart,
+                              color: Colors.blue,
+                            ),
+                            SizedBox(width: 10.0),
+                            Text(
+                              "Multi Vendor :",
+                              style:
+                              TextStyle(fontSize: 20.0, color: Colors.blue),
+                            ),
+                          ],
+                        ),
+                        SizedBox(width: 15.0),
+                        Text(
+                          widget.multi_vendor.toString(),
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20.0),
+              Container(
+                width: 380.0,
+                child: Card(
+                  elevation: 5.0,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(5.0, 15.0, 5.0, 15.0),
+                    child: Row(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Icon(
+                              Icons.bubble_chart,
+                              color: Colors.blue,
+                            ),
+                            SizedBox(width: 10.0),
+                            Text(
+                              "Benefits :",
+                              style:
+                              TextStyle(fontSize: 20.0, color: Colors.blue),
+                            ),
+                          ],
+                        ),
+                        SizedBox(width: 15.0),
+                        Text(
+                          widget.benefits,
                           style: TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.w400,
