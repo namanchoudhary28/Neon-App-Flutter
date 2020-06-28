@@ -201,30 +201,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final hbenefitsname = Padding(
-      padding: EdgeInsets.all(20),
-      child: Row(
-        // mainAxisAlignment: MainAxisAlignment.le,
-        children: <Widget>[
-          InkWell(
-            child: Image.network('https://img.icons8.com/material-sharp/48/000000/name.png'),
-            onTap: (){
-
-            },
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          Text(
-            'Benefits',
-            style: TextStyle(
-              fontSize: 18,
-            ),
-          ),
-        ],
-      ),
-    );
-
+    
 
     final hclientname = Padding(
       padding: EdgeInsets.all(20),
@@ -914,55 +891,7 @@ class _MyAppState extends State<MyApp> {
       ),
     );
     ///////////////////////////////////////////////////////////////////////////
-    final projectdetailsdescriptionname = Padding(
-      padding: EdgeInsets.all(20),
-      child: Row(
-        // mainAxisAlignment: MainAxisAlignment.le,
-        children: <Widget>[
-          InkWell(
-            child: Image.network(
-                'https://img.icons8.com/windows/32/000000/edit.png'),
-            onTap: () {
-              //      Navigator.push(context,MaterialPageRoute(builder: (context){
-
-              // return new MyApp();
-
-              // }));
-            },
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          Text(
-            'Bussiness Solutions',
-            style: TextStyle(
-              fontSize: 18,
-            ),
-          ),
-        ],
-      ),
-    );
-    final projectdetailsdescriptioninfo = Padding(
-      padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
-      child: TextFormField(
-        controller: descriptioncon,
-        decoration: InputDecoration(
-            labelText: 'write here',
-            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)),
-        maxLines: 5,
-        validator: (String value) {
-          if (value.isEmpty) {
-            return 'Name is Required';
-          }
-
-          return null;
-        },
-        // onSaved: (String value) {
-        //   _name = value;
-        // },
-      ),
-    );
-
+    
 
 
 
@@ -1128,7 +1057,7 @@ class _MyAppState extends State<MyApp> {
           hroleinproject,
           iroleintheproject,
 
-          hbenefitsname,
+          hbenefits,
           ibenifits,
           hproposed_solution,
           isolution,
