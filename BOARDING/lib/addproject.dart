@@ -45,13 +45,12 @@ class MyApp extends StatefulWidget {
   final String start;
   final String end;
   final String status;
-  final String des;
+  final String project_description;
   final String client_name;
   final String client_location;
   final String client_industry;
   final String location_of_project_execution;
   final String teamsize;
-  final String project_description;
   final String project_details;
   final String proposed_solution;
   final bool multi_vendor;
@@ -60,7 +59,7 @@ class MyApp extends StatefulWidget {
 
   // final String case_study_submitted;
   final String role;
-  const MyApp(this.id,this.name,this.start,this.end,this.des,this.status,this.client_name,this.client_location,this.location_of_project_execution, this.client_industry,this.role,this.teamsize,this.project_description,this.project_details,this.proposed_solution,this.multi_vendor,this.benefits);
+  const MyApp(this.id,this.name,this.start,this.end,this.project_description,this.status,this.client_name,this.client_location,this.location_of_project_execution, this.client_industry,this.role,this.teamsize,this.project_details,this.proposed_solution,this.multi_vendor,this.benefits);
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -76,13 +75,13 @@ class _MyAppState extends State<MyApp> {
   var _jkval; //accessing radio button value
 
   var _description; //accessing description
-  var _projectdescription;
+ 
 
   final projectinfocon = new TextEditingController();
 
   final assignedtocon = new TextEditingController();
   final descriptioncon = new TextEditingController();
-  final projectdescriptioncon = new TextEditingController();
+ 
 
 
 
@@ -94,6 +93,9 @@ class _MyAppState extends State<MyApp> {
   var _itoolsworked2;
   var _iclientname2;
   var _ibenefits2;
+  var _isolution2;
+  var _idetails2;
+  
 
   /////accesing vaiables new/.....
   final iclientlocation1= new TextEditingController();
@@ -104,6 +106,9 @@ class _MyAppState extends State<MyApp> {
   final iteamsize1= new TextEditingController();
   final iclientname1 = new TextEditingController();
   final ibenefits1 = new TextEditingController();
+  final idetails1 =  new TextEditingController();
+  final isolution1 = new TextEditingController();
+
   String _jk2="";
   String heading;
 
@@ -157,20 +162,27 @@ class _MyAppState extends State<MyApp> {
     _jkval = _jk;
     projectinfocon.text=widget.name;
     //assignedtocon.text=;
-    descriptioncon.text=widget.des;
+    descriptioncon.text=widget.project_description;
     //_jkval2=_jk2;
     iclientname1.text=widget.client_name;
     iclientlocation1.text=widget.client_location;
     ilocationofprojectexecution1.text=widget.location_of_project_execution;
     iindustryoftheclient1.text=widget.client_industry;
-    _iroleintheproject2=widget.role;
+    //_iroleintheproject2=widget.role;
     iteamsize1.text=widget.teamsize;
     _itoolsworked2=itoolsworked1.text;    ///
     _iclientname2 = iclientname1.text;
     _myActivity = widget.status;
     _myActivityResult = '';             ///
-    _projectdescription=widget.project_description;
-    _ibenefits2=widget.benefits;
+    ibenefits1.text = widget.benefits;
+    isolution1.text = widget.proposed_solution;
+    idetails1.text = widget.project_details;
+    iroleintheproject1.text = widget.role;
+    //_ibenefits2=widget.benefits;
+   // _isolution2 = widget.proposed_solution;
+    //_idetails2  = widget.project_details;
+
+
 
 
   }
@@ -304,6 +316,75 @@ class _MyAppState extends State<MyApp> {
           ),
           Text(
             'Client Industry',
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+        ],
+      ),
+    );
+    final hbenefits = Padding(
+      padding: EdgeInsets.all(20),
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.le,
+        children: <Widget>[
+          InkWell(
+            child: Image.network('https://img.icons8.com/windows/32/000000/enterprise-resource-planning.png'),
+            onTap: (){
+
+            },
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            'Benefits',
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+        ],
+      ),
+    );
+    final hproposed_solution = Padding(
+      padding: EdgeInsets.all(20),
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.le,
+        children: <Widget>[
+          InkWell(
+            child: Image.network('https://img.icons8.com/windows/32/000000/enterprise-resource-planning.png'),
+            onTap: (){
+
+            },
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            'Proposed solution',
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+        ],
+      ),
+    );
+    final hibussiness_solution = Padding(
+      padding: EdgeInsets.all(20),
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.le,
+        children: <Widget>[
+          InkWell(
+            child: Image.network('https://img.icons8.com/windows/32/000000/enterprise-resource-planning.png'),
+            onTap: (){
+
+            },
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            'Business Solutions',
             style: TextStyle(
               fontSize: 18,
             ),
@@ -512,6 +593,45 @@ class _MyAppState extends State<MyApp> {
         // },
       ),
     );
+    final isolution = Padding(
+      padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
+      child: TextFormField(
+        controller: isolution1,
+        decoration: InputDecoration(labelText: 'proposed solution',
+            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)
+        ),
+        // maxLength: 10,
+        validator: (String value) {
+          if (value.isEmpty) {
+            return 'Name is Required';
+          }
+          return null;
+        },
+        // onSaved: (String value) {
+        //   _name = value;
+        // },
+      ),
+    );
+    final idetails = Padding(
+      padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
+      child: TextFormField(
+        controller: idetails1,
+        decoration: InputDecoration(labelText: 'location',
+            contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)
+        ),
+        // maxLength: 10,
+        validator: (String value) {
+          if (value.isEmpty) {
+            return 'Name is Required';
+          }
+          return null;
+        },
+        // onSaved: (String value) {
+        //   _name = value;
+        // },
+      ),
+    );
+    
     final iindustryoftheclient = Padding(
       padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
       child: TextFormField(
@@ -531,6 +651,7 @@ class _MyAppState extends State<MyApp> {
         // },
       ),
     );
+    
     final iroleintheproject = Padding(
       padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
       child: TextFormField(
@@ -813,7 +934,7 @@ class _MyAppState extends State<MyApp> {
             width: 10,
           ),
           Text(
-            'Project Details',
+            'Bussiness Solutions',
             style: TextStyle(
               fontSize: 18,
             ),
@@ -824,9 +945,9 @@ class _MyAppState extends State<MyApp> {
     final projectdetailsdescriptioninfo = Padding(
       padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
       child: TextFormField(
-        controller: projectdescriptioncon,
+        controller: descriptioncon,
         decoration: InputDecoration(
-            labelText: 'Buisness Solutions',
+            labelText: 'write here',
             contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 10.0)),
         maxLines: 5,
         validator: (String value) {
@@ -1006,8 +1127,13 @@ class _MyAppState extends State<MyApp> {
           iindustryoftheclient,
           hroleinproject,
           iroleintheproject,
+
           hbenefitsname,
           ibenifits,
+          hproposed_solution,
+          isolution,
+          hibussiness_solution,
+           idetails,
           htoolsworked,
           itoolsworked,
           hteamsize,
@@ -1148,8 +1274,8 @@ class _MyAppState extends State<MyApp> {
 
           descriptionname,
           descriptioninfo,
-          projectdetailsdescriptionname,
-          projectdetailsdescriptioninfo,
+         // projectdetailsdescriptionname,
+          //projectdetailsdescriptioninfo,
           //checklistname,
           // uploadname,
           SizedBox(
@@ -1206,7 +1332,7 @@ class _MyAppState extends State<MyApp> {
                       _projectinfo = projectinfocon.text;
                       _assignedto = assignedtocon.text;
                       _description = descriptioncon.text;
-                      _projectdescription= descriptioncon.text;
+                      
                       //_jkval2=_jk2;
 
                       _iclientlocation2=iclientlocation1.text;
@@ -1216,8 +1342,11 @@ class _MyAppState extends State<MyApp> {
                       _iteamsize2= iteamsize1.text;
                       _itoolsworked2=itoolsworked1.text;
                       _iclientname2 = iclientname1.text;
-                      _ibenefits2 = _ibenefits2.text;
-                      _projectdescription=_projectdescription.text;
+                      _ibenefits2 =   ibenefits1.text;
+                      _isolution2 =  isolution1.text;
+                      _idetails2 = idetails1.text;
+                      
+                    
 
                       print(_jkval); //internal/external;
                       // print(_jkval2); //yes/no;
@@ -1226,7 +1355,7 @@ class _MyAppState extends State<MyApp> {
                       print(_myActivity);
                       Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context)=>ProjectLoadingScreen(widget.id,decider,_projectinfo,_start,_end,_myActivity,_description,_iclientname2,_iclientlocation2,_iindustryoftheclient2,_ilocationofprojectexecution2,_iteamsize2,_iroleintheproject2,_projectdescription,'','',false,_ibenefits2))
+                          MaterialPageRoute(builder: (context)=>ProjectLoadingScreen(widget.id,decider,_projectinfo,_start,_end,_myActivity,_description,_iclientname2,_iclientlocation2,_iindustryoftheclient2,_ilocationofprojectexecution2,_iteamsize2,_iroleintheproject2,_idetails2,_isolution2,false,_ibenefits2))
 
                       );
                       //status

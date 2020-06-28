@@ -7,13 +7,13 @@ class projectinfo extends StatefulWidget {
   final String start;
   final String end;
   final String status;
-  final String des;
+  final String project_description;
   final String client_name;
   final String client_location;
   final String client_industry;
   final String location_of_project_execution;
   final String teamsize;
-  final String project_description;
+ 
   final String project_details;
   final String proposed_solution;
   final bool multi_vendor;
@@ -24,7 +24,7 @@ class projectinfo extends StatefulWidget {
       this.name,
       this.start,
       this.end,
-      this.des,
+      this.project_description,
       this.status,
       this.client_name,
       this.client_location,
@@ -32,7 +32,7 @@ class projectinfo extends StatefulWidget {
       this.client_industry,
       this.role,
       this.teamsize,
-      this.project_description,this.project_details, this.proposed_solution,this.multi_vendor,this.benefits
+      this.project_details, this.proposed_solution,this.multi_vendor,this.benefits
   );
   @override
   _projectinfoState createState() => _projectinfoState();
@@ -682,7 +682,7 @@ class _projectinfoState extends State<projectinfo> {
                   ],
                 ),
                 child: Text(
-                  widget.des,
+                  widget.project_description,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 15.0,

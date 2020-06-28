@@ -496,7 +496,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return new MyApp(
-                            '', '', '', '', '', '', '', '', '', '', '', '','','','',false,'');
+                            '', '', '', '', '', '', '', '', '', '', '', '','','',false,'');
                       }));
                     },
                   ),
@@ -515,7 +515,7 @@ class _HomePageState extends State<HomePage> {
                         item['info'],
                         item['starts'],
                         item['ends'],
-                        item['description'],
+                        item['project_description'],
                         item['status'],
                         item['client_name'],
                         item['client_location'],
@@ -524,7 +524,7 @@ class _HomePageState extends State<HomePage> {
                         item['Role'],
                         item['team_size'],
                         item['case_study_submitted'],
-                        item['project_description'],
+          
                         item['project_details'],
                         item['proposed_solution'],
                         item['multi_vendor'],
@@ -820,7 +820,7 @@ class _HomePageState extends State<HomePage> {
       String name,
       String _start,
       String _end,
-      String description,
+      String project_description,
       String status,
       String client_name,
       String client_location,
@@ -828,7 +828,7 @@ class _HomePageState extends State<HomePage> {
       String Industry_of_the_client,
       String Role,
       String team_size,
-      String case_study_submitted,	String project_description,String project_details, String proposed_solution,bool multi_vendor, String benefits) {
+      String case_study_submitted,String project_details, String proposed_solution,bool multi_vendor, String benefits) {
     return Container(
       width: 250,
       decoration: BoxDecoration(
@@ -855,7 +855,7 @@ class _HomePageState extends State<HomePage> {
               height: 30.0,
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(15, 0, 15, 2),
-                child: Text(description, style: TextStyle(color: Colors.white)),
+                child: Text(project_description, style: TextStyle(color: Colors.white)),
               ),
             ),
             Row(
@@ -870,14 +870,14 @@ class _HomePageState extends State<HomePage> {
                                 name,
                                 _start,
                                 _end,
-                                description,
+                                project_description,
                                 status,
                                 client_name,
                                 client_location,
                                 location_of_project_execution,
                                 Industry_of_the_client,
                                 Role,
-                                team_size,	project_description, project_details,  proposed_solution, multi_vendor,  benefits)));
+                                team_size, project_details,  proposed_solution, multi_vendor,  benefits)));
                   },
                   child: Row(
                     children: <Widget>[
@@ -904,14 +904,14 @@ class _HomePageState extends State<HomePage> {
                           name,
                           _start,
                           _end,
-                          description,
+                          project_description,
                           status,
                           client_name,
                           client_location,
                           location_of_project_execution,
                           Industry_of_the_client,
                           Role,
-                          team_size,project_description,project_details,proposed_solution,multi_vendor,benefits);
+                          team_size,project_details,proposed_solution,multi_vendor,benefits);
                     }));
                   },
                 ),
