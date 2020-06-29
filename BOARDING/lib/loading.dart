@@ -26,7 +26,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     var token = await storage.read(key: 'jwt');
 
     var res =
-        await http.delete('http://192.168.1.9:8000/$name/' + title, headers: {
+        await http.delete('http://10.0.2.2:8000/$name/' + title, headers: {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
     });

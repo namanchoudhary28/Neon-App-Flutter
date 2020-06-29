@@ -36,7 +36,7 @@ class _CertificationLoadingScreenState
     var token = await storage.read(key: 'jwt');
 
     var res =
-        await http.post('http://192.168.1.9:8000/certification', headers: {
+        await http.post('http://10.0.2.2:8000/certification', headers: {
       'Accept': 'application/json',
       'Authorization': 'Token $token',
     }, body: {

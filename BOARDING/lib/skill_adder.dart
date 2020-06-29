@@ -26,7 +26,7 @@ class _SkillLoadingScreenState extends State<SkillLoadingScreen> {
   Future<String> addskills(List<Map<String, String>> skills) async {
     var token = await storage.read(key: 'jwt');
 
-    var res = await http.post('http://192.168.1.9:8000/skills',
+    var res = await http.post('http://10.0.2.2:8000/skills',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',

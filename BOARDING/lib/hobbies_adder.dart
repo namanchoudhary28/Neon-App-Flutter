@@ -30,7 +30,7 @@ class _HobbyLoadingScreenState extends State<HobbyLoadingScreen> {
     var body =
         jsonEncode(<String, List<Map<String, String>>>{"hobbies": hobbies});
     print(body);
-    var res = await http.post('http://192.168.1.9:8000/hobbies',
+    var res = await http.post('http://10.0.2.2:8000/hobbies',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
