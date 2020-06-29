@@ -267,11 +267,7 @@ class _BLOGState extends State<BLOG> {
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   onPressed: () {
-                    // Navigator.push(context,MaterialPageRoute(builder: (context){
-                    //   return new EDITINFO();
-
-                    // }));
-                    // Navigator.of(context).pushNamed(HomePage.tag);
+                
                   },
                   padding: EdgeInsets.all(15),
                   color: Colors.blue,

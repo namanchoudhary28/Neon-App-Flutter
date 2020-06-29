@@ -1115,35 +1115,12 @@ class _MyAppState extends State<MyApp> {
                       valueField: 'value',
                     ),
                   ),
-                  /* Container(
-                   padding: EdgeInsets.all(8),
-                    child: RaisedButton(
-                      child: Text('Save'),
-                      onPressed: _saveForm,
-                    ),
-                  ),*/
-                  // Container(
-                  //   padding: EdgeInsets.all(16),
-                  //   child: Text(_myActivityResult),
-                  // )
+                
                 ],
               ),
             ),
           ),
-          // Container(
-          //   height: 225,
-          //   child: MyHomePage(),
-          // ),
-
-          // Container(
-          //   padding: const EdgeInsets.only(left: 14.0, top: 14.0),
-          //   child: Text("Basic RadioButtonGroup",
-          //     style: TextStyle(
-          //       fontWeight: FontWeight.bold,
-          //       fontSize: 20.0
-          //     ),
-          //   ),
-          // ),
+         
           new RadioListTile(
             value: "External",
             title: new Text("External"),
@@ -1162,21 +1139,7 @@ class _MyAppState extends State<MyApp> {
             },
             activeColor: Colors.blue,
           ),
-          // RadioButtonGroup(
-
-          //   labels: [
-          //     "External",
-          //     "Internal",
-          //   ],
-          //   labelStyle: TextStyle( fontSize: 20),
-          //   disabled: [
-
-          //   ],
-          //   onChange: (String label, int index) => print("label: $label index: $index"),
-          //   onSelected: (String label) => print(label),
-
-          // ),
-          // Text($label),
+          
           SizedBox(
             height: 20,
           ),
@@ -1203,10 +1166,7 @@ class _MyAppState extends State<MyApp> {
 
           descriptionname,
           descriptioninfo,
-         // projectdetailsdescriptionname,
-          //projectdetailsdescriptioninfo,
-          //checklistname,
-          // uploadname,
+       
           SizedBox(
             height: 70,
           ),
@@ -1221,11 +1181,7 @@ class _MyAppState extends State<MyApp> {
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   onPressed: () {
-                    // Navigator.push(context,MaterialPageRoute(builder: (context){
-                    //   return new EDITINFO();
-
-                    // }));
-                    // Navigator.of(context).pushNamed(HomePage.tag);
+                   
                   },
                   padding: EdgeInsets.all(15),
                   color: Colors.blue,
@@ -1293,13 +1249,7 @@ class _MyAppState extends State<MyApp> {
                     });
 
 
-                    /*submitProjects(
-                        _projectinfo, _description, _myActivityResult, _start,
-                        _end);
-                    Navigator.push(
-                        context, MaterialPageRoute(builder: (context) {
-                      return LoadData();
-                    }));*/
+                    
                   },
 
 
